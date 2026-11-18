@@ -1,0 +1,88 @@
+extra_id,case_id,household_id,type,amount,start_month,end_month,reason
+E0001,C0001,H01,one_off,5000,2027-04,,Annual bonus in April
+E0002,C0002,H07,recurring,100,2027-09,,Raise from September
+E0003,C0003,H08,recurring,400,2027-09,,Raise from September
+E0004,C0003,H08,one_off,12000,2027-04,,Annual bonus in April
+E0005,C0004,H09,recurring,500,2027-01,,Spare cash each month
+E0006,C0005,H11,recurring,100,2027-09,,Raise from September
+E0007,C0006,H15,one_off,12000,2027-04,,Annual bonus in April
+E0008,C0007,H16,one_off,5000,2027-04,,Annual bonus in April
+E0009,C0007,H16,one_off,5000,2026-12,,Savings used to pay down debt upfront
+E0010,C0008,H04,one_off,5000,2027-04,,Annual bonus in April
+E0011,C0008,H04,one_off,12000,2027-03,,Tax refund in March
+E0012,C0009,H12,one_off,8000,2026-12,,Savings used to pay down debt upfront
+E0013,C0009,H12,one_off,5000,2027-04,,Annual bonus in April
+E0014,C0010,H291,recurring,300,2027-01,,Spare cash each month
+E0015,C0011,H82,recurring,400,2027-01,,Spare cash each month
+E0016,C0012,H199,recurring,150,2027-09,,Raise from September
+E0017,C0013,H113,recurring,400,2027-01,,Spare cash each month
+E0018,C0016,H55,recurring,300,2027-09,,Raise from September
+E0019,C0017,H74,one_off,12000,2026-12,,Savings used to pay down debt upfront
+E0020,C0018,H118,recurring,300,2027-01,,Spare cash each month
+E0021,C0019,H161,recurring,150,2027-09,,Raise from September
+E0022,C0019,H161,one_off,12000,2027-04,,Annual bonus in April
+E0023,C0020,H172,one_off,12000,2027-04,,Annual bonus in April
+E0024,C0020,H172,one_off,5000,2026-12,,Savings used to pay down debt upfront
+E0025,C0021,H175,one_off,3000,2027-03,,Tax refund in March
+E0026,C0022,H229,one_off,2000,2027-04,,Annual bonus in April
+E0027,C0023,H188,one_off,2000,2026-12,,Savings used to pay down debt upfront
+E0028,C0023,H188,one_off,3000,2027-03,,Tax refund in March
+E0029,C0024,H131,one_off,2000,2026-12,,Savings used to pay down debt upfront
+E0030,C0024,H131,one_off,8000,2027-04,,Annual bonus in April
+E0031,C0026,H200,recurring,150,2027-09,,Raise from September
+E0032,C0027,H119,recurring,150,2027-01,,Spare cash each month
+E0033,C0027,H119,one_off,12000,2026-12,,Savings used to pay down debt upfront
+E0034,C0028,H23,recurring,150,2027-09,,Raise from September
+E0035,C0028,H23,recurring,150,2027-01,,Spare cash each month
+E0036,C0029,H36,one_off,12000,2026-12,,Savings used to pay down debt upfront
+E0037,C0029,H36,recurring,400,2027-01,,Spare cash each month
+E0038,C0030,H187,recurring,150,2027-01,,Spare cash each month
+E0039,C0032,H194,one_off,2000,2027-03,,Tax refund in March
+E0040,C0033,H273,recurring,200,2027-01,,Spare cash each month
+E0041,C0034,H261,recurring,500,2027-01,,Spare cash each month
+E0042,C0034,H261,recurring,400,2027-09,,Raise from September
+E0043,C0036,H80,one_off,2000,2026-12,,Savings used to pay down debt upfront
+E0044,C0037,H224,recurring,150,2027-01,,Spare cash each month
+E0045,C0039,H166,one_off,5000,2027-04,,Annual bonus in April
+E0046,C0042,H89,one_off,5000,2027-03,,Tax refund in March
+E0047,C0042,H89,recurring,100,2027-01,,Spare cash each month
+E0048,C0044,H51,recurring,100,2027-01,,Spare cash each month
+E0049,C0045,H142,recurring,150,2027-09,,Raise from September
+E0050,C0045,H142,one_off,5000,2027-04,,Annual bonus in April
+E0051,C0047,H274,one_off,12000,2027-03,,Tax refund in March
+E0052,C0047,H274,recurring,300,2027-09,,Raise from September
+E0053,C0049,H21,one_off,3000,2026-12,,Savings used to pay down debt upfront
+E0054,C0051,H190,recurring,400,2027-01,,Spare cash each month
+E0055,C0052,H109,one_off,5000,2027-04,,Annual bonus in April
+E0056,C0053,H228,recurring,200,2027-09,,Raise from September
+E0057,C0058,H153,one_off,12000,2027-03,,Tax refund in March
+E0058,C0058,H153,recurring,150,2027-01,,Spare cash each month
+E0059,C0060,H117,one_off,3000,2027-04,,Annual bonus in April
+E0060,C0061,H45,one_off,3000,2027-03,,Tax refund in March
+E0061,C0064,H126,one_off,12000,2026-12,,Savings used to pay down debt upfront
+E0062,C0064,H126,one_off,3000,2027-04,,Annual bonus in April
+E0063,C0065,H282,one_off,2000,2026-12,,Savings used to pay down debt upfront
+E0064,C0066,H280,one_off,12000,2027-04,,Annual bonus in April
+E0065,C0067,H299,recurring,300,2027-01,,Spare cash each month
+E0066,C0067,H299,one_off,3000,2026-12,,Savings used to pay down debt upfront
+E0067,C0069,H258,one_off,3000,2026-12,,Savings used to pay down debt upfront
+E0068,C0071,H49,one_off,2000,2026-12,,Savings used to pay down debt upfront
+E0069,C0072,H192,one_off,5000,2026-12,,Savings used to pay down debt upfront
+E0070,C0072,H192,one_off,2000,2027-03,,Tax refund in March
+E0071,C0076,H292,one_off,2000,2027-03,,Tax refund in March
+E0072,C0076,H292,recurring,100,2027-09,,Raise from September
+E0073,C0078,H86,one_off,5000,2026-12,,Savings used to pay down debt upfront
+E0074,C0079,H149,recurring,150,2027-01,,Spare cash each month
+E0075,C0079,H149,one_off,3000,2027-04,,Annual bonus in April
+E0076,C0080,H136,recurring,100,2027-09,,Raise from September
+E0077,C0080,H136,one_off,3000,2027-03,,Tax refund in March
+E0078,C0081,H227,recurring,300,2027-01,,Spare cash each month
+E0079,C0082,H276,one_off,12000,2026-12,,Savings used to pay down debt upfront
+E0080,C0082,H276,recurring,400,2027-09,,Raise from September
+E0081,C0083,H61,recurring,200,2027-01,,Spare cash each month
+E0082,C0083,H61,one_off,2000,2027-03,,Tax refund in March
+E0083,C0086,H53,one_off,2000,2027-04,,Annual bonus in April
+E0084,C0086,H53,recurring,400,2027-01,,Spare cash each month
+E0085,C0089,H213,recurring,200,2027-01,,Spare cash each month
+E0086,C0090,H241,one_off,8000,2027-04,,Annual bonus in April
+E0087,C0092,H47,recurring,100,2027-09,,Raise from September

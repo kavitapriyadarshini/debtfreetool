@@ -1,0 +1,122 @@
+[
+  {
+    "custom_loan_id": "L001",
+    "case_id": "C0017",
+    "household_id": "H74",
+    "lender_name": "Local credit union",
+    "rate": 10.15,
+    "term_months": 36,
+    "max_amount": 60000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L002",
+    "case_id": "C0023",
+    "household_id": "H188",
+    "lender_name": "Employer credit union",
+    "rate": 8.69,
+    "term_months": 36,
+    "max_amount": 40000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L003",
+    "case_id": "C0028",
+    "household_id": "H23",
+    "lender_name": "Local credit union",
+    "rate": 9.03,
+    "term_months": 36,
+    "max_amount": 60000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L004",
+    "case_id": "C0039",
+    "household_id": "H166",
+    "lender_name": "Bank relationship loan",
+    "rate": 9.61,
+    "term_months": 60,
+    "max_amount": 25000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L005",
+    "case_id": "C0040",
+    "household_id": "H182",
+    "lender_name": "Local credit union",
+    "rate": 11.4,
+    "term_months": 36,
+    "max_amount": 25000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L006",
+    "case_id": "C0045",
+    "household_id": "H142",
+    "lender_name": "Local credit union",
+    "rate": 11.26,
+    "term_months": 60,
+    "max_amount": 40000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L007",
+    "case_id": "C0056",
+    "household_id": "H145",
+    "lender_name": "Bank relationship loan",
+    "rate": 10.99,
+    "term_months": 36,
+    "max_amount": 60000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L008",
+    "case_id": "C0062",
+    "household_id": "H69",
+    "lender_name": "Bank relationship loan",
+    "rate": 8.23,
+    "term_months": 60,
+    "max_amount": 40000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L009",
+    "case_id": "C0064",
+    "household_id": "H126",
+    "lender_name": "Local credit union",
+    "rate": 9.16,
+    "term_months": 60,
+    "max_amount": 60000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L010",
+    "case_id": "C0079",
+    "household_id": "H149",
+    "lender_name": "Bank relationship loan",
+    "rate": 11.17,
+    "term_months": 48,
+    "max_amount": 60000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L011",
+    "case_id": "C0088",
+    "household_id": "H295",
+    "lender_name": "Local credit union",
+    "rate": 9.05,
+    "term_months": 60,
+    "max_amount": 25000,
+    "note": "Household asked to compare this offer"
+  },
+  {
+    "custom_loan_id": "L012",
+    "case_id": "C0091",
+    "household_id": "H26",
+    "lender_name": "Local credit union",
+    "rate": 10.34,
+    "term_months": 48,
+    "max_amount": 25000,
+    "note": "Household asked to compare this offer"
+  }
+]

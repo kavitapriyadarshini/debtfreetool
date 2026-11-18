@@ -1,0 +1,3418 @@
+[
+  {
+    "member_id": "H01-M1",
+    "household_id": "H01",
+    "member_name": "Raj Patel",
+    "role": "Primary",
+    "fico": 720
+  },
+  {
+    "member_id": "H01-M2",
+    "household_id": "H01",
+    "member_name": "Anita Patel",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H02-M1",
+    "household_id": "H02",
+    "member_name": "Linh Nguyen",
+    "role": "Primary",
+    "fico": 762
+  },
+  {
+    "member_id": "H03-M1",
+    "household_id": "H03",
+    "member_name": "Marcus Johnson",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H03-M2",
+    "household_id": "H03",
+    "member_name": "Keisha Johnson",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H04-M1",
+    "household_id": "H04",
+    "member_name": "Sofia Garcia",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H05-M1",
+    "household_id": "H05",
+    "member_name": "David Thompson",
+    "role": "Primary",
+    "fico": 702
+  },
+  {
+    "member_id": "H05-M2",
+    "household_id": "H05",
+    "member_name": "Rachel Thompson",
+    "role": "Spouse",
+    "fico": 735
+  },
+  {
+    "member_id": "H06-M1",
+    "household_id": "H06",
+    "member_name": "James Williams",
+    "role": "Primary",
+    "fico": 694
+  },
+  {
+    "member_id": "H07-M1",
+    "household_id": "H07",
+    "member_name": "Harold Brown",
+    "role": "Primary",
+    "fico": 781
+  },
+  {
+    "member_id": "H07-M2",
+    "household_id": "H07",
+    "member_name": "June Brown",
+    "role": "Spouse",
+    "fico": 774
+  },
+  {
+    "member_id": "H08-M1",
+    "household_id": "H08",
+    "member_name": "Kevin Davis",
+    "role": "Primary",
+    "fico": 652
+  },
+  {
+    "member_id": "H08-M2",
+    "household_id": "H08",
+    "member_name": "Tara Davis",
+    "role": "Spouse",
+    "fico": 791
+  },
+  {
+    "member_id": "H09-M1",
+    "household_id": "H09",
+    "member_name": "Brian Miller",
+    "role": "Primary",
+    "fico": 731
+  },
+  {
+    "member_id": "H10-M1",
+    "household_id": "H10",
+    "member_name": "Aaron Wilson",
+    "role": "Primary",
+    "fico": 738
+  },
+  {
+    "member_id": "H10-M2",
+    "household_id": "H10",
+    "member_name": "Megan Wilson",
+    "role": "Spouse",
+    "fico": 744
+  },
+  {
+    "member_id": "H11-M1",
+    "household_id": "H11",
+    "member_name": "Andre Moore",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H11-M2",
+    "household_id": "H11",
+    "member_name": "Tasha Moore",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H12-M1",
+    "household_id": "H12",
+    "member_name": "Grace Taylor",
+    "role": "Primary",
+    "fico": 806
+  },
+  {
+    "member_id": "H13-M1",
+    "household_id": "H13",
+    "member_name": "Eric Anderson",
+    "role": "Primary",
+    "fico": 748
+  },
+  {
+    "member_id": "H13-M2",
+    "household_id": "H13",
+    "member_name": "Laura Anderson",
+    "role": "Spouse",
+    "fico": 755
+  },
+  {
+    "member_id": "H14-M1",
+    "household_id": "H14",
+    "member_name": "Derek Thomas",
+    "role": "Primary",
+    "fico": 742
+  },
+  {
+    "member_id": "H15-M1",
+    "household_id": "H15",
+    "member_name": "Tyrone Jackson",
+    "role": "Primary",
+    "fico": 710
+  },
+  {
+    "member_id": "H15-M2",
+    "household_id": "H15",
+    "member_name": "Dana Jackson",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H16-M1",
+    "household_id": "H16",
+    "member_name": "Jason Lee",
+    "role": "Primary",
+    "fico": 728
+  },
+  {
+    "member_id": "H17-M1",
+    "household_id": "H17",
+    "member_name": "Hiroshi Baker",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H17-M2",
+    "household_id": "H17",
+    "member_name": "Samuel Baker",
+    "role": "Spouse",
+    "fico": 695
+  },
+  {
+    "member_id": "H18-M1",
+    "household_id": "H18",
+    "member_name": "Zoe Hill",
+    "role": "Primary",
+    "fico": 772
+  },
+  {
+    "member_id": "H18-M2",
+    "household_id": "H18",
+    "member_name": "Ruth Hill",
+    "role": "Spouse",
+    "fico": 765
+  },
+  {
+    "member_id": "H19-M1",
+    "household_id": "H19",
+    "member_name": "Chen Reed",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H20-M1",
+    "household_id": "H20",
+    "member_name": "Zoe Carter",
+    "role": "Primary",
+    "fico": 716
+  },
+  {
+    "member_id": "H20-M2",
+    "household_id": "H20",
+    "member_name": "Mei Carter",
+    "role": "Spouse",
+    "fico": 787
+  },
+  {
+    "member_id": "H21-M1",
+    "household_id": "H21",
+    "member_name": "Zoe Cook",
+    "role": "Primary",
+    "fico": 700
+  },
+  {
+    "member_id": "H21-M2",
+    "household_id": "H21",
+    "member_name": "Chen Cook",
+    "role": "Spouse",
+    "fico": 785
+  },
+  {
+    "member_id": "H23-M1",
+    "household_id": "H23",
+    "member_name": "Fatima Reed",
+    "role": "Primary",
+    "fico": 662
+  },
+  {
+    "member_id": "H23-M2",
+    "household_id": "H23",
+    "member_name": "Samuel Reed",
+    "role": "Spouse",
+    "fico": 692
+  },
+  {
+    "member_id": "H24-M1",
+    "household_id": "H24",
+    "member_name": "Fatima Hill",
+    "role": "Primary",
+    "fico": 609
+  },
+  {
+    "member_id": "H25-M1",
+    "household_id": "H25",
+    "member_name": "Michael Carter",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H25-M2",
+    "household_id": "H25",
+    "member_name": "Hiroshi Carter",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H26-M1",
+    "household_id": "H26",
+    "member_name": "Maria Perez",
+    "role": "Primary",
+    "fico": 749
+  },
+  {
+    "member_id": "H26-M2",
+    "household_id": "H26",
+    "member_name": "Lucas Perez",
+    "role": "Spouse",
+    "fico": 645
+  },
+  {
+    "member_id": "H27-M1",
+    "household_id": "H27",
+    "member_name": "Samuel Perez",
+    "role": "Primary",
+    "fico": 663
+  },
+  {
+    "member_id": "H27-M2",
+    "household_id": "H27",
+    "member_name": "Owen Perez",
+    "role": "Spouse",
+    "fico": 729
+  },
+  {
+    "member_id": "H28-M1",
+    "household_id": "H28",
+    "member_name": "Priya Shah",
+    "role": "Primary",
+    "fico": 648
+  },
+  {
+    "member_id": "H29-M1",
+    "household_id": "H29",
+    "member_name": "Leah Lopez",
+    "role": "Primary",
+    "fico": 766
+  },
+  {
+    "member_id": "H29-M2",
+    "household_id": "H29",
+    "member_name": "Ethan Lopez",
+    "role": "Spouse",
+    "fico": 709
+  },
+  {
+    "member_id": "H30-M1",
+    "household_id": "H30",
+    "member_name": "Lucas Rogers",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H30-M2",
+    "household_id": "H30",
+    "member_name": "Felix Rogers",
+    "role": "Spouse",
+    "fico": 723
+  },
+  {
+    "member_id": "H31-M1",
+    "household_id": "H31",
+    "member_name": "Robert Walker",
+    "role": "Primary",
+    "fico": 695
+  },
+  {
+    "member_id": "H32-M1",
+    "household_id": "H32",
+    "member_name": "Robert Bell",
+    "role": "Primary",
+    "fico": 818
+  },
+  {
+    "member_id": "H32-M2",
+    "household_id": "H32",
+    "member_name": "Hannah Bell",
+    "role": "Spouse",
+    "fico": 830
+  },
+  {
+    "member_id": "H33-M1",
+    "household_id": "H33",
+    "member_name": "Aisha Mitchell",
+    "role": "Primary",
+    "fico": 784
+  },
+  {
+    "member_id": "H33-M2",
+    "household_id": "H33",
+    "member_name": "James Mitchell",
+    "role": "Spouse",
+    "fico": 747
+  },
+  {
+    "member_id": "H34-M1",
+    "household_id": "H34",
+    "member_name": "Daniel Scott",
+    "role": "Primary",
+    "fico": 735
+  },
+  {
+    "member_id": "H34-M2",
+    "household_id": "H34",
+    "member_name": "Isaac Scott",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H35-M1",
+    "household_id": "H35",
+    "member_name": "Priya Allen",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H35-M2",
+    "household_id": "H35",
+    "member_name": "Omar Allen",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H36-M1",
+    "household_id": "H36",
+    "member_name": "Samuel Kim",
+    "role": "Primary",
+    "fico": 747
+  },
+  {
+    "member_id": "H36-M2",
+    "household_id": "H36",
+    "member_name": "Robert Kim",
+    "role": "Spouse",
+    "fico": 738
+  },
+  {
+    "member_id": "H37-M1",
+    "household_id": "H37",
+    "member_name": "David Bell",
+    "role": "Primary",
+    "fico": 738
+  },
+  {
+    "member_id": "H37-M2",
+    "household_id": "H37",
+    "member_name": "Nina Bell",
+    "role": "Spouse",
+    "fico": 722
+  },
+  {
+    "member_id": "H38-M1",
+    "household_id": "H38",
+    "member_name": "Ana Rogers",
+    "role": "Primary",
+    "fico": 769
+  },
+  {
+    "member_id": "H39-M1",
+    "household_id": "H39",
+    "member_name": "Maria Clark",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H40-M1",
+    "household_id": "H40",
+    "member_name": "Emily Morris",
+    "role": "Primary",
+    "fico": 725
+  },
+  {
+    "member_id": "H40-M2",
+    "household_id": "H40",
+    "member_name": "Maria Morris",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H41-M1",
+    "household_id": "H41",
+    "member_name": "Rosa Rivera",
+    "role": "Primary",
+    "fico": 560
+  },
+  {
+    "member_id": "H41-M2",
+    "household_id": "H41",
+    "member_name": "Hiroshi Rivera",
+    "role": "Spouse",
+    "fico": 655
+  },
+  {
+    "member_id": "H42-M1",
+    "household_id": "H42",
+    "member_name": "Robert Roberts",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H42-M2",
+    "household_id": "H42",
+    "member_name": "Nina Roberts",
+    "role": "Spouse",
+    "fico": 648
+  },
+  {
+    "member_id": "H43-M1",
+    "household_id": "H43",
+    "member_name": "Grace Roberts",
+    "role": "Primary",
+    "fico": 775
+  },
+  {
+    "member_id": "H44-M1",
+    "household_id": "H44",
+    "member_name": "Felix Cooper",
+    "role": "Primary",
+    "fico": 693
+  },
+  {
+    "member_id": "H45-M1",
+    "household_id": "H45",
+    "member_name": "Emily Cooper",
+    "role": "Primary",
+    "fico": 695
+  },
+  {
+    "member_id": "H45-M2",
+    "household_id": "H45",
+    "member_name": "Omar Cooper",
+    "role": "Spouse",
+    "fico": 791
+  },
+  {
+    "member_id": "H46-M1",
+    "household_id": "H46",
+    "member_name": "Michael Scott",
+    "role": "Primary",
+    "fico": 664
+  },
+  {
+    "member_id": "H46-M2",
+    "household_id": "H46",
+    "member_name": "Ana Scott",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H47-M1",
+    "household_id": "H47",
+    "member_name": "Rosa Morgan",
+    "role": "Primary",
+    "fico": 732
+  },
+  {
+    "member_id": "H47-M2",
+    "household_id": "H47",
+    "member_name": "Owen Morgan",
+    "role": "Spouse",
+    "fico": 725
+  },
+  {
+    "member_id": "H48-M1",
+    "household_id": "H48",
+    "member_name": "Ruth Murphy",
+    "role": "Primary",
+    "fico": 816
+  },
+  {
+    "member_id": "H49-M1",
+    "household_id": "H49",
+    "member_name": "Priya Stewart",
+    "role": "Primary",
+    "fico": 819
+  },
+  {
+    "member_id": "H50-M1",
+    "household_id": "H50",
+    "member_name": "Mei Lopez",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H51-M1",
+    "household_id": "H51",
+    "member_name": "Caleb Reed",
+    "role": "Primary",
+    "fico": 704
+  },
+  {
+    "member_id": "H51-M2",
+    "household_id": "H51",
+    "member_name": "Mei Reed",
+    "role": "Spouse",
+    "fico": 651
+  },
+  {
+    "member_id": "H52-M1",
+    "household_id": "H52",
+    "member_name": "Grace Shah",
+    "role": "Primary",
+    "fico": 701
+  },
+  {
+    "member_id": "H53-M1",
+    "household_id": "H53",
+    "member_name": "Aisha Baker",
+    "role": "Primary",
+    "fico": 839
+  },
+  {
+    "member_id": "H53-M2",
+    "household_id": "H53",
+    "member_name": "Emily Baker",
+    "role": "Spouse",
+    "fico": 728
+  },
+  {
+    "member_id": "H54-M1",
+    "household_id": "H54",
+    "member_name": "Carlos Turner",
+    "role": "Primary",
+    "fico": 648
+  },
+  {
+    "member_id": "H54-M2",
+    "household_id": "H54",
+    "member_name": "Zoe Turner",
+    "role": "Spouse",
+    "fico": 712
+  },
+  {
+    "member_id": "H55-M1",
+    "household_id": "H55",
+    "member_name": "Ethan Morgan",
+    "role": "Primary",
+    "fico": 691
+  },
+  {
+    "member_id": "H55-M2",
+    "household_id": "H55",
+    "member_name": "Olivia Morgan",
+    "role": "Spouse",
+    "fico": 738
+  },
+  {
+    "member_id": "H56-M1",
+    "household_id": "H56",
+    "member_name": "Nina Wright",
+    "role": "Primary",
+    "fico": 776
+  },
+  {
+    "member_id": "H56-M2",
+    "household_id": "H56",
+    "member_name": "Sara Wright",
+    "role": "Spouse",
+    "fico": 687
+  },
+  {
+    "member_id": "H57-M1",
+    "household_id": "H57",
+    "member_name": "Zoe Phillips",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H58-M1",
+    "household_id": "H58",
+    "member_name": "Grace Murphy",
+    "role": "Primary",
+    "fico": 691
+  },
+  {
+    "member_id": "H58-M2",
+    "household_id": "H58",
+    "member_name": "Emily Murphy",
+    "role": "Spouse",
+    "fico": 818
+  },
+  {
+    "member_id": "H59-M1",
+    "household_id": "H59",
+    "member_name": "Olivia Parker",
+    "role": "Primary",
+    "fico": 783
+  },
+  {
+    "member_id": "H59-M2",
+    "household_id": "H59",
+    "member_name": "Maria Parker",
+    "role": "Spouse",
+    "fico": 755
+  },
+  {
+    "member_id": "H60-M1",
+    "household_id": "H60",
+    "member_name": "Mei Carter",
+    "role": "Primary",
+    "fico": 840
+  },
+  {
+    "member_id": "H60-M2",
+    "household_id": "H60",
+    "member_name": "Zoe Carter",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H61-M1",
+    "household_id": "H61",
+    "member_name": "Hiroshi Kim",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H61-M2",
+    "household_id": "H61",
+    "member_name": "Zoe Kim",
+    "role": "Spouse",
+    "fico": 724
+  },
+  {
+    "member_id": "H62-M1",
+    "household_id": "H62",
+    "member_name": "Carlos Perez",
+    "role": "Primary",
+    "fico": 732
+  },
+  {
+    "member_id": "H62-M2",
+    "household_id": "H62",
+    "member_name": "Felix Perez",
+    "role": "Spouse",
+    "fico": 686
+  },
+  {
+    "member_id": "H63-M1",
+    "household_id": "H63",
+    "member_name": "David Baker",
+    "role": "Primary",
+    "fico": 670
+  },
+  {
+    "member_id": "H63-M2",
+    "household_id": "H63",
+    "member_name": "Daniel Baker",
+    "role": "Spouse",
+    "fico": 712
+  },
+  {
+    "member_id": "H64-M1",
+    "household_id": "H64",
+    "member_name": "Grace Collins",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H64-M2",
+    "household_id": "H64",
+    "member_name": "Noah Collins",
+    "role": "Spouse",
+    "fico": 779
+  },
+  {
+    "member_id": "H65-M1",
+    "household_id": "H65",
+    "member_name": "Grace Clark",
+    "role": "Primary",
+    "fico": 582
+  },
+  {
+    "member_id": "H66-M1",
+    "household_id": "H66",
+    "member_name": "Leah Adams",
+    "role": "Primary",
+    "fico": 706
+  },
+  {
+    "member_id": "H67-M1",
+    "household_id": "H67",
+    "member_name": "Hannah Cooper",
+    "role": "Primary",
+    "fico": 725
+  },
+  {
+    "member_id": "H68-M1",
+    "household_id": "H68",
+    "member_name": "Lucas Hall",
+    "role": "Primary",
+    "fico": 706
+  },
+  {
+    "member_id": "H69-M1",
+    "household_id": "H69",
+    "member_name": "Emily Morris",
+    "role": "Primary",
+    "fico": 755
+  },
+  {
+    "member_id": "H69-M2",
+    "household_id": "H69",
+    "member_name": "Aisha Morris",
+    "role": "Spouse",
+    "fico": 733
+  },
+  {
+    "member_id": "H70-M1",
+    "household_id": "H70",
+    "member_name": "Ana Nelson",
+    "role": "Primary",
+    "fico": 740
+  },
+  {
+    "member_id": "H71-M1",
+    "household_id": "H71",
+    "member_name": "Caleb Rivera",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H71-M2",
+    "household_id": "H71",
+    "member_name": "Noah Rivera",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H72-M1",
+    "household_id": "H72",
+    "member_name": "Mei Shah",
+    "role": "Primary",
+    "fico": 790
+  },
+  {
+    "member_id": "H72-M2",
+    "household_id": "H72",
+    "member_name": "Noah Shah",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H73-M1",
+    "household_id": "H73",
+    "member_name": "Lucas Scott",
+    "role": "Primary",
+    "fico": 621
+  },
+  {
+    "member_id": "H73-M2",
+    "household_id": "H73",
+    "member_name": "Samuel Scott",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H74-M1",
+    "household_id": "H74",
+    "member_name": "Ethan Clark",
+    "role": "Primary",
+    "fico": 776
+  },
+  {
+    "member_id": "H75-M1",
+    "household_id": "H75",
+    "member_name": "Lucas Rivera",
+    "role": "Primary",
+    "fico": 725
+  },
+  {
+    "member_id": "H76-M1",
+    "household_id": "H76",
+    "member_name": "Ruth Rivera",
+    "role": "Primary",
+    "fico": 738
+  },
+  {
+    "member_id": "H76-M2",
+    "household_id": "H76",
+    "member_name": "Daniel Rivera",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H77-M1",
+    "household_id": "H77",
+    "member_name": "Olivia Young",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H77-M2",
+    "household_id": "H77",
+    "member_name": "Priya Young",
+    "role": "Spouse",
+    "fico": 658
+  },
+  {
+    "member_id": "H78-M1",
+    "household_id": "H78",
+    "member_name": "Caleb Green",
+    "role": "Primary",
+    "fico": 721
+  },
+  {
+    "member_id": "H78-M2",
+    "household_id": "H78",
+    "member_name": "Isaac Green",
+    "role": "Spouse",
+    "fico": 720
+  },
+  {
+    "member_id": "H79-M1",
+    "household_id": "H79",
+    "member_name": "Fatima Evans",
+    "role": "Primary",
+    "fico": 609
+  },
+  {
+    "member_id": "H79-M2",
+    "household_id": "H79",
+    "member_name": "Hannah Evans",
+    "role": "Spouse",
+    "fico": 719
+  },
+  {
+    "member_id": "H80-M1",
+    "household_id": "H80",
+    "member_name": "Rosa Cooper",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H80-M2",
+    "household_id": "H80",
+    "member_name": "Zoe Cooper",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H81-M1",
+    "household_id": "H81",
+    "member_name": "Isaac Reed",
+    "role": "Primary",
+    "fico": 745
+  },
+  {
+    "member_id": "H81-M2",
+    "household_id": "H81",
+    "member_name": "Michael Reed",
+    "role": "Spouse",
+    "fico": 741
+  },
+  {
+    "member_id": "H82-M1",
+    "household_id": "H82",
+    "member_name": "Mei Bailey",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H82-M2",
+    "household_id": "H82",
+    "member_name": "Zoe Bailey",
+    "role": "Spouse",
+    "fico": 802
+  },
+  {
+    "member_id": "H83-M1",
+    "household_id": "H83",
+    "member_name": "Samuel Turner",
+    "role": "Primary",
+    "fico": 803
+  },
+  {
+    "member_id": "H83-M2",
+    "household_id": "H83",
+    "member_name": "Isaac Turner",
+    "role": "Spouse",
+    "fico": 623
+  },
+  {
+    "member_id": "H84-M1",
+    "household_id": "H84",
+    "member_name": "Priya Morgan",
+    "role": "Primary",
+    "fico": 614
+  },
+  {
+    "member_id": "H85-M1",
+    "household_id": "H85",
+    "member_name": "Lucas Bailey",
+    "role": "Primary",
+    "fico": 674
+  },
+  {
+    "member_id": "H85-M2",
+    "household_id": "H85",
+    "member_name": "Samuel Bailey",
+    "role": "Spouse",
+    "fico": 736
+  },
+  {
+    "member_id": "H86-M1",
+    "household_id": "H86",
+    "member_name": "Noah Phillips",
+    "role": "Primary",
+    "fico": 778
+  },
+  {
+    "member_id": "H86-M2",
+    "household_id": "H86",
+    "member_name": "Aisha Phillips",
+    "role": "Spouse",
+    "fico": 645
+  },
+  {
+    "member_id": "H87-M1",
+    "household_id": "H87",
+    "member_name": "Zoe Scott",
+    "role": "Primary",
+    "fico": 803
+  },
+  {
+    "member_id": "H87-M2",
+    "household_id": "H87",
+    "member_name": "Emily Scott",
+    "role": "Spouse",
+    "fico": 668
+  },
+  {
+    "member_id": "H88-M1",
+    "household_id": "H88",
+    "member_name": "Omar Murphy",
+    "role": "Primary",
+    "fico": 736
+  },
+  {
+    "member_id": "H88-M2",
+    "household_id": "H88",
+    "member_name": "Ethan Murphy",
+    "role": "Spouse",
+    "fico": 728
+  },
+  {
+    "member_id": "H89-M1",
+    "household_id": "H89",
+    "member_name": "Sara Young",
+    "role": "Primary",
+    "fico": 565
+  },
+  {
+    "member_id": "H89-M2",
+    "household_id": "H89",
+    "member_name": "Noah Young",
+    "role": "Spouse",
+    "fico": 622
+  },
+  {
+    "member_id": "H90-M1",
+    "household_id": "H90",
+    "member_name": "Owen Clark",
+    "role": "Primary",
+    "fico": 679
+  },
+  {
+    "member_id": "H91-M1",
+    "household_id": "H91",
+    "member_name": "Ruth Scott",
+    "role": "Primary",
+    "fico": 767
+  },
+  {
+    "member_id": "H92-M1",
+    "household_id": "H92",
+    "member_name": "Nina Collins",
+    "role": "Primary",
+    "fico": 656
+  },
+  {
+    "member_id": "H93-M1",
+    "household_id": "H93",
+    "member_name": "Robert Perez",
+    "role": "Primary",
+    "fico": 665
+  },
+  {
+    "member_id": "H94-M1",
+    "household_id": "H94",
+    "member_name": "Michael Shah",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H94-M2",
+    "household_id": "H94",
+    "member_name": "Chen Shah",
+    "role": "Spouse",
+    "fico": 631
+  },
+  {
+    "member_id": "H95-M1",
+    "household_id": "H95",
+    "member_name": "Robert Walker",
+    "role": "Primary",
+    "fico": 734
+  },
+  {
+    "member_id": "H95-M2",
+    "household_id": "H95",
+    "member_name": "Grace Walker",
+    "role": "Spouse",
+    "fico": 661
+  },
+  {
+    "member_id": "H96-M1",
+    "household_id": "H96",
+    "member_name": "Felix Mitchell",
+    "role": "Primary",
+    "fico": 631
+  },
+  {
+    "member_id": "H96-M2",
+    "household_id": "H96",
+    "member_name": "Leah Mitchell",
+    "role": "Spouse",
+    "fico": 643
+  },
+  {
+    "member_id": "H97-M1",
+    "household_id": "H97",
+    "member_name": "Nina Sanchez",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H98-M1",
+    "household_id": "H98",
+    "member_name": "Chen Cook",
+    "role": "Primary",
+    "fico": 724
+  },
+  {
+    "member_id": "H98-M2",
+    "household_id": "H98",
+    "member_name": "Mei Cook",
+    "role": "Spouse",
+    "fico": 608
+  },
+  {
+    "member_id": "H99-M1",
+    "household_id": "H99",
+    "member_name": "Olivia Shah",
+    "role": "Primary",
+    "fico": 717
+  },
+  {
+    "member_id": "H100-M1",
+    "household_id": "H100",
+    "member_name": "Zoe Martinez",
+    "role": "Primary",
+    "fico": 710
+  },
+  {
+    "member_id": "H101-M1",
+    "household_id": "H101",
+    "member_name": "Michael Bell",
+    "role": "Primary",
+    "fico": 728
+  },
+  {
+    "member_id": "H101-M2",
+    "household_id": "H101",
+    "member_name": "Hiroshi Bell",
+    "role": "Spouse",
+    "fico": 741
+  },
+  {
+    "member_id": "H102-M1",
+    "household_id": "H102",
+    "member_name": "Emily Evans",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H102-M2",
+    "household_id": "H102",
+    "member_name": "Lucas Evans",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H103-M1",
+    "household_id": "H103",
+    "member_name": "Robert Edwards",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H104-M1",
+    "household_id": "H104",
+    "member_name": "Leah Murphy",
+    "role": "Primary",
+    "fico": 820
+  },
+  {
+    "member_id": "H104-M2",
+    "household_id": "H104",
+    "member_name": "James Murphy",
+    "role": "Spouse",
+    "fico": 712
+  },
+  {
+    "member_id": "H105-M1",
+    "household_id": "H105",
+    "member_name": "Chen Green",
+    "role": "Primary",
+    "fico": 760
+  },
+  {
+    "member_id": "H106-M1",
+    "household_id": "H106",
+    "member_name": "Ruth Parker",
+    "role": "Primary",
+    "fico": 711
+  },
+  {
+    "member_id": "H106-M2",
+    "household_id": "H106",
+    "member_name": "Nina Parker",
+    "role": "Spouse",
+    "fico": 676
+  },
+  {
+    "member_id": "H107-M1",
+    "household_id": "H107",
+    "member_name": "Lucas Shah",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H107-M2",
+    "household_id": "H107",
+    "member_name": "Felix Shah",
+    "role": "Spouse",
+    "fico": 737
+  },
+  {
+    "member_id": "H108-M1",
+    "household_id": "H108",
+    "member_name": "Ana Shah",
+    "role": "Primary",
+    "fico": 709
+  },
+  {
+    "member_id": "H108-M2",
+    "household_id": "H108",
+    "member_name": "Hiroshi Shah",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H109-M1",
+    "household_id": "H109",
+    "member_name": "David Lewis",
+    "role": "Primary",
+    "fico": 753
+  },
+  {
+    "member_id": "H109-M2",
+    "household_id": "H109",
+    "member_name": "Leah Lewis",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H110-M1",
+    "household_id": "H110",
+    "member_name": "Hiroshi Edwards",
+    "role": "Primary",
+    "fico": 729
+  },
+  {
+    "member_id": "H110-M2",
+    "household_id": "H110",
+    "member_name": "Robert Edwards",
+    "role": "Spouse",
+    "fico": 639
+  },
+  {
+    "member_id": "H111-M1",
+    "household_id": "H111",
+    "member_name": "Michael Walker",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H111-M2",
+    "household_id": "H111",
+    "member_name": "Leah Walker",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H112-M1",
+    "household_id": "H112",
+    "member_name": "Caleb Campbell",
+    "role": "Primary",
+    "fico": 664
+  },
+  {
+    "member_id": "H112-M2",
+    "household_id": "H112",
+    "member_name": "James Campbell",
+    "role": "Spouse",
+    "fico": 684
+  },
+  {
+    "member_id": "H113-M1",
+    "household_id": "H113",
+    "member_name": "Victor Morris",
+    "role": "Primary",
+    "fico": 750
+  },
+  {
+    "member_id": "H114-M1",
+    "household_id": "H114",
+    "member_name": "David Wright",
+    "role": "Primary",
+    "fico": 740
+  },
+  {
+    "member_id": "H114-M2",
+    "household_id": "H114",
+    "member_name": "Robert Wright",
+    "role": "Spouse",
+    "fico": 674
+  },
+  {
+    "member_id": "H115-M1",
+    "household_id": "H115",
+    "member_name": "Fatima Baker",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H116-M1",
+    "household_id": "H116",
+    "member_name": "Chen Nelson",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H116-M2",
+    "household_id": "H116",
+    "member_name": "Aisha Nelson",
+    "role": "Spouse",
+    "fico": 778
+  },
+  {
+    "member_id": "H117-M1",
+    "household_id": "H117",
+    "member_name": "Emily Bell",
+    "role": "Primary",
+    "fico": 679
+  },
+  {
+    "member_id": "H118-M1",
+    "household_id": "H118",
+    "member_name": "Leah Cook",
+    "role": "Primary",
+    "fico": 656
+  },
+  {
+    "member_id": "H118-M2",
+    "household_id": "H118",
+    "member_name": "James Cook",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H119-M1",
+    "household_id": "H119",
+    "member_name": "Chen Hill",
+    "role": "Primary",
+    "fico": 768
+  },
+  {
+    "member_id": "H119-M2",
+    "household_id": "H119",
+    "member_name": "Isaac Hill",
+    "role": "Spouse",
+    "fico": 805
+  },
+  {
+    "member_id": "H120-M1",
+    "household_id": "H120",
+    "member_name": "Maria Adams",
+    "role": "Primary",
+    "fico": 636
+  },
+  {
+    "member_id": "H120-M2",
+    "household_id": "H120",
+    "member_name": "Noah Adams",
+    "role": "Spouse",
+    "fico": 677
+  },
+  {
+    "member_id": "H121-M1",
+    "household_id": "H121",
+    "member_name": "James Kim",
+    "role": "Primary",
+    "fico": 801
+  },
+  {
+    "member_id": "H122-M1",
+    "household_id": "H122",
+    "member_name": "Leah Kim",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H122-M2",
+    "household_id": "H122",
+    "member_name": "Felix Kim",
+    "role": "Spouse",
+    "fico": 709
+  },
+  {
+    "member_id": "H123-M1",
+    "household_id": "H123",
+    "member_name": "Rosa Martinez",
+    "role": "Primary",
+    "fico": 752
+  },
+  {
+    "member_id": "H123-M2",
+    "household_id": "H123",
+    "member_name": "Omar Martinez",
+    "role": "Spouse",
+    "fico": 740
+  },
+  {
+    "member_id": "H124-M1",
+    "household_id": "H124",
+    "member_name": "Daniel Young",
+    "role": "Primary",
+    "fico": 740
+  },
+  {
+    "member_id": "H124-M2",
+    "household_id": "H124",
+    "member_name": "Lucas Young",
+    "role": "Spouse",
+    "fico": 726
+  },
+  {
+    "member_id": "H125-M1",
+    "household_id": "H125",
+    "member_name": "Omar Wright",
+    "role": "Primary",
+    "fico": 604
+  },
+  {
+    "member_id": "H125-M2",
+    "household_id": "H125",
+    "member_name": "Owen Wright",
+    "role": "Spouse",
+    "fico": 744
+  },
+  {
+    "member_id": "H126-M1",
+    "household_id": "H126",
+    "member_name": "Carlos King",
+    "role": "Primary",
+    "fico": 767
+  },
+  {
+    "member_id": "H127-M1",
+    "household_id": "H127",
+    "member_name": "Owen Phillips",
+    "role": "Primary",
+    "fico": 795
+  },
+  {
+    "member_id": "H127-M2",
+    "household_id": "H127",
+    "member_name": "Felix Phillips",
+    "role": "Spouse",
+    "fico": 647
+  },
+  {
+    "member_id": "H128-M1",
+    "household_id": "H128",
+    "member_name": "Priya Mitchell",
+    "role": "Primary",
+    "fico": 761
+  },
+  {
+    "member_id": "H128-M2",
+    "household_id": "H128",
+    "member_name": "Ana Mitchell",
+    "role": "Spouse",
+    "fico": 729
+  },
+  {
+    "member_id": "H129-M1",
+    "household_id": "H129",
+    "member_name": "Fatima Collins",
+    "role": "Primary",
+    "fico": 614
+  },
+  {
+    "member_id": "H129-M2",
+    "household_id": "H129",
+    "member_name": "Carlos Collins",
+    "role": "Spouse",
+    "fico": 594
+  },
+  {
+    "member_id": "H130-M1",
+    "household_id": "H130",
+    "member_name": "Aisha Bailey",
+    "role": "Primary",
+    "fico": 673
+  },
+  {
+    "member_id": "H131-M1",
+    "household_id": "H131",
+    "member_name": "Hiroshi Edwards",
+    "role": "Primary",
+    "fico": 724
+  },
+  {
+    "member_id": "H132-M1",
+    "household_id": "H132",
+    "member_name": "Owen Morgan",
+    "role": "Primary",
+    "fico": 770
+  },
+  {
+    "member_id": "H132-M2",
+    "household_id": "H132",
+    "member_name": "James Morgan",
+    "role": "Spouse",
+    "fico": 656
+  },
+  {
+    "member_id": "H133-M1",
+    "household_id": "H133",
+    "member_name": "Noah Young",
+    "role": "Primary",
+    "fico": 775
+  },
+  {
+    "member_id": "H133-M2",
+    "household_id": "H133",
+    "member_name": "Ruth Young",
+    "role": "Spouse",
+    "fico": 682
+  },
+  {
+    "member_id": "H134-M1",
+    "household_id": "H134",
+    "member_name": "Omar Lopez",
+    "role": "Primary",
+    "fico": 703
+  },
+  {
+    "member_id": "H135-M1",
+    "household_id": "H135",
+    "member_name": "Olivia Cook",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H135-M2",
+    "household_id": "H135",
+    "member_name": "Ana Cook",
+    "role": "Spouse",
+    "fico": 765
+  },
+  {
+    "member_id": "H136-M1",
+    "household_id": "H136",
+    "member_name": "Carlos Collins",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H136-M2",
+    "household_id": "H136",
+    "member_name": "Olivia Collins",
+    "role": "Spouse",
+    "fico": 652
+  },
+  {
+    "member_id": "H137-M1",
+    "household_id": "H137",
+    "member_name": "Ruth Bailey",
+    "role": "Primary",
+    "fico": 666
+  },
+  {
+    "member_id": "H137-M2",
+    "household_id": "H137",
+    "member_name": "Samuel Bailey",
+    "role": "Spouse",
+    "fico": 734
+  },
+  {
+    "member_id": "H138-M1",
+    "household_id": "H138",
+    "member_name": "Maria King",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H139-M1",
+    "household_id": "H139",
+    "member_name": "Rosa Cooper",
+    "role": "Primary",
+    "fico": 764
+  },
+  {
+    "member_id": "H139-M2",
+    "household_id": "H139",
+    "member_name": "Michael Cooper",
+    "role": "Spouse",
+    "fico": 700
+  },
+  {
+    "member_id": "H140-M1",
+    "household_id": "H140",
+    "member_name": "Chen Hill",
+    "role": "Primary",
+    "fico": 805
+  },
+  {
+    "member_id": "H140-M2",
+    "household_id": "H140",
+    "member_name": "Grace Hill",
+    "role": "Spouse",
+    "fico": 644
+  },
+  {
+    "member_id": "H141-M1",
+    "household_id": "H141",
+    "member_name": "Ethan Collins",
+    "role": "Primary",
+    "fico": 740
+  },
+  {
+    "member_id": "H142-M1",
+    "household_id": "H142",
+    "member_name": "Victor Parker",
+    "role": "Primary",
+    "fico": 815
+  },
+  {
+    "member_id": "H143-M1",
+    "household_id": "H143",
+    "member_name": "Zoe Young",
+    "role": "Primary",
+    "fico": 693
+  },
+  {
+    "member_id": "H144-M1",
+    "household_id": "H144",
+    "member_name": "Priya Cook",
+    "role": "Primary",
+    "fico": 763
+  },
+  {
+    "member_id": "H144-M2",
+    "household_id": "H144",
+    "member_name": "Zoe Cook",
+    "role": "Spouse",
+    "fico": 785
+  },
+  {
+    "member_id": "H145-M1",
+    "household_id": "H145",
+    "member_name": "Caleb Reed",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H146-M1",
+    "household_id": "H146",
+    "member_name": "Daniel Young",
+    "role": "Primary",
+    "fico": 676
+  },
+  {
+    "member_id": "H146-M2",
+    "household_id": "H146",
+    "member_name": "Hiroshi Young",
+    "role": "Spouse",
+    "fico": 826
+  },
+  {
+    "member_id": "H147-M1",
+    "household_id": "H147",
+    "member_name": "Chen Adams",
+    "role": "Primary",
+    "fico": 705
+  },
+  {
+    "member_id": "H147-M2",
+    "household_id": "H147",
+    "member_name": "Owen Adams",
+    "role": "Spouse",
+    "fico": 648
+  },
+  {
+    "member_id": "H148-M1",
+    "household_id": "H148",
+    "member_name": "Maria Wright",
+    "role": "Primary",
+    "fico": 714
+  },
+  {
+    "member_id": "H148-M2",
+    "household_id": "H148",
+    "member_name": "Nina Wright",
+    "role": "Spouse",
+    "fico": 733
+  },
+  {
+    "member_id": "H149-M1",
+    "household_id": "H149",
+    "member_name": "David Allen",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H150-M1",
+    "household_id": "H150",
+    "member_name": "Leah Roberts",
+    "role": "Primary",
+    "fico": 630
+  },
+  {
+    "member_id": "H150-M2",
+    "household_id": "H150",
+    "member_name": "Ruth Roberts",
+    "role": "Spouse",
+    "fico": 807
+  },
+  {
+    "member_id": "H151-M1",
+    "household_id": "H151",
+    "member_name": "Aisha Morgan",
+    "role": "Primary",
+    "fico": 776
+  },
+  {
+    "member_id": "H151-M2",
+    "household_id": "H151",
+    "member_name": "Fatima Morgan",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H152-M1",
+    "household_id": "H152",
+    "member_name": "Leah Morgan",
+    "role": "Primary",
+    "fico": 719
+  },
+  {
+    "member_id": "H152-M2",
+    "household_id": "H152",
+    "member_name": "Felix Morgan",
+    "role": "Spouse",
+    "fico": 712
+  },
+  {
+    "member_id": "H153-M1",
+    "household_id": "H153",
+    "member_name": "Nina Stewart",
+    "role": "Primary",
+    "fico": 760
+  },
+  {
+    "member_id": "H154-M1",
+    "household_id": "H154",
+    "member_name": "Daniel Rogers",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H154-M2",
+    "household_id": "H154",
+    "member_name": "David Rogers",
+    "role": "Spouse",
+    "fico": 725
+  },
+  {
+    "member_id": "H155-M1",
+    "household_id": "H155",
+    "member_name": "Hannah Cook",
+    "role": "Primary",
+    "fico": 646
+  },
+  {
+    "member_id": "H156-M1",
+    "household_id": "H156",
+    "member_name": "Omar Morris",
+    "role": "Primary",
+    "fico": 754
+  },
+  {
+    "member_id": "H157-M1",
+    "household_id": "H157",
+    "member_name": "Ruth Phillips",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H158-M1",
+    "household_id": "H158",
+    "member_name": "Fatima Carter",
+    "role": "Primary",
+    "fico": 659
+  },
+  {
+    "member_id": "H158-M2",
+    "household_id": "H158",
+    "member_name": "Hannah Carter",
+    "role": "Spouse",
+    "fico": 674
+  },
+  {
+    "member_id": "H159-M1",
+    "household_id": "H159",
+    "member_name": "Felix Kim",
+    "role": "Primary",
+    "fico": 730
+  },
+  {
+    "member_id": "H159-M2",
+    "household_id": "H159",
+    "member_name": "Samuel Kim",
+    "role": "Spouse",
+    "fico": 698
+  },
+  {
+    "member_id": "H160-M1",
+    "household_id": "H160",
+    "member_name": "Leah Bailey",
+    "role": "Primary",
+    "fico": 686
+  },
+  {
+    "member_id": "H160-M2",
+    "household_id": "H160",
+    "member_name": "Ana Bailey",
+    "role": "Spouse",
+    "fico": 764
+  },
+  {
+    "member_id": "H161-M1",
+    "household_id": "H161",
+    "member_name": "Leah Cook",
+    "role": "Primary",
+    "fico": 746
+  },
+  {
+    "member_id": "H161-M2",
+    "household_id": "H161",
+    "member_name": "Ethan Cook",
+    "role": "Spouse",
+    "fico": 739
+  },
+  {
+    "member_id": "H162-M1",
+    "household_id": "H162",
+    "member_name": "Felix Edwards",
+    "role": "Primary",
+    "fico": 716
+  },
+  {
+    "member_id": "H162-M2",
+    "household_id": "H162",
+    "member_name": "Aisha Edwards",
+    "role": "Spouse",
+    "fico": 744
+  },
+  {
+    "member_id": "H163-M1",
+    "household_id": "H163",
+    "member_name": "Mei Campbell",
+    "role": "Primary",
+    "fico": 650
+  },
+  {
+    "member_id": "H163-M2",
+    "household_id": "H163",
+    "member_name": "Zoe Campbell",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H164-M1",
+    "household_id": "H164",
+    "member_name": "Grace Lopez",
+    "role": "Primary",
+    "fico": 700
+  },
+  {
+    "member_id": "H164-M2",
+    "household_id": "H164",
+    "member_name": "Zoe Lopez",
+    "role": "Spouse",
+    "fico": 788
+  },
+  {
+    "member_id": "H165-M1",
+    "household_id": "H165",
+    "member_name": "Michael Stewart",
+    "role": "Primary",
+    "fico": 627
+  },
+  {
+    "member_id": "H165-M2",
+    "household_id": "H165",
+    "member_name": "Sara Stewart",
+    "role": "Spouse",
+    "fico": 772
+  },
+  {
+    "member_id": "H166-M1",
+    "household_id": "H166",
+    "member_name": "Maria Edwards",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H166-M2",
+    "household_id": "H166",
+    "member_name": "Hannah Edwards",
+    "role": "Spouse",
+    "fico": 675
+  },
+  {
+    "member_id": "H167-M1",
+    "household_id": "H167",
+    "member_name": "Nina Scott",
+    "role": "Primary",
+    "fico": 753
+  },
+  {
+    "member_id": "H168-M1",
+    "household_id": "H168",
+    "member_name": "Ethan Campbell",
+    "role": "Primary",
+    "fico": 734
+  },
+  {
+    "member_id": "H169-M1",
+    "household_id": "H169",
+    "member_name": "Noah Allen",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H169-M2",
+    "household_id": "H169",
+    "member_name": "Ana Allen",
+    "role": "Spouse",
+    "fico": 577
+  },
+  {
+    "member_id": "H170-M1",
+    "household_id": "H170",
+    "member_name": "Aisha Kim",
+    "role": "Primary",
+    "fico": 676
+  },
+  {
+    "member_id": "H170-M2",
+    "household_id": "H170",
+    "member_name": "Grace Kim",
+    "role": "Spouse",
+    "fico": 695
+  },
+  {
+    "member_id": "H171-M1",
+    "household_id": "H171",
+    "member_name": "Carlos Murphy",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H171-M2",
+    "household_id": "H171",
+    "member_name": "Ana Murphy",
+    "role": "Spouse",
+    "fico": 633
+  },
+  {
+    "member_id": "H172-M1",
+    "household_id": "H172",
+    "member_name": "Lucas Sanchez",
+    "role": "Primary",
+    "fico": 703
+  },
+  {
+    "member_id": "H172-M2",
+    "household_id": "H172",
+    "member_name": "Fatima Sanchez",
+    "role": "Spouse",
+    "fico": 687
+  },
+  {
+    "member_id": "H173-M1",
+    "household_id": "H173",
+    "member_name": "Grace Scott",
+    "role": "Primary",
+    "fico": 800
+  },
+  {
+    "member_id": "H174-M1",
+    "household_id": "H174",
+    "member_name": "Victor Roberts",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H174-M2",
+    "household_id": "H174",
+    "member_name": "Maria Roberts",
+    "role": "Spouse",
+    "fico": 710
+  },
+  {
+    "member_id": "H175-M1",
+    "household_id": "H175",
+    "member_name": "Hiroshi Cook",
+    "role": "Primary",
+    "fico": 581
+  },
+  {
+    "member_id": "H175-M2",
+    "household_id": "H175",
+    "member_name": "Caleb Cook",
+    "role": "Spouse",
+    "fico": 640
+  },
+  {
+    "member_id": "H176-M1",
+    "household_id": "H176",
+    "member_name": "Ethan Hill",
+    "role": "Primary",
+    "fico": 743
+  },
+  {
+    "member_id": "H176-M2",
+    "household_id": "H176",
+    "member_name": "Isaac Hill",
+    "role": "Spouse",
+    "fico": 792
+  },
+  {
+    "member_id": "H177-M1",
+    "household_id": "H177",
+    "member_name": "Robert Reed",
+    "role": "Primary",
+    "fico": 742
+  },
+  {
+    "member_id": "H177-M2",
+    "household_id": "H177",
+    "member_name": "Ethan Reed",
+    "role": "Spouse",
+    "fico": 764
+  },
+  {
+    "member_id": "H178-M1",
+    "household_id": "H178",
+    "member_name": "Daniel Reed",
+    "role": "Primary",
+    "fico": 802
+  },
+  {
+    "member_id": "H179-M1",
+    "household_id": "H179",
+    "member_name": "David Cook",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H179-M2",
+    "household_id": "H179",
+    "member_name": "Olivia Cook",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H180-M1",
+    "household_id": "H180",
+    "member_name": "Rosa Reed",
+    "role": "Primary",
+    "fico": 696
+  },
+  {
+    "member_id": "H180-M2",
+    "household_id": "H180",
+    "member_name": "Michael Reed",
+    "role": "Spouse",
+    "fico": 642
+  },
+  {
+    "member_id": "H181-M1",
+    "household_id": "H181",
+    "member_name": "Hiroshi Mitchell",
+    "role": "Primary",
+    "fico": 802
+  },
+  {
+    "member_id": "H182-M1",
+    "household_id": "H182",
+    "member_name": "Omar Baker",
+    "role": "Primary",
+    "fico": 722
+  },
+  {
+    "member_id": "H182-M2",
+    "household_id": "H182",
+    "member_name": "Nina Baker",
+    "role": "Spouse",
+    "fico": 645
+  },
+  {
+    "member_id": "H183-M1",
+    "household_id": "H183",
+    "member_name": "James Morgan",
+    "role": "Primary",
+    "fico": 729
+  },
+  {
+    "member_id": "H184-M1",
+    "household_id": "H184",
+    "member_name": "James Clark",
+    "role": "Primary",
+    "fico": 716
+  },
+  {
+    "member_id": "H185-M1",
+    "household_id": "H185",
+    "member_name": "Nina Hill",
+    "role": "Primary",
+    "fico": 716
+  },
+  {
+    "member_id": "H185-M2",
+    "household_id": "H185",
+    "member_name": "Lucas Hill",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H186-M1",
+    "household_id": "H186",
+    "member_name": "Leah Evans",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H187-M1",
+    "household_id": "H187",
+    "member_name": "Lucas Roberts",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H187-M2",
+    "household_id": "H187",
+    "member_name": "Isaac Roberts",
+    "role": "Spouse",
+    "fico": 741
+  },
+  {
+    "member_id": "H188-M1",
+    "household_id": "H188",
+    "member_name": "Sara Morris",
+    "role": "Primary",
+    "fico": 822
+  },
+  {
+    "member_id": "H188-M2",
+    "household_id": "H188",
+    "member_name": "Emily Morris",
+    "role": "Spouse",
+    "fico": 771
+  },
+  {
+    "member_id": "H189-M1",
+    "household_id": "H189",
+    "member_name": "Mei Lewis",
+    "role": "Primary",
+    "fico": 667
+  },
+  {
+    "member_id": "H190-M1",
+    "household_id": "H190",
+    "member_name": "Lucas Hall",
+    "role": "Primary",
+    "fico": 685
+  },
+  {
+    "member_id": "H191-M1",
+    "household_id": "H191",
+    "member_name": "Hiroshi King",
+    "role": "Primary",
+    "fico": 709
+  },
+  {
+    "member_id": "H191-M2",
+    "household_id": "H191",
+    "member_name": "Leah King",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H192-M1",
+    "household_id": "H192",
+    "member_name": "Fatima Nelson",
+    "role": "Primary",
+    "fico": 730
+  },
+  {
+    "member_id": "H193-M1",
+    "household_id": "H193",
+    "member_name": "Aisha Hill",
+    "role": "Primary",
+    "fico": 748
+  },
+  {
+    "member_id": "H193-M2",
+    "household_id": "H193",
+    "member_name": "Fatima Hill",
+    "role": "Spouse",
+    "fico": 685
+  },
+  {
+    "member_id": "H194-M1",
+    "household_id": "H194",
+    "member_name": "Samuel Rogers",
+    "role": "Primary",
+    "fico": 719
+  },
+  {
+    "member_id": "H195-M1",
+    "household_id": "H195",
+    "member_name": "Mei Carter",
+    "role": "Primary",
+    "fico": 695
+  },
+  {
+    "member_id": "H195-M2",
+    "household_id": "H195",
+    "member_name": "Victor Carter",
+    "role": "Spouse",
+    "fico": 732
+  },
+  {
+    "member_id": "H196-M1",
+    "household_id": "H196",
+    "member_name": "Ana Kim",
+    "role": "Primary",
+    "fico": 700
+  },
+  {
+    "member_id": "H196-M2",
+    "household_id": "H196",
+    "member_name": "Fatima Kim",
+    "role": "Spouse",
+    "fico": 727
+  },
+  {
+    "member_id": "H197-M1",
+    "household_id": "H197",
+    "member_name": "Emily Allen",
+    "role": "Primary",
+    "fico": 712
+  },
+  {
+    "member_id": "H197-M2",
+    "household_id": "H197",
+    "member_name": "Victor Allen",
+    "role": "Spouse",
+    "fico": 755
+  },
+  {
+    "member_id": "H198-M1",
+    "household_id": "H198",
+    "member_name": "Isaac Lewis",
+    "role": "Primary",
+    "fico": 764
+  },
+  {
+    "member_id": "H198-M2",
+    "household_id": "H198",
+    "member_name": "Priya Lewis",
+    "role": "Spouse",
+    "fico": 770
+  },
+  {
+    "member_id": "H199-M1",
+    "household_id": "H199",
+    "member_name": "James Lewis",
+    "role": "Primary",
+    "fico": 677
+  },
+  {
+    "member_id": "H200-M1",
+    "household_id": "H200",
+    "member_name": "Hannah Edwards",
+    "role": "Primary",
+    "fico": 687
+  },
+  {
+    "member_id": "H201-M1",
+    "household_id": "H201",
+    "member_name": "Nina King",
+    "role": "Primary",
+    "fico": 756
+  },
+  {
+    "member_id": "H201-M2",
+    "household_id": "H201",
+    "member_name": "Caleb King",
+    "role": "Spouse",
+    "fico": 776
+  },
+  {
+    "member_id": "H202-M1",
+    "household_id": "H202",
+    "member_name": "Samuel Shah",
+    "role": "Primary",
+    "fico": 721
+  },
+  {
+    "member_id": "H202-M2",
+    "household_id": "H202",
+    "member_name": "Victor Shah",
+    "role": "Spouse",
+    "fico": 618
+  },
+  {
+    "member_id": "H203-M1",
+    "household_id": "H203",
+    "member_name": "Daniel Carter",
+    "role": "Primary",
+    "fico": 772
+  },
+  {
+    "member_id": "H203-M2",
+    "household_id": "H203",
+    "member_name": "Fatima Carter",
+    "role": "Spouse",
+    "fico": 766
+  },
+  {
+    "member_id": "H204-M1",
+    "household_id": "H204",
+    "member_name": "Nina Lewis",
+    "role": "Primary",
+    "fico": 769
+  },
+  {
+    "member_id": "H204-M2",
+    "household_id": "H204",
+    "member_name": "Owen Lewis",
+    "role": "Spouse",
+    "fico": 725
+  },
+  {
+    "member_id": "H205-M1",
+    "household_id": "H205",
+    "member_name": "Michael Scott",
+    "role": "Primary",
+    "fico": 655
+  },
+  {
+    "member_id": "H205-M2",
+    "household_id": "H205",
+    "member_name": "Owen Scott",
+    "role": "Spouse",
+    "fico": 839
+  },
+  {
+    "member_id": "H206-M1",
+    "household_id": "H206",
+    "member_name": "Leah Rivera",
+    "role": "Primary",
+    "fico": 685
+  },
+  {
+    "member_id": "H206-M2",
+    "household_id": "H206",
+    "member_name": "Chen Rivera",
+    "role": "Spouse",
+    "fico": 656
+  },
+  {
+    "member_id": "H207-M1",
+    "household_id": "H207",
+    "member_name": "Omar Kim",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H208-M1",
+    "household_id": "H208",
+    "member_name": "Fatima Baker",
+    "role": "Primary",
+    "fico": 711
+  },
+  {
+    "member_id": "H209-M1",
+    "household_id": "H209",
+    "member_name": "Grace Bell",
+    "role": "Primary",
+    "fico": 664
+  },
+  {
+    "member_id": "H210-M1",
+    "household_id": "H210",
+    "member_name": "Mei Green",
+    "role": "Primary",
+    "fico": 677
+  },
+  {
+    "member_id": "H210-M2",
+    "household_id": "H210",
+    "member_name": "Carlos Green",
+    "role": "Spouse",
+    "fico": 675
+  },
+  {
+    "member_id": "H211-M1",
+    "household_id": "H211",
+    "member_name": "Owen Edwards",
+    "role": "Primary",
+    "fico": 656
+  },
+  {
+    "member_id": "H211-M2",
+    "household_id": "H211",
+    "member_name": "Priya Edwards",
+    "role": "Spouse",
+    "fico": 691
+  },
+  {
+    "member_id": "H212-M1",
+    "household_id": "H212",
+    "member_name": "Zoe Perez",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H213-M1",
+    "household_id": "H213",
+    "member_name": "Ana Green",
+    "role": "Primary",
+    "fico": 771
+  },
+  {
+    "member_id": "H213-M2",
+    "household_id": "H213",
+    "member_name": "Aisha Green",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H214-M1",
+    "household_id": "H214",
+    "member_name": "Olivia Edwards",
+    "role": "Primary",
+    "fico": 722
+  },
+  {
+    "member_id": "H215-M1",
+    "household_id": "H215",
+    "member_name": "Aisha Nelson",
+    "role": "Primary",
+    "fico": 733
+  },
+  {
+    "member_id": "H215-M2",
+    "household_id": "H215",
+    "member_name": "Ruth Nelson",
+    "role": "Spouse",
+    "fico": 691
+  },
+  {
+    "member_id": "H216-M1",
+    "household_id": "H216",
+    "member_name": "Samuel Bailey",
+    "role": "Primary",
+    "fico": 712
+  },
+  {
+    "member_id": "H216-M2",
+    "household_id": "H216",
+    "member_name": "Zoe Bailey",
+    "role": "Spouse",
+    "fico": 678
+  },
+  {
+    "member_id": "H217-M1",
+    "household_id": "H217",
+    "member_name": "Noah Rogers",
+    "role": "Primary",
+    "fico": 727
+  },
+  {
+    "member_id": "H218-M1",
+    "household_id": "H218",
+    "member_name": "Rosa Carter",
+    "role": "Primary",
+    "fico": 733
+  },
+  {
+    "member_id": "H218-M2",
+    "household_id": "H218",
+    "member_name": "Caleb Carter",
+    "role": "Spouse",
+    "fico": 684
+  },
+  {
+    "member_id": "H219-M1",
+    "household_id": "H219",
+    "member_name": "Ruth Phillips",
+    "role": "Primary",
+    "fico": 788
+  },
+  {
+    "member_id": "H220-M1",
+    "household_id": "H220",
+    "member_name": "Rosa Edwards",
+    "role": "Primary",
+    "fico": 691
+  },
+  {
+    "member_id": "H220-M2",
+    "household_id": "H220",
+    "member_name": "Omar Edwards",
+    "role": "Spouse",
+    "fico": 647
+  },
+  {
+    "member_id": "H221-M1",
+    "household_id": "H221",
+    "member_name": "Zoe Carter",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H221-M2",
+    "household_id": "H221",
+    "member_name": "Mei Carter",
+    "role": "Spouse",
+    "fico": 734
+  },
+  {
+    "member_id": "H222-M1",
+    "household_id": "H222",
+    "member_name": "Sara Stewart",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H222-M2",
+    "household_id": "H222",
+    "member_name": "Hiroshi Stewart",
+    "role": "Spouse",
+    "fico": 617
+  },
+  {
+    "member_id": "H223-M1",
+    "household_id": "H223",
+    "member_name": "Emily Young",
+    "role": "Primary",
+    "fico": 786
+  },
+  {
+    "member_id": "H223-M2",
+    "household_id": "H223",
+    "member_name": "Aisha Young",
+    "role": "Spouse",
+    "fico": 683
+  },
+  {
+    "member_id": "H224-M1",
+    "household_id": "H224",
+    "member_name": "Aisha Wright",
+    "role": "Primary",
+    "fico": 644
+  },
+  {
+    "member_id": "H224-M2",
+    "household_id": "H224",
+    "member_name": "Owen Wright",
+    "role": "Spouse",
+    "fico": 716
+  },
+  {
+    "member_id": "H225-M1",
+    "household_id": "H225",
+    "member_name": "Emily Sanchez",
+    "role": "Primary",
+    "fico": 713
+  },
+  {
+    "member_id": "H226-M1",
+    "household_id": "H226",
+    "member_name": "Chen Turner",
+    "role": "Primary",
+    "fico": 673
+  },
+  {
+    "member_id": "H226-M2",
+    "household_id": "H226",
+    "member_name": "Isaac Turner",
+    "role": "Spouse",
+    "fico": 694
+  },
+  {
+    "member_id": "H227-M1",
+    "household_id": "H227",
+    "member_name": "Nina Sanchez",
+    "role": "Primary",
+    "fico": 802
+  },
+  {
+    "member_id": "H228-M1",
+    "household_id": "H228",
+    "member_name": "Maria Clark",
+    "role": "Primary",
+    "fico": 692
+  },
+  {
+    "member_id": "H229-M1",
+    "household_id": "H229",
+    "member_name": "Daniel Baker",
+    "role": "Primary",
+    "fico": 701
+  },
+  {
+    "member_id": "H229-M2",
+    "household_id": "H229",
+    "member_name": "Hannah Baker",
+    "role": "Spouse",
+    "fico": 640
+  },
+  {
+    "member_id": "H230-M1",
+    "household_id": "H230",
+    "member_name": "Maria Cook",
+    "role": "Primary",
+    "fico": 653
+  },
+  {
+    "member_id": "H230-M2",
+    "household_id": "H230",
+    "member_name": "Olivia Cook",
+    "role": "Spouse",
+    "fico": 732
+  },
+  {
+    "member_id": "H231-M1",
+    "household_id": "H231",
+    "member_name": "David Cooper",
+    "role": "Primary",
+    "fico": 646
+  },
+  {
+    "member_id": "H231-M2",
+    "household_id": "H231",
+    "member_name": "Lucas Cooper",
+    "role": "Spouse",
+    "fico": 751
+  },
+  {
+    "member_id": "H232-M1",
+    "household_id": "H232",
+    "member_name": "Maria Parker",
+    "role": "Primary",
+    "fico": 797
+  },
+  {
+    "member_id": "H232-M2",
+    "household_id": "H232",
+    "member_name": "Daniel Parker",
+    "role": "Spouse",
+    "fico": 739
+  },
+  {
+    "member_id": "H233-M1",
+    "household_id": "H233",
+    "member_name": "Emily Morris",
+    "role": "Primary",
+    "fico": 680
+  },
+  {
+    "member_id": "H234-M1",
+    "household_id": "H234",
+    "member_name": "Emily Allen",
+    "role": "Primary",
+    "fico": 743
+  },
+  {
+    "member_id": "H235-M1",
+    "household_id": "H235",
+    "member_name": "Leah Shah",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H236-M1",
+    "household_id": "H236",
+    "member_name": "Grace Perez",
+    "role": "Primary",
+    "fico": 758
+  },
+  {
+    "member_id": "H237-M1",
+    "household_id": "H237",
+    "member_name": "Felix Green",
+    "role": "Primary",
+    "fico": 721
+  },
+  {
+    "member_id": "H238-M1",
+    "household_id": "H238",
+    "member_name": "Lucas King",
+    "role": "Primary",
+    "fico": 794
+  },
+  {
+    "member_id": "H239-M1",
+    "household_id": "H239",
+    "member_name": "David Perez",
+    "role": "Primary",
+    "fico": 633
+  },
+  {
+    "member_id": "H239-M2",
+    "household_id": "H239",
+    "member_name": "Omar Perez",
+    "role": "Spouse",
+    "fico": 796
+  },
+  {
+    "member_id": "H240-M1",
+    "household_id": "H240",
+    "member_name": "Noah Parker",
+    "role": "Primary",
+    "fico": 590
+  },
+  {
+    "member_id": "H241-M1",
+    "household_id": "H241",
+    "member_name": "Hannah Bailey",
+    "role": "Primary",
+    "fico": 753
+  },
+  {
+    "member_id": "H241-M2",
+    "household_id": "H241",
+    "member_name": "Carlos Bailey",
+    "role": "Spouse",
+    "fico": 642
+  },
+  {
+    "member_id": "H242-M1",
+    "household_id": "H242",
+    "member_name": "Leah Morris",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H242-M2",
+    "household_id": "H242",
+    "member_name": "Olivia Morris",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H243-M1",
+    "household_id": "H243",
+    "member_name": "Olivia Wright",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H243-M2",
+    "household_id": "H243",
+    "member_name": "Nina Wright",
+    "role": "Spouse",
+    "fico": 751
+  },
+  {
+    "member_id": "H244-M1",
+    "household_id": "H244",
+    "member_name": "Victor Mitchell",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H244-M2",
+    "household_id": "H244",
+    "member_name": "Ethan Mitchell",
+    "role": "Spouse",
+    "fico": 634
+  },
+  {
+    "member_id": "H245-M1",
+    "household_id": "H245",
+    "member_name": "Fatima Morgan",
+    "role": "Primary",
+    "fico": 651
+  },
+  {
+    "member_id": "H246-M1",
+    "household_id": "H246",
+    "member_name": "Sara Lewis",
+    "role": "Primary",
+    "fico": 672
+  },
+  {
+    "member_id": "H246-M2",
+    "household_id": "H246",
+    "member_name": "David Lewis",
+    "role": "Spouse",
+    "fico": 676
+  },
+  {
+    "member_id": "H247-M1",
+    "household_id": "H247",
+    "member_name": "Noah Lopez",
+    "role": "Primary",
+    "fico": 822
+  },
+  {
+    "member_id": "H248-M1",
+    "household_id": "H248",
+    "member_name": "Daniel Adams",
+    "role": "Primary",
+    "fico": 751
+  },
+  {
+    "member_id": "H248-M2",
+    "household_id": "H248",
+    "member_name": "Hannah Adams",
+    "role": "Spouse",
+    "fico": 565
+  },
+  {
+    "member_id": "H249-M1",
+    "household_id": "H249",
+    "member_name": "Fatima Rogers",
+    "role": "Primary",
+    "fico": 682
+  },
+  {
+    "member_id": "H249-M2",
+    "household_id": "H249",
+    "member_name": "Grace Rogers",
+    "role": "Spouse",
+    "fico": 748
+  },
+  {
+    "member_id": "H250-M1",
+    "household_id": "H250",
+    "member_name": "Samuel Scott",
+    "role": "Primary",
+    "fico": 712
+  },
+  {
+    "member_id": "H250-M2",
+    "household_id": "H250",
+    "member_name": "Noah Scott",
+    "role": "Spouse",
+    "fico": 714
+  },
+  {
+    "member_id": "H251-M1",
+    "household_id": "H251",
+    "member_name": "James Hill",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H251-M2",
+    "household_id": "H251",
+    "member_name": "Hiroshi Hill",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H252-M1",
+    "household_id": "H252",
+    "member_name": "Leah Bell",
+    "role": "Primary",
+    "fico": 771
+  },
+  {
+    "member_id": "H253-M1",
+    "household_id": "H253",
+    "member_name": "Mei Turner",
+    "role": "Primary",
+    "fico": 781
+  },
+  {
+    "member_id": "H253-M2",
+    "household_id": "H253",
+    "member_name": "Priya Turner",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H254-M1",
+    "household_id": "H254",
+    "member_name": "Lucas Roberts",
+    "role": "Primary",
+    "fico": 697
+  },
+  {
+    "member_id": "H255-M1",
+    "household_id": "H255",
+    "member_name": "Emily Martinez",
+    "role": "Primary",
+    "fico": 739
+  },
+  {
+    "member_id": "H255-M2",
+    "household_id": "H255",
+    "member_name": "Robert Martinez",
+    "role": "Spouse",
+    "fico": 686
+  },
+  {
+    "member_id": "H256-M1",
+    "household_id": "H256",
+    "member_name": "Isaac Turner",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H256-M2",
+    "household_id": "H256",
+    "member_name": "Olivia Turner",
+    "role": "Spouse",
+    "fico": 799
+  },
+  {
+    "member_id": "H257-M1",
+    "household_id": "H257",
+    "member_name": "Leah Evans",
+    "role": "Primary",
+    "fico": 725
+  },
+  {
+    "member_id": "H258-M1",
+    "household_id": "H258",
+    "member_name": "Isaac Bailey",
+    "role": "Primary",
+    "fico": 628
+  },
+  {
+    "member_id": "H259-M1",
+    "household_id": "H259",
+    "member_name": "Omar Stewart",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H259-M2",
+    "household_id": "H259",
+    "member_name": "Caleb Stewart",
+    "role": "Spouse",
+    "fico": 698
+  },
+  {
+    "member_id": "H260-M1",
+    "household_id": "H260",
+    "member_name": "Daniel Campbell",
+    "role": "Primary",
+    "fico": 704
+  },
+  {
+    "member_id": "H261-M1",
+    "household_id": "H261",
+    "member_name": "Nina Carter",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H261-M2",
+    "household_id": "H261",
+    "member_name": "Lucas Carter",
+    "role": "Spouse",
+    "fico": 711
+  },
+  {
+    "member_id": "H262-M1",
+    "household_id": "H262",
+    "member_name": "Caleb Collins",
+    "role": "Primary",
+    "fico": 738
+  },
+  {
+    "member_id": "H262-M2",
+    "household_id": "H262",
+    "member_name": "Priya Collins",
+    "role": "Spouse",
+    "fico": 700
+  },
+  {
+    "member_id": "H263-M1",
+    "household_id": "H263",
+    "member_name": "Victor Turner",
+    "role": "Primary",
+    "fico": 698
+  },
+  {
+    "member_id": "H263-M2",
+    "household_id": "H263",
+    "member_name": "Samuel Turner",
+    "role": "Spouse",
+    "fico": 684
+  },
+  {
+    "member_id": "H264-M1",
+    "household_id": "H264",
+    "member_name": "Victor Scott",
+    "role": "Primary",
+    "fico": 749
+  },
+  {
+    "member_id": "H265-M1",
+    "household_id": "H265",
+    "member_name": "Hiroshi Morgan",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H265-M2",
+    "household_id": "H265",
+    "member_name": "Sara Morgan",
+    "role": "Spouse",
+    "fico": 697
+  },
+  {
+    "member_id": "H266-M1",
+    "household_id": "H266",
+    "member_name": "Ethan Roberts",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H267-M1",
+    "household_id": "H267",
+    "member_name": "Aisha King",
+    "role": "Primary",
+    "fico": 811
+  },
+  {
+    "member_id": "H267-M2",
+    "household_id": "H267",
+    "member_name": "Robert King",
+    "role": "Spouse",
+    "fico": 766
+  },
+  {
+    "member_id": "H268-M1",
+    "household_id": "H268",
+    "member_name": "Omar Cooper",
+    "role": "Primary",
+    "fico": 796
+  },
+  {
+    "member_id": "H269-M1",
+    "household_id": "H269",
+    "member_name": "Sara Martinez",
+    "role": "Primary",
+    "fico": 708
+  },
+  {
+    "member_id": "H270-M1",
+    "household_id": "H270",
+    "member_name": "Daniel Phillips",
+    "role": "Primary",
+    "fico": 696
+  },
+  {
+    "member_id": "H271-M1",
+    "household_id": "H271",
+    "member_name": "Victor Adams",
+    "role": "Primary",
+    "fico": 682
+  },
+  {
+    "member_id": "H272-M1",
+    "household_id": "H272",
+    "member_name": "Rosa Morris",
+    "role": "Primary",
+    "fico": 774
+  },
+  {
+    "member_id": "H272-M2",
+    "household_id": "H272",
+    "member_name": "Olivia Morris",
+    "role": "Spouse",
+    "fico": 664
+  },
+  {
+    "member_id": "H273-M1",
+    "household_id": "H273",
+    "member_name": "Ana Scott",
+    "role": "Primary",
+    "fico": 677
+  },
+  {
+    "member_id": "H273-M2",
+    "household_id": "H273",
+    "member_name": "Mei Scott",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H274-M1",
+    "household_id": "H274",
+    "member_name": "Fatima Parker",
+    "role": "Primary",
+    "fico": 746
+  },
+  {
+    "member_id": "H275-M1",
+    "household_id": "H275",
+    "member_name": "Isaac Parker",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H276-M1",
+    "household_id": "H276",
+    "member_name": "Maria Mitchell",
+    "role": "Primary",
+    "fico": 665
+  },
+  {
+    "member_id": "H276-M2",
+    "household_id": "H276",
+    "member_name": "Aisha Mitchell",
+    "role": "Spouse",
+    "fico": 659
+  },
+  {
+    "member_id": "H277-M1",
+    "household_id": "H277",
+    "member_name": "Grace Sanchez",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H277-M2",
+    "household_id": "H277",
+    "member_name": "James Sanchez",
+    "role": "Spouse",
+    "fico": 724
+  },
+  {
+    "member_id": "H278-M1",
+    "household_id": "H278",
+    "member_name": "Chen Phillips",
+    "role": "Primary",
+    "fico": 732
+  },
+  {
+    "member_id": "H278-M2",
+    "household_id": "H278",
+    "member_name": "Michael Phillips",
+    "role": "Spouse",
+    "fico": 723
+  },
+  {
+    "member_id": "H279-M1",
+    "household_id": "H279",
+    "member_name": "Ethan Clark",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H279-M2",
+    "household_id": "H279",
+    "member_name": "James Clark",
+    "role": "Spouse",
+    "fico": 625
+  },
+  {
+    "member_id": "H280-M1",
+    "household_id": "H280",
+    "member_name": "Ethan Rogers",
+    "role": "Primary",
+    "fico": 717
+  },
+  {
+    "member_id": "H281-M1",
+    "household_id": "H281",
+    "member_name": "Samuel Bell",
+    "role": "Primary",
+    "fico": 691
+  },
+  {
+    "member_id": "H281-M2",
+    "household_id": "H281",
+    "member_name": "Maria Bell",
+    "role": "Spouse",
+    "fico": 627
+  },
+  {
+    "member_id": "H282-M1",
+    "household_id": "H282",
+    "member_name": "Ethan Bailey",
+    "role": "Primary",
+    "fico": null
+  },
+  {
+    "member_id": "H282-M2",
+    "household_id": "H282",
+    "member_name": "Aisha Bailey",
+    "role": "Spouse",
+    "fico": 676
+  },
+  {
+    "member_id": "H283-M1",
+    "household_id": "H283",
+    "member_name": "David Shah",
+    "role": "Primary",
+    "fico": 703
+  },
+  {
+    "member_id": "H283-M2",
+    "household_id": "H283",
+    "member_name": "Priya Shah",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H284-M1",
+    "household_id": "H284",
+    "member_name": "Caleb Bell",
+    "role": "Primary",
+    "fico": 796
+  },
+  {
+    "member_id": "H284-M2",
+    "household_id": "H284",
+    "member_name": "Victor Bell",
+    "role": "Spouse",
+    "fico": 716
+  },
+  {
+    "member_id": "H285-M1",
+    "household_id": "H285",
+    "member_name": "Hiroshi Allen",
+    "role": "Primary",
+    "fico": 692
+  },
+  {
+    "member_id": "H286-M1",
+    "household_id": "H286",
+    "member_name": "Carlos Edwards",
+    "role": "Primary",
+    "fico": 637
+  },
+  {
+    "member_id": "H287-M1",
+    "household_id": "H287",
+    "member_name": "Ana Walker",
+    "role": "Primary",
+    "fico": 727
+  },
+  {
+    "member_id": "H287-M2",
+    "household_id": "H287",
+    "member_name": "Owen Walker",
+    "role": "Spouse",
+    "fico": 737
+  },
+  {
+    "member_id": "H288-M1",
+    "household_id": "H288",
+    "member_name": "Robert Evans",
+    "role": "Primary",
+    "fico": 644
+  },
+  {
+    "member_id": "H289-M1",
+    "household_id": "H289",
+    "member_name": "Emily Walker",
+    "role": "Primary",
+    "fico": 674
+  },
+  {
+    "member_id": "H289-M2",
+    "household_id": "H289",
+    "member_name": "Fatima Walker",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H290-M1",
+    "household_id": "H290",
+    "member_name": "Aisha Mitchell",
+    "role": "Primary",
+    "fico": 730
+  },
+  {
+    "member_id": "H291-M1",
+    "household_id": "H291",
+    "member_name": "Owen Cook",
+    "role": "Primary",
+    "fico": 694
+  },
+  {
+    "member_id": "H292-M1",
+    "household_id": "H292",
+    "member_name": "Caleb Rivera",
+    "role": "Primary",
+    "fico": 733
+  },
+  {
+    "member_id": "H293-M1",
+    "household_id": "H293",
+    "member_name": "Carlos Morris",
+    "role": "Primary",
+    "fico": 689
+  },
+  {
+    "member_id": "H293-M2",
+    "household_id": "H293",
+    "member_name": "Rosa Morris",
+    "role": "Spouse",
+    "fico": 646
+  },
+  {
+    "member_id": "H294-M1",
+    "household_id": "H294",
+    "member_name": "Leah Green",
+    "role": "Primary",
+    "fico": 714
+  },
+  {
+    "member_id": "H294-M2",
+    "household_id": "H294",
+    "member_name": "Daniel Green",
+    "role": "Spouse",
+    "fico": 720
+  },
+  {
+    "member_id": "H295-M1",
+    "household_id": "H295",
+    "member_name": "Fatima Allen",
+    "role": "Primary",
+    "fico": 646
+  },
+  {
+    "member_id": "H296-M1",
+    "household_id": "H296",
+    "member_name": "Daniel Reed",
+    "role": "Primary",
+    "fico": 735
+  },
+  {
+    "member_id": "H296-M2",
+    "household_id": "H296",
+    "member_name": "Owen Reed",
+    "role": "Spouse",
+    "fico": 709
+  },
+  {
+    "member_id": "H297-M1",
+    "household_id": "H297",
+    "member_name": "Felix Sanchez",
+    "role": "Primary",
+    "fico": 705
+  },
+  {
+    "member_id": "H297-M2",
+    "household_id": "H297",
+    "member_name": "Robert Sanchez",
+    "role": "Spouse",
+    "fico": 700
+  },
+  {
+    "member_id": "H298-M1",
+    "household_id": "H298",
+    "member_name": "Hiroshi Lewis",
+    "role": "Primary",
+    "fico": 654
+  },
+  {
+    "member_id": "H298-M2",
+    "household_id": "H298",
+    "member_name": "Hannah Lewis",
+    "role": "Spouse",
+    "fico": 756
+  },
+  {
+    "member_id": "H299-M1",
+    "household_id": "H299",
+    "member_name": "Michael Young",
+    "role": "Primary",
+    "fico": 670
+  },
+  {
+    "member_id": "H299-M2",
+    "household_id": "H299",
+    "member_name": "Leah Young",
+    "role": "Spouse",
+    "fico": null
+  },
+  {
+    "member_id": "H300-M1",
+    "household_id": "H300",
+    "member_name": "Grace Cook",
+    "role": "Primary",
+    "fico": 656
+  }
+]

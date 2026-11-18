@@ -1,0 +1,422 @@
+[
+  {
+    "household_id": "H242",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag"
+  },
+  {
+    "household_id": "H102",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag"
+  },
+  {
+    "household_id": "H251",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag"
+  },
+  {
+    "household_id": "H80",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag"
+  },
+  {
+    "household_id": "H103",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag"
+  },
+  {
+    "household_id": "H258",
+    "entity_id": null,
+    "issue_type": "missing_comfort_zone",
+    "rule": "Not FastApp-eligible; flag"
+  },
+  {
+    "household_id": "H162",
+    "entity_id": null,
+    "issue_type": "missing_comfort_zone",
+    "rule": "Not FastApp-eligible; flag"
+  },
+  {
+    "household_id": "H151",
+    "entity_id": null,
+    "issue_type": "missing_comfort_zone",
+    "rule": "Not FastApp-eligible; flag"
+  },
+  {
+    "household_id": "H257",
+    "entity_id": "H257-D06",
+    "issue_type": "zero_payment",
+    "rule": "Exclude from all calculations; flag"
+  },
+  {
+    "household_id": "H146",
+    "entity_id": "H146-D05",
+    "issue_type": "zero_payment",
+    "rule": "Exclude from all calculations; flag"
+  },
+  {
+    "household_id": "H83",
+    "entity_id": "H83-D04",
+    "issue_type": "zero_payment",
+    "rule": "Exclude from all calculations; flag"
+  },
+  {
+    "household_id": "H49",
+    "entity_id": "H49-D03",
+    "issue_type": "zero_payment",
+    "rule": "Exclude from all calculations; flag"
+  },
+  {
+    "household_id": "H55",
+    "entity_id": "H55-D01",
+    "issue_type": "payment_below_interest",
+    "rule": "Include; flag never pays off; advisor may edit"
+  },
+  {
+    "household_id": "H82",
+    "entity_id": "H82-D01",
+    "issue_type": "payment_below_interest",
+    "rule": "Include; flag never pays off; advisor may edit"
+  },
+  {
+    "household_id": "H291",
+    "entity_id": "H291-D01",
+    "issue_type": "payment_below_interest",
+    "rule": "Include; flag never pays off; advisor may edit"
+  },
+  {
+    "household_id": "H175",
+    "entity_id": "H175-D02",
+    "issue_type": "payment_below_interest",
+    "rule": "Include; flag never pays off; advisor may edit"
+  },
+  {
+    "household_id": "H232",
+    "entity_id": "H232-D01",
+    "issue_type": "zero_rate",
+    "rule": "Include; flag; advisor may edit rate"
+  },
+  {
+    "household_id": "H248",
+    "entity_id": "H248-D01",
+    "issue_type": "zero_rate",
+    "rule": "Include; flag; advisor may edit rate"
+  },
+  {
+    "household_id": "H255",
+    "entity_id": "H255-D02",
+    "issue_type": "zero_rate",
+    "rule": "Include; flag; advisor may edit rate"
+  },
+  {
+    "household_id": "H45",
+    "entity_id": "H45-D02;H45-D06",
+    "issue_type": "possible_duplicate",
+    "rule": "Keep both; flag"
+  },
+  {
+    "household_id": "H265",
+    "entity_id": "H265-D03;H265-D09",
+    "issue_type": "possible_duplicate",
+    "rule": "Keep both; flag"
+  },
+  {
+    "household_id": "H178",
+    "entity_id": "H178-D02;H178-D06",
+    "issue_type": "possible_duplicate",
+    "rule": "Keep both; flag"
+  },
+  {
+    "household_id": "H29",
+    "entity_id": null,
+    "issue_type": "income_implausible",
+    "rule": "Income not used in any rule; flag"
+  },
+  {
+    "household_id": "H211",
+    "entity_id": null,
+    "issue_type": "income_implausible",
+    "rule": "Income not used in any rule; flag"
+  },
+  {
+    "household_id": "H215",
+    "entity_id": null,
+    "issue_type": "income_implausible",
+    "rule": "Income not used in any rule; flag"
+  },
+  {
+    "household_id": "H19",
+    "entity_id": null,
+    "issue_type": "income_missing",
+    "rule": "Income not used in any rule"
+  },
+  {
+    "household_id": "H147",
+    "entity_id": null,
+    "issue_type": "income_missing",
+    "rule": "Income not used in any rule"
+  },
+  {
+    "household_id": "H166",
+    "entity_id": null,
+    "issue_type": "income_missing",
+    "rule": "Income not used in any rule"
+  },
+  {
+    "household_id": "H109",
+    "entity_id": "P109A",
+    "issue_type": "stale_property_value",
+    "rule": "Use as is; flag; advisor may edit"
+  },
+  {
+    "household_id": "H71",
+    "entity_id": "P71A",
+    "issue_type": "stale_property_value",
+    "rule": "Use as is; flag; advisor may edit"
+  },
+  {
+    "household_id": "H32",
+    "entity_id": "P32A",
+    "issue_type": "stale_property_value",
+    "rule": "Use as is; flag; advisor may edit"
+  },
+  {
+    "household_id": "H285",
+    "entity_id": "H285-D01",
+    "issue_type": "mortgage_unlinked",
+    "rule": "No home equity offer until linked; flag"
+  },
+  {
+    "household_id": "H197",
+    "entity_id": "H197-D01",
+    "issue_type": "mortgage_unlinked",
+    "rule": "No home equity offer until linked; flag"
+  },
+  {
+    "household_id": "H182",
+    "entity_id": "H182-D01",
+    "issue_type": "mortgage_unlinked",
+    "rule": "No home equity offer until linked; flag"
+  },
+  {
+    "household_id": "H03",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H04",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H11",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H16",
+    "entity_id": null,
+    "issue_type": "missing_comfort_zone",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H07",
+    "entity_id": "H07-D01",
+    "issue_type": "zero_payment",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H10",
+    "entity_id": "H10-D02",
+    "issue_type": "zero_payment",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H07",
+    "entity_id": "H07-D02",
+    "issue_type": "payment_below_interest",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H08",
+    "entity_id": "H08-D02",
+    "issue_type": "zero_rate",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H11",
+    "entity_id": "H11-D01;H11-D02",
+    "issue_type": "possible_duplicate",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H08",
+    "entity_id": null,
+    "issue_type": "income_implausible",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H10",
+    "entity_id": null,
+    "issue_type": "income_missing",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H09",
+    "entity_id": "P09",
+    "issue_type": "stale_property_value",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H15",
+    "entity_id": "H15-D01",
+    "issue_type": "mortgage_unlinked",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H22",
+    "entity_id": null,
+    "issue_type": "fastapp_orphan",
+    "rule": "see rules"
+  },
+  {
+    "household_id": "H19",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H35",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H50",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H57",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H71",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H97",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H111",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H115",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H138",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H149",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H157",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H186",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H207",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H212",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H235",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H266",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H275",
+    "entity_id": null,
+    "issue_type": "no_fico_any_member",
+    "rule": "Use 740 default; flag (natural)"
+  },
+  {
+    "household_id": "H96",
+    "entity_id": "H96-D01",
+    "issue_type": "zero_payment",
+    "rule": "Reverse mortgage: exclude (natural)"
+  },
+  {
+    "household_id": "H209",
+    "entity_id": "H209-D01",
+    "issue_type": "zero_payment",
+    "rule": "Reverse mortgage: exclude (natural)"
+  },
+  {
+    "household_id": "H293",
+    "entity_id": "H293-D01",
+    "issue_type": "zero_payment",
+    "rule": "Reverse mortgage: exclude (natural)"
+  },
+  {
+    "household_id": "H950",
+    "entity_id": null,
+    "issue_type": "fastapp_orphan",
+    "rule": "Ignore; log"
+  },
+  {
+    "household_id": "H951",
+    "entity_id": null,
+    "issue_type": "fastapp_orphan",
+    "rule": "Ignore; log"
+  }
+]

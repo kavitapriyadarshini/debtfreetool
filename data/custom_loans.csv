@@ -1,0 +1,13 @@
+custom_loan_id,case_id,household_id,lender_name,rate,term_months,max_amount,note
+L001,C0017,H74,Local credit union,10.15,36,60000,Household asked to compare this offer
+L002,C0023,H188,Employer credit union,8.69,36,40000,Household asked to compare this offer
+L003,C0028,H23,Local credit union,9.03,36,60000,Household asked to compare this offer
+L004,C0039,H166,Bank relationship loan,9.61,60,25000,Household asked to compare this offer
+L005,C0040,H182,Local credit union,11.4,36,25000,Household asked to compare this offer
+L006,C0045,H142,Local credit union,11.26,60,40000,Household asked to compare this offer
+L007,C0056,H145,Bank relationship loan,10.99,36,60000,Household asked to compare this offer
+L008,C0062,H69,Bank relationship loan,8.23,60,40000,Household asked to compare this offer
+L009,C0064,H126,Local credit union,9.16,60,60000,Household asked to compare this offer
+L010,C0079,H149,Bank relationship loan,11.17,48,60000,Household asked to compare this offer
+L011,C0088,H295,Local credit union,9.05,60,25000,Household asked to compare this offer
+L012,C0091,H26,Local credit union,10.34,48,25000,Household asked to compare this offer

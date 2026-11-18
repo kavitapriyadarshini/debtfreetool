@@ -1,0 +1,2693 @@
+[
+  {
+    "household_id": "H01",
+    "household_name": "Patel, Raj and Anita",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 165000
+  },
+  {
+    "household_id": "H02",
+    "household_name": "Nguyen, Linh",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 128000
+  },
+  {
+    "household_id": "H03",
+    "household_name": "Johnson, Marcus and Keisha",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 98000
+  },
+  {
+    "household_id": "H04",
+    "household_name": "Garcia, Sofia",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 72000
+  },
+  {
+    "household_id": "H05",
+    "household_name": "Thompson, David and Rachel",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 2,
+    "annual_income": 210000
+  },
+  {
+    "household_id": "H06",
+    "household_name": "Williams, James",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 2,
+    "annual_income": 134000
+  },
+  {
+    "household_id": "H07",
+    "household_name": "Brown, Harold and June",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 61000
+  },
+  {
+    "household_id": "H08",
+    "household_name": "Davis, Kevin and Tara",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 18000
+  },
+  {
+    "household_id": "H09",
+    "household_name": "Miller, Brian",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 112000
+  },
+  {
+    "household_id": "H10",
+    "household_name": "Wilson, Aaron and Megan",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": null
+  },
+  {
+    "household_id": "H11",
+    "household_name": "Moore, Andre and Tasha",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 3,
+    "annual_income": 89000
+  },
+  {
+    "household_id": "H12",
+    "household_name": "Taylor, Grace",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 240000
+  },
+  {
+    "household_id": "H13",
+    "household_name": "Anderson, Eric and Laura",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "VT",
+    "comfort_zone": 2,
+    "annual_income": 118000
+  },
+  {
+    "household_id": "H14",
+    "household_name": "Thomas, Derek",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H15",
+    "household_name": "Jackson, Tyrone and Dana",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 104000
+  },
+  {
+    "household_id": "H16",
+    "household_name": "Lee, Jason",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": null,
+    "annual_income": 95000
+  },
+  {
+    "household_id": "H17",
+    "household_name": "Baker, Hiroshi and Samuel",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 100000
+  },
+  {
+    "household_id": "H18",
+    "household_name": "Hill, Zoe and Ruth",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 2,
+    "annual_income": 150000
+  },
+  {
+    "household_id": "H19",
+    "household_name": "Reed, Chen",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "IA",
+    "comfort_zone": 1,
+    "annual_income": null
+  },
+  {
+    "household_id": "H20",
+    "household_name": "Carter, Zoe and Mei",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 174000
+  },
+  {
+    "household_id": "H21",
+    "household_name": "Cook, Zoe and Chen",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 313000
+  },
+  {
+    "household_id": "H23",
+    "household_name": "Reed, Fatima and Samuel",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MA",
+    "comfort_zone": 1,
+    "annual_income": 207000
+  },
+  {
+    "household_id": "H24",
+    "household_name": "Hill, Fatima",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 172000
+  },
+  {
+    "household_id": "H25",
+    "household_name": "Carter, Michael and Hiroshi",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 170000
+  },
+  {
+    "household_id": "H26",
+    "household_name": "Perez, Maria and Lucas",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 3,
+    "annual_income": 419000
+  },
+  {
+    "household_id": "H27",
+    "household_name": "Perez, Samuel and Owen",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 2,
+    "annual_income": 179000
+  },
+  {
+    "household_id": "H28",
+    "household_name": "Shah, Priya",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 73000
+  },
+  {
+    "household_id": "H29",
+    "household_name": "Lopez, Leah and Ethan",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 12800
+  },
+  {
+    "household_id": "H30",
+    "household_name": "Rogers, Lucas and Felix",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 79000
+  },
+  {
+    "household_id": "H31",
+    "household_name": "Walker, Robert",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "GA",
+    "comfort_zone": 2,
+    "annual_income": 56000
+  },
+  {
+    "household_id": "H32",
+    "household_name": "Bell, Robert and Hannah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 3,
+    "annual_income": 104000
+  },
+  {
+    "household_id": "H33",
+    "household_name": "Mitchell, Aisha and James",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 64000
+  },
+  {
+    "household_id": "H34",
+    "household_name": "Scott, Daniel and Isaac",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 2,
+    "annual_income": 56000
+  },
+  {
+    "household_id": "H35",
+    "household_name": "Allen, Priya and Omar",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NC",
+    "comfort_zone": 3,
+    "annual_income": 158000
+  },
+  {
+    "household_id": "H36",
+    "household_name": "Kim, Samuel and Robert",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 3,
+    "annual_income": 129000
+  },
+  {
+    "household_id": "H37",
+    "household_name": "Bell, David and Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": 134000
+  },
+  {
+    "household_id": "H38",
+    "household_name": "Rogers, Ana",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 138000
+  },
+  {
+    "household_id": "H39",
+    "household_name": "Clark, Maria",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 115000
+  },
+  {
+    "household_id": "H40",
+    "household_name": "Morris, Emily and Maria",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 266000
+  },
+  {
+    "household_id": "H41",
+    "household_name": "Rivera, Rosa and Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 3,
+    "annual_income": 100000
+  },
+  {
+    "household_id": "H42",
+    "household_name": "Roberts, Robert and Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 219000
+  },
+  {
+    "household_id": "H43",
+    "household_name": "Roberts, Grace",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "OH",
+    "comfort_zone": 1,
+    "annual_income": 183000
+  },
+  {
+    "household_id": "H44",
+    "household_name": "Cooper, Felix",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 1,
+    "annual_income": 192000
+  },
+  {
+    "household_id": "H45",
+    "household_name": "Cooper, Emily and Omar",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 168000
+  },
+  {
+    "household_id": "H46",
+    "household_name": "Scott, Michael and Ana",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 168000
+  },
+  {
+    "household_id": "H47",
+    "household_name": "Morgan, Rosa and Owen",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 178000
+  },
+  {
+    "household_id": "H48",
+    "household_name": "Murphy, Ruth",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 82000
+  },
+  {
+    "household_id": "H49",
+    "household_name": "Stewart, Priya",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 87000
+  },
+  {
+    "household_id": "H50",
+    "household_name": "Lopez, Mei",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 167000
+  },
+  {
+    "household_id": "H51",
+    "household_name": "Reed, Caleb and Mei",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "OR",
+    "comfort_zone": 1,
+    "annual_income": 120000
+  },
+  {
+    "household_id": "H52",
+    "household_name": "Shah, Grace",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 90000
+  },
+  {
+    "household_id": "H53",
+    "household_name": "Baker, Aisha and Emily",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 170000
+  },
+  {
+    "household_id": "H54",
+    "household_name": "Turner, Carlos and Zoe",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 1,
+    "annual_income": 152000
+  },
+  {
+    "household_id": "H55",
+    "household_name": "Morgan, Ethan and Olivia",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 116000
+  },
+  {
+    "household_id": "H56",
+    "household_name": "Wright, Nina and Sara",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MN",
+    "comfort_zone": 2,
+    "annual_income": 159000
+  },
+  {
+    "household_id": "H57",
+    "household_name": "Phillips, Zoe",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 3,
+    "annual_income": 154000
+  },
+  {
+    "household_id": "H58",
+    "household_name": "Murphy, Grace and Emily",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 144000
+  },
+  {
+    "household_id": "H59",
+    "household_name": "Parker, Olivia and Maria",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 3,
+    "annual_income": 96000
+  },
+  {
+    "household_id": "H60",
+    "household_name": "Carter, Mei and Zoe",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 140000
+  },
+  {
+    "household_id": "H61",
+    "household_name": "Kim, Hiroshi and Zoe",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 3,
+    "annual_income": 145000
+  },
+  {
+    "household_id": "H62",
+    "household_name": "Perez, Carlos and Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WI",
+    "comfort_zone": 3,
+    "annual_income": 100000
+  },
+  {
+    "household_id": "H63",
+    "household_name": "Baker, David and Daniel",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 171000
+  },
+  {
+    "household_id": "H64",
+    "household_name": "Collins, Grace and Noah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 100000
+  },
+  {
+    "household_id": "H65",
+    "household_name": "Clark, Grace",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CO",
+    "comfort_zone": 1,
+    "annual_income": 257000
+  },
+  {
+    "household_id": "H66",
+    "household_name": "Adams, Leah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 3,
+    "annual_income": 191000
+  },
+  {
+    "household_id": "H67",
+    "household_name": "Cooper, Hannah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 207000
+  },
+  {
+    "household_id": "H68",
+    "household_name": "Hall, Lucas",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "AZ",
+    "comfort_zone": 2,
+    "annual_income": 90000
+  },
+  {
+    "household_id": "H69",
+    "household_name": "Morris, Emily and Aisha",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 2,
+    "annual_income": 261000
+  },
+  {
+    "household_id": "H70",
+    "household_name": "Nelson, Ana",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 2,
+    "annual_income": 133000
+  },
+  {
+    "household_id": "H71",
+    "household_name": "Rivera, Caleb and Noah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NV",
+    "comfort_zone": 1,
+    "annual_income": 91000
+  },
+  {
+    "household_id": "H72",
+    "household_name": "Shah, Mei and Noah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 160000
+  },
+  {
+    "household_id": "H73",
+    "household_name": "Scott, Lucas and Samuel",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": 138000
+  },
+  {
+    "household_id": "H74",
+    "household_name": "Clark, Ethan",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MN",
+    "comfort_zone": 3,
+    "annual_income": 83000
+  },
+  {
+    "household_id": "H75",
+    "household_name": "Rivera, Lucas",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 155000
+  },
+  {
+    "household_id": "H76",
+    "household_name": "Rivera, Ruth and Daniel",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 3,
+    "annual_income": 105000
+  },
+  {
+    "household_id": "H77",
+    "household_name": "Young, Olivia and Priya",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MI",
+    "comfort_zone": 1,
+    "annual_income": 81000
+  },
+  {
+    "household_id": "H78",
+    "household_name": "Green, Caleb and Isaac",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MO",
+    "comfort_zone": 1,
+    "annual_income": 103000
+  },
+  {
+    "household_id": "H79",
+    "household_name": "Evans, Fatima and Hannah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 2,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H80",
+    "household_name": "Cooper, Rosa and Zoe",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 263000
+  },
+  {
+    "household_id": "H81",
+    "household_name": "Reed, Isaac and Michael",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 2,
+    "annual_income": 131000
+  },
+  {
+    "household_id": "H82",
+    "household_name": "Bailey, Mei and Zoe",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 160000
+  },
+  {
+    "household_id": "H83",
+    "household_name": "Turner, Samuel and Isaac",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TN",
+    "comfort_zone": 2,
+    "annual_income": 113000
+  },
+  {
+    "household_id": "H84",
+    "household_name": "Morgan, Priya",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 3,
+    "annual_income": 105000
+  },
+  {
+    "household_id": "H85",
+    "household_name": "Bailey, Lucas and Samuel",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MN",
+    "comfort_zone": 1,
+    "annual_income": 165000
+  },
+  {
+    "household_id": "H86",
+    "household_name": "Phillips, Noah and Aisha",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 3,
+    "annual_income": 91000
+  },
+  {
+    "household_id": "H87",
+    "household_name": "Scott, Zoe and Emily",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MI",
+    "comfort_zone": 3,
+    "annual_income": 95000
+  },
+  {
+    "household_id": "H88",
+    "household_name": "Murphy, Omar and Ethan",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "WI",
+    "comfort_zone": 2,
+    "annual_income": 75000
+  },
+  {
+    "household_id": "H89",
+    "household_name": "Young, Sara and Noah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 3,
+    "annual_income": 152000
+  },
+  {
+    "household_id": "H90",
+    "household_name": "Clark, Owen",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 3,
+    "annual_income": 136000
+  },
+  {
+    "household_id": "H91",
+    "household_name": "Scott, Ruth",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 215000
+  },
+  {
+    "household_id": "H92",
+    "household_name": "Collins, Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 228000
+  },
+  {
+    "household_id": "H93",
+    "household_name": "Perez, Robert",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": 2,
+    "annual_income": 92000
+  },
+  {
+    "household_id": "H94",
+    "household_name": "Shah, Michael and Chen",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 3,
+    "annual_income": 171000
+  },
+  {
+    "household_id": "H95",
+    "household_name": "Walker, Robert and Grace",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 87000
+  },
+  {
+    "household_id": "H96",
+    "household_name": "Mitchell, Felix and Leah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 156000
+  },
+  {
+    "household_id": "H97",
+    "household_name": "Sanchez, Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 161000
+  },
+  {
+    "household_id": "H98",
+    "household_name": "Cook, Chen and Mei",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 182000
+  },
+  {
+    "household_id": "H99",
+    "household_name": "Shah, Olivia",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NV",
+    "comfort_zone": 3,
+    "annual_income": 125000
+  },
+  {
+    "household_id": "H100",
+    "household_name": "Martinez, Zoe",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 246000
+  },
+  {
+    "household_id": "H101",
+    "household_name": "Bell, Michael and Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 1,
+    "annual_income": 176000
+  },
+  {
+    "household_id": "H102",
+    "household_name": "Evans, Emily and Lucas",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 3,
+    "annual_income": 127000
+  },
+  {
+    "household_id": "H103",
+    "household_name": "Edwards, Robert",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 241000
+  },
+  {
+    "household_id": "H104",
+    "household_name": "Murphy, Leah and James",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 68000
+  },
+  {
+    "household_id": "H105",
+    "household_name": "Green, Chen",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 183000
+  },
+  {
+    "household_id": "H106",
+    "household_name": "Parker, Ruth and Nina",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 2,
+    "annual_income": 199000
+  },
+  {
+    "household_id": "H107",
+    "household_name": "Shah, Lucas and Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 1,
+    "annual_income": 70000
+  },
+  {
+    "household_id": "H108",
+    "household_name": "Shah, Ana and Hiroshi",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 143000
+  },
+  {
+    "household_id": "H109",
+    "household_name": "Lewis, David and Leah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 1,
+    "annual_income": 290000
+  },
+  {
+    "household_id": "H110",
+    "household_name": "Edwards, Hiroshi and Robert",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H111",
+    "household_name": "Walker, Michael and Leah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 172000
+  },
+  {
+    "household_id": "H112",
+    "household_name": "Campbell, Caleb and James",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 84000
+  },
+  {
+    "household_id": "H113",
+    "household_name": "Morris, Victor",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 80000
+  },
+  {
+    "household_id": "H114",
+    "household_name": "Wright, David and Robert",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 98000
+  },
+  {
+    "household_id": "H115",
+    "household_name": "Baker, Fatima",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 231000
+  },
+  {
+    "household_id": "H116",
+    "household_name": "Nelson, Chen and Aisha",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 128000
+  },
+  {
+    "household_id": "H117",
+    "household_name": "Bell, Emily",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NV",
+    "comfort_zone": 1,
+    "annual_income": 123000
+  },
+  {
+    "household_id": "H118",
+    "household_name": "Cook, Leah and James",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": 160000
+  },
+  {
+    "household_id": "H119",
+    "household_name": "Hill, Chen and Isaac",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 130000
+  },
+  {
+    "household_id": "H120",
+    "household_name": "Adams, Maria and Noah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 85000
+  },
+  {
+    "household_id": "H121",
+    "household_name": "Kim, James",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 61000
+  },
+  {
+    "household_id": "H122",
+    "household_name": "Kim, Leah and Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "VT",
+    "comfort_zone": 2,
+    "annual_income": 92000
+  },
+  {
+    "household_id": "H123",
+    "household_name": "Martinez, Rosa and Omar",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NC",
+    "comfort_zone": 3,
+    "annual_income": 129000
+  },
+  {
+    "household_id": "H124",
+    "household_name": "Young, Daniel and Lucas",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 3,
+    "annual_income": 119000
+  },
+  {
+    "household_id": "H125",
+    "household_name": "Wright, Omar and Owen",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 112000
+  },
+  {
+    "household_id": "H126",
+    "household_name": "King, Carlos",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 84000
+  },
+  {
+    "household_id": "H127",
+    "household_name": "Phillips, Owen and Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 3,
+    "annual_income": 96000
+  },
+  {
+    "household_id": "H128",
+    "household_name": "Mitchell, Priya and Ana",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "OR",
+    "comfort_zone": 3,
+    "annual_income": 191000
+  },
+  {
+    "household_id": "H129",
+    "household_name": "Collins, Fatima and Carlos",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "WI",
+    "comfort_zone": 2,
+    "annual_income": 58000
+  },
+  {
+    "household_id": "H130",
+    "household_name": "Bailey, Aisha",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 130000
+  },
+  {
+    "household_id": "H131",
+    "household_name": "Edwards, Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 165000
+  },
+  {
+    "household_id": "H132",
+    "household_name": "Morgan, Owen and James",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 1,
+    "annual_income": 284000
+  },
+  {
+    "household_id": "H133",
+    "household_name": "Young, Noah and Ruth",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MA",
+    "comfort_zone": 2,
+    "annual_income": 176000
+  },
+  {
+    "household_id": "H134",
+    "household_name": "Lopez, Omar",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 3,
+    "annual_income": 203000
+  },
+  {
+    "household_id": "H135",
+    "household_name": "Cook, Olivia and Ana",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 147000
+  },
+  {
+    "household_id": "H136",
+    "household_name": "Collins, Carlos and Olivia",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 1,
+    "annual_income": 86000
+  },
+  {
+    "household_id": "H137",
+    "household_name": "Bailey, Ruth and Samuel",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "OR",
+    "comfort_zone": 1,
+    "annual_income": 135000
+  },
+  {
+    "household_id": "H138",
+    "household_name": "King, Maria",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "AZ",
+    "comfort_zone": 3,
+    "annual_income": 90000
+  },
+  {
+    "household_id": "H139",
+    "household_name": "Cooper, Rosa and Michael",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 3,
+    "annual_income": 311000
+  },
+  {
+    "household_id": "H140",
+    "household_name": "Hill, Chen and Grace",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 145000
+  },
+  {
+    "household_id": "H141",
+    "household_name": "Collins, Ethan",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 3,
+    "annual_income": 143000
+  },
+  {
+    "household_id": "H142",
+    "household_name": "Parker, Victor",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 215000
+  },
+  {
+    "household_id": "H143",
+    "household_name": "Young, Zoe",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MN",
+    "comfort_zone": 3,
+    "annual_income": 110000
+  },
+  {
+    "household_id": "H144",
+    "household_name": "Cook, Priya and Zoe",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 1,
+    "annual_income": 222000
+  },
+  {
+    "household_id": "H145",
+    "household_name": "Reed, Caleb",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MN",
+    "comfort_zone": 2,
+    "annual_income": 72000
+  },
+  {
+    "household_id": "H146",
+    "household_name": "Young, Daniel and Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 260000
+  },
+  {
+    "household_id": "H147",
+    "household_name": "Adams, Chen and Owen",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "GA",
+    "comfort_zone": 1,
+    "annual_income": null
+  },
+  {
+    "household_id": "H148",
+    "household_name": "Wright, Maria and Nina",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": 2,
+    "annual_income": 173000
+  },
+  {
+    "household_id": "H149",
+    "household_name": "Allen, David",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 105000
+  },
+  {
+    "household_id": "H150",
+    "household_name": "Roberts, Leah and Ruth",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 111000
+  },
+  {
+    "household_id": "H151",
+    "household_name": "Morgan, Aisha and Fatima",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": null,
+    "annual_income": 123000
+  },
+  {
+    "household_id": "H152",
+    "household_name": "Morgan, Leah and Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 234000
+  },
+  {
+    "household_id": "H153",
+    "household_name": "Stewart, Nina",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 147000
+  },
+  {
+    "household_id": "H154",
+    "household_name": "Rogers, Daniel and David",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 94000
+  },
+  {
+    "household_id": "H155",
+    "household_name": "Cook, Hannah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 151000
+  },
+  {
+    "household_id": "H156",
+    "household_name": "Morris, Omar",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 1,
+    "annual_income": 76000
+  },
+  {
+    "household_id": "H157",
+    "household_name": "Phillips, Ruth",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H158",
+    "household_name": "Carter, Fatima and Hannah",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": 1,
+    "annual_income": 106000
+  },
+  {
+    "household_id": "H159",
+    "household_name": "Kim, Felix and Samuel",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 106000
+  },
+  {
+    "household_id": "H160",
+    "household_name": "Bailey, Leah and Ana",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 82000
+  },
+  {
+    "household_id": "H161",
+    "household_name": "Cook, Leah and Ethan",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 3,
+    "annual_income": 149000
+  },
+  {
+    "household_id": "H162",
+    "household_name": "Edwards, Felix and Aisha",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": null,
+    "annual_income": 189000
+  },
+  {
+    "household_id": "H163",
+    "household_name": "Campbell, Mei and Zoe",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "AZ",
+    "comfort_zone": 3,
+    "annual_income": 136000
+  },
+  {
+    "household_id": "H164",
+    "household_name": "Lopez, Grace and Zoe",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "VT",
+    "comfort_zone": 2,
+    "annual_income": 205000
+  },
+  {
+    "household_id": "H165",
+    "household_name": "Stewart, Michael and Sara",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MO",
+    "comfort_zone": 2,
+    "annual_income": 124000
+  },
+  {
+    "household_id": "H166",
+    "household_name": "Edwards, Maria and Hannah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": null
+  },
+  {
+    "household_id": "H167",
+    "household_name": "Scott, Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H168",
+    "household_name": "Campbell, Ethan",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 146000
+  },
+  {
+    "household_id": "H169",
+    "household_name": "Allen, Noah and Ana",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 358000
+  },
+  {
+    "household_id": "H170",
+    "household_name": "Kim, Aisha and Grace",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 68000
+  },
+  {
+    "household_id": "H171",
+    "household_name": "Murphy, Carlos and Ana",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 181000
+  },
+  {
+    "household_id": "H172",
+    "household_name": "Sanchez, Lucas and Fatima",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "OH",
+    "comfort_zone": 3,
+    "annual_income": 191000
+  },
+  {
+    "household_id": "H173",
+    "household_name": "Scott, Grace",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "OH",
+    "comfort_zone": 2,
+    "annual_income": 125000
+  },
+  {
+    "household_id": "H174",
+    "household_name": "Roberts, Victor and Maria",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 182000
+  },
+  {
+    "household_id": "H175",
+    "household_name": "Cook, Hiroshi and Caleb",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "WI",
+    "comfort_zone": 3,
+    "annual_income": 88000
+  },
+  {
+    "household_id": "H176",
+    "household_name": "Hill, Ethan and Isaac",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 80000
+  },
+  {
+    "household_id": "H177",
+    "household_name": "Reed, Robert and Ethan",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 1,
+    "annual_income": 114000
+  },
+  {
+    "household_id": "H178",
+    "household_name": "Reed, Daniel",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H179",
+    "household_name": "Cook, David and Olivia",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 265000
+  },
+  {
+    "household_id": "H180",
+    "household_name": "Reed, Rosa and Michael",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 111000
+  },
+  {
+    "household_id": "H181",
+    "household_name": "Mitchell, Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 3,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H182",
+    "household_name": "Baker, Omar and Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 83000
+  },
+  {
+    "household_id": "H183",
+    "household_name": "Morgan, James",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "VA",
+    "comfort_zone": 1,
+    "annual_income": 203000
+  },
+  {
+    "household_id": "H184",
+    "household_name": "Clark, James",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 2,
+    "annual_income": 205000
+  },
+  {
+    "household_id": "H185",
+    "household_name": "Hill, Nina and Lucas",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 172000
+  },
+  {
+    "household_id": "H186",
+    "household_name": "Evans, Leah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 2,
+    "annual_income": 189000
+  },
+  {
+    "household_id": "H187",
+    "household_name": "Roberts, Lucas and Isaac",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "GA",
+    "comfort_zone": 3,
+    "annual_income": 177000
+  },
+  {
+    "household_id": "H188",
+    "household_name": "Morris, Sara and Emily",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 121000
+  },
+  {
+    "household_id": "H189",
+    "household_name": "Lewis, Mei",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 124000
+  },
+  {
+    "household_id": "H190",
+    "household_name": "Hall, Lucas",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 121000
+  },
+  {
+    "household_id": "H191",
+    "household_name": "King, Hiroshi and Leah",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MN",
+    "comfort_zone": 2,
+    "annual_income": 163000
+  },
+  {
+    "household_id": "H192",
+    "household_name": "Nelson, Fatima",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NC",
+    "comfort_zone": 3,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H193",
+    "household_name": "Hill, Aisha and Fatima",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 137000
+  },
+  {
+    "household_id": "H194",
+    "household_name": "Rogers, Samuel",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 93000
+  },
+  {
+    "household_id": "H195",
+    "household_name": "Carter, Mei and Victor",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 52000
+  },
+  {
+    "household_id": "H196",
+    "household_name": "Kim, Ana and Fatima",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 95000
+  },
+  {
+    "household_id": "H197",
+    "household_name": "Allen, Emily and Victor",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 175000
+  },
+  {
+    "household_id": "H198",
+    "household_name": "Lewis, Isaac and Priya",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 161000
+  },
+  {
+    "household_id": "H199",
+    "household_name": "Lewis, James",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 2,
+    "annual_income": 158000
+  },
+  {
+    "household_id": "H200",
+    "household_name": "Edwards, Hannah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NV",
+    "comfort_zone": 3,
+    "annual_income": 191000
+  },
+  {
+    "household_id": "H201",
+    "household_name": "King, Nina and Caleb",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 73000
+  },
+  {
+    "household_id": "H202",
+    "household_name": "Shah, Samuel and Victor",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WA",
+    "comfort_zone": 2,
+    "annual_income": 142000
+  },
+  {
+    "household_id": "H203",
+    "household_name": "Carter, Daniel and Fatima",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MN",
+    "comfort_zone": 3,
+    "annual_income": 146000
+  },
+  {
+    "household_id": "H204",
+    "household_name": "Lewis, Nina and Owen",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 1,
+    "annual_income": 84000
+  },
+  {
+    "household_id": "H205",
+    "household_name": "Scott, Michael and Owen",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 140000
+  },
+  {
+    "household_id": "H206",
+    "household_name": "Rivera, Leah and Chen",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 175000
+  },
+  {
+    "household_id": "H207",
+    "household_name": "Kim, Omar",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 1,
+    "annual_income": 111000
+  },
+  {
+    "household_id": "H208",
+    "household_name": "Baker, Fatima",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 163000
+  },
+  {
+    "household_id": "H209",
+    "household_name": "Bell, Grace",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 107000
+  },
+  {
+    "household_id": "H210",
+    "household_name": "Green, Mei and Carlos",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 2,
+    "annual_income": 143000
+  },
+  {
+    "household_id": "H211",
+    "household_name": "Edwards, Owen and Priya",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 1,
+    "annual_income": 11700
+  },
+  {
+    "household_id": "H212",
+    "household_name": "Perez, Zoe",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "IA",
+    "comfort_zone": 2,
+    "annual_income": 91000
+  },
+  {
+    "household_id": "H213",
+    "household_name": "Green, Ana and Aisha",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 132000
+  },
+  {
+    "household_id": "H214",
+    "household_name": "Edwards, Olivia",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "GA",
+    "comfort_zone": 3,
+    "annual_income": 87000
+  },
+  {
+    "household_id": "H215",
+    "household_name": "Nelson, Aisha and Ruth",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 8800
+  },
+  {
+    "household_id": "H216",
+    "household_name": "Bailey, Samuel and Zoe",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 153000
+  },
+  {
+    "household_id": "H217",
+    "household_name": "Rogers, Noah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 144000
+  },
+  {
+    "household_id": "H218",
+    "household_name": "Carter, Rosa and Caleb",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 1,
+    "annual_income": 116000
+  },
+  {
+    "household_id": "H219",
+    "household_name": "Phillips, Ruth",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 90000
+  },
+  {
+    "household_id": "H220",
+    "household_name": "Edwards, Rosa and Omar",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "IA",
+    "comfort_zone": 3,
+    "annual_income": 112000
+  },
+  {
+    "household_id": "H221",
+    "household_name": "Carter, Zoe and Mei",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 164000
+  },
+  {
+    "household_id": "H222",
+    "household_name": "Stewart, Sara and Hiroshi",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 1,
+    "annual_income": 87000
+  },
+  {
+    "household_id": "H223",
+    "household_name": "Young, Emily and Aisha",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "VA",
+    "comfort_zone": 3,
+    "annual_income": 287000
+  },
+  {
+    "household_id": "H224",
+    "household_name": "Wright, Aisha and Owen",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 2,
+    "annual_income": 146000
+  },
+  {
+    "household_id": "H225",
+    "household_name": "Sanchez, Emily",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 163000
+  },
+  {
+    "household_id": "H226",
+    "household_name": "Turner, Chen and Isaac",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 176000
+  },
+  {
+    "household_id": "H227",
+    "household_name": "Sanchez, Nina",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 114000
+  },
+  {
+    "household_id": "H228",
+    "household_name": "Clark, Maria",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 163000
+  },
+  {
+    "household_id": "H229",
+    "household_name": "Baker, Daniel and Hannah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 103000
+  },
+  {
+    "household_id": "H230",
+    "household_name": "Cook, Maria and Olivia",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 119000
+  },
+  {
+    "household_id": "H231",
+    "household_name": "Cooper, David and Lucas",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 116000
+  },
+  {
+    "household_id": "H232",
+    "household_name": "Parker, Maria and Daniel",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WI",
+    "comfort_zone": 2,
+    "annual_income": 143000
+  },
+  {
+    "household_id": "H233",
+    "household_name": "Morris, Emily",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 238000
+  },
+  {
+    "household_id": "H234",
+    "household_name": "Allen, Emily",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MN",
+    "comfort_zone": 1,
+    "annual_income": 170000
+  },
+  {
+    "household_id": "H235",
+    "household_name": "Shah, Leah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 120000
+  },
+  {
+    "household_id": "H236",
+    "household_name": "Perez, Grace",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NV",
+    "comfort_zone": 2,
+    "annual_income": 262000
+  },
+  {
+    "household_id": "H237",
+    "household_name": "Green, Felix",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CO",
+    "comfort_zone": 2,
+    "annual_income": 141000
+  },
+  {
+    "household_id": "H238",
+    "household_name": "King, Lucas",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "MI",
+    "comfort_zone": 3,
+    "annual_income": 141000
+  },
+  {
+    "household_id": "H239",
+    "household_name": "Perez, David and Omar",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 3,
+    "annual_income": 95000
+  },
+  {
+    "household_id": "H240",
+    "household_name": "Parker, Noah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 115000
+  },
+  {
+    "household_id": "H241",
+    "household_name": "Bailey, Hannah and Carlos",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "VT",
+    "comfort_zone": 2,
+    "annual_income": 157000
+  },
+  {
+    "household_id": "H242",
+    "household_name": "Morris, Leah and Olivia",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "OR",
+    "comfort_zone": 2,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H243",
+    "household_name": "Wright, Olivia and Nina",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 73000
+  },
+  {
+    "household_id": "H244",
+    "household_name": "Mitchell, Victor and Ethan",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 136000
+  },
+  {
+    "household_id": "H245",
+    "household_name": "Morgan, Fatima",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "AZ",
+    "comfort_zone": 1,
+    "annual_income": 210000
+  },
+  {
+    "household_id": "H246",
+    "household_name": "Lewis, Sara and David",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 79000
+  },
+  {
+    "household_id": "H247",
+    "household_name": "Lopez, Noah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 227000
+  },
+  {
+    "household_id": "H248",
+    "household_name": "Adams, Daniel and Hannah",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": 2,
+    "annual_income": 165000
+  },
+  {
+    "household_id": "H249",
+    "household_name": "Rogers, Fatima and Grace",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 98000
+  },
+  {
+    "household_id": "H250",
+    "household_name": "Scott, Samuel and Noah",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NV",
+    "comfort_zone": 1,
+    "annual_income": 132000
+  },
+  {
+    "household_id": "H251",
+    "household_name": "Hill, James and Hiroshi",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 169000
+  },
+  {
+    "household_id": "H252",
+    "household_name": "Bell, Leah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WI",
+    "comfort_zone": 2,
+    "annual_income": 220000
+  },
+  {
+    "household_id": "H253",
+    "household_name": "Turner, Mei and Priya",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NJ",
+    "comfort_zone": 3,
+    "annual_income": 120000
+  },
+  {
+    "household_id": "H254",
+    "household_name": "Roberts, Lucas",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 38000
+  },
+  {
+    "household_id": "H255",
+    "household_name": "Martinez, Emily and Robert",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "WI",
+    "comfort_zone": 3,
+    "annual_income": 106000
+  },
+  {
+    "household_id": "H256",
+    "household_name": "Turner, Isaac and Olivia",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NJ",
+    "comfort_zone": 2,
+    "annual_income": 178000
+  },
+  {
+    "household_id": "H257",
+    "household_name": "Evans, Leah",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MI",
+    "comfort_zone": 2,
+    "annual_income": 121000
+  },
+  {
+    "household_id": "H258",
+    "household_name": "Bailey, Isaac",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "PA",
+    "comfort_zone": null,
+    "annual_income": 119000
+  },
+  {
+    "household_id": "H259",
+    "household_name": "Stewart, Omar and Caleb",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 195000
+  },
+  {
+    "household_id": "H260",
+    "household_name": "Campbell, Daniel",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 2,
+    "annual_income": 265000
+  },
+  {
+    "household_id": "H261",
+    "household_name": "Carter, Nina and Lucas",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 103000
+  },
+  {
+    "household_id": "H262",
+    "household_name": "Collins, Caleb and Priya",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 2,
+    "annual_income": 115000
+  },
+  {
+    "household_id": "H263",
+    "household_name": "Turner, Victor and Samuel",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "VT",
+    "comfort_zone": 3,
+    "annual_income": 50000
+  },
+  {
+    "household_id": "H264",
+    "household_name": "Scott, Victor",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 216000
+  },
+  {
+    "household_id": "H265",
+    "household_name": "Morgan, Hiroshi and Sara",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 241000
+  },
+  {
+    "household_id": "H266",
+    "household_name": "Roberts, Ethan",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MA",
+    "comfort_zone": 1,
+    "annual_income": 86000
+  },
+  {
+    "household_id": "H267",
+    "household_name": "King, Aisha and Robert",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "NY",
+    "comfort_zone": 1,
+    "annual_income": 90000
+  },
+  {
+    "household_id": "H268",
+    "household_name": "Cooper, Omar",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "IL",
+    "comfort_zone": 2,
+    "annual_income": 125000
+  },
+  {
+    "household_id": "H269",
+    "household_name": "Martinez, Sara",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "TN",
+    "comfort_zone": 2,
+    "annual_income": 146000
+  },
+  {
+    "household_id": "H270",
+    "household_name": "Phillips, Daniel",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "WA",
+    "comfort_zone": 1,
+    "annual_income": 68000
+  },
+  {
+    "household_id": "H271",
+    "household_name": "Adams, Victor",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "VA",
+    "comfort_zone": 2,
+    "annual_income": 60000
+  },
+  {
+    "household_id": "H272",
+    "household_name": "Morris, Rosa and Olivia",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "WI",
+    "comfort_zone": 1,
+    "annual_income": 87000
+  },
+  {
+    "household_id": "H273",
+    "household_name": "Scott, Ana and Mei",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 127000
+  },
+  {
+    "household_id": "H274",
+    "household_name": "Parker, Fatima",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 3,
+    "annual_income": 159000
+  },
+  {
+    "household_id": "H275",
+    "household_name": "Parker, Isaac",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 128000
+  },
+  {
+    "household_id": "H276",
+    "household_name": "Mitchell, Maria and Aisha",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 230000
+  },
+  {
+    "household_id": "H277",
+    "household_name": "Sanchez, Grace and James",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 115000
+  },
+  {
+    "household_id": "H278",
+    "household_name": "Phillips, Chen and Michael",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "NY",
+    "comfort_zone": 3,
+    "annual_income": 100000
+  },
+  {
+    "household_id": "H279",
+    "household_name": "Clark, Ethan and James",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H280",
+    "household_name": "Rogers, Ethan",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "WI",
+    "comfort_zone": 3,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H281",
+    "household_name": "Bell, Samuel and Maria",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 2,
+    "annual_income": 141000
+  },
+  {
+    "household_id": "H282",
+    "household_name": "Bailey, Ethan and Aisha",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "TX",
+    "comfort_zone": 2,
+    "annual_income": 173000
+  },
+  {
+    "household_id": "H283",
+    "household_name": "Shah, David and Priya",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 2,
+    "annual_income": 99000
+  },
+  {
+    "household_id": "H284",
+    "household_name": "Bell, Caleb and Victor",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 68000
+  },
+  {
+    "household_id": "H285",
+    "household_name": "Allen, Hiroshi",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 139000
+  },
+  {
+    "household_id": "H286",
+    "household_name": "Edwards, Carlos",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 2,
+    "annual_income": 136000
+  },
+  {
+    "household_id": "H287",
+    "household_name": "Walker, Ana and Owen",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "AZ",
+    "comfort_zone": 2,
+    "annual_income": 135000
+  },
+  {
+    "household_id": "H288",
+    "household_name": "Evans, Robert",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 1,
+    "annual_income": 155000
+  },
+  {
+    "household_id": "H289",
+    "household_name": "Walker, Emily and Fatima",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "MO",
+    "comfort_zone": 2,
+    "annual_income": 187000
+  },
+  {
+    "household_id": "H290",
+    "household_name": "Mitchell, Aisha",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "OH",
+    "comfort_zone": 2,
+    "annual_income": 126000
+  },
+  {
+    "household_id": "H291",
+    "household_name": "Cook, Owen",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 3,
+    "annual_income": 150000
+  },
+  {
+    "household_id": "H292",
+    "household_name": "Rivera, Caleb",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "MN",
+    "comfort_zone": 1,
+    "annual_income": 111000
+  },
+  {
+    "household_id": "H293",
+    "household_name": "Morris, Carlos and Rosa",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "GA",
+    "comfort_zone": 1,
+    "annual_income": 116000
+  },
+  {
+    "household_id": "H294",
+    "household_name": "Green, Leah and Daniel",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "CA",
+    "comfort_zone": 3,
+    "annual_income": 130000
+  },
+  {
+    "household_id": "H295",
+    "household_name": "Allen, Fatima",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "OH",
+    "comfort_zone": 1,
+    "annual_income": 238000
+  },
+  {
+    "household_id": "H296",
+    "household_name": "Reed, Daniel and Owen",
+    "advisor": "Elena Duarte",
+    "branch": "South Branch",
+    "home_state": "FL",
+    "comfort_zone": 1,
+    "annual_income": 181000
+  },
+  {
+    "household_id": "H297",
+    "household_name": "Sanchez, Felix and Robert",
+    "advisor": "Marcus Webb",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 1,
+    "annual_income": 72000
+  },
+  {
+    "household_id": "H298",
+    "household_name": "Lewis, Hiroshi and Hannah",
+    "advisor": "Tom Brennan",
+    "branch": "North Branch",
+    "home_state": "CA",
+    "comfort_zone": 2,
+    "annual_income": 117000
+  },
+  {
+    "household_id": "H299",
+    "household_name": "Young, Michael and Leah",
+    "advisor": "Priya Raman",
+    "branch": "South Branch",
+    "home_state": "PA",
+    "comfort_zone": 2,
+    "annual_income": 102000
+  },
+  {
+    "household_id": "H300",
+    "household_name": "Cook, Grace",
+    "advisor": "Pamela Wilson",
+    "branch": "North Branch",
+    "home_state": "TX",
+    "comfort_zone": 3,
+    "annual_income": 115000
+  }
+]

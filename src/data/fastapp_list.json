@@ -1,0 +1,402 @@
+[
+  {
+    "household_id": "H02",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H03",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H04",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H09",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H11",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H16",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H22",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H19",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H20",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H21",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H23",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H32",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H34",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H36",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H39",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H42",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H51",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H54",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H63",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H65",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H66",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H69",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H70",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H76",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H80",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H88",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H89",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H90",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H94",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H102",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H106",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H110",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H117",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H118",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H119",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H121",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H123",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H124",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H128",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H131",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H135",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H138",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H141",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H143",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H145",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H146",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H154",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H156",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H157",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H158",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H159",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H161",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H164",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H166",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H167",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H168",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H172",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H177",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H182",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H185",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H187",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H188",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H189",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H190",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H192",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H194",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H195",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H199",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H200",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H204",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H211",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H214",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H221",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H222",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H224",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H229",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H230",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H231",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H236",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H239",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H240",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H251",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H255",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H257",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H260",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H265",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H267",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H270",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H271",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H272",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H274",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H275",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H279",
+    "approved_on": "2026-10-28"
+  },
+  {
+    "household_id": "H280",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H281",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H283",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H297",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H299",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H950",
+    "approved_on": "2026-11-04"
+  },
+  {
+    "household_id": "H951",
+    "approved_on": "2026-11-04"
+  }
+]

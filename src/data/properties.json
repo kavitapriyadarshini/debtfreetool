@@ -1,0 +1,1930 @@
+[
+  {
+    "property_id": "P01",
+    "household_id": "H01",
+    "address": "48 Maple Ridge Ct, Novi, MI",
+    "value": 450000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-14"
+  },
+  {
+    "property_id": "P03",
+    "household_id": "H03",
+    "address": "1207 Live Oak Dr, Round Rock, TX",
+    "value": 340000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-02"
+  },
+  {
+    "property_id": "P05A",
+    "household_id": "H05",
+    "address": "33 Brookside Ln, Dublin, OH",
+    "value": 380000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-20"
+  },
+  {
+    "property_id": "P05B",
+    "household_id": "H05",
+    "address": "918 Summit St, Columbus, OH",
+    "value": 260000,
+    "property_type": "Investment",
+    "value_as_of": "2026-03-11"
+  },
+  {
+    "property_id": "P06",
+    "household_id": "H06",
+    "address": "5521 E Saguaro Way, Mesa, AZ",
+    "value": 420000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-05"
+  },
+  {
+    "property_id": "P07",
+    "household_id": "H07",
+    "address": "12 Orchard Rd, Lancaster, PA",
+    "value": 310000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-30"
+  },
+  {
+    "property_id": "P08",
+    "household_id": "H08",
+    "address": "740 W Fullerton Pkwy, Naperville, IL",
+    "value": 515000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-01"
+  },
+  {
+    "property_id": "P09",
+    "household_id": "H09",
+    "address": "2204 Lakeview Dr, Grand Rapids, MI",
+    "value": 95000,
+    "property_type": "Residence",
+    "value_as_of": "1998-06-30"
+  },
+  {
+    "property_id": "P10",
+    "household_id": "H10",
+    "address": "1630 NE 85th St, Seattle, WA",
+    "value": 820000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-18"
+  },
+  {
+    "property_id": "P12",
+    "household_id": "H12",
+    "address": "77 Hudson View Ter, Yonkers, NY",
+    "value": 690000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-12"
+  },
+  {
+    "property_id": "P13",
+    "household_id": "H13",
+    "address": "9 Birch Hill Rd, Burlington, VT",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-22"
+  },
+  {
+    "property_id": "P14",
+    "household_id": "H14",
+    "address": "4410 Cedar Ct, Fort Collins, CO",
+    "value": 480000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-14"
+  },
+  {
+    "property_id": "P15",
+    "household_id": "H15",
+    "address": "301 Pine Valley Rd, Raleigh, NC",
+    "value": 365000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-28"
+  },
+  {
+    "property_id": "P17A",
+    "household_id": "H17",
+    "address": "4953 Sunset St, Ames, IA",
+    "value": 425000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-05"
+  },
+  {
+    "property_id": "P18A",
+    "household_id": "H18",
+    "address": "58 Pine St, Tampa, FL",
+    "value": 370000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-15"
+  },
+  {
+    "property_id": "P19A",
+    "household_id": "H19",
+    "address": "525 Pine St, Ames, IA",
+    "value": 635000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-09"
+  },
+  {
+    "property_id": "P20A",
+    "household_id": "H20",
+    "address": "8421 Park St, Harrisburg, PA",
+    "value": 310000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-22"
+  },
+  {
+    "property_id": "P20B",
+    "household_id": "H20",
+    "address": "3615 Lake Ave, Harrisburg, PA",
+    "value": 295000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-07"
+  },
+  {
+    "property_id": "P21A",
+    "household_id": "H21",
+    "address": "121 Elm St, Boulder, CO",
+    "value": 195000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-27"
+  },
+  {
+    "property_id": "P23A",
+    "household_id": "H23",
+    "address": "3969 Ridge St, Worcester, MA",
+    "value": 730000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-19"
+  },
+  {
+    "property_id": "P25A",
+    "household_id": "H25",
+    "address": "1630 Sunset St, Austin, TX",
+    "value": 595000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-05"
+  },
+  {
+    "property_id": "P26A",
+    "household_id": "H26",
+    "address": "3452 Pine St, Peoria, IL",
+    "value": 1105000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-26"
+  },
+  {
+    "property_id": "P27A",
+    "household_id": "H27",
+    "address": "7700 Oak St, Tempe, AZ",
+    "value": 320000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-04"
+  },
+  {
+    "property_id": "P27B",
+    "household_id": "H27",
+    "address": "8836 Lake Ave, Tempe, AZ",
+    "value": 330000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-23"
+  },
+  {
+    "property_id": "P32A",
+    "household_id": "H32",
+    "address": "120 Maple St, Columbia, MO",
+    "value": 119000,
+    "property_type": "Residence",
+    "value_as_of": "1996-06-15"
+  },
+  {
+    "property_id": "P34A",
+    "household_id": "H34",
+    "address": "9861 Willow St, Trenton, NJ",
+    "value": 415000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-20"
+  },
+  {
+    "property_id": "P35A",
+    "household_id": "H35",
+    "address": "7398 River St, Durham, NC",
+    "value": 550000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-21"
+  },
+  {
+    "property_id": "P36A",
+    "household_id": "H36",
+    "address": "2637 Pine St, Peoria, IL",
+    "value": 395000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-26"
+  },
+  {
+    "property_id": "P37A",
+    "household_id": "H37",
+    "address": "2924 Hill St, Tacoma, WA",
+    "value": 390000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-03"
+  },
+  {
+    "property_id": "P38A",
+    "household_id": "H38",
+    "address": "1684 Elm St, Sacramento, CA",
+    "value": 335000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-15"
+  },
+  {
+    "property_id": "P39A",
+    "household_id": "H39",
+    "address": "8041 Ridge St, Sacramento, CA",
+    "value": 165000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-24"
+  },
+  {
+    "property_id": "P42A",
+    "household_id": "H42",
+    "address": "2036 Pine St, Austin, TX",
+    "value": 375000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-28"
+  },
+  {
+    "property_id": "P43A",
+    "household_id": "H43",
+    "address": "9998 Pine St, Dayton, OH",
+    "value": 485000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-18"
+  },
+  {
+    "property_id": "P45A",
+    "household_id": "H45",
+    "address": "3229 Sunset St, Peoria, IL",
+    "value": 355000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-02"
+  },
+  {
+    "property_id": "P46A",
+    "household_id": "H46",
+    "address": "91 Cedar St, Austin, TX",
+    "value": 450000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-24"
+  },
+  {
+    "property_id": "P46B",
+    "household_id": "H46",
+    "address": "3404 Ridge Ave, Austin, TX",
+    "value": 260000,
+    "property_type": "Investment",
+    "value_as_of": "2026-01-09"
+  },
+  {
+    "property_id": "P47A",
+    "household_id": "H47",
+    "address": "2515 Park St, Austin, TX",
+    "value": 610000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-05"
+  },
+  {
+    "property_id": "P47B",
+    "household_id": "H47",
+    "address": "888 Cedar Ave, Austin, TX",
+    "value": 225000,
+    "property_type": "Investment",
+    "value_as_of": "2026-01-12"
+  },
+  {
+    "property_id": "P49A",
+    "household_id": "H49",
+    "address": "8536 Oak St, Albany, NY",
+    "value": 235000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-11"
+  },
+  {
+    "property_id": "P50A",
+    "household_id": "H50",
+    "address": "2613 Sunset St, Harrisburg, PA",
+    "value": 490000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-08"
+  },
+  {
+    "property_id": "P51A",
+    "household_id": "H51",
+    "address": "1169 Park St, Eugene, OR",
+    "value": 355000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-07"
+  },
+  {
+    "property_id": "P53A",
+    "household_id": "H53",
+    "address": "2723 Lake St, Ames, IA",
+    "value": 750000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-11"
+  },
+  {
+    "property_id": "P54A",
+    "household_id": "H54",
+    "address": "894 Willow St, Peoria, IL",
+    "value": 425000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-09"
+  },
+  {
+    "property_id": "P56A",
+    "household_id": "H56",
+    "address": "8356 Pine St, Duluth, MN",
+    "value": 665000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-01"
+  },
+  {
+    "property_id": "P57A",
+    "household_id": "H57",
+    "address": "9796 River St, Tempe, AZ",
+    "value": 215000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-13"
+  },
+  {
+    "property_id": "P58A",
+    "household_id": "H58",
+    "address": "7344 Ridge St, Richmond, VA",
+    "value": 330000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-20"
+  },
+  {
+    "property_id": "P59A",
+    "household_id": "H59",
+    "address": "1639 Maple St, Durham, NC",
+    "value": 445000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-13"
+  },
+  {
+    "property_id": "P60A",
+    "household_id": "H60",
+    "address": "6929 Park St, Austin, TX",
+    "value": 765000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-13"
+  },
+  {
+    "property_id": "P61A",
+    "household_id": "H61",
+    "address": "8874 Cedar St, Trenton, NJ",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-05"
+  },
+  {
+    "property_id": "P62A",
+    "household_id": "H62",
+    "address": "7114 Maple St, Madison, WI",
+    "value": 160000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-21"
+  },
+  {
+    "property_id": "P62B",
+    "household_id": "H62",
+    "address": "6811 Hill Ave, Madison, WI",
+    "value": 230000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-25"
+  },
+  {
+    "property_id": "P63A",
+    "household_id": "H63",
+    "address": "7874 Ridge St, Sacramento, CA",
+    "value": 530000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-08"
+  },
+  {
+    "property_id": "P64A",
+    "household_id": "H64",
+    "address": "8933 Maple St, Harrisburg, PA",
+    "value": 595000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-20"
+  },
+  {
+    "property_id": "P65A",
+    "household_id": "H65",
+    "address": "7076 Park St, Boulder, CO",
+    "value": 475000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-01"
+  },
+  {
+    "property_id": "P68A",
+    "household_id": "H68",
+    "address": "9576 Cedar St, Tempe, AZ",
+    "value": 345000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-08"
+  },
+  {
+    "property_id": "P69A",
+    "household_id": "H69",
+    "address": "8752 Willow St, Tempe, AZ",
+    "value": 405000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-15"
+  },
+  {
+    "property_id": "P69B",
+    "household_id": "H69",
+    "address": "6902 Park Ave, Tempe, AZ",
+    "value": 255000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-12"
+  },
+  {
+    "property_id": "P71A",
+    "household_id": "H71",
+    "address": "7533 Maple St, Reno, NV",
+    "value": 228000,
+    "property_type": "Residence",
+    "value_as_of": "1995-12-15"
+  },
+  {
+    "property_id": "P72A",
+    "household_id": "H72",
+    "address": "8005 River St, Richmond, VA",
+    "value": 565000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-13"
+  },
+  {
+    "property_id": "P74A",
+    "household_id": "H74",
+    "address": "2203 Ridge St, Duluth, MN",
+    "value": 395000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-04"
+  },
+  {
+    "property_id": "P75A",
+    "household_id": "H75",
+    "address": "7749 Pine St, Tampa, FL",
+    "value": 415000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-28"
+  },
+  {
+    "property_id": "P76A",
+    "household_id": "H76",
+    "address": "2976 River St, Richmond, VA",
+    "value": 420000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-19"
+  },
+  {
+    "property_id": "P78A",
+    "household_id": "H78",
+    "address": "2969 Maple St, Columbia, MO",
+    "value": 310000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-13"
+  },
+  {
+    "property_id": "P79A",
+    "household_id": "H79",
+    "address": "2244 Willow St, Worcester, MA",
+    "value": 440000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-03"
+  },
+  {
+    "property_id": "P80A",
+    "household_id": "H80",
+    "address": "6423 Cedar St, Austin, TX",
+    "value": 600000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-22"
+  },
+  {
+    "property_id": "P81A",
+    "household_id": "H81",
+    "address": "6888 Maple St, Dayton, OH",
+    "value": 380000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-23"
+  },
+  {
+    "property_id": "P84A",
+    "household_id": "H84",
+    "address": "9827 Oak St, Harrisburg, PA",
+    "value": 375000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-18"
+  },
+  {
+    "property_id": "P86A",
+    "household_id": "H86",
+    "address": "534 Cedar St, Tacoma, WA",
+    "value": 480000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-06"
+  },
+  {
+    "property_id": "P87A",
+    "household_id": "H87",
+    "address": "1706 Ridge St, Lansing, MI",
+    "value": 355000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-24"
+  },
+  {
+    "property_id": "P89A",
+    "household_id": "H89",
+    "address": "8432 Ridge St, Tempe, AZ",
+    "value": 475000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-06"
+  },
+  {
+    "property_id": "P90A",
+    "household_id": "H90",
+    "address": "5189 Ridge St, Lansing, MI",
+    "value": 495000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-03"
+  },
+  {
+    "property_id": "P91A",
+    "household_id": "H91",
+    "address": "7392 Elm St, Sacramento, CA",
+    "value": 510000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-17"
+  },
+  {
+    "property_id": "P92A",
+    "household_id": "H92",
+    "address": "6102 Lake St, Albany, NY",
+    "value": 470000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-01"
+  },
+  {
+    "property_id": "P95A",
+    "household_id": "H95",
+    "address": "1822 Lake St, Harrisburg, PA",
+    "value": 275000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-18"
+  },
+  {
+    "property_id": "P96A",
+    "household_id": "H96",
+    "address": "8835 Park St, Durham, NC",
+    "value": 305000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-20"
+  },
+  {
+    "property_id": "P97A",
+    "household_id": "H97",
+    "address": "3112 Maple St, Richmond, VA",
+    "value": 545000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-08"
+  },
+  {
+    "property_id": "P98A",
+    "household_id": "H98",
+    "address": "9554 Ridge St, Boulder, CO",
+    "value": 460000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-03"
+  },
+  {
+    "property_id": "P98B",
+    "household_id": "H98",
+    "address": "2515 Cedar Ave, Boulder, CO",
+    "value": 260000,
+    "property_type": "Investment",
+    "value_as_of": "2026-10-27"
+  },
+  {
+    "property_id": "P99A",
+    "household_id": "H99",
+    "address": "9574 River St, Reno, NV",
+    "value": 365000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-08"
+  },
+  {
+    "property_id": "P101A",
+    "household_id": "H101",
+    "address": "9902 Lake St, Trenton, NJ",
+    "value": 395000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-02"
+  },
+  {
+    "property_id": "P105A",
+    "household_id": "H105",
+    "address": "2579 Hill St, Albany, NY",
+    "value": 685000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-08"
+  },
+  {
+    "property_id": "P106A",
+    "household_id": "H106",
+    "address": "3453 Pine St, Dayton, OH",
+    "value": 800000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-23"
+  },
+  {
+    "property_id": "P107A",
+    "household_id": "H107",
+    "address": "4939 Elm St, Tacoma, WA",
+    "value": 415000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-26"
+  },
+  {
+    "property_id": "P108A",
+    "household_id": "H108",
+    "address": "738 Cedar St, Tampa, FL",
+    "value": 490000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-04"
+  },
+  {
+    "property_id": "P109A",
+    "household_id": "H109",
+    "address": "9727 Park St, Columbia, MO",
+    "value": 99000,
+    "property_type": "Residence",
+    "value_as_of": "2000-10-15"
+  },
+  {
+    "property_id": "P110A",
+    "household_id": "H110",
+    "address": "5173 Oak St, Sacramento, CA",
+    "value": 580000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-03"
+  },
+  {
+    "property_id": "P111A",
+    "household_id": "H111",
+    "address": "6920 Cedar St, Sacramento, CA",
+    "value": 630000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-21"
+  },
+  {
+    "property_id": "P113A",
+    "household_id": "H113",
+    "address": "2291 Willow St, Austin, TX",
+    "value": 165000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-09"
+  },
+  {
+    "property_id": "P113B",
+    "household_id": "H113",
+    "address": "3022 Willow Ave, Austin, TX",
+    "value": 190000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-20"
+  },
+  {
+    "property_id": "P114A",
+    "household_id": "H114",
+    "address": "1435 Hill St, Richmond, VA",
+    "value": 565000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-16"
+  },
+  {
+    "property_id": "P115A",
+    "household_id": "H115",
+    "address": "5851 Sunset St, Albany, NY",
+    "value": 565000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-26"
+  },
+  {
+    "property_id": "P117A",
+    "household_id": "H117",
+    "address": "1413 Ridge St, Reno, NV",
+    "value": 360000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-17"
+  },
+  {
+    "property_id": "P118A",
+    "household_id": "H118",
+    "address": "9112 Ridge St, Tacoma, WA",
+    "value": 430000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-13"
+  },
+  {
+    "property_id": "P119A",
+    "household_id": "H119",
+    "address": "8236 Sunset St, Sacramento, CA",
+    "value": 260000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-05"
+  },
+  {
+    "property_id": "P121A",
+    "household_id": "H121",
+    "address": "9820 Hill St, Harrisburg, PA",
+    "value": 445000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-16"
+  },
+  {
+    "property_id": "P122A",
+    "household_id": "H122",
+    "address": "4933 Sunset St, Montpelier, VT",
+    "value": 265000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-03"
+  },
+  {
+    "property_id": "P123A",
+    "household_id": "H123",
+    "address": "1717 Lake St, Durham, NC",
+    "value": 655000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-14"
+  },
+  {
+    "property_id": "P124A",
+    "household_id": "H124",
+    "address": "2265 Park St, Columbia, MO",
+    "value": 520000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-04"
+  },
+  {
+    "property_id": "P125A",
+    "household_id": "H125",
+    "address": "2396 Pine St, Durham, NC",
+    "value": 365000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-04"
+  },
+  {
+    "property_id": "P126A",
+    "household_id": "H126",
+    "address": "3185 Willow St, Tampa, FL",
+    "value": 390000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-01"
+  },
+  {
+    "property_id": "P127A",
+    "household_id": "H127",
+    "address": "246 Park St, Trenton, NJ",
+    "value": 305000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-20"
+  },
+  {
+    "property_id": "P128A",
+    "household_id": "H128",
+    "address": "5142 Hill St, Eugene, OR",
+    "value": 365000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-15"
+  },
+  {
+    "property_id": "P131A",
+    "household_id": "H131",
+    "address": "2427 River St, Austin, TX",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-27"
+  },
+  {
+    "property_id": "P132A",
+    "household_id": "H132",
+    "address": "2134 Oak St, Tacoma, WA",
+    "value": 285000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-06"
+  },
+  {
+    "property_id": "P134A",
+    "household_id": "H134",
+    "address": "445 Park St, Dayton, OH",
+    "value": 770000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-10"
+  },
+  {
+    "property_id": "P135A",
+    "household_id": "H135",
+    "address": "3734 Maple St, Austin, TX",
+    "value": 510000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-11"
+  },
+  {
+    "property_id": "P136A",
+    "household_id": "H136",
+    "address": "2353 Willow St, Richmond, VA",
+    "value": 450000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-20"
+  },
+  {
+    "property_id": "P137A",
+    "household_id": "H137",
+    "address": "2163 Elm St, Eugene, OR",
+    "value": 585000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-17"
+  },
+  {
+    "property_id": "P138A",
+    "household_id": "H138",
+    "address": "7481 River St, Tempe, AZ",
+    "value": 550000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-12"
+  },
+  {
+    "property_id": "P139A",
+    "household_id": "H139",
+    "address": "3510 Lake St, Dayton, OH",
+    "value": 925000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-10"
+  },
+  {
+    "property_id": "P140A",
+    "household_id": "H140",
+    "address": "8468 Elm St, Peoria, IL",
+    "value": 295000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-18"
+  },
+  {
+    "property_id": "P141A",
+    "household_id": "H141",
+    "address": "4207 Maple St, Harrisburg, PA",
+    "value": 350000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-18"
+  },
+  {
+    "property_id": "P142A",
+    "household_id": "H142",
+    "address": "3716 Cedar St, Austin, TX",
+    "value": 390000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-18"
+  },
+  {
+    "property_id": "P144A",
+    "household_id": "H144",
+    "address": "2194 Park St, Columbia, MO",
+    "value": 885000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-25"
+  },
+  {
+    "property_id": "P145A",
+    "household_id": "H145",
+    "address": "858 Park St, Duluth, MN",
+    "value": 510000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-28"
+  },
+  {
+    "property_id": "P146A",
+    "household_id": "H146",
+    "address": "296 Maple St, Peoria, IL",
+    "value": 580000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-01"
+  },
+  {
+    "property_id": "P150A",
+    "household_id": "H150",
+    "address": "5053 Hill St, Austin, TX",
+    "value": 330000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-21"
+  },
+  {
+    "property_id": "P151A",
+    "household_id": "H151",
+    "address": "7512 Sunset St, Peoria, IL",
+    "value": 375000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-10"
+  },
+  {
+    "property_id": "P153A",
+    "household_id": "H153",
+    "address": "4994 Lake St, Sacramento, CA",
+    "value": 745000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-08"
+  },
+  {
+    "property_id": "P155A",
+    "household_id": "H155",
+    "address": "198 Willow St, Albany, NY",
+    "value": 330000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-01"
+  },
+  {
+    "property_id": "P156A",
+    "household_id": "H156",
+    "address": "6222 Maple St, Tempe, AZ",
+    "value": 475000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-27"
+  },
+  {
+    "property_id": "P157A",
+    "household_id": "H157",
+    "address": "4548 Park St, Sacramento, CA",
+    "value": 445000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-15"
+  },
+  {
+    "property_id": "P158A",
+    "household_id": "H158",
+    "address": "1721 Cedar St, Trenton, NJ",
+    "value": 780000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-01"
+  },
+  {
+    "property_id": "P160A",
+    "household_id": "H160",
+    "address": "7971 Cedar St, Tampa, FL",
+    "value": 250000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-19"
+  },
+  {
+    "property_id": "P160B",
+    "household_id": "H160",
+    "address": "9075 Oak Ave, Tampa, FL",
+    "value": 220000,
+    "property_type": "Investment",
+    "value_as_of": "2026-03-23"
+  },
+  {
+    "property_id": "P161A",
+    "household_id": "H161",
+    "address": "7174 Hill St, Worcester, MA",
+    "value": 550000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-23"
+  },
+  {
+    "property_id": "P162A",
+    "household_id": "H162",
+    "address": "3262 Cedar St, Columbia, MO",
+    "value": 635000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-26"
+  },
+  {
+    "property_id": "P162B",
+    "household_id": "H162",
+    "address": "940 Cedar Ave, Columbia, MO",
+    "value": 195000,
+    "property_type": "Investment",
+    "value_as_of": "2026-08-05"
+  },
+  {
+    "property_id": "P163A",
+    "household_id": "H163",
+    "address": "5393 Hill St, Tempe, AZ",
+    "value": 260000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-12"
+  },
+  {
+    "property_id": "P165A",
+    "household_id": "H165",
+    "address": "569 Lake St, Columbia, MO",
+    "value": 545000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-19"
+  },
+  {
+    "property_id": "P166A",
+    "household_id": "H166",
+    "address": "5435 Park St, Boulder, CO",
+    "value": 195000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-02"
+  },
+  {
+    "property_id": "P167A",
+    "household_id": "H167",
+    "address": "4628 Hill St, Tacoma, WA",
+    "value": 310000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-28"
+  },
+  {
+    "property_id": "P168A",
+    "household_id": "H168",
+    "address": "646 Maple St, Lansing, MI",
+    "value": 590000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-14"
+  },
+  {
+    "property_id": "P169A",
+    "household_id": "H169",
+    "address": "3187 Park St, Durham, NC",
+    "value": 1090000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-11"
+  },
+  {
+    "property_id": "P169B",
+    "household_id": "H169",
+    "address": "1513 Cedar Ave, Durham, NC",
+    "value": 195000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-17"
+  },
+  {
+    "property_id": "P172A",
+    "household_id": "H172",
+    "address": "7541 Sunset St, Dayton, OH",
+    "value": 195000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-19"
+  },
+  {
+    "property_id": "P174A",
+    "household_id": "H174",
+    "address": "1261 Sunset St, Austin, TX",
+    "value": 515000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-09"
+  },
+  {
+    "property_id": "P176A",
+    "household_id": "H176",
+    "address": "7724 Oak St, Sacramento, CA",
+    "value": 530000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-07"
+  },
+  {
+    "property_id": "P178A",
+    "household_id": "H178",
+    "address": "9993 Lake St, Sacramento, CA",
+    "value": 430000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-22"
+  },
+  {
+    "property_id": "P179A",
+    "household_id": "H179",
+    "address": "8012 Elm St, Albany, NY",
+    "value": 510000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-22"
+  },
+  {
+    "property_id": "P180A",
+    "household_id": "H180",
+    "address": "3560 Lake St, Austin, TX",
+    "value": 535000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-05"
+  },
+  {
+    "property_id": "P181A",
+    "household_id": "H181",
+    "address": "8663 Sunset St, Worcester, MA",
+    "value": 430000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-13"
+  },
+  {
+    "property_id": "P182A",
+    "household_id": "H182",
+    "address": "3677 Oak St, Albany, NY",
+    "value": 250000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-16"
+  },
+  {
+    "property_id": "P183A",
+    "household_id": "H183",
+    "address": "9364 Lake St, Richmond, VA",
+    "value": 475000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-21"
+  },
+  {
+    "property_id": "P184A",
+    "household_id": "H184",
+    "address": "5195 Oak St, Durham, NC",
+    "value": 585000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-12"
+  },
+  {
+    "property_id": "P185A",
+    "household_id": "H185",
+    "address": "7583 Cedar St, Ames, IA",
+    "value": 605000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-19"
+  },
+  {
+    "property_id": "P186A",
+    "household_id": "H186",
+    "address": "5549 Oak St, Worcester, MA",
+    "value": 275000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-04"
+  },
+  {
+    "property_id": "P187A",
+    "household_id": "H187",
+    "address": "6473 Elm St, Savannah, GA",
+    "value": 505000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-13"
+  },
+  {
+    "property_id": "P187B",
+    "household_id": "H187",
+    "address": "1969 Maple Ave, Savannah, GA",
+    "value": 255000,
+    "property_type": "Investment",
+    "value_as_of": "2026-10-19"
+  },
+  {
+    "property_id": "P188A",
+    "household_id": "H188",
+    "address": "5663 Lake St, Sacramento, CA",
+    "value": 640000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-14"
+  },
+  {
+    "property_id": "P190A",
+    "household_id": "H190",
+    "address": "8414 Willow St, Austin, TX",
+    "value": 330000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-27"
+  },
+  {
+    "property_id": "P193A",
+    "household_id": "H193",
+    "address": "5980 Elm St, Albany, NY",
+    "value": 215000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-28"
+  },
+  {
+    "property_id": "P194A",
+    "household_id": "H194",
+    "address": "7023 Maple St, Sacramento, CA",
+    "value": 540000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-01"
+  },
+  {
+    "property_id": "P195A",
+    "household_id": "H195",
+    "address": "3697 Maple St, Boulder, CO",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-05"
+  },
+  {
+    "property_id": "P197A",
+    "household_id": "H197",
+    "address": "9287 Maple St, Ames, IA",
+    "value": 315000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-21"
+  },
+  {
+    "property_id": "P198A",
+    "household_id": "H198",
+    "address": "9776 Sunset St, Albany, NY",
+    "value": 380000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-09"
+  },
+  {
+    "property_id": "P199A",
+    "household_id": "H199",
+    "address": "5444 River St, Worcester, MA",
+    "value": 595000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-14"
+  },
+  {
+    "property_id": "P200A",
+    "household_id": "H200",
+    "address": "1020 River St, Reno, NV",
+    "value": 395000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-27"
+  },
+  {
+    "property_id": "P200B",
+    "household_id": "H200",
+    "address": "2858 Sunset Ave, Reno, NV",
+    "value": 250000,
+    "property_type": "Investment",
+    "value_as_of": "2026-01-19"
+  },
+  {
+    "property_id": "P201A",
+    "household_id": "H201",
+    "address": "4339 Pine St, Sacramento, CA",
+    "value": 670000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-28"
+  },
+  {
+    "property_id": "P202A",
+    "household_id": "H202",
+    "address": "7751 Elm St, Tacoma, WA",
+    "value": 515000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-24"
+  },
+  {
+    "property_id": "P203A",
+    "household_id": "H203",
+    "address": "9894 Sunset St, Duluth, MN",
+    "value": 450000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-02"
+  },
+  {
+    "property_id": "P204A",
+    "household_id": "H204",
+    "address": "2852 River St, Worcester, MA",
+    "value": 310000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-01"
+  },
+  {
+    "property_id": "P205A",
+    "household_id": "H205",
+    "address": "4403 Oak St, Sacramento, CA",
+    "value": 825000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-27"
+  },
+  {
+    "property_id": "P207A",
+    "household_id": "H207",
+    "address": "7561 Sunset St, Trenton, NJ",
+    "value": 500000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-02"
+  },
+  {
+    "property_id": "P208A",
+    "household_id": "H208",
+    "address": "5265 River St, Sacramento, CA",
+    "value": 320000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-02"
+  },
+  {
+    "property_id": "P209A",
+    "household_id": "H209",
+    "address": "966 Pine St, Richmond, VA",
+    "value": 435000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-08"
+  },
+  {
+    "property_id": "P210A",
+    "household_id": "H210",
+    "address": "7141 Park St, Savannah, GA",
+    "value": 690000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-11"
+  },
+  {
+    "property_id": "P211A",
+    "household_id": "H211",
+    "address": "2584 Lake St, Sacramento, CA",
+    "value": 280000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-02"
+  },
+  {
+    "property_id": "P213A",
+    "household_id": "H213",
+    "address": "2868 Pine St, Lansing, MI",
+    "value": 520000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-06"
+  },
+  {
+    "property_id": "P215A",
+    "household_id": "H215",
+    "address": "3364 Park St, Albany, NY",
+    "value": 315000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-06"
+  },
+  {
+    "property_id": "P216A",
+    "household_id": "H216",
+    "address": "1101 Cedar St, Richmond, VA",
+    "value": 430000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-18"
+  },
+  {
+    "property_id": "P218A",
+    "household_id": "H218",
+    "address": "5584 Oak St, Savannah, GA",
+    "value": 195000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-04"
+  },
+  {
+    "property_id": "P219A",
+    "household_id": "H219",
+    "address": "9541 Elm St, Tampa, FL",
+    "value": 645000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-07"
+  },
+  {
+    "property_id": "P220A",
+    "household_id": "H220",
+    "address": "2926 Maple St, Ames, IA",
+    "value": 545000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-14"
+  },
+  {
+    "property_id": "P221A",
+    "household_id": "H221",
+    "address": "4017 River St, Austin, TX",
+    "value": 245000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-19"
+  },
+  {
+    "property_id": "P223A",
+    "household_id": "H223",
+    "address": "8665 River St, Richmond, VA",
+    "value": 470000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-02"
+  },
+  {
+    "property_id": "P224A",
+    "household_id": "H224",
+    "address": "5678 Pine St, Worcester, MA",
+    "value": 530000,
+    "property_type": "Residence",
+    "value_as_of": "2026-07-21"
+  },
+  {
+    "property_id": "P224B",
+    "household_id": "H224",
+    "address": "7077 Lake Ave, Worcester, MA",
+    "value": 345000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-12"
+  },
+  {
+    "property_id": "P225A",
+    "household_id": "H225",
+    "address": "4501 Lake St, Albany, NY",
+    "value": 300000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-17"
+  },
+  {
+    "property_id": "P225B",
+    "household_id": "H225",
+    "address": "7789 Pine Ave, Albany, NY",
+    "value": 345000,
+    "property_type": "Investment",
+    "value_as_of": "2026-06-26"
+  },
+  {
+    "property_id": "P227A",
+    "household_id": "H227",
+    "address": "7444 Cedar St, Albany, NY",
+    "value": 540000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-11"
+  },
+  {
+    "property_id": "P228A",
+    "household_id": "H228",
+    "address": "7107 Lake St, Albany, NY",
+    "value": 180000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-25"
+  },
+  {
+    "property_id": "P229A",
+    "household_id": "H229",
+    "address": "2419 Park St, Tampa, FL",
+    "value": 460000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-19"
+  },
+  {
+    "property_id": "P230A",
+    "household_id": "H230",
+    "address": "1714 Cedar St, Harrisburg, PA",
+    "value": 380000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-05"
+  },
+  {
+    "property_id": "P231A",
+    "household_id": "H231",
+    "address": "6990 Pine St, Sacramento, CA",
+    "value": 335000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-21"
+  },
+  {
+    "property_id": "P233A",
+    "household_id": "H233",
+    "address": "5878 Maple St, Peoria, IL",
+    "value": 250000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-14"
+  },
+  {
+    "property_id": "P235A",
+    "household_id": "H235",
+    "address": "7577 Cedar St, Tampa, FL",
+    "value": 355000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-23"
+  },
+  {
+    "property_id": "P236A",
+    "household_id": "H236",
+    "address": "5013 Lake St, Reno, NV",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-02"
+  },
+  {
+    "property_id": "P236B",
+    "household_id": "H236",
+    "address": "5417 Elm Ave, Reno, NV",
+    "value": 250000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-12"
+  },
+  {
+    "property_id": "P237A",
+    "household_id": "H237",
+    "address": "5709 Pine St, Boulder, CO",
+    "value": 525000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-25"
+  },
+  {
+    "property_id": "P238A",
+    "household_id": "H238",
+    "address": "8021 Cedar St, Lansing, MI",
+    "value": 580000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-03"
+  },
+  {
+    "property_id": "P239A",
+    "household_id": "H239",
+    "address": "9954 Hill St, Trenton, NJ",
+    "value": 635000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-24"
+  },
+  {
+    "property_id": "P241A",
+    "household_id": "H241",
+    "address": "4902 Ridge St, Montpelier, VT",
+    "value": 680000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-21"
+  },
+  {
+    "property_id": "P242A",
+    "household_id": "H242",
+    "address": "9861 Maple St, Eugene, OR",
+    "value": 495000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-06"
+  },
+  {
+    "property_id": "P244A",
+    "household_id": "H244",
+    "address": "6556 Willow St, Harrisburg, PA",
+    "value": 525000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-16"
+  },
+  {
+    "property_id": "P245A",
+    "household_id": "H245",
+    "address": "2969 Sunset St, Tempe, AZ",
+    "value": 530000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-21"
+  },
+  {
+    "property_id": "P246A",
+    "household_id": "H246",
+    "address": "2984 Oak St, Peoria, IL",
+    "value": 265000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-25"
+  },
+  {
+    "property_id": "P251A",
+    "household_id": "H251",
+    "address": "1277 Maple St, Harrisburg, PA",
+    "value": 510000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-19"
+  },
+  {
+    "property_id": "P253A",
+    "household_id": "H253",
+    "address": "6301 Pine St, Trenton, NJ",
+    "value": 625000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-23"
+  },
+  {
+    "property_id": "P253B",
+    "household_id": "H253",
+    "address": "3414 Ridge Ave, Trenton, NJ",
+    "value": 285000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-07"
+  },
+  {
+    "property_id": "P255A",
+    "household_id": "H255",
+    "address": "8972 Oak St, Madison, WI",
+    "value": 385000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-24"
+  },
+  {
+    "property_id": "P256A",
+    "household_id": "H256",
+    "address": "8821 Ridge St, Trenton, NJ",
+    "value": 515000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-14"
+  },
+  {
+    "property_id": "P257A",
+    "household_id": "H257",
+    "address": "7085 Pine St, Lansing, MI",
+    "value": 300000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-07"
+  },
+  {
+    "property_id": "P258A",
+    "household_id": "H258",
+    "address": "7971 Elm St, Harrisburg, PA",
+    "value": 285000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-08"
+  },
+  {
+    "property_id": "P258B",
+    "household_id": "H258",
+    "address": "3923 Maple Ave, Harrisburg, PA",
+    "value": 375000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-12"
+  },
+  {
+    "property_id": "P259A",
+    "household_id": "H259",
+    "address": "1444 Elm St, Austin, TX",
+    "value": 595000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-13"
+  },
+  {
+    "property_id": "P261A",
+    "household_id": "H261",
+    "address": "7088 Elm St, Albany, NY",
+    "value": 405000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-09"
+  },
+  {
+    "property_id": "P262A",
+    "household_id": "H262",
+    "address": "965 Pine St, Tampa, FL",
+    "value": 285000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-10"
+  },
+  {
+    "property_id": "P265A",
+    "household_id": "H265",
+    "address": "7309 Cedar St, Albany, NY",
+    "value": 450000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-14"
+  },
+  {
+    "property_id": "P265B",
+    "household_id": "H265",
+    "address": "6827 Hill Ave, Albany, NY",
+    "value": 375000,
+    "property_type": "Investment",
+    "value_as_of": "2026-09-07"
+  },
+  {
+    "property_id": "P266A",
+    "household_id": "H266",
+    "address": "2658 Lake St, Worcester, MA",
+    "value": 335000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-12"
+  },
+  {
+    "property_id": "P266B",
+    "household_id": "H266",
+    "address": "4721 Oak Ave, Worcester, MA",
+    "value": 315000,
+    "property_type": "Investment",
+    "value_as_of": "2026-02-16"
+  },
+  {
+    "property_id": "P267A",
+    "household_id": "H267",
+    "address": "3686 Sunset St, Albany, NY",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-03-13"
+  },
+  {
+    "property_id": "P270A",
+    "household_id": "H270",
+    "address": "3815 Pine St, Tacoma, WA",
+    "value": 285000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-23"
+  },
+  {
+    "property_id": "P272A",
+    "household_id": "H272",
+    "address": "3894 Sunset St, Madison, WI",
+    "value": 435000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-16"
+  },
+  {
+    "property_id": "P273A",
+    "household_id": "H273",
+    "address": "487 Maple St, Tampa, FL",
+    "value": 395000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-25"
+  },
+  {
+    "property_id": "P274A",
+    "household_id": "H274",
+    "address": "2038 Hill St, Tampa, FL",
+    "value": 435000,
+    "property_type": "Residence",
+    "value_as_of": "2026-04-08"
+  },
+  {
+    "property_id": "P275A",
+    "household_id": "H275",
+    "address": "96 Cedar St, Sacramento, CA",
+    "value": 460000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-06"
+  },
+  {
+    "property_id": "P275B",
+    "household_id": "H275",
+    "address": "6079 Sunset Ave, Sacramento, CA",
+    "value": 385000,
+    "property_type": "Investment",
+    "value_as_of": "2026-03-08"
+  },
+  {
+    "property_id": "P276A",
+    "household_id": "H276",
+    "address": "4903 Maple St, Austin, TX",
+    "value": 240000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-08"
+  },
+  {
+    "property_id": "P276B",
+    "household_id": "H276",
+    "address": "5440 Lake Ave, Austin, TX",
+    "value": 290000,
+    "property_type": "Investment",
+    "value_as_of": "2026-01-15"
+  },
+  {
+    "property_id": "P277A",
+    "household_id": "H277",
+    "address": "3259 River St, Sacramento, CA",
+    "value": 1055000,
+    "property_type": "Residence",
+    "value_as_of": "2026-08-17"
+  },
+  {
+    "property_id": "P280A",
+    "household_id": "H280",
+    "address": "7587 River St, Madison, WI",
+    "value": 440000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-23"
+  },
+  {
+    "property_id": "P282A",
+    "household_id": "H282",
+    "address": "5118 Sunset St, Austin, TX",
+    "value": 225000,
+    "property_type": "Residence",
+    "value_as_of": "2026-06-21"
+  },
+  {
+    "property_id": "P285A",
+    "household_id": "H285",
+    "address": "7642 Lake St, Austin, TX",
+    "value": 370000,
+    "property_type": "Residence",
+    "value_as_of": "2026-01-24"
+  },
+  {
+    "property_id": "P286A",
+    "household_id": "H286",
+    "address": "1373 Elm St, Columbia, MO",
+    "value": 320000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-01"
+  },
+  {
+    "property_id": "P287A",
+    "household_id": "H287",
+    "address": "7397 Lake St, Tempe, AZ",
+    "value": 540000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-12"
+  },
+  {
+    "property_id": "P287B",
+    "household_id": "H287",
+    "address": "8839 Hill Ave, Tempe, AZ",
+    "value": 250000,
+    "property_type": "Investment",
+    "value_as_of": "2026-04-16"
+  },
+  {
+    "property_id": "P288A",
+    "household_id": "H288",
+    "address": "1094 Pine St, Austin, TX",
+    "value": 410000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-09"
+  },
+  {
+    "property_id": "P289A",
+    "household_id": "H289",
+    "address": "2718 Ridge St, Columbia, MO",
+    "value": 700000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-19"
+  },
+  {
+    "property_id": "P290A",
+    "household_id": "H290",
+    "address": "1905 Park St, Dayton, OH",
+    "value": 375000,
+    "property_type": "Residence",
+    "value_as_of": "2026-02-06"
+  },
+  {
+    "property_id": "P293A",
+    "household_id": "H293",
+    "address": "1124 River St, Savannah, GA",
+    "value": 385000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-04"
+  },
+  {
+    "property_id": "P294A",
+    "household_id": "H294",
+    "address": "1592 Park St, Sacramento, CA",
+    "value": 300000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-22"
+  },
+  {
+    "property_id": "P295A",
+    "household_id": "H295",
+    "address": "7273 Pine St, Dayton, OH",
+    "value": 330000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-07"
+  },
+  {
+    "property_id": "P296A",
+    "household_id": "H296",
+    "address": "6607 River St, Tampa, FL",
+    "value": 500000,
+    "property_type": "Residence",
+    "value_as_of": "2026-05-26"
+  },
+  {
+    "property_id": "P296B",
+    "household_id": "H296",
+    "address": "2246 Hill Ave, Tampa, FL",
+    "value": 330000,
+    "property_type": "Investment",
+    "value_as_of": "2026-10-15"
+  },
+  {
+    "property_id": "P297A",
+    "household_id": "H297",
+    "address": "7128 Willow St, Harrisburg, PA",
+    "value": 275000,
+    "property_type": "Residence",
+    "value_as_of": "2026-10-10"
+  },
+  {
+    "property_id": "P299A",
+    "household_id": "H299",
+    "address": "378 Sunset St, Harrisburg, PA",
+    "value": 545000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-12"
+  },
+  {
+    "property_id": "P300A",
+    "household_id": "H300",
+    "address": "9973 Cedar St, Austin, TX",
+    "value": 220000,
+    "property_type": "Residence",
+    "value_as_of": "2026-09-17"
+  },
+  {
+    "property_id": "P300B",
+    "household_id": "H300",
+    "address": "948 Hill Ave, Austin, TX",
+    "value": 395000,
+    "property_type": "Investment",
+    "value_as_of": "2026-03-13"
+  }
+]

@@ -1,0 +1,6018 @@
+[
+  {
+    "case_id": "C0001",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0001",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0001",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0002",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0003",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0003",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0003",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0003",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0001",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0003",
+    "by": "Pamela Wilson",
+    "at": "2026-09-04"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0001",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0002",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0004",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0005",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 6,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0005",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0004",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0002",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0004",
+    "by": "Pamela Wilson",
+    "at": "2026-11-02"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0002",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0003",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 4,
+    "event": "extra_payment_added",
+    "ref_id": "E0004",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0006",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0007",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0008",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0008",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0003",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0008",
+    "by": "Tom Brennan",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0003",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0005",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0009",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0010",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0010",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0011",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0012",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0004",
+    "seq": 9,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0012",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0004",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 3,
+    "event": "override",
+    "ref_id": "O0005",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 4,
+    "event": "extra_payment_added",
+    "ref_id": "E0006",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0013",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0014",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 7,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0014",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0015",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 9,
+    "event": "scenario_added",
+    "ref_id": "S0016",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 10,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0016",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 11,
+    "event": "recommended",
+    "ref_id": "S0015",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0005",
+    "seq": 12,
+    "event": "presented",
+    "ref_id": "S0015",
+    "by": "Tom Brennan",
+    "at": "2026-10-15"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0006",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0007",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0017",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0018",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0018",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0018",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0006",
+    "seq": 8,
+    "event": "decision_declined",
+    "ref_id": "S0018",
+    "by": "Elena Duarte",
+    "at": "2026-10-24"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0007",
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0008",
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 4,
+    "event": "extra_payment_added",
+    "ref_id": "E0009",
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0019",
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0007",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0020",
+    "by": "Tom Brennan",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0008",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0010",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 4,
+    "event": "extra_payment_added",
+    "ref_id": "E0011",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0021",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0022",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0022",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0008",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0022",
+    "by": "Tom Brennan",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0012",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0013",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0023",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0024",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0024",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0024",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0009",
+    "seq": 8,
+    "event": "decision_declined",
+    "ref_id": "S0024",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0009",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0014",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0025",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0026",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0010",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0026",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0010",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0015",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0027",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0028",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0011",
+    "seq": 6,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0028",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0016",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0029",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0030",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0030",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0031",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0032",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0032",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0012",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0032",
+    "by": "Priya Raman",
+    "at": "2026-09-13"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0017",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0033",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0034",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 5,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0034",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0033",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0033",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0033",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0013",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0033",
+    "by": "Tom Brennan",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0035",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0036",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0036",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0037",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0037",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0037",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0014",
+    "seq": 8,
+    "event": "decision_undecided",
+    "ref_id": "S0037",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0038",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0039",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0039",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0040",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0040",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0015",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0040",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0016",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0016",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0011",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0016",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0018",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0016",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0041",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0016",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0042",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0019",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 3,
+    "event": "custom_loan_added",
+    "ref_id": "L001",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0043",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0044",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0045",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0017",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0046",
+    "by": "Priya Raman",
+    "at": "2026-11-01"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0020",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0047",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0048",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0048",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0049",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0050",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 8,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0050",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0049",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0018",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0049",
+    "by": "Tom Brennan",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0021",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0022",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0051",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0052",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0052",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0053",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0019",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0054",
+    "by": "Elena Duarte",
+    "at": "2026-11-11"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0023",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0024",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0055",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0056",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0056",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0057",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0058",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0058",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0058",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0020",
+    "seq": 11,
+    "event": "decision_declined",
+    "ref_id": "S0058",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0021",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0021",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0012",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0021",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0025",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0021",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0059",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0021",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0060",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0026",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0061",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0062",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0062",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0063",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0064",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0064",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0064",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 10,
+    "event": "decision_agreed",
+    "ref_id": "S0064",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0022",
+    "seq": 11,
+    "event": "snapshot_frozen",
+    "ref_id": "S0064",
+    "by": "Priya Raman",
+    "at": "2026-09-08"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0027",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0028",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 4,
+    "event": "custom_loan_added",
+    "ref_id": "L002",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0065",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0066",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 7,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0066",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0067",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 9,
+    "event": "scenario_added",
+    "ref_id": "S0068",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0023",
+    "seq": 10,
+    "event": "scenario_added",
+    "ref_id": "S0069",
+    "by": "Tom Brennan",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0029",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0030",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0070",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0071",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0071",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0072",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0073",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0073",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0073",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0024",
+    "seq": 11,
+    "event": "decision_declined",
+    "ref_id": "S0073",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0074",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0075",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0075",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0076",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 6,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0075",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0075",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0025",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0075",
+    "by": "Marcus Webb",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0031",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0077",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0078",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0078",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0079",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0080",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0080",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0080",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0026",
+    "seq": 10,
+    "event": "decision_undecided",
+    "ref_id": "S0080",
+    "by": "Pamela Wilson",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0032",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0033",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0081",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0082",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 6,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0082",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0083",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0084",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 9,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0084",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 10,
+    "event": "recommended",
+    "ref_id": "S0083",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 11,
+    "event": "presented",
+    "ref_id": "S0083",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 12,
+    "event": "decision_agreed",
+    "ref_id": "S0083",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0027",
+    "seq": 13,
+    "event": "snapshot_frozen",
+    "ref_id": "S0083",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0034",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0035",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 4,
+    "event": "custom_loan_added",
+    "ref_id": "L003",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0085",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0086",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 7,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0086",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0087",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 9,
+    "event": "scenario_added",
+    "ref_id": "S0088",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 10,
+    "event": "scenario_added",
+    "ref_id": "S0089",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 11,
+    "event": "recommended",
+    "ref_id": "S0088",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 12,
+    "event": "presented",
+    "ref_id": "S0088",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 13,
+    "event": "decision_agreed",
+    "ref_id": "S0088",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0028",
+    "seq": 14,
+    "event": "snapshot_frozen",
+    "ref_id": "S0088",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0036",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0037",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0090",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0092",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0093",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 9,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0093",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 10,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 11,
+    "event": "recommended",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 12,
+    "event": "presented",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 13,
+    "event": "decision_agreed",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0029",
+    "seq": 14,
+    "event": "snapshot_frozen",
+    "ref_id": "S0091",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0038",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0094",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0095",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0096",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 6,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0096",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0095",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0030",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0095",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0013",
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0097",
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0098",
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0098",
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0031",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0099",
+    "by": "Pamela Wilson",
+    "at": "2026-10-05"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0039",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0100",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0101",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0101",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0102",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0103",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0103",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0103",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 10,
+    "event": "decision_agreed",
+    "ref_id": "S0103",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0032",
+    "seq": 11,
+    "event": "snapshot_frozen",
+    "ref_id": "S0103",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0040",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0104",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0105",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0106",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0106",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0106",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0106",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0033",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0106",
+    "by": "Tom Brennan",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0041",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0042",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0107",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0108",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0109",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0109",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0034",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0109",
+    "by": "Elena Duarte",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0035",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0035",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0110",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0035",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0111",
+    "by": "Marcus Webb",
+    "at": "2026-09-18"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0014",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0043",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0112",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0113",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0113",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0114",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0115",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0115",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0036",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0115",
+    "by": "Pamela Wilson",
+    "at": "2026-11-03"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0044",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0116",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0117",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0117",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0118",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0119",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0119",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0119",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 10,
+    "event": "decision_agreed",
+    "ref_id": "S0119",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0037",
+    "seq": 11,
+    "event": "snapshot_frozen",
+    "ref_id": "S0119",
+    "by": "Priya Raman",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0120",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0121",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0121",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0122",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0122",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0122",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0038",
+    "seq": 8,
+    "event": "decision_declined",
+    "ref_id": "S0122",
+    "by": "Tom Brennan",
+    "at": "2026-11-06"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0045",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 3,
+    "event": "custom_loan_added",
+    "ref_id": "L004",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0123",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0124",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0124",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0125",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0126",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 9,
+    "event": "scenario_added",
+    "ref_id": "S0127",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 10,
+    "event": "recommended",
+    "ref_id": "S0126",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0039",
+    "seq": 11,
+    "event": "presented",
+    "ref_id": "S0126",
+    "by": "Elena Duarte",
+    "at": "2026-10-11"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0015",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 3,
+    "event": "custom_loan_added",
+    "ref_id": "L005",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0128",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0129",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0129",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0130",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0131",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0130",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0040",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0130",
+    "by": "Marcus Webb",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0041",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-09-25"
+  },
+  {
+    "case_id": "C0041",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0016",
+    "by": "Pamela Wilson",
+    "at": "2026-09-25"
+  },
+  {
+    "case_id": "C0041",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0132",
+    "by": "Pamela Wilson",
+    "at": "2026-09-25"
+  },
+  {
+    "case_id": "C0041",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0133",
+    "by": "Pamela Wilson",
+    "at": "2026-09-25"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0046",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0047",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0134",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0135",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0135",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0136",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0137",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0137",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0137",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 11,
+    "event": "decision_agreed",
+    "ref_id": "S0137",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0042",
+    "seq": 12,
+    "event": "snapshot_frozen",
+    "ref_id": "S0137",
+    "by": "Priya Raman",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0043",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0043",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0138",
+    "by": "Tom Brennan",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0043",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0139",
+    "by": "Tom Brennan",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0048",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0140",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0141",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0141",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0142",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0044",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0143",
+    "by": "Elena Duarte",
+    "at": "2026-09-28"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0049",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0050",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 4,
+    "event": "custom_loan_added",
+    "ref_id": "L006",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0144",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0145",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0146",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0145",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0145",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0045",
+    "seq": 10,
+    "event": "decision_declined",
+    "ref_id": "S0145",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0046",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0046",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0147",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0046",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0148",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0046",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0148",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0046",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0149",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0051",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0052",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0150",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0151",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0151",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0152",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0153",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 9,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0153",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 10,
+    "event": "recommended",
+    "ref_id": "S0152",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 11,
+    "event": "presented",
+    "ref_id": "S0152",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0047",
+    "seq": 12,
+    "event": "decision_undecided",
+    "ref_id": "S0152",
+    "by": "Priya Raman",
+    "at": "2026-09-02"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0154",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0155",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 4,
+    "event": "recommended",
+    "ref_id": "S0155",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 5,
+    "event": "presented",
+    "ref_id": "S0155",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 6,
+    "event": "decision_agreed",
+    "ref_id": "S0155",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0048",
+    "seq": 7,
+    "event": "snapshot_frozen",
+    "ref_id": "S0155",
+    "by": "Tom Brennan",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0053",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0156",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0157",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0157",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0158",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0159",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0159",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0159",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0049",
+    "seq": 10,
+    "event": "decision_undecided",
+    "ref_id": "S0159",
+    "by": "Elena Duarte",
+    "at": "2026-11-10"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0160",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0161",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 4,
+    "event": "recommended",
+    "ref_id": "S0161",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 5,
+    "event": "presented",
+    "ref_id": "S0161",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 6,
+    "event": "decision_agreed",
+    "ref_id": "S0161",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0050",
+    "seq": 7,
+    "event": "snapshot_frozen",
+    "ref_id": "S0161",
+    "by": "Marcus Webb",
+    "at": "2026-10-13"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0054",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0162",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0163",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0163",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0164",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0165",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 8,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0165",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0164",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0164",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 11,
+    "event": "decision_agreed",
+    "ref_id": "S0164",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0051",
+    "seq": 12,
+    "event": "snapshot_frozen",
+    "ref_id": "S0164",
+    "by": "Pamela Wilson",
+    "at": "2026-10-09"
+  },
+  {
+    "case_id": "C0052",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-10"
+  },
+  {
+    "case_id": "C0052",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0017",
+    "by": "Priya Raman",
+    "at": "2026-09-10"
+  },
+  {
+    "case_id": "C0052",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0055",
+    "by": "Priya Raman",
+    "at": "2026-09-10"
+  },
+  {
+    "case_id": "C0052",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0166",
+    "by": "Priya Raman",
+    "at": "2026-09-10"
+  },
+  {
+    "case_id": "C0052",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0167",
+    "by": "Priya Raman",
+    "at": "2026-09-10"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0056",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0168",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0169",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 5,
+    "event": "recommended",
+    "ref_id": "S0169",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 6,
+    "event": "presented",
+    "ref_id": "S0169",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0053",
+    "seq": 7,
+    "event": "decision_undecided",
+    "ref_id": "S0169",
+    "by": "Tom Brennan",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0054",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0054",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0170",
+    "by": "Elena Duarte",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0171",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0172",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0172",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0173",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0173",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0173",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0173",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0055",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0173",
+    "by": "Marcus Webb",
+    "at": "2026-10-03"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 2,
+    "event": "custom_loan_added",
+    "ref_id": "L007",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0174",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0175",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0175",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0176",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0177",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 8,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0175",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0175",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0056",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0175",
+    "by": "Pamela Wilson",
+    "at": "2026-10-10"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0178",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0179",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0179",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0180",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0180",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0180",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0180",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0057",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0180",
+    "by": "Priya Raman",
+    "at": "2026-10-20"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0057",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0058",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0181",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0182",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0058",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0183",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0184",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0186",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 6,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 9,
+    "event": "decision_agreed",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0059",
+    "seq": 10,
+    "event": "snapshot_frozen",
+    "ref_id": "S0185",
+    "by": "Elena Duarte",
+    "at": "2026-09-27"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0059",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0187",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0189",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0190",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 8,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 11,
+    "event": "decision_agreed",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0060",
+    "seq": 12,
+    "event": "snapshot_frozen",
+    "ref_id": "S0188",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0018",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0060",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0191",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0192",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0192",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0061",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0192",
+    "by": "Pamela Wilson",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 2,
+    "event": "custom_loan_added",
+    "ref_id": "L008",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0193",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0194",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0194",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0195",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0196",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0195",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0195",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 10,
+    "event": "decision_agreed",
+    "ref_id": "S0195",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0062",
+    "seq": 11,
+    "event": "snapshot_frozen",
+    "ref_id": "S0195",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0063",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0063",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0197",
+    "by": "Tom Brennan",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0063",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0198",
+    "by": "Tom Brennan",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0061",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0062",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 4,
+    "event": "custom_loan_added",
+    "ref_id": "L009",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0199",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0200",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0201",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0202",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 9,
+    "event": "recommended",
+    "ref_id": "S0201",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 10,
+    "event": "presented",
+    "ref_id": "S0201",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0064",
+    "seq": 11,
+    "event": "decision_undecided",
+    "ref_id": "S0201",
+    "by": "Elena Duarte",
+    "at": "2026-10-16"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0063",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0203",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0204",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 5,
+    "event": "recommended",
+    "ref_id": "S0204",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 6,
+    "event": "presented",
+    "ref_id": "S0204",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 7,
+    "event": "decision_agreed",
+    "ref_id": "S0204",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0065",
+    "seq": 8,
+    "event": "snapshot_frozen",
+    "ref_id": "S0204",
+    "by": "Marcus Webb",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0064",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0205",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0206",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0206",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0207",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0066",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0208",
+    "by": "Pamela Wilson",
+    "at": "2026-10-17"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0065",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0066",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0209",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0211",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0212",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 9,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0212",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 10,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 11,
+    "event": "recommended",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 12,
+    "event": "presented",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0067",
+    "seq": 13,
+    "event": "decision_declined",
+    "ref_id": "S0210",
+    "by": "Priya Raman",
+    "at": "2026-10-01"
+  },
+  {
+    "case_id": "C0068",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-03"
+  },
+  {
+    "case_id": "C0068",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0213",
+    "by": "Tom Brennan",
+    "at": "2026-09-03"
+  },
+  {
+    "case_id": "C0068",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0214",
+    "by": "Tom Brennan",
+    "at": "2026-09-03"
+  },
+  {
+    "case_id": "C0068",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0214",
+    "by": "Tom Brennan",
+    "at": "2026-09-03"
+  },
+  {
+    "case_id": "C0068",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0215",
+    "by": "Tom Brennan",
+    "at": "2026-09-03"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0019",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0067",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0216",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0217",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0217",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0217",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0217",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0069",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0217",
+    "by": "Tom Brennan",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0070",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-06"
+  },
+  {
+    "case_id": "C0070",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0218",
+    "by": "Tom Brennan",
+    "at": "2026-09-06"
+  },
+  {
+    "case_id": "C0070",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0219",
+    "by": "Tom Brennan",
+    "at": "2026-09-06"
+  },
+  {
+    "case_id": "C0070",
+    "seq": 4,
+    "event": "recommended",
+    "ref_id": "S0219",
+    "by": "Tom Brennan",
+    "at": "2026-09-06"
+  },
+  {
+    "case_id": "C0070",
+    "seq": 5,
+    "event": "presented",
+    "ref_id": "S0219",
+    "by": "Tom Brennan",
+    "at": "2026-09-06"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0068",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0220",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0221",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0222",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0222",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0222",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0222",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0071",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0222",
+    "by": "Priya Raman",
+    "at": "2026-10-14"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0069",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0070",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0223",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0224",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 6,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0224",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0225",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0226",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 9,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0224",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 10,
+    "event": "recommended",
+    "ref_id": "S0224",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0072",
+    "seq": 11,
+    "event": "presented",
+    "ref_id": "S0224",
+    "by": "Marcus Webb",
+    "at": "2026-11-07"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0227",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0228",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 4,
+    "event": "recommended",
+    "ref_id": "S0228",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 5,
+    "event": "presented",
+    "ref_id": "S0228",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 6,
+    "event": "decision_agreed",
+    "ref_id": "S0228",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0073",
+    "seq": 7,
+    "event": "snapshot_frozen",
+    "ref_id": "S0228",
+    "by": "Priya Raman",
+    "at": "2026-10-12"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0020",
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0229",
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0230",
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 5,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0230",
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0074",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0231",
+    "by": "Tom Brennan",
+    "at": "2026-10-22"
+  },
+  {
+    "case_id": "C0075",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0075",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0232",
+    "by": "Marcus Webb",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0075",
+    "seq": 3,
+    "event": "recommended",
+    "ref_id": "S0232",
+    "by": "Marcus Webb",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0075",
+    "seq": 4,
+    "event": "presented",
+    "ref_id": "S0232",
+    "by": "Marcus Webb",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0076",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0076",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0071",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0076",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0072",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0076",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0233",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0076",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0234",
+    "by": "Marcus Webb",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0235",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0237",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 6,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 9,
+    "event": "decision_agreed",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0077",
+    "seq": 10,
+    "event": "snapshot_frozen",
+    "ref_id": "S0236",
+    "by": "Elena Duarte",
+    "at": "2026-11-05"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0073",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0238",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0239",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0240",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0240",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0240",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0240",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0078",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0240",
+    "by": "Elena Duarte",
+    "at": "2026-10-06"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 2,
+    "event": "override",
+    "ref_id": "O0021",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0074",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 4,
+    "event": "extra_payment_added",
+    "ref_id": "E0075",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 5,
+    "event": "custom_loan_added",
+    "ref_id": "L010",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0241",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 7,
+    "event": "scenario_added",
+    "ref_id": "S0242",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0079",
+    "seq": 8,
+    "event": "scenario_added",
+    "ref_id": "S0243",
+    "by": "Priya Raman",
+    "at": "2026-09-21"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0076",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0077",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0244",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0245",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0246",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0246",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0246",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0080",
+    "seq": 9,
+    "event": "decision_declined",
+    "ref_id": "S0246",
+    "by": "Elena Duarte",
+    "at": "2026-10-25"
+  },
+  {
+    "case_id": "C0081",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0081",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0078",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0081",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0247",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0081",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0248",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0081",
+    "seq": 5,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0248",
+    "by": "Marcus Webb",
+    "at": "2026-11-09"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0079",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0080",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0249",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0250",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 6,
+    "event": "payment_alert_shown_amber",
+    "ref_id": "S0250",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 7,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0250",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 8,
+    "event": "recommended",
+    "ref_id": "S0250",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0082",
+    "seq": 9,
+    "event": "presented",
+    "ref_id": "S0250",
+    "by": "Elena Duarte",
+    "at": "2026-09-11"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0081",
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0082",
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0251",
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0252",
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0083",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0253",
+    "by": "Elena Duarte",
+    "at": "2026-09-09"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0254",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0255",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0255",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0256",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 6,
+    "event": "recommended",
+    "ref_id": "S0256",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 7,
+    "event": "presented",
+    "ref_id": "S0256",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 8,
+    "event": "decision_agreed",
+    "ref_id": "S0256",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0084",
+    "seq": 9,
+    "event": "snapshot_frozen",
+    "ref_id": "S0256",
+    "by": "Priya Raman",
+    "at": "2026-10-26"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0257",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0258",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 4,
+    "event": "recommended",
+    "ref_id": "S0258",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 5,
+    "event": "presented",
+    "ref_id": "S0258",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0085",
+    "seq": 6,
+    "event": "decision_declined",
+    "ref_id": "S0258",
+    "by": "Priya Raman",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0083",
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 3,
+    "event": "extra_payment_added",
+    "ref_id": "E0084",
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0259",
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0260",
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0086",
+    "seq": 6,
+    "event": "scenario_added",
+    "ref_id": "S0261",
+    "by": "Tom Brennan",
+    "at": "2026-09-05"
+  },
+  {
+    "case_id": "C0087",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-09-19"
+  },
+  {
+    "case_id": "C0087",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0262",
+    "by": "Priya Raman",
+    "at": "2026-09-19"
+  },
+  {
+    "case_id": "C0087",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0263",
+    "by": "Priya Raman",
+    "at": "2026-09-19"
+  },
+  {
+    "case_id": "C0087",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0263",
+    "by": "Priya Raman",
+    "at": "2026-09-19"
+  },
+  {
+    "case_id": "C0087",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0264",
+    "by": "Priya Raman",
+    "at": "2026-09-19"
+  },
+  {
+    "case_id": "C0088",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0088",
+    "seq": 2,
+    "event": "custom_loan_added",
+    "ref_id": "L011",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0088",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0265",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0088",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0266",
+    "by": "Pamela Wilson",
+    "at": "2026-10-21"
+  },
+  {
+    "case_id": "C0089",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Tom Brennan",
+    "at": "2026-09-20"
+  },
+  {
+    "case_id": "C0089",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0085",
+    "by": "Tom Brennan",
+    "at": "2026-09-20"
+  },
+  {
+    "case_id": "C0089",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0267",
+    "by": "Tom Brennan",
+    "at": "2026-09-20"
+  },
+  {
+    "case_id": "C0089",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0268",
+    "by": "Tom Brennan",
+    "at": "2026-09-20"
+  },
+  {
+    "case_id": "C0089",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0269",
+    "by": "Tom Brennan",
+    "at": "2026-09-20"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0086",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0270",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0271",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 5,
+    "event": "recommended",
+    "ref_id": "S0271",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 6,
+    "event": "presented",
+    "ref_id": "S0271",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0090",
+    "seq": 7,
+    "event": "decision_declined",
+    "ref_id": "S0271",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0091",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0091",
+    "seq": 2,
+    "event": "custom_loan_added",
+    "ref_id": "L012",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0091",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0272",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0091",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0273",
+    "by": "Elena Duarte",
+    "at": "2026-11-13"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 2,
+    "event": "extra_payment_added",
+    "ref_id": "E0087",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0274",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 4,
+    "event": "scenario_added",
+    "ref_id": "S0275",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 5,
+    "event": "recommended",
+    "ref_id": "S0275",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 6,
+    "event": "presented",
+    "ref_id": "S0275",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 7,
+    "event": "decision_agreed",
+    "ref_id": "S0275",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0092",
+    "seq": 8,
+    "event": "snapshot_frozen",
+    "ref_id": "S0275",
+    "by": "Marcus Webb",
+    "at": "2026-10-23"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 1,
+    "event": "case_created",
+    "ref_id": null,
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 2,
+    "event": "scenario_added",
+    "ref_id": "S0276",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 3,
+    "event": "scenario_added",
+    "ref_id": "S0277",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 4,
+    "event": "payment_alert_shown_red",
+    "ref_id": "S0277",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 5,
+    "event": "scenario_added",
+    "ref_id": "S0278",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 6,
+    "event": "payment_alert_acknowledged",
+    "ref_id": "S0277",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 7,
+    "event": "recommended",
+    "ref_id": "S0277",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  },
+  {
+    "case_id": "C0093",
+    "seq": 8,
+    "event": "presented",
+    "ref_id": "S0277",
+    "by": "Priya Raman",
+    "at": "2026-10-07"
+  }
+]

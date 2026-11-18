@@ -1,0 +1,300 @@
+household_id,household_name,advisor,branch,home_state,comfort_zone,annual_income
+H01,"Patel, Raj and Anita",Pamela Wilson,North Branch,MI,2,165000
+H02,"Nguyen, Linh",Pamela Wilson,North Branch,CA,1,128000
+H03,"Johnson, Marcus and Keisha",Tom Brennan,North Branch,TX,2,98000
+H04,"Garcia, Sofia",Tom Brennan,North Branch,FL,3,72000
+H05,"Thompson, David and Rachel",Elena Duarte,South Branch,OH,2,210000
+H06,"Williams, James",Elena Duarte,South Branch,AZ,2,134000
+H07,"Brown, Harold and June",Pamela Wilson,North Branch,PA,1,61000
+H08,"Davis, Kevin and Tara",Tom Brennan,North Branch,IL,2,18000
+H09,"Miller, Brian",Elena Duarte,South Branch,MI,2,112000
+H10,"Wilson, Aaron and Megan",Pamela Wilson,North Branch,WA,2,
+H11,"Moore, Andre and Tasha",Tom Brennan,North Branch,GA,3,89000
+H12,"Taylor, Grace",Elena Duarte,South Branch,NY,1,240000
+H13,"Anderson, Eric and Laura",Pamela Wilson,North Branch,VT,2,118000
+H14,"Thomas, Derek",Tom Brennan,North Branch,CO,2,126000
+H15,"Jackson, Tyrone and Dana",Elena Duarte,South Branch,NC,2,104000
+H16,"Lee, Jason",Tom Brennan,North Branch,NJ,,95000
+H17,"Baker, Hiroshi and Samuel",Marcus Webb,South Branch,IA,2,100000
+H18,"Hill, Zoe and Ruth",Tom Brennan,North Branch,FL,2,150000
+H19,"Reed, Chen",Priya Raman,South Branch,IA,1,
+H20,"Carter, Zoe and Mei",Pamela Wilson,North Branch,PA,2,174000
+H21,"Cook, Zoe and Chen",Elena Duarte,South Branch,CO,2,313000
+H23,"Reed, Fatima and Samuel",Tom Brennan,North Branch,MA,1,207000
+H24,"Hill, Fatima",Priya Raman,South Branch,CA,3,172000
+H25,"Carter, Michael and Hiroshi",Pamela Wilson,North Branch,TX,3,170000
+H26,"Perez, Maria and Lucas",Elena Duarte,South Branch,IL,3,419000
+H27,"Perez, Samuel and Owen",Marcus Webb,South Branch,AZ,2,179000
+H28,"Shah, Priya",Tom Brennan,North Branch,TX,3,73000
+H29,"Lopez, Leah and Ethan",Priya Raman,South Branch,CA,3,12800
+H30,"Rogers, Lucas and Felix",Pamela Wilson,North Branch,CA,3,79000
+H31,"Walker, Robert",Elena Duarte,South Branch,GA,2,56000
+H32,"Bell, Robert and Hannah",Marcus Webb,South Branch,MO,3,104000
+H33,"Mitchell, Aisha and James",Tom Brennan,North Branch,PA,2,64000
+H34,"Scott, Daniel and Isaac",Priya Raman,South Branch,NJ,2,56000
+H35,"Allen, Priya and Omar",Pamela Wilson,North Branch,NC,3,158000
+H36,"Kim, Samuel and Robert",Elena Duarte,South Branch,IL,3,129000
+H37,"Bell, David and Nina",Marcus Webb,South Branch,WA,2,134000
+H38,"Rogers, Ana",Tom Brennan,North Branch,CA,2,138000
+H39,"Clark, Maria",Priya Raman,South Branch,CA,2,115000
+H40,"Morris, Emily and Maria",Pamela Wilson,North Branch,CA,1,266000
+H41,"Rivera, Rosa and Hiroshi",Elena Duarte,South Branch,OH,3,100000
+H42,"Roberts, Robert and Nina",Marcus Webb,South Branch,TX,1,219000
+H43,"Roberts, Grace",Tom Brennan,North Branch,OH,1,183000
+H44,"Cooper, Felix",Priya Raman,South Branch,WA,1,192000
+H45,"Cooper, Emily and Omar",Pamela Wilson,North Branch,IL,2,168000
+H46,"Scott, Michael and Ana",Elena Duarte,South Branch,TX,3,168000
+H47,"Morgan, Rosa and Owen",Marcus Webb,South Branch,TX,3,178000
+H48,"Murphy, Ruth",Tom Brennan,North Branch,CA,3,82000
+H49,"Stewart, Priya",Priya Raman,South Branch,NY,3,87000
+H50,"Lopez, Mei",Pamela Wilson,North Branch,PA,2,167000
+H51,"Reed, Caleb and Mei",Elena Duarte,South Branch,OR,1,120000
+H52,"Shah, Grace",Marcus Webb,South Branch,CA,2,90000
+H53,"Baker, Aisha and Emily",Tom Brennan,North Branch,IA,2,170000
+H54,"Turner, Carlos and Zoe",Priya Raman,South Branch,IL,1,152000
+H55,"Morgan, Ethan and Olivia",Pamela Wilson,North Branch,NY,1,116000
+H56,"Wright, Nina and Sara",Elena Duarte,South Branch,MN,2,159000
+H57,"Phillips, Zoe",Marcus Webb,South Branch,AZ,3,154000
+H58,"Murphy, Grace and Emily",Tom Brennan,North Branch,VA,2,144000
+H59,"Parker, Olivia and Maria",Priya Raman,South Branch,NC,3,96000
+H60,"Carter, Mei and Zoe",Pamela Wilson,North Branch,TX,2,140000
+H61,"Kim, Hiroshi and Zoe",Elena Duarte,South Branch,NJ,3,145000
+H62,"Perez, Carlos and Felix",Marcus Webb,South Branch,WI,3,100000
+H63,"Baker, David and Daniel",Tom Brennan,North Branch,CA,1,171000
+H64,"Collins, Grace and Noah",Priya Raman,South Branch,PA,2,100000
+H65,"Clark, Grace",Pamela Wilson,North Branch,CO,1,257000
+H66,"Adams, Leah",Elena Duarte,South Branch,PA,3,191000
+H67,"Cooper, Hannah",Marcus Webb,South Branch,CO,2,207000
+H68,"Hall, Lucas",Tom Brennan,North Branch,AZ,2,90000
+H69,"Morris, Emily and Aisha",Priya Raman,South Branch,AZ,2,261000
+H70,"Nelson, Ana",Pamela Wilson,North Branch,GA,2,133000
+H71,"Rivera, Caleb and Noah",Elena Duarte,South Branch,NV,1,91000
+H72,"Shah, Mei and Noah",Marcus Webb,South Branch,VA,2,160000
+H73,"Scott, Lucas and Samuel",Tom Brennan,North Branch,WA,2,138000
+H74,"Clark, Ethan",Priya Raman,South Branch,MN,3,83000
+H75,"Rivera, Lucas",Pamela Wilson,North Branch,FL,3,155000
+H76,"Rivera, Ruth and Daniel",Elena Duarte,South Branch,VA,3,105000
+H77,"Young, Olivia and Priya",Marcus Webb,South Branch,MI,1,81000
+H78,"Green, Caleb and Isaac",Tom Brennan,North Branch,MO,1,103000
+H79,"Evans, Fatima and Hannah",Priya Raman,South Branch,MA,2,126000
+H80,"Cooper, Rosa and Zoe",Pamela Wilson,North Branch,TX,2,263000
+H81,"Reed, Isaac and Michael",Elena Duarte,South Branch,OH,2,131000
+H82,"Bailey, Mei and Zoe",Marcus Webb,South Branch,FL,1,160000
+H83,"Turner, Samuel and Isaac",Tom Brennan,North Branch,TN,2,113000
+H84,"Morgan, Priya",Priya Raman,South Branch,PA,3,105000
+H85,"Bailey, Lucas and Samuel",Pamela Wilson,North Branch,MN,1,165000
+H86,"Phillips, Noah and Aisha",Elena Duarte,South Branch,WA,3,91000
+H87,"Scott, Zoe and Emily",Marcus Webb,South Branch,MI,3,95000
+H88,"Murphy, Omar and Ethan",Tom Brennan,North Branch,WI,2,75000
+H89,"Young, Sara and Noah",Priya Raman,South Branch,AZ,3,152000
+H90,"Clark, Owen",Pamela Wilson,North Branch,MI,3,136000
+H91,"Scott, Ruth",Elena Duarte,South Branch,CA,2,215000
+H92,"Collins, Nina",Marcus Webb,South Branch,NY,2,228000
+H93,"Perez, Robert",Tom Brennan,North Branch,NJ,2,92000
+H94,"Shah, Michael and Chen",Priya Raman,South Branch,NJ,3,171000
+H95,"Walker, Robert and Grace",Pamela Wilson,North Branch,PA,1,87000
+H96,"Mitchell, Felix and Leah",Elena Duarte,South Branch,NC,2,156000
+H97,"Sanchez, Nina",Marcus Webb,South Branch,VA,2,161000
+H98,"Cook, Chen and Mei",Tom Brennan,North Branch,CO,2,182000
+H99,"Shah, Olivia",Priya Raman,South Branch,NV,3,125000
+H100,"Martinez, Zoe",Pamela Wilson,North Branch,NY,2,246000
+H101,"Bell, Michael and Hiroshi",Elena Duarte,South Branch,NJ,1,176000
+H102,"Evans, Emily and Lucas",Marcus Webb,South Branch,OH,3,127000
+H103,"Edwards, Robert",Tom Brennan,North Branch,PA,2,241000
+H104,"Murphy, Leah and James",Priya Raman,South Branch,CA,2,68000
+H105,"Green, Chen",Pamela Wilson,North Branch,NY,3,183000
+H106,"Parker, Ruth and Nina",Elena Duarte,South Branch,OH,2,199000
+H107,"Shah, Lucas and Felix",Marcus Webb,South Branch,WA,1,70000
+H108,"Shah, Ana and Hiroshi",Tom Brennan,North Branch,FL,3,143000
+H109,"Lewis, David and Leah",Priya Raman,South Branch,MO,1,290000
+H110,"Edwards, Hiroshi and Robert",Pamela Wilson,North Branch,CA,2,126000
+H111,"Walker, Michael and Leah",Elena Duarte,South Branch,CA,3,172000
+H112,"Campbell, Caleb and James",Marcus Webb,South Branch,CA,1,84000
+H113,"Morris, Victor",Tom Brennan,North Branch,TX,2,80000
+H114,"Wright, David and Robert",Priya Raman,South Branch,VA,2,98000
+H115,"Baker, Fatima",Pamela Wilson,North Branch,NY,3,231000
+H116,"Nelson, Chen and Aisha",Elena Duarte,South Branch,NY,3,128000
+H117,"Bell, Emily",Marcus Webb,South Branch,NV,1,123000
+H118,"Cook, Leah and James",Tom Brennan,North Branch,WA,2,160000
+H119,"Hill, Chen and Isaac",Priya Raman,South Branch,CA,1,130000
+H120,"Adams, Maria and Noah",Pamela Wilson,North Branch,IA,2,85000
+H121,"Kim, James",Elena Duarte,South Branch,PA,1,61000
+H122,"Kim, Leah and Felix",Marcus Webb,South Branch,VT,2,92000
+H123,"Martinez, Rosa and Omar",Tom Brennan,North Branch,NC,3,129000
+H124,"Young, Daniel and Lucas",Priya Raman,South Branch,MO,3,119000
+H125,"Wright, Omar and Owen",Pamela Wilson,North Branch,NC,2,112000
+H126,"King, Carlos",Elena Duarte,South Branch,FL,1,84000
+H127,"Phillips, Owen and Felix",Marcus Webb,South Branch,NJ,3,96000
+H128,"Mitchell, Priya and Ana",Tom Brennan,North Branch,OR,3,191000
+H129,"Collins, Fatima and Carlos",Priya Raman,South Branch,WI,2,58000
+H130,"Bailey, Aisha",Pamela Wilson,North Branch,NC,2,130000
+H131,"Edwards, Hiroshi",Elena Duarte,South Branch,TX,3,165000
+H132,"Morgan, Owen and James",Marcus Webb,South Branch,WA,1,284000
+H133,"Young, Noah and Ruth",Tom Brennan,North Branch,MA,2,176000
+H134,"Lopez, Omar",Priya Raman,South Branch,OH,3,203000
+H135,"Cook, Olivia and Ana",Pamela Wilson,North Branch,TX,3,147000
+H136,"Collins, Carlos and Olivia",Elena Duarte,South Branch,VA,1,86000
+H137,"Bailey, Ruth and Samuel",Marcus Webb,South Branch,OR,1,135000
+H138,"King, Maria",Tom Brennan,North Branch,AZ,3,90000
+H139,"Cooper, Rosa and Michael",Priya Raman,South Branch,OH,3,311000
+H140,"Hill, Chen and Grace",Pamela Wilson,North Branch,IL,2,145000
+H141,"Collins, Ethan",Elena Duarte,South Branch,PA,3,143000
+H142,"Parker, Victor",Marcus Webb,South Branch,TX,2,215000
+H143,"Young, Zoe",Tom Brennan,North Branch,MN,3,110000
+H144,"Cook, Priya and Zoe",Priya Raman,South Branch,MO,1,222000
+H145,"Reed, Caleb",Pamela Wilson,North Branch,MN,2,72000
+H146,"Young, Daniel and Hiroshi",Elena Duarte,South Branch,IL,2,260000
+H147,"Adams, Chen and Owen",Marcus Webb,South Branch,GA,1,
+H148,"Wright, Maria and Nina",Tom Brennan,North Branch,NJ,2,173000
+H149,"Allen, David",Priya Raman,South Branch,TX,1,105000
+H150,"Roberts, Leah and Ruth",Pamela Wilson,North Branch,TX,1,111000
+H151,"Morgan, Aisha and Fatima",Elena Duarte,South Branch,IL,,123000
+H152,"Morgan, Leah and Felix",Marcus Webb,South Branch,TX,2,234000
+H153,"Stewart, Nina",Tom Brennan,North Branch,CA,2,147000
+H154,"Rogers, Daniel and David",Priya Raman,South Branch,NY,2,94000
+H155,"Cook, Hannah",Pamela Wilson,North Branch,NY,3,151000
+H156,"Morris, Omar",Elena Duarte,South Branch,AZ,1,76000
+H157,"Phillips, Ruth",Marcus Webb,South Branch,CA,2,126000
+H158,"Carter, Fatima and Hannah",Tom Brennan,North Branch,NJ,1,106000
+H159,"Kim, Felix and Samuel",Priya Raman,South Branch,CA,1,106000
+H160,"Bailey, Leah and Ana",Pamela Wilson,North Branch,FL,1,82000
+H161,"Cook, Leah and Ethan",Elena Duarte,South Branch,MA,3,149000
+H162,"Edwards, Felix and Aisha",Marcus Webb,South Branch,MO,,189000
+H163,"Campbell, Mei and Zoe",Tom Brennan,North Branch,AZ,3,136000
+H164,"Lopez, Grace and Zoe",Priya Raman,South Branch,VT,2,205000
+H165,"Stewart, Michael and Sara",Pamela Wilson,North Branch,MO,2,124000
+H166,"Edwards, Maria and Hannah",Elena Duarte,South Branch,CO,2,
+H167,"Scott, Nina",Marcus Webb,South Branch,WA,2,99000
+H168,"Campbell, Ethan",Tom Brennan,North Branch,MI,2,146000
+H169,"Allen, Noah and Ana",Priya Raman,South Branch,NC,2,358000
+H170,"Kim, Aisha and Grace",Pamela Wilson,North Branch,MI,2,68000
+H171,"Murphy, Carlos and Ana",Elena Duarte,South Branch,MI,2,181000
+H172,"Sanchez, Lucas and Fatima",Marcus Webb,South Branch,OH,3,191000
+H173,"Scott, Grace",Tom Brennan,North Branch,OH,2,125000
+H174,"Roberts, Victor and Maria",Priya Raman,South Branch,TX,2,182000
+H175,"Cook, Hiroshi and Caleb",Pamela Wilson,North Branch,WI,3,88000
+H176,"Hill, Ethan and Isaac",Elena Duarte,South Branch,CA,2,80000
+H177,"Reed, Robert and Ethan",Marcus Webb,South Branch,NC,1,114000
+H178,"Reed, Daniel",Tom Brennan,North Branch,CA,2,99000
+H179,"Cook, David and Olivia",Priya Raman,South Branch,NY,3,265000
+H180,"Reed, Rosa and Michael",Pamela Wilson,North Branch,TX,2,111000
+H181,"Mitchell, Hiroshi",Elena Duarte,South Branch,MA,3,99000
+H182,"Baker, Omar and Nina",Marcus Webb,South Branch,NY,1,83000
+H183,"Morgan, James",Tom Brennan,North Branch,VA,1,203000
+H184,"Clark, James",Priya Raman,South Branch,NC,2,205000
+H185,"Hill, Nina and Lucas",Pamela Wilson,North Branch,IA,2,172000
+H186,"Evans, Leah",Elena Duarte,South Branch,MA,2,189000
+H187,"Roberts, Lucas and Isaac",Marcus Webb,South Branch,GA,3,177000
+H188,"Morris, Sara and Emily",Tom Brennan,North Branch,CA,2,121000
+H189,"Lewis, Mei",Priya Raman,South Branch,TX,2,124000
+H190,"Hall, Lucas",Pamela Wilson,North Branch,TX,1,121000
+H191,"King, Hiroshi and Leah",Elena Duarte,South Branch,MN,2,163000
+H192,"Nelson, Fatima",Marcus Webb,South Branch,NC,3,99000
+H193,"Hill, Aisha and Fatima",Tom Brennan,North Branch,NY,1,137000
+H194,"Rogers, Samuel",Priya Raman,South Branch,CA,1,93000
+H195,"Carter, Mei and Victor",Pamela Wilson,North Branch,CO,2,52000
+H196,"Kim, Ana and Fatima",Elena Duarte,South Branch,PA,2,95000
+H197,"Allen, Emily and Victor",Marcus Webb,South Branch,IA,2,175000
+H198,"Lewis, Isaac and Priya",Tom Brennan,North Branch,NY,3,161000
+H199,"Lewis, James",Priya Raman,South Branch,MA,2,158000
+H200,"Edwards, Hannah",Pamela Wilson,North Branch,NV,3,191000
+H201,"King, Nina and Caleb",Elena Duarte,South Branch,CA,2,73000
+H202,"Shah, Samuel and Victor",Marcus Webb,South Branch,WA,2,142000
+H203,"Carter, Daniel and Fatima",Tom Brennan,North Branch,MN,3,146000
+H204,"Lewis, Nina and Owen",Priya Raman,South Branch,MA,1,84000
+H205,"Scott, Michael and Owen",Pamela Wilson,North Branch,CA,1,140000
+H206,"Rivera, Leah and Chen",Elena Duarte,South Branch,TX,1,175000
+H207,"Kim, Omar",Marcus Webb,South Branch,NJ,1,111000
+H208,"Baker, Fatima",Tom Brennan,North Branch,CA,1,163000
+H209,"Bell, Grace",Priya Raman,South Branch,VA,2,107000
+H210,"Green, Mei and Carlos",Pamela Wilson,North Branch,GA,2,143000
+H211,"Edwards, Owen and Priya",Elena Duarte,South Branch,CA,1,11700
+H212,"Perez, Zoe",Marcus Webb,South Branch,IA,2,91000
+H213,"Green, Ana and Aisha",Tom Brennan,North Branch,MI,2,132000
+H214,"Edwards, Olivia",Priya Raman,South Branch,GA,3,87000
+H215,"Nelson, Aisha and Ruth",Pamela Wilson,North Branch,NY,2,8800
+H216,"Bailey, Samuel and Zoe",Elena Duarte,South Branch,VA,2,153000
+H217,"Rogers, Noah",Marcus Webb,South Branch,NY,3,144000
+H218,"Carter, Rosa and Caleb",Tom Brennan,North Branch,GA,1,116000
+H219,"Phillips, Ruth",Priya Raman,South Branch,FL,1,90000
+H220,"Edwards, Rosa and Omar",Pamela Wilson,North Branch,IA,3,112000
+H221,"Carter, Zoe and Mei",Elena Duarte,South Branch,TX,1,164000
+H222,"Stewart, Sara and Hiroshi",Marcus Webb,South Branch,IL,1,87000
+H223,"Young, Emily and Aisha",Tom Brennan,North Branch,VA,3,287000
+H224,"Wright, Aisha and Owen",Priya Raman,South Branch,MA,2,146000
+H225,"Sanchez, Emily",Pamela Wilson,North Branch,NY,2,163000
+H226,"Turner, Chen and Isaac",Elena Duarte,South Branch,CA,3,176000
+H227,"Sanchez, Nina",Marcus Webb,South Branch,NY,2,114000
+H228,"Clark, Maria",Tom Brennan,North Branch,NY,1,163000
+H229,"Baker, Daniel and Hannah",Priya Raman,South Branch,FL,1,103000
+H230,"Cook, Maria and Olivia",Pamela Wilson,North Branch,PA,2,119000
+H231,"Cooper, David and Lucas",Elena Duarte,South Branch,CA,2,116000
+H232,"Parker, Maria and Daniel",Marcus Webb,South Branch,WI,2,143000
+H233,"Morris, Emily",Tom Brennan,North Branch,IL,2,238000
+H234,"Allen, Emily",Priya Raman,South Branch,MN,1,170000
+H235,"Shah, Leah",Pamela Wilson,North Branch,FL,3,120000
+H236,"Perez, Grace",Elena Duarte,South Branch,NV,2,262000
+H237,"Green, Felix",Marcus Webb,South Branch,CO,2,141000
+H238,"King, Lucas",Tom Brennan,North Branch,MI,3,141000
+H239,"Perez, David and Omar",Priya Raman,South Branch,NJ,3,95000
+H240,"Parker, Noah",Pamela Wilson,North Branch,PA,2,115000
+H241,"Bailey, Hannah and Carlos",Elena Duarte,South Branch,VT,2,157000
+H242,"Morris, Leah and Olivia",Marcus Webb,South Branch,OR,2,99000
+H243,"Wright, Olivia and Nina",Tom Brennan,North Branch,TX,2,73000
+H244,"Mitchell, Victor and Ethan",Priya Raman,South Branch,PA,1,136000
+H245,"Morgan, Fatima",Pamela Wilson,North Branch,AZ,1,210000
+H246,"Lewis, Sara and David",Elena Duarte,South Branch,IL,2,79000
+H247,"Lopez, Noah",Marcus Webb,South Branch,NY,3,227000
+H248,"Adams, Daniel and Hannah",Tom Brennan,North Branch,NJ,2,165000
+H249,"Rogers, Fatima and Grace",Priya Raman,South Branch,NY,2,98000
+H250,"Scott, Samuel and Noah",Pamela Wilson,North Branch,NV,1,132000
+H251,"Hill, James and Hiroshi",Elena Duarte,South Branch,PA,2,169000
+H252,"Bell, Leah",Marcus Webb,South Branch,WI,2,220000
+H253,"Turner, Mei and Priya",Tom Brennan,North Branch,NJ,3,120000
+H254,"Roberts, Lucas",Priya Raman,South Branch,CA,2,38000
+H255,"Martinez, Emily and Robert",Pamela Wilson,North Branch,WI,3,106000
+H256,"Turner, Isaac and Olivia",Elena Duarte,South Branch,NJ,2,178000
+H257,"Evans, Leah",Marcus Webb,South Branch,MI,2,121000
+H258,"Bailey, Isaac",Tom Brennan,North Branch,PA,,119000
+H259,"Stewart, Omar and Caleb",Priya Raman,South Branch,TX,1,195000
+H260,"Campbell, Daniel",Pamela Wilson,North Branch,NY,2,265000
+H261,"Carter, Nina and Lucas",Elena Duarte,South Branch,NY,3,103000
+H262,"Collins, Caleb and Priya",Marcus Webb,South Branch,FL,2,115000
+H263,"Turner, Victor and Samuel",Tom Brennan,North Branch,VT,3,50000
+H264,"Scott, Victor",Priya Raman,South Branch,IL,2,216000
+H265,"Morgan, Hiroshi and Sara",Pamela Wilson,North Branch,NY,3,241000
+H266,"Roberts, Ethan",Elena Duarte,South Branch,MA,1,86000
+H267,"King, Aisha and Robert",Marcus Webb,South Branch,NY,1,90000
+H268,"Cooper, Omar",Tom Brennan,North Branch,IL,2,125000
+H269,"Martinez, Sara",Priya Raman,South Branch,TN,2,146000
+H270,"Phillips, Daniel",Pamela Wilson,North Branch,WA,1,68000
+H271,"Adams, Victor",Elena Duarte,South Branch,VA,2,60000
+H272,"Morris, Rosa and Olivia",Marcus Webb,South Branch,WI,1,87000
+H273,"Scott, Ana and Mei",Tom Brennan,North Branch,FL,3,127000
+H274,"Parker, Fatima",Priya Raman,South Branch,FL,3,159000
+H275,"Parker, Isaac",Pamela Wilson,North Branch,CA,2,128000
+H276,"Mitchell, Maria and Aisha",Elena Duarte,South Branch,TX,2,230000
+H277,"Sanchez, Grace and James",Marcus Webb,South Branch,CA,3,115000
+H278,"Phillips, Chen and Michael",Tom Brennan,North Branch,NY,3,100000
+H279,"Clark, Ethan and James",Priya Raman,South Branch,PA,1,99000
+H280,"Rogers, Ethan",Pamela Wilson,North Branch,WI,3,126000
+H281,"Bell, Samuel and Maria",Elena Duarte,South Branch,FL,2,141000
+H282,"Bailey, Ethan and Aisha",Marcus Webb,South Branch,TX,2,173000
+H283,"Shah, David and Priya",Tom Brennan,North Branch,GA,2,99000
+H284,"Bell, Caleb and Victor",Priya Raman,South Branch,FL,1,68000
+H285,"Allen, Hiroshi",Pamela Wilson,North Branch,TX,3,139000
+H286,"Edwards, Carlos",Elena Duarte,South Branch,MO,2,136000
+H287,"Walker, Ana and Owen",Marcus Webb,South Branch,AZ,2,135000
+H288,"Evans, Robert",Tom Brennan,North Branch,TX,1,155000
+H289,"Walker, Emily and Fatima",Priya Raman,South Branch,MO,2,187000
+H290,"Mitchell, Aisha",Pamela Wilson,North Branch,OH,2,126000
+H291,"Cook, Owen",Elena Duarte,South Branch,PA,3,150000
+H292,"Rivera, Caleb",Marcus Webb,South Branch,MN,1,111000
+H293,"Morris, Carlos and Rosa",Tom Brennan,North Branch,GA,1,116000
+H294,"Green, Leah and Daniel",Priya Raman,South Branch,CA,3,130000
+H295,"Allen, Fatima",Pamela Wilson,North Branch,OH,1,238000
+H296,"Reed, Daniel and Owen",Elena Duarte,South Branch,FL,1,181000
+H297,"Sanchez, Felix and Robert",Marcus Webb,South Branch,PA,1,72000
+H298,"Lewis, Hiroshi and Hannah",Tom Brennan,North Branch,CA,2,117000
+H299,"Young, Michael and Leah",Priya Raman,South Branch,PA,2,102000
+H300,"Cook, Grace",Pamela Wilson,North Branch,TX,3,115000

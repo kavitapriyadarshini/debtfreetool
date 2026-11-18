@@ -1,0 +1,369 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { StaleNotice, useKeptResult } from "@/components/kept-result";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
+import { compareFor, type CompareColumn, type CompareView } from "@/lib/compare";
+import { formatMoney } from "@/lib/format";
+import { useDemoStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
+import type { PaymentAlert } from "@/lib/types";
+
+const SERIES_COLOR = ["#1d4e89", "#5c6b7a", "#8b98a5", "#16324f", "#6d8cae", "#2f4558", "#a8b4c0", "#3d5a73"];
+
+export function CompareView({ householdId, selectedIds }: { householdId: string; selectedIds: string[] }) {
+  const router = useRouter();
+  const cases = useDemoStore((state) => state.cases);
+  const scenarios = useDemoStore((state) => state.scenarios);
+  const overrides = useDemoStore((state) => state.caseOverrides);
+  const extraPayments = useDemoStore((state) => state.extraPayments);
+  const customLoans = useDemoStore((state) => state.customLoans);
+  const startCase = useDemoStore((state) => state.startCase);
+  const addScenario = useDemoStore((state) => state.addScenario);
+  const recommend = useDemoStore((state) => state.recommend);
+
+  const caseRow = useMemo(() => {
+    const matches = cases.filter((row) => row.household_id === householdId);
+    return matches[matches.length - 1] ?? null;
+  }, [cases, householdId]);
+
+  const kept = useKeptResult(
+    () =>
+      compareFor(
+        householdId,
+        caseRow?.case_id ?? null,
+        { overrides, extraPayments, customLoans },
+        scenarios,
+        selectedIds,
+      ),
+    [householdId, caseRow?.case_id, overrides, extraPayments, customLoans, scenarios, selectedIds],
+  );
+  const view = kept.value;
+
+  const [scheduleId, setScheduleId] = useState<string | null>(null);
+  const [pending, setPending] = useState<CompareColumn | null>(null);
+  const [shown, setShown] = useState<CompareColumn | null>(null);
+  const [acknowledged, setAcknowledged] = useState(false);
+  const [reason, setReason] = useState("");
+
+  const recommended = scenarios.find((row) => row.scenario_id === caseRow?.recommended_scenario_id) ?? null;
+  const activeId = scheduleId && view?.columns.some((column) => column.id === scheduleId)
+    ? scheduleId
+    : view?.columns.find((column) => column.matchesSuggestion)?.id ?? view?.columns[0]?.id ?? null;
+  const active = view?.columns.find((column) => column.id === activeId) ?? null;
+
+  function back() {
+    router.push(`/households/${householdId}/workspace`);
+  }
+
+  function ask(column: CompareColumn) {
+    if (!view) return;
+    if (column.alert !== "none" || !column.matchesSuggestion) {
+      setShown(column);
+      setPending(column);
+      setAcknowledged(false);
+      setReason("");
+      return;
+    }
+    commit(column, view, undefined);
+  }
+
+  function commit(column: CompareColumn, current: CompareView, ackReason: string | undefined) {
+    const opened = startCase(householdId);
+    const scenarioId =
+      column.savedScenarioId ??
+      addScenario({
+        caseId: opened,
+        householdId,
+        name: column.draft.name,
+        strategy: column.draft.strategy,
+        loanSource: column.draft.loanSource,
+        product: column.draft.product,
+        termMonths: column.draft.termMonths,
+        loanAmount: column.draft.loanAmount,
+        loanRate: column.draft.loanRate,
+        debtsPaidOff: column.draft.debtsPaidOff,
+      });
+    const suggested = current.suggestionSavedId ?? (column.matchesSuggestion ? scenarioId : "");
+    recommend(scenarioId, ackReason, {
+      differs: !column.matchesSuggestion,
+      suggestedScenarioId: suggested,
+    });
+    setPending(null);
+    toast.success("Plan recommended");
+  }
+
+  if (!view || view.columns.length === 0) {
+    return (
+      <div className="flex flex-col gap-3">
+        <Button variant="outline" className="w-fit" onClick={back}>
+          Back to scenarios
+        </Button>
+        {kept.failed ? (
+          <StaleNotice failed stale={kept.stale} onRetry={kept.retry} />
+        ) : (
+          <p className="text-sm text-muted-foreground">Choose a scenario to compare.</p>
+        )}
+      </div>
+    );
+  }
+
+  const needsAck = shown != null && shown.alert !== "none";
+  const needsReason = shown != null && (shown.alert !== "none" || !shown.matchesSuggestion);
+  const reasonReady = reason.trim().length > 0;
+  const canSave = shown != null && (!needsAck || acknowledged) && (!needsReason || reasonReady);
+
+  return (
+    <div className="flex min-w-0 flex-col gap-6">
+      <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex min-w-0 flex-col gap-2">
+          <div className="flex flex-wrap items-center gap-3">
+            <Button variant="outline" className="w-fit" onClick={back}>
+              Back to scenarios
+            </Button>
+            {active ? (
+              <Link
+                href={`/households/${householdId}/present?plan=${encodeURIComponent(active.id)}`}
+                className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+              >
+                Present
+              </Link>
+            ) : null}
+          </div>
+          <p className="text-xs font-medium tracking-wide text-muted-foreground">S4</p>
+          <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
+        </div>
+      </div>
+
+      <section className="flex flex-col gap-1 rounded-lg border bg-card p-4" data-testid="suggestion">
+        <p className="text-sm text-muted-foreground">Suggestion</p>
+        <p className="font-medium">{view.suggestionName}</p>
+        <p data-testid="suggestion-why">{view.why}</p>
+        {recommended ? <p className="text-sm text-muted-foreground">Your pick: {recommended.name}</p> : null}
+      </section>
+
+      {view.addedBaselines ? (
+        <p className="text-sm text-muted-foreground">Avalanche and snowball are included next to the loan.</p>
+      ) : null}
+      {view.dropped ? <p className="text-sm text-muted-foreground">Only four plans fit side by side.</p> : null}
+
+      <div className="grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {view.columns.map((column) => {
+          const yours = column.savedScenarioId != null && column.savedScenarioId === caseRow?.recommended_scenario_id;
+          return (
+            <article
+              key={column.id}
+              data-scenario={column.name}
+              className={cn(
+                "flex min-w-0 flex-col gap-3 rounded-lg border bg-card p-4",
+                column.matchesSuggestion && "border-primary",
+              )}
+            >
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <h2 className="font-medium">{column.name}</h2>
+                <div className="flex flex-wrap gap-1">
+                  {column.matchesSuggestion ? (
+                    <span className="rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
+                  ) : null}
+                  {yours ? (
+                    <span className="rounded-full border px-2 py-0.5 text-xs text-muted-foreground">Your pick</span>
+                  ) : null}
+                </div>
+              </div>
+              <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm">
+                <dt className="text-muted-foreground">Debt-free date</dt>
+                <dd>{column.debtFreeDate}</dd>
+                <dt className="text-muted-foreground">Months saved</dt>
+                <dd>{column.monthsSaved}</dd>
+                <dt className="text-muted-foreground">Total interest</dt>
+                <dd>{column.interest}</dd>
+                <dt className="text-muted-foreground">Monthly payment</dt>
+                <dd>{column.monthly}</dd>
+              </dl>
+              <AlertBadge alert={column.alert} label={column.alertLabel} />
+              {column.note ? <p className="text-sm text-muted-foreground">{column.note}</p> : null}
+              <Button variant={yours ? "outline" : "default"} disabled={yours} onClick={() => ask(column)}>
+                {yours ? "Recommended" : "Mark as recommended"}
+              </Button>
+            </article>
+          );
+        })}
+      </div>
+
+      {active ? (
+        <section className="flex min-w-0 flex-col gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-lg font-medium">Schedule</h2>
+            <div className="flex flex-wrap gap-1">
+              {view.columns.map((column) => (
+                <Button
+                  key={column.id}
+                  size="sm"
+                  variant={column.id === active.id ? "default" : "outline"}
+                  aria-pressed={column.id === active.id}
+                  onClick={() => setScheduleId(column.id)}
+                >
+                  {column.name}
+                </Button>
+              ))}
+            </div>
+          </div>
+          <BalanceChart column={active} />
+          <div className="max-h-96 min-w-0 overflow-auto rounded-lg border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Month</TableHead>
+                  {active.series.map((series) => (
+                    <TableHead key={series.key}>{series.name}</TableHead>
+                  ))}
+                  <TableHead>Total</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {active.points.map((point) => (
+                  <TableRow key={point.label}>
+                    <TableCell>{point.label}</TableCell>
+                    {point.balances.map((balance, index) => (
+                      <TableCell key={active.series[index]?.key ?? index}>{formatMoney(balance)}</TableCell>
+                    ))}
+                    <TableCell>{formatMoney(point.balances.reduce((sum, value) => sum + value, 0))}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div>
+            <h3 className="mb-2 font-medium">Payoff order</h3>
+            {active.payoff.length === 0 ? (
+              <p className="text-sm text-muted-foreground">{active.note ?? "No debt is paid off."}</p>
+            ) : (
+              <ol className="flex flex-col gap-1 text-sm">
+                {active.payoff.map((step, index) => (
+                  <li key={`${step.name}-${step.when}-${index}`}>
+                    {index + 1}. {step.name} — {step.when}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        </section>
+      ) : null}
+
+      <Dialog open={pending != null} onOpenChange={(open) => { if (!open) setPending(null); }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Mark as recommended</DialogTitle>
+            <DialogDescription>
+              {shown?.name}. This is saved on the case.
+            </DialogDescription>
+          </DialogHeader>
+          {needsAck ? (
+            <label className="flex items-start gap-2 text-sm">
+              <Checkbox checked={acknowledged} onCheckedChange={(checked) => setAcknowledged(Boolean(checked))} />
+              <span>I acknowledge the payment alert ({shown?.alertLabel}).</span>
+            </label>
+          ) : null}
+          {needsReason ? (
+            <label className="flex flex-col gap-1 text-sm">
+              <span className="text-muted-foreground">
+                {shown && !shown.matchesSuggestion
+                  ? "This is not the suggested plan. Say why you're recommending it."
+                  : "Say why you're recommending a plan with a payment alert."}
+              </span>
+              <Textarea value={reason} onChange={(event) => setReason(event.target.value)} />
+            </label>
+          ) : null}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setPending(null)}>
+              Cancel
+            </Button>
+            <Button
+              disabled={!canSave}
+              onClick={() => {
+                if (shown && canSave) commit(shown, view, reason.trim());
+              }}
+            >
+              Recommend this plan
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+function BalanceChart({ column }: { column: CompareColumn }) {
+  const stride = column.points.length > 240 ? Math.ceil(column.points.length / 240) : 1;
+  const data = column.points.flatMap((point, index) => {
+    if (index % stride !== 0 && index !== column.points.length - 1) return [];
+    const row: Record<string, string | number> = { label: point.label };
+    point.balances.forEach((balance, seriesIndex) => {
+      const key = column.series[seriesIndex]?.key;
+      if (key) row[key] = balance;
+    });
+    return [row];
+  });
+  if (data.length === 0) return null;
+  return (
+    <div className="h-64 w-full min-w-0">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+          <CartesianGrid stroke="var(--border)" vertical={false} />
+          <XAxis dataKey="label" tick={{ fontSize: 11 }} minTickGap={28} />
+          <YAxis tickFormatter={(value: number) => axisMoney(value)} tick={{ fontSize: 11 }} width={56} />
+          <Tooltip formatter={(value) => formatMoney(Number(value ?? 0))} />
+          <Legend />
+          {column.series.map((series, index) => (
+            <Area
+              key={series.key}
+              type="monotone"
+              dataKey={series.key}
+              name={series.name}
+              stackId="balance"
+              stroke={SERIES_COLOR[index % SERIES_COLOR.length]}
+              fill={SERIES_COLOR[index % SERIES_COLOR.length]}
+              fillOpacity={0.85}
+              isAnimationActive={false}
+            />
+          ))}
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function axisMoney(value: number): string {
+  if (Math.abs(value) >= 1000) return `$${Math.round(value / 1000)}k`;
+  return `$${Math.round(value)}`;
+}
+
+function AlertBadge({ alert, label }: { alert: PaymentAlert; label: string }) {
+  if (alert === "none") return <span className="text-sm text-muted-foreground">{label}</span>;
+  return (
+    <span
+      className={cn(
+        "inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-medium",
+        alert === "red" ? "bg-payment-red text-payment-red-foreground" : "bg-payment-amber text-payment-amber-foreground",
+      )}
+    >
+      {label}
+    </span>
+  );
+}

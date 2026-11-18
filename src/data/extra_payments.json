@@ -1,0 +1,872 @@
+[
+  {
+    "extra_id": "E0001",
+    "case_id": "C0001",
+    "household_id": "H01",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0002",
+    "case_id": "C0002",
+    "household_id": "H07",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0003",
+    "case_id": "C0003",
+    "household_id": "H08",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0004",
+    "case_id": "C0003",
+    "household_id": "H08",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0005",
+    "case_id": "C0004",
+    "household_id": "H09",
+    "type": "recurring",
+    "amount": 500,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0006",
+    "case_id": "C0005",
+    "household_id": "H11",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0007",
+    "case_id": "C0006",
+    "household_id": "H15",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0008",
+    "case_id": "C0007",
+    "household_id": "H16",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0009",
+    "case_id": "C0007",
+    "household_id": "H16",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0010",
+    "case_id": "C0008",
+    "household_id": "H04",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0011",
+    "case_id": "C0008",
+    "household_id": "H04",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0012",
+    "case_id": "C0009",
+    "household_id": "H12",
+    "type": "one_off",
+    "amount": 8000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0013",
+    "case_id": "C0009",
+    "household_id": "H12",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0014",
+    "case_id": "C0010",
+    "household_id": "H291",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0015",
+    "case_id": "C0011",
+    "household_id": "H82",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0016",
+    "case_id": "C0012",
+    "household_id": "H199",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0017",
+    "case_id": "C0013",
+    "household_id": "H113",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0018",
+    "case_id": "C0016",
+    "household_id": "H55",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0019",
+    "case_id": "C0017",
+    "household_id": "H74",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0020",
+    "case_id": "C0018",
+    "household_id": "H118",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0021",
+    "case_id": "C0019",
+    "household_id": "H161",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0022",
+    "case_id": "C0019",
+    "household_id": "H161",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0023",
+    "case_id": "C0020",
+    "household_id": "H172",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0024",
+    "case_id": "C0020",
+    "household_id": "H172",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0025",
+    "case_id": "C0021",
+    "household_id": "H175",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0026",
+    "case_id": "C0022",
+    "household_id": "H229",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0027",
+    "case_id": "C0023",
+    "household_id": "H188",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0028",
+    "case_id": "C0023",
+    "household_id": "H188",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0029",
+    "case_id": "C0024",
+    "household_id": "H131",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0030",
+    "case_id": "C0024",
+    "household_id": "H131",
+    "type": "one_off",
+    "amount": 8000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0031",
+    "case_id": "C0026",
+    "household_id": "H200",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0032",
+    "case_id": "C0027",
+    "household_id": "H119",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0033",
+    "case_id": "C0027",
+    "household_id": "H119",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0034",
+    "case_id": "C0028",
+    "household_id": "H23",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0035",
+    "case_id": "C0028",
+    "household_id": "H23",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0036",
+    "case_id": "C0029",
+    "household_id": "H36",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0037",
+    "case_id": "C0029",
+    "household_id": "H36",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0038",
+    "case_id": "C0030",
+    "household_id": "H187",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0039",
+    "case_id": "C0032",
+    "household_id": "H194",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0040",
+    "case_id": "C0033",
+    "household_id": "H273",
+    "type": "recurring",
+    "amount": 200,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0041",
+    "case_id": "C0034",
+    "household_id": "H261",
+    "type": "recurring",
+    "amount": 500,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0042",
+    "case_id": "C0034",
+    "household_id": "H261",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0043",
+    "case_id": "C0036",
+    "household_id": "H80",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0044",
+    "case_id": "C0037",
+    "household_id": "H224",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0045",
+    "case_id": "C0039",
+    "household_id": "H166",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0046",
+    "case_id": "C0042",
+    "household_id": "H89",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0047",
+    "case_id": "C0042",
+    "household_id": "H89",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0048",
+    "case_id": "C0044",
+    "household_id": "H51",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0049",
+    "case_id": "C0045",
+    "household_id": "H142",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0050",
+    "case_id": "C0045",
+    "household_id": "H142",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0051",
+    "case_id": "C0047",
+    "household_id": "H274",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0052",
+    "case_id": "C0047",
+    "household_id": "H274",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0053",
+    "case_id": "C0049",
+    "household_id": "H21",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0054",
+    "case_id": "C0051",
+    "household_id": "H190",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0055",
+    "case_id": "C0052",
+    "household_id": "H109",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0056",
+    "case_id": "C0053",
+    "household_id": "H228",
+    "type": "recurring",
+    "amount": 200,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0057",
+    "case_id": "C0058",
+    "household_id": "H153",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0058",
+    "case_id": "C0058",
+    "household_id": "H153",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0059",
+    "case_id": "C0060",
+    "household_id": "H117",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0060",
+    "case_id": "C0061",
+    "household_id": "H45",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0061",
+    "case_id": "C0064",
+    "household_id": "H126",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0062",
+    "case_id": "C0064",
+    "household_id": "H126",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0063",
+    "case_id": "C0065",
+    "household_id": "H282",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0064",
+    "case_id": "C0066",
+    "household_id": "H280",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0065",
+    "case_id": "C0067",
+    "household_id": "H299",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0066",
+    "case_id": "C0067",
+    "household_id": "H299",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0067",
+    "case_id": "C0069",
+    "household_id": "H258",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0068",
+    "case_id": "C0071",
+    "household_id": "H49",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0069",
+    "case_id": "C0072",
+    "household_id": "H192",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0070",
+    "case_id": "C0072",
+    "household_id": "H192",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0071",
+    "case_id": "C0076",
+    "household_id": "H292",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0072",
+    "case_id": "C0076",
+    "household_id": "H292",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0073",
+    "case_id": "C0078",
+    "household_id": "H86",
+    "type": "one_off",
+    "amount": 5000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0074",
+    "case_id": "C0079",
+    "household_id": "H149",
+    "type": "recurring",
+    "amount": 150,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0075",
+    "case_id": "C0079",
+    "household_id": "H149",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0076",
+    "case_id": "C0080",
+    "household_id": "H136",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0077",
+    "case_id": "C0080",
+    "household_id": "H136",
+    "type": "one_off",
+    "amount": 3000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0078",
+    "case_id": "C0081",
+    "household_id": "H227",
+    "type": "recurring",
+    "amount": 300,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0079",
+    "case_id": "C0082",
+    "household_id": "H276",
+    "type": "one_off",
+    "amount": 12000,
+    "start_month": "2026-12",
+    "end_month": null,
+    "reason": "Savings used to pay down debt upfront"
+  },
+  {
+    "extra_id": "E0080",
+    "case_id": "C0082",
+    "household_id": "H276",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  },
+  {
+    "extra_id": "E0081",
+    "case_id": "C0083",
+    "household_id": "H61",
+    "type": "recurring",
+    "amount": 200,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0082",
+    "case_id": "C0083",
+    "household_id": "H61",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-03",
+    "end_month": null,
+    "reason": "Tax refund in March"
+  },
+  {
+    "extra_id": "E0083",
+    "case_id": "C0086",
+    "household_id": "H53",
+    "type": "one_off",
+    "amount": 2000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0084",
+    "case_id": "C0086",
+    "household_id": "H53",
+    "type": "recurring",
+    "amount": 400,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0085",
+    "case_id": "C0089",
+    "household_id": "H213",
+    "type": "recurring",
+    "amount": 200,
+    "start_month": "2027-01",
+    "end_month": null,
+    "reason": "Spare cash each month"
+  },
+  {
+    "extra_id": "E0086",
+    "case_id": "C0090",
+    "household_id": "H241",
+    "type": "one_off",
+    "amount": 8000,
+    "start_month": "2027-04",
+    "end_month": null,
+    "reason": "Annual bonus in April"
+  },
+  {
+    "extra_id": "E0087",
+    "case_id": "C0092",
+    "household_id": "H47",
+    "type": "recurring",
+    "amount": 100,
+    "start_month": "2027-09",
+    "end_month": null,
+    "reason": "Raise from September"
+  }
+]

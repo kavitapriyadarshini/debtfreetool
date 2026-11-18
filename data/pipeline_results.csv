@@ -1,0 +1,300 @@
+household_id,advisor,branch,fico_used,fico_defaulted,valid_debts,excluded_debts,total_balance,current_monthly,current_months,current_interest,avalanche_months,avalanche_interest,snowball_months,snowball_interest,offers,best_offer,best_plan,best_plan_months,best_plan_interest,best_plan_monthly,best_plan_payment_change_pct,best_plan_payment_alert,months_saved,interest_saved,status,fastapp_preapproved_no_offer,flags,advisor_rank
+H291,Elena Duarte,South Branch,694,False,2,0,34600,612,never,62904099,120,38499,120,38499,0,,Avalanche,120,38499,612,0.0,none,from never,n/a,opportunity,False,payment_below_interest,1
+H231,Elena Duarte,South Branch,646,False,4,0,163950,1944,328,127834,123,74261,123,74690,9,FastApp 12m,FastApp 12m,44,16427,4125,112.2,red,284,111407,opportunity,False,,2
+H161,Elena Duarte,South Branch,739,False,6,0,463050,4587,334,316662,131,135210,131,135994,11,FastApp 12m,FastApp 12m,79,73214,6794,48.1,red,255,243448,opportunity,False,,3
+H131,Elena Duarte,South Branch,724,False,5,0,310200,5530,273,240356,71,78356,71,78387,4,FastApp 12m,FastApp 12m,45,40465,7862,42.2,red,228,199891,opportunity,False,,4
+H36,Elena Duarte,South Branch,738,False,3,0,200300,2262,275,179500,137,109571,137,109571,11,FastApp 12m,FastApp 12m,55,32148,4285,89.4,red,220,147352,opportunity,False,,5
+H261,Elena Duarte,South Branch,711,False,5,0,166850,2729,286,127860,80,49769,80,49811,7,HELOAN Yellow 180m,HELOAN Yellow 180m,74,33455,2729,0.0,none,212,94405,opportunity,False,,6
+H166,Elena Duarte,South Branch,675,False,6,0,268100,6283,235,153454,53,61677,53,62886,4,FastApp 12m,FastApp 12m,29,23987,10415,65.8,red,206,129467,opportunity,False,income_missing,7
+H51,Elena Duarte,South Branch,651,False,6,0,263800,3351,254,93868,97,58617,97,58698,5,FastApp 12m,FastApp 12m,49,20733,5857,74.8,red,205,73135,opportunity,False,,8
+H21,Elena Duarte,South Branch,700,False,4,0,204750,2333,250,100598,120,73441,120,73441,6,FastApp 12m,FastApp 12m,46,16417,4890,109.6,red,204,84181,opportunity,False,,9
+H246,Elena Duarte,South Branch,672,False,3,0,234400,2654,312,133319,108,51575,108,51575,0,,Avalanche,108,51575,2654,0.0,none,204,81744,opportunity,False,,10
+H236,Elena Duarte,South Branch,758,False,6,0,468450,4472,299,465599,170,289457,170,290019,18,FastApp 12m,FastApp 12m,100,145807,6189,38.4,red,199,319792,opportunity,False,,11
+H126,Elena Duarte,South Branch,767,False,4,0,224300,2335,308,102552,116,45466,116,45470,7,HELOAN Yellow 180m,HELOAN Yellow 180m,114,41205,2335,0.0,none,194,61347,opportunity,False,,12
+H09,Elena Duarte,South Branch,731,False,4,0,347900,3474,266,320750,161,209299,161,209368,4,FastApp 12m,FastApp 12m,78,84502,5612,61.5,red,188,236248,opportunity,False,stale_property_value,13
+H216,Elena Duarte,South Branch,678,False,6,0,310950,3436,295,148519,117,89043,117,89052,5,HELOAN Yellow 180m,HELOAN Yellow 180m,108,59224,3436,0.0,none,187,89295,opportunity,False,,14
+H61,Elena Duarte,South Branch,724,False,5,0,266650,2530,326,210612,147,104183,148,107050,7,HELOAN Yellow 180m,HELOAN Yellow 180m,144,96017,2530,0.0,none,182,114595,opportunity,False,,15
+H136,Elena Duarte,South Branch,652,False,6,0,219400,2851,279,153159,111,96577,111,96578,5,HELOAN Yellow 180m,HELOAN Yellow 180m,97,55314,2851,0.0,none,182,97845,opportunity,False,,16
+H46,Elena Duarte,South Branch,664,False,4,0,494100,4562,335,413045,154,206771,154,207236,0,,Avalanche,154,206771,4562,0.0,none,181,206274,opportunity,False,,17
+H221,Elena Duarte,South Branch,734,False,4,0,199100,2103,255,143054,143,99773,143,99773,5,FastApp 12m,FastApp 12m,74,43752,3294,56.6,red,181,99302,opportunity,False,,18
+H251,Elena Duarte,South Branch,740,True,5,0,408650,4165,243,320080,156,237780,156,237790,11,FastApp 12m,FastApp 12m,78,96217,6516,56.4,red,165,223863,opportunity,False,no_fico_any_member,19
+H151,Elena Duarte,South Branch,776,False,5,0,355400,3761,275,135719,114,72110,114,72456,2,HELOAN Pink 240m,HELOAN Pink 240m,110,55291,3761,0.0,none,165,80428,opportunity,False,missing_comfort_zone,20
+H146,Elena Duarte,South Branch,676,False,4,1,318300,2754,263,158013,155,107331,155,107331,9,FastApp 12m,FastApp 12m,100,59366,3810,38.3,red,163,98647,opportunity,False,zero_payment,21
+H256,Elena Duarte,South Branch,799,False,5,0,255650,3099,265,144854,111,86528,111,86556,7,HELOAN Yellow 180m,HELOAN Yellow 180m,102,57695,3099,0.0,none,163,87159,opportunity,False,,22
+H141,Elena Duarte,South Branch,740,False,6,0,289800,3088,219,141538,129,107839,129,108098,11,FastApp 12m,FastApp 12m,58,34215,5621,82.0,red,161,107323,opportunity,False,,23
+H276,Elena Duarte,South Branch,659,False,7,0,336650,3503,291,279066,142,157298,142,158915,0,,Avalanche,142,157298,3503,0.0,none,149,121768,opportunity,False,,24
+H106,Elena Duarte,South Branch,676,False,3,0,655250,4320,334,669360,283,565048,283,565048,4,FastApp 12m,FastApp 12m,189,351696,5345,23.7,amber,145,317664,opportunity,False,,25
+H286,Elena Duarte,South Branch,637,False,5,0,339150,4585,233,188356,96,98597,96,98597,0,,Avalanche,96,98597,4585,0.0,none,137,89759,opportunity,False,,26
+H266,Elena Duarte,South Branch,740,True,6,0,331550,2349,334,234095,207,152435,207,152525,4,HELOAN Pink 240m,HELOAN Pink 240m,198,132310,2349,0.0,none,136,101785,opportunity,False,no_fico_any_member,27
+H111,Elena Duarte,South Branch,740,True,5,0,439550,3974,270,171659,138,105677,138,108607,7,HELOAN Yellow 180m,HELOAN Yellow 180m,135,94011,3974,0.0,none,135,77648,opportunity,False,no_fico_any_member,28
+H296,Elena Duarte,South Branch,709,False,6,0,602850,5374,305,571008,176,338384,177,346879,9,HELOAN Yellow 180m,HELOAN Yellow 180m,172,319084,5374,0.0,none,133,251924,opportunity,False,,29
+H211,Elena Duarte,South Branch,656,False,2,0,248600,2298,199,109149,147,88420,147,88420,5,FastApp 12m,FastApp 12m,67,36075,4304,87.3,red,132,73074,opportunity,False,income_implausible,30
+H121,Elena Duarte,South Branch,801,False,3,0,248650,2008,259,192969,199,150597,199,150597,5,FastApp 12m,FastApp 12m,131,90201,2601,29.5,red,128,102768,opportunity,False,,31
+H86,Elena Duarte,South Branch,645,False,5,0,205350,2296,230,113101,125,81229,125,81234,5,HELOAN Yellow 180m,HELOAN Yellow 180m,112,49959,2296,0.0,none,118,63142,opportunity,False,,32
+H181,Elena Duarte,South Branch,802,False,4,0,252800,2478,272,205644,157,134759,157,134759,0,,Avalanche,157,134759,2478,0.0,none,115,70885,opportunity,False,,33
+H81,Elena Duarte,South Branch,741,False,4,0,194700,2969,190,108954,87,61521,87,61521,7,HELOAN Yellow 180m,HELOAN Yellow 180m,82,46442,2969,0.0,none,108,62512,opportunity,False,,34
+H26,Elena Duarte,South Branch,645,False,6,0,887250,9284,235,601760,135,359338,135,359338,0,,Avalanche,135,359338,9284,0.0,none,100,242422,opportunity,False,,35
+H186,Elena Duarte,South Branch,740,True,2,0,199400,1598,281,137878,182,89887,182,89887,0,,Avalanche,182,89887,1598,0.0,none,99,47991,opportunity,False,no_fico_any_member,36
+H06,Elena Duarte,South Branch,694,False,5,0,308000,3166,221,140792,130,103458,130,103471,7,HELOAN Yellow 180m,HELOAN Yellow 180m,123,80321,3166,0.0,none,98,60471,opportunity,False,,37
+H05,Elena Duarte,South Branch,702,False,6,0,452400,4788,230,316470,140,215475,140,215661,7,HELOAN Pink 240m,HELOAN Pink 240m,133,182063,4788,0.0,none,97,134407,opportunity,False,,38
+H66,Elena Duarte,South Branch,706,False,5,0,138250,2401,121,44431,74,38522,74,38826,4,FastApp 12m,FastApp 12m,27,8837,5512,129.6,red,94,35594,opportunity,False,,39
+H176,Elena Duarte,South Branch,743,False,4,0,366950,2401,287,144551,198,107055,198,107055,0,,Avalanche,198,107055,2401,0.0,none,89,37496,opportunity,False,,40
+H15,Elena Duarte,South Branch,710,False,4,0,252600,2710,220,164229,137,116687,137,116773,0,,Avalanche,137,116687,2710,0.0,none,83,47542,opportunity,False,mortgage_unlinked,41
+H241,Elena Duarte,South Branch,642,False,4,0,545150,4520,233,204140,153,142173,153,142173,0,,Avalanche,153,142173,4520,0.0,none,80,61967,opportunity,False,,42
+H101,Elena Duarte,South Branch,728,False,3,0,304000,2286,278,196724,204,162070,204,162070,0,,Avalanche,204,162070,2286,0.0,none,74,34654,opportunity,False,,43
+H201,Elena Duarte,South Branch,756,False,3,0,432150,2921,338,449369,274,365459,274,366478,0,,Avalanche,274,365459,2921,0.0,none,64,83910,opportunity,False,,44
+H71,Elena Duarte,South Branch,740,True,2,0,411750,3387,205,107752,146,80706,146,80706,0,,Avalanche,146,80706,3387,0.0,none,59,27046,opportunity,False,no_fico_any_member;stale_property_value,45
+H271,Elena Duarte,South Branch,682,False,4,0,51950,1453,69,27536,54,25323,54,25575,4,FastApp 12m,FastApp 12m,12,2857,4567,214.3,red,57,24679,opportunity,False,,46
+H91,Elena Duarte,South Branch,767,False,3,0,392850,2768,299,346291,244,282173,244,282173,0,,Avalanche,244,282173,2768,0.0,none,55,64118,opportunity,False,,47
+H56,Elena Duarte,South Branch,687,False,4,0,538250,4279,215,212770,168,178597,168,179150,0,,Avalanche,168,178597,4279,0.0,none,47,34173,opportunity,False,,48
+H281,Elena Duarte,South Branch,627,False,3,0,39250,1245,49,12063,41,11484,41,11484,4,FastApp 12m,FastApp 12m,13,2132,3417,174.5,red,36,9931,opportunity,False,,49
+H171,Elena Duarte,South Branch,633,False,4,0,57600,2253,65,18393,33,16456,33,16456,0,,Avalanche,33,16456,2253,0.0,none,32,1937,opportunity,False,,50
+H156,Elena Duarte,South Branch,754,False,2,0,192600,1361,208,64188,185,58741,185,58741,0,,Avalanche,185,58741,1361,0.0,none,23,5447,opportunity,True,,51
+H191,Elena Duarte,South Branch,709,False,4,0,71000,2611,61,36973,40,30927,40,31157,0,,Avalanche,40,30927,2611,0.0,none,21,6046,opportunity,False,,52
+H96,Elena Duarte,South Branch,631,False,3,1,56200,1270,72,14391,55,13417,55,13419,0,,Avalanche,55,13417,1270,0.0,none,17,974,opportunity,False,zero_payment,53
+H196,Elena Duarte,South Branch,700,False,4,0,65100,2821,44,16217,29,14652,29,14652,0,,Avalanche,29,14652,2821,0.0,none,15,1565,opportunity,False,,54
+H41,Elena Duarte,South Branch,560,False,2,0,43050,1149,64,14520,50,14318,50,14318,0,,Avalanche,50,14318,1149,0.0,none,14,202,opportunity,False,,55
+H116,Elena Duarte,South Branch,778,False,2,0,37200,1116,73,30307,60,28710,60,28710,0,,Avalanche,60,28710,1116,0.0,none,13,1597,opportunity,False,,56
+H226,Elena Duarte,South Branch,673,False,4,0,43350,1301,62,26026,53,25499,53,25510,0,,Avalanche,53,25499,1301,0.0,none,9,527,opportunity,False,,57
+H31,Elena Duarte,South Branch,695,False,3,0,35100,1052,60,20712,53,20389,53,20398,0,,Avalanche,53,20389,1052,0.0,none,7,323,opportunity,False,,58
+H206,Elena Duarte,South Branch,656,False,2,0,33200,760,54,6093,52,6089,52,6089,0,,Avalanche,52,6089,760,0.0,none,2,4,opportunity,False,,59
+H12,Elena Duarte,South Branch,806,False,1,0,388000,2105,251,139543,251,139543,251,139543,0,,Current path,251,139543,2105,0.0,none,0,0,no_action_needed,False,,60
+H76,Elena Duarte,South Branch,738,False,1,0,262200,1943,220,165157,220,165157,220,165157,0,,Current path,220,165157,1943,0.0,none,0,0,no_action_needed,True,,61
+H82,Marcus Webb,South Branch,802,False,4,0,60900,2035,never,1019754181,41,21059,41,21070,0,,Avalanche,41,21059,2035,0.0,none,from never,n/a,opportunity,False,payment_below_interest,1
+H257,Marcus Webb,South Branch,725,False,7,1,251600,3552,322,168494,95,85819,96,85867,11,FastApp 12m,FastApp 12m,35,21247,7972,124.4,red,287,147247,opportunity,False,zero_payment,2
+H172,Marcus Webb,South Branch,687,False,5,0,152000,2259,318,98814,91,53105,91,53345,11,FastApp 12m,FastApp 12m,33,12383,5005,121.6,red,285,86431,opportunity,False,,3
+H297,Marcus Webb,South Branch,700,False,6,0,186050,2495,313,100009,99,60232,99,60232,12,FastApp 12m,FastApp 12m,43,18962,4875,95.4,red,270,81047,opportunity,False,,4
+H187,Marcus Webb,South Branch,741,False,7,0,560000,7087,339,578143,107,195770,107,197620,18,FastApp 12m,FastApp 12m,94,163687,7769,9.6,none,245,414456,opportunity,False,,5
+H27,Marcus Webb,South Branch,663,False,7,0,402300,5276,339,350182,105,147820,105,149252,10,HELOAN Yellow 180m,HELOAN Yellow 180m,101,129031,5276,0.0,none,238,221151,opportunity,False,,6
+H182,Marcus Webb,South Branch,645,False,4,0,285450,2881,289,153795,134,99055,134,99055,5,FastApp 12m,FastApp 12m,62,35830,5223,81.3,red,227,117965,opportunity,False,mortgage_unlinked,7
+H142,Marcus Webb,South Branch,815,False,4,0,240900,3301,297,91136,84,34699,84,35717,0,,Avalanche,84,34699,3301,0.0,none,213,56437,opportunity,False,,8
+H17,Marcus Webb,South Branch,695,False,4,0,324900,3382,323,165175,120,80163,120,80360,5,HELOAN Yellow 180m,HELOAN Yellow 180m,114,59691,3382,0.0,none,209,105484,opportunity,False,,9
+H167,Marcus Webb,South Branch,753,False,6,0,219450,3106,242,137304,103,99621,103,99867,11,FastApp 12m,FastApp 12m,35,18054,6976,124.6,red,207,119250,opportunity,False,,10
+H117,Marcus Webb,South Branch,679,False,4,0,215750,2020,287,112960,136,57112,136,57112,5,FastApp 12m,FastApp 12m,101,41017,2563,26.9,red,186,71943,opportunity,False,,11
+H282,Marcus Webb,South Branch,676,False,8,0,197700,3950,245,76377,61,43216,62,43422,0,,Avalanche,61,43216,3950,0.0,none,184,33161,opportunity,False,,12
+H287,Marcus Webb,South Branch,727,False,7,0,614550,4874,344,412564,170,211330,170,211345,7,HELOAN Pink 240m,HELOAN Pink 240m,163,178696,4874,0.0,none,181,233868,opportunity,False,,13
+H32,Marcus Webb,South Branch,818,False,7,0,316150,4185,221,110340,93,70348,93,70811,4,FastApp 12m,FastApp 12m,42,25010,8155,94.9,red,179,85330,opportunity,False,stale_property_value,14
+H42,Marcus Webb,South Branch,648,False,3,0,268550,2558,258,128803,134,72679,134,72679,5,FastApp 12m,FastApp 12m,88,42872,3574,39.7,red,170,85931,opportunity,False,,15
+H47,Marcus Webb,South Branch,725,False,5,0,483350,5540,298,390054,129,228816,129,230183,0,,Avalanche,129,228816,5540,0.0,none,169,161238,opportunity,False,,16
+H272,Marcus Webb,South Branch,664,False,3,0,205000,1809,255,85407,151,67811,151,67811,5,FastApp 12m,FastApp 12m,95,34579,2548,40.9,red,160,50828,opportunity,False,,17
+H132,Marcus Webb,South Branch,656,False,4,0,155400,3135,216,90076,63,40638,63,41382,5,HELOAN Yellow 180m,HELOAN Yellow 180m,59,28900,3135,0.0,none,157,61176,opportunity,False,,18
+H162,Marcus Webb,South Branch,716,False,7,0,613800,6520,290,631414,144,321965,145,329612,9,HELOAN Pink 240m,HELOAN Pink 240m,140,296712,6520,0.0,none,150,334702,opportunity,False,missing_comfort_zone,19
+H57,Marcus Webb,South Branch,740,True,3,0,139600,1614,247,61220,114,43774,114,43774,7,HELOAN Yellow 180m,HELOAN Yellow 180m,101,22391,1614,0.0,none,146,38829,opportunity,False,no_fico_any_member,20
+H122,Marcus Webb,South Branch,709,False,5,0,152300,2171,234,110993,99,62387,99,62430,5,HELOAN Yellow 180m,HELOAN Yellow 180m,91,44562,2171,0.0,none,143,66431,opportunity,False,,21
+H87,Marcus Webb,South Branch,668,False,4,0,319500,2837,292,178502,150,105157,151,107752,0,,Avalanche,150,105157,2837,0.0,none,142,73345,opportunity,False,,22
+H37,Marcus Webb,South Branch,722,False,3,0,301650,4414,226,215287,90,92967,90,92967,7,HELOAN Yellow 180m,HELOAN Yellow 180m,88,82951,4414,0.0,none,138,132336,opportunity,False,,23
+H262,Marcus Webb,South Branch,700,False,6,0,289600,2906,267,131351,129,84293,129,84331,0,,Avalanche,129,84293,2906,0.0,none,138,47058,opportunity,False,,24
+H97,Marcus Webb,South Branch,740,True,5,0,343500,3852,242,130129,110,78191,110,78268,7,HELOAN Yellow 180m,HELOAN Yellow 180m,105,60824,3852,0.0,none,137,69305,opportunity,False,no_fico_any_member,25
+H62,Marcus Webb,South Branch,686,False,5,0,266500,2343,298,177161,162,111000,167,124275,0,,Avalanche,162,111000,2343,0.0,none,136,66161,opportunity,False,,26
+H242,Marcus Webb,South Branch,740,True,6,0,273350,4136,219,171547,88,87486,88,88752,7,HELOAN Yellow 180m,HELOAN Yellow 180m,84,69943,4136,0.0,none,135,101604,opportunity,False,no_fico_any_member,27
+H267,Marcus Webb,South Branch,766,False,3,0,256400,1864,235,85678,176,69985,176,69985,5,FastApp 12m,FastApp 12m,101,33696,2882,54.6,red,134,51982,opportunity,False,,28
+H202,Marcus Webb,South Branch,618,False,8,0,449600,4970,241,277285,124,163176,124,164802,0,,Avalanche,124,163176,4970,0.0,none,117,114109,opportunity,False,,29
+H277,Marcus Webb,South Branch,724,False,6,0,392800,4610,233,292165,127,189052,127,189103,7,HELOAN Yellow 180m,HELOAN Yellow 180m,118,146690,4610,0.0,none,115,145475,opportunity,False,,30
+H107,Marcus Webb,South Branch,737,False,5,0,203050,2598,206,69719,97,48599,97,48915,7,HELOAN Yellow 180m,HELOAN Yellow 180m,91,30905,2598,0.0,none,115,38814,opportunity,False,,31
+H197,Marcus Webb,South Branch,712,False,5,0,215100,2537,228,95678,113,69664,113,69673,0,,Avalanche,113,69664,2537,0.0,none,115,26014,opportunity,False,mortgage_unlinked,32
+H127,Marcus Webb,South Branch,647,False,3,0,189100,1591,249,96047,162,67505,162,67505,0,,Avalanche,162,67505,1591,0.0,none,87,28542,opportunity,False,,33
+H72,Marcus Webb,South Branch,790,False,7,0,482000,5034,205,242642,134,190282,134,192148,7,HELOAN Yellow 180m,HELOAN Yellow 180m,129,162940,5034,0.0,none,76,79702,opportunity,False,,34
+H112,Marcus Webb,South Branch,664,False,5,0,111300,2850,121,31287,47,19950,47,20150,0,,Avalanche,47,19950,2850,0.0,none,74,11337,opportunity,False,,35
+H137,Marcus Webb,South Branch,666,False,3,0,315650,2003,321,235713,259,202601,259,202601,5,HELOAN Yellow 180m,HELOAN Yellow 180m,254,193022,2003,0.0,none,67,42691,opportunity,False,,36
+H237,Marcus Webb,South Branch,721,False,6,0,486750,4421,209,207509,149,168119,149,168119,2,HELOAN Pink 240m,HELOAN Pink 240m,144,149610,4421,0.0,none,65,57899,opportunity,False,,37
+H207,Marcus Webb,South Branch,740,True,2,0,294000,2141,312,299182,248,235417,248,235417,0,,Avalanche,248,235417,2141,0.0,none,64,63765,opportunity,False,no_fico_any_member,38
+H227,Marcus Webb,South Branch,802,False,2,0,220700,1800,220,86344,160,65528,160,65528,0,,Avalanche,160,65528,1800,0.0,none,60,20816,opportunity,False,,39
+H232,Marcus Webb,South Branch,739,False,6,0,84200,1805,121,37617,61,25272,62,26342,0,,Avalanche,61,25272,1805,0.0,none,60,12345,opportunity,False,zero_rate,40
+H292,Marcus Webb,South Branch,733,False,4,0,90800,2046,121,46281,64,40061,64,40102,0,,Avalanche,64,40061,2046,0.0,none,57,6220,opportunity,False,,41
+H102,Marcus Webb,South Branch,740,True,4,0,58950,1728,67,31124,52,30179,52,30203,4,FastApp 12m,FastApp 12m,12,3044,5166,199.0,red,55,28080,opportunity,False,no_fico_any_member,42
+H157,Marcus Webb,South Branch,740,True,4,0,449300,3387,242,218463,190,191822,190,191861,0,,Avalanche,190,191822,3387,0.0,none,52,26641,opportunity,True,no_fico_any_member,43
+H52,Marcus Webb,South Branch,701,False,4,0,86050,1713,120,34806,70,32940,70,32940,0,,Avalanche,70,32940,1713,0.0,none,50,1866,opportunity,False,,44
+H177,Marcus Webb,South Branch,742,False,5,0,56000,2377,61,27130,32,19836,32,20018,5,FastApp 12m,FastApp 12m,17,6518,3858,62.3,red,44,20612,opportunity,False,,45
+H222,Marcus Webb,South Branch,617,False,4,0,71350,2447,56,36484,43,33248,43,33403,5,FastApp 12m,FastApp 12m,20,11177,4286,75.2,red,36,25307,opportunity,False,,46
+H192,Marcus Webb,South Branch,730,False,4,0,76200,1967,55,23285,51,23160,51,23183,4,FastApp 12m,FastApp 12m,19,5203,4340,120.6,red,36,18082,opportunity,False,,47
+H92,Marcus Webb,South Branch,656,False,2,0,360050,2900,261,346091,232,310583,232,310583,0,,Avalanche,232,310583,2900,0.0,none,29,35508,opportunity,False,,48
+H67,Marcus Webb,South Branch,725,False,3,0,82550,1142,121,25100,93,22733,93,22733,0,,Avalanche,93,22733,1142,0.0,none,28,2367,opportunity,False,,49
+H77,Marcus Webb,South Branch,658,False,2,0,33000,1219,69,24273,43,18574,43,18574,0,,Avalanche,43,18574,1219,0.0,none,26,5699,opportunity,False,,50
+H147,Marcus Webb,South Branch,648,False,2,0,28450,860,65,9862,43,8495,43,8495,0,,Avalanche,43,8495,860,0.0,none,22,1367,opportunity,False,income_missing,51
+H212,Marcus Webb,South Branch,740,True,4,0,80500,2056,71,29840,53,28159,53,28159,0,,Avalanche,53,28159,2056,0.0,none,18,1681,opportunity,False,no_fico_any_member,52
+H217,Marcus Webb,South Branch,727,False,6,0,88750,2561,74,61996,58,58587,58,58754,0,,Avalanche,58,58587,2561,0.0,none,16,3409,opportunity,False,,53
+H247,Marcus Webb,South Branch,822,False,5,0,78050,1832,70,26959,57,24833,57,24872,0,,Avalanche,57,24833,1832,0.0,none,13,2126,opportunity,False,,54
+H152,Marcus Webb,South Branch,712,False,4,0,59350,1544,58,11039,46,10241,46,10247,0,,Avalanche,46,10241,1544,0.0,none,12,798,opportunity,False,,55
+H252,Marcus Webb,South Branch,771,False,2,0,21250,536,51,3004,46,2925,46,2925,0,,Avalanche,46,2925,536,0.0,none,5,79,opportunity,False,,56
+H07,Pamela Wilson,North Branch,774,False,3,1,22000,526,never,1803076251,106,33595,107,33977,0,,Avalanche,106,33595,526,0.0,none,from never,n/a,opportunity,False,payment_below_interest;zero_payment,1
+H55,Pamela Wilson,North Branch,691,False,4,0,64100,2888,never,6278794777,31,23715,31,24091,0,,Avalanche,31,23715,2888,0.0,none,from never,n/a,opportunity,False,payment_below_interest,2
+H175,Pamela Wilson,North Branch,581,False,6,0,90400,2384,never,15908865,54,36440,54,36573,0,,Avalanche,54,36440,2384,0.0,none,from never,n/a,opportunity,False,payment_below_interest,3
+H200,Pamela Wilson,North Branch,687,False,7,0,376250,5202,347,297083,93,105808,93,105878,18,FastApp 12m,FastApp 12m,47,44147,9111,75.1,red,300,252936,opportunity,False,,4
+H265,Pamela Wilson,North Branch,697,False,9,0,567500,6642,346,433596,114,183119,117,208404,13,FastApp 12m,FastApp 12m,58,73213,11175,68.2,red,288,360383,opportunity,False,possible_duplicate,5
+H80,Pamela Wilson,North Branch,740,True,6,0,464500,5768,331,446706,110,166201,110,166265,4,FastApp 12m,FastApp 12m,72,98223,7907,37.1,red,259,348483,opportunity,False,no_fico_any_member,6
+H35,Pamela Wilson,North Branch,740,True,6,0,398100,4786,341,416489,115,150736,115,151299,7,HELOAN Yellow 180m,HELOAN Yellow 180m,112,136215,4786,0.0,none,229,280274,opportunity,False,no_fico_any_member,7
+H90,Pamela Wilson,North Branch,679,False,6,0,510750,5334,295,180524,113,88030,113,88169,4,FastApp 12m,FastApp 12m,77,51110,7387,38.5,red,218,129414,opportunity,False,,8
+H190,Pamela Wilson,North Branch,685,False,7,0,297000,4263,271,238820,95,107834,96,110200,5,FastApp 12m,FastApp 12m,58,54631,6164,44.6,red,213,184189,opportunity,False,,9
+H145,Pamela Wilson,North Branch,698,False,4,0,215300,1936,291,199698,176,124919,176,125049,4,FastApp 12m,FastApp 12m,98,61119,2824,45.9,red,193,138579,opportunity,False,,10
+H45,Pamela Wilson,North Branch,695,False,6,0,243950,2741,302,97632,112,62304,113,63254,0,,Avalanche,112,62304,2741,0.0,none,190,35328,opportunity,False,possible_duplicate,11
+H280,Pamela Wilson,North Branch,717,False,6,0,287600,3431,267,205295,121,126599,121,127276,4,FastApp 12m,FastApp 12m,79,73204,4571,33.2,red,188,132091,opportunity,False,,12
+H215,Pamela Wilson,North Branch,691,False,4,0,278550,3082,319,313901,145,166916,145,166916,2,HELOAN Pink 240m,HELOAN Pink 240m,132,127378,3082,0.0,none,187,186523,opportunity,False,income_implausible,13
+H275,Pamela Wilson,North Branch,740,True,6,0,518350,4653,272,304316,151,182561,151,182580,18,FastApp 12m,FastApp 12m,87,87401,6965,49.7,red,185,216915,opportunity,False,no_fico_any_member,14
+H155,Pamela Wilson,North Branch,646,False,6,0,325050,4963,266,182829,85,92038,85,92038,0,,Avalanche,85,92038,4963,0.0,none,181,90791,opportunity,False,,15
+H225,Pamela Wilson,North Branch,713,False,5,0,497900,4577,340,557163,169,272737,169,272737,2,HELOAN Pink 240m,HELOAN Pink 240m,165,256106,4577,0.0,none,175,301057,opportunity,False,,16
+H20,Pamela Wilson,North Branch,716,False,9,0,504150,5880,264,321156,120,195988,120,199029,13,FastApp 12m,FastApp 12m,93,139184,6942,18.1,amber,171,181972,opportunity,False,,17
+H230,Pamela Wilson,North Branch,653,False,6,0,356650,3438,246,123922,128,81114,128,81116,4,FastApp 12m,FastApp 12m,81,44447,4991,45.2,red,165,79475,opportunity,False,,18
+H185,Pamela Wilson,North Branch,716,False,4,0,352850,3590,244,253557,146,168295,146,168614,9,FastApp 12m,FastApp 12m,81,77435,5361,49.3,red,163,176122,opportunity,False,,19
+H285,Pamela Wilson,North Branch,692,False,5,0,318500,5448,230,134731,71,67031,71,67033,0,,Avalanche,71,67031,5448,0.0,none,159,67700,opportunity,False,mortgage_unlinked,20
+H270,Pamela Wilson,North Branch,696,False,4,0,140900,1985,194,82525,104,64888,104,64889,12,FastApp 12m,FastApp 12m,36,12932,4335,118.4,red,158,69593,opportunity,False,,21
+H60,Pamela Wilson,North Branch,840,False,7,0,421700,5342,258,226764,101,113707,101,115325,0,,Avalanche,101,113707,5342,0.0,none,157,113057,opportunity,False,,22
+H110,Pamela Wilson,North Branch,639,False,6,0,335900,4245,219,149886,100,86036,100,86757,4,FastApp 12m,FastApp 12m,62,47138,6185,45.7,red,157,102748,opportunity,False,,23
+H165,Pamela Wilson,North Branch,627,False,6,0,428050,4192,293,318567,146,182467,146,182517,0,,Avalanche,146,182467,4192,0.0,none,147,136100,opportunity,False,,24
+H295,Pamela Wilson,North Branch,646,False,4,0,145900,1623,266,109597,122,50864,122,50884,0,,Avalanche,122,50864,1623,0.0,none,144,58733,opportunity,False,,25
+H160,Pamela Wilson,North Branch,686,False,4,0,222850,2019,322,197376,179,137565,182,143341,0,,Avalanche,179,137565,2019,0.0,none,143,59811,opportunity,False,,26
+H245,Pamela Wilson,North Branch,651,False,6,0,374550,3216,281,134002,139,70719,139,70741,0,,Avalanche,139,70719,3216,0.0,none,142,63283,opportunity,False,,27
+H125,Pamela Wilson,North Branch,604,False,4,0,248550,2391,292,205860,152,112552,152,114579,0,,Avalanche,152,112552,2391,0.0,none,140,93308,opportunity,False,,28
+H300,Pamela Wilson,North Branch,656,False,4,0,350600,2633,378,441307,241,281335,251,309827,0,,Avalanche,241,281335,2633,0.0,none,137,159972,opportunity,False,,29
+H115,Pamela Wilson,North Branch,740,True,10,0,643100,7929,232,225409,98,127879,98,129248,7,HELOAN Pink 240m,HELOAN Pink 240m,96,110676,7929,0.0,none,136,114733,opportunity,False,no_fico_any_member,30
+H65,Pamela Wilson,North Branch,582,False,6,0,470300,6336,203,263796,98,146842,98,147500,5,FastApp 12m,FastApp 12m,70,94712,8090,27.7,red,133,169084,opportunity,False,,31
+H290,Pamela Wilson,North Branch,730,False,4,0,253900,2371,264,112565,135,65812,135,65848,2,HELOAN Pink 240m,HELOAN Pink 240m,131,54630,2371,0.0,none,133,57935,opportunity,False,,32
+H75,Pamela Wilson,North Branch,725,False,5,0,320750,4073,234,198385,108,117662,108,117662,7,HELOAN Yellow 180m,HELOAN Yellow 180m,104,99580,4073,0.0,none,130,98805,opportunity,False,,33
+H135,Pamela Wilson,North Branch,765,False,8,0,459150,5398,192,165196,107,113705,107,113732,4,FastApp 12m,FastApp 12m,65,55174,8031,48.8,red,127,110022,opportunity,False,,34
+H95,Pamela Wilson,North Branch,661,False,2,0,203650,1830,289,152341,165,97688,165,97688,0,,Avalanche,165,97688,1830,0.0,none,124,54653,opportunity,False,,35
+H205,Pamela Wilson,North Branch,655,False,6,0,587350,5508,258,248682,138,169506,138,169682,0,,Avalanche,138,169506,5508,0.0,none,120,79176,opportunity,False,,36
+H150,Pamela Wilson,North Branch,630,False,4,0,224600,2526,251,204923,134,111441,134,111444,0,,Avalanche,134,111441,2526,0.0,none,117,93482,opportunity,False,,37
+H255,Pamela Wilson,North Branch,686,False,4,0,220550,2737,187,76674,99,50103,99,50103,4,FastApp 12m,FastApp 12m,70,30799,3639,33.0,red,117,45875,opportunity,False,zero_rate,38
+H220,Pamela Wilson,North Branch,647,False,4,0,263700,3675,197,64383,82,34994,82,34994,5,HELOAN Yellow 180m,HELOAN Yellow 180m,80,29688,3675,0.0,none,117,34695,opportunity,False,,39
+H01,Pamela Wilson,North Branch,720,False,5,0,337000,3620,240,230358,134,145717,134,145800,7,HELOAN Yellow 180m,HELOAN Yellow 180m,129,127511,3620,0.0,none,111,102847,opportunity,False,,40
+H25,Pamela Wilson,North Branch,698,False,7,0,519600,6249,216,324026,114,191250,115,193829,0,,Avalanche,114,191250,6249,0.0,none,102,132776,opportunity,False,,41
+H140,Pamela Wilson,North Branch,644,False,6,0,275950,3389,202,108927,104,74628,104,75155,0,,Avalanche,104,74628,3389,0.0,none,98,34299,opportunity,False,,42
+H50,Pamela Wilson,North Branch,740,True,6,0,400850,4150,213,135928,119,91840,120,93066,7,HELOAN Yellow 180m,HELOAN Yellow 180m,116,77353,4150,0.0,none,97,58575,opportunity,False,no_fico_any_member,43
+H13,Pamela Wilson,North Branch,748,False,4,0,277500,2871,226,180291,141,124696,141,124709,5,HELOAN Yellow 180m,HELOAN Yellow 180m,134,105979,2871,0.0,none,92,74312,opportunity,False,,44
+H180,Pamela Wilson,North Branch,642,False,4,0,402050,2555,306,189707,217,150651,217,150651,0,,Avalanche,217,150651,2555,0.0,none,89,39056,opportunity,False,,45
+H195,Pamela Wilson,North Branch,695,False,3,0,161200,1528,235,123920,162,86202,162,86202,0,,Avalanche,162,86202,1528,0.0,none,73,37718,opportunity,True,,46
+H235,Pamela Wilson,North Branch,740,True,4,0,274700,2683,200,104554,129,70299,129,70299,0,,Avalanche,129,70299,2683,0.0,none,71,34255,opportunity,False,no_fico_any_member,47
+H210,Pamela Wilson,North Branch,675,False,4,0,345100,2105,289,142504,218,112045,218,112045,0,,Avalanche,218,112045,2105,0.0,none,71,30459,opportunity,False,,48
+H130,Pamela Wilson,North Branch,673,False,8,0,192800,4503,121,68494,55,52881,55,53754,0,,Avalanche,55,52881,4503,0.0,none,66,15613,opportunity,False,,49
+H120,Pamela Wilson,North Branch,636,False,7,0,127300,2729,121,52454,64,45707,64,46094,0,,Avalanche,64,45707,2729,0.0,none,57,6747,opportunity,False,,50
+H10,Pamela Wilson,North Branch,738,False,4,1,565300,5031,228,399596,178,329970,179,330519,7,HELOAN Yellow 180m,HELOAN Yellow 180m,172,297895,5031,0.0,none,56,101701,opportunity,False,income_missing;zero_payment,51
+H02,Pamela Wilson,North Branch,762,False,5,0,50500,1482,73,23575,49,21188,49,21228,5,FastApp 12m,FastApp 12m,17,2943,3268,120.5,red,56,20632,opportunity,False,,52
+H250,Pamela Wilson,North Branch,712,False,5,0,83950,1616,121,33601,68,24337,68,24564,0,,Avalanche,68,24337,1616,0.0,none,53,9264,opportunity,False,,53
+H105,Pamela Wilson,North Branch,760,False,3,0,459500,4454,187,190450,136,144043,136,144043,0,,Avalanche,136,144043,4454,0.0,none,51,46407,opportunity,False,,54
+H240,Pamela Wilson,North Branch,590,False,3,0,42000,1105,63,24889,61,24738,61,24807,4,FastApp 12m,FastApp 12m,18,3041,2582,133.7,red,45,21848,opportunity,False,,55
+H30,Pamela Wilson,North Branch,723,False,7,0,145750,2714,121,72094,78,65498,78,65536,0,,Avalanche,78,65498,2714,0.0,none,43,6596,opportunity,False,,56
+H100,Pamela Wilson,North Branch,710,False,6,0,145600,2672,121,68619,79,63935,79,64187,0,,Avalanche,79,63935,2672,0.0,none,42,4684,opportunity,False,,57
+H85,Pamela Wilson,North Branch,674,False,4,0,34100,1454,68,16302,33,12476,33,12633,0,,Avalanche,33,12476,1454,0.0,none,35,3826,opportunity,False,,58
+H70,Pamela Wilson,North Branch,740,False,5,0,100500,2842,67,20026,42,17527,42,17527,4,FastApp 12m,FastApp 12m,34,11058,3292,15.8,amber,33,8968,opportunity,False,,59
+H260,Pamela Wilson,North Branch,704,False,2,0,56450,1309,55,14113,54,14108,54,14108,4,FastApp 12m,FastApp 12m,27,3537,2299,75.6,red,28,10576,opportunity,False,,60
+H40,Pamela Wilson,North Branch,725,False,5,0,68200,2227,70,39396,45,31146,45,31825,0,,Avalanche,45,31146,2227,0.0,none,25,8250,opportunity,False,,61
+H170,Pamela Wilson,North Branch,676,False,4,0,62200,2018,60,17949,39,15362,39,16086,0,,Avalanche,39,15362,2018,0.0,none,21,2587,opportunity,False,,62
+H199,Priya Raman,South Branch,677,False,6,0,294600,4166,322,243282,92,84706,92,86849,9,FastApp 12m,FastApp 12m,60,47427,5748,38.0,red,262,195855,opportunity,False,,1
+H74,Priya Raman,South Branch,776,False,6,0,233850,3440,336,181352,86,61105,86,61671,7,HELOAN Yellow 180m,HELOAN Yellow 180m,82,47027,3440,0.0,none,254,134325,opportunity,False,,2
+H229,Priya Raman,South Branch,640,False,5,0,207750,2843,280,143432,107,95495,107,95514,10,FastApp 12m,FastApp 12m,44,25446,5383,89.3,red,236,117986,opportunity,False,,3
+H119,Priya Raman,South Branch,768,False,6,0,271000,3205,314,115031,102,53718,102,53729,5,FastApp 12m,FastApp 12m,78,37920,3984,24.3,amber,236,77111,opportunity,False,,4
+H194,Priya Raman,South Branch,719,False,5,0,372850,3501,305,192684,137,103371,137,103685,12,FastApp 12m,FastApp 12m,80,49871,5349,52.8,red,225,142813,opportunity,False,,5
+H224,Priya Raman,South Branch,644,False,5,0,588050,5146,305,495214,173,300241,173,300241,9,FastApp 12m,FastApp 12m,82,123489,8776,70.5,red,223,371725,opportunity,False,,6
+H89,Priya Raman,South Branch,565,False,6,0,283650,3267,266,133128,112,79494,112,81821,4,FastApp 12m,FastApp 12m,49,21921,6294,92.7,red,217,111207,opportunity,False,,7
+H274,Priya Raman,South Branch,746,False,5,0,314700,2531,331,349655,216,230173,216,230238,4,FastApp 12m,FastApp 12m,123,117374,3519,39.0,red,208,232281,opportunity,False,,8
+H109,Priya Raman,South Branch,753,False,5,0,163300,2035,310,94183,102,43678,102,43698,0,,Avalanche,102,43678,2035,0.0,none,208,50505,opportunity,False,stale_property_value,9
+H39,Priya Raman,South Branch,698,False,6,0,166900,3014,227,80741,72,49620,72,49877,11,FastApp 12m,FastApp 12m,33,12482,5509,82.8,red,194,68259,opportunity,False,,10
+H69,Priya Raman,South Branch,733,False,7,0,579650,5677,269,373066,141,216755,141,219975,13,FastApp 12m,FastApp 12m,97,136705,7402,30.4,red,172,236361,opportunity,False,,11
+H299,Priya Raman,South Branch,670,False,8,0,298600,4243,206,110934,89,76239,89,76246,9,FastApp 12m,FastApp 12m,38,23832,8540,101.3,red,168,87102,opportunity,False,,12
+H144,Priya Raman,South Branch,763,False,4,0,652150,5231,322,391308,167,218174,167,218174,7,HELOAN Yellow 180m,HELOAN Yellow 180m,163,199554,5231,0.0,none,159,191754,opportunity,False,,13
+H244,Priya Raman,South Branch,634,False,4,0,268100,2231,305,104728,146,55854,146,55854,0,,Avalanche,146,55854,2231,0.0,none,159,48874,opportunity,False,,14
+H184,Priya Raman,South Branch,716,False,5,0,319300,2643,302,128993,147,68404,147,68404,7,HELOAN Yellow 180m,HELOAN Yellow 180m,144,58970,2643,0.0,none,158,70023,opportunity,False,,15
+H124,Priya Raman,South Branch,726,False,3,0,428900,2933,283,252709,215,200510,215,200510,6,FastApp 12m,FastApp 12m,129,106221,4174,42.3,red,154,146488,opportunity,False,,16
+H34,Priya Raman,South Branch,735,False,2,0,234400,2271,229,178868,163,134687,163,134687,6,FastApp 12m,FastApp 12m,77,56774,3821,68.3,red,152,122094,opportunity,False,,17
+H204,Priya Raman,South Branch,725,False,4,0,260300,3107,203,87604,103,59397,104,61042,12,FastApp 12m,FastApp 12m,53,21946,5361,72.5,red,150,65658,opportunity,False,,18
+H19,Priya Raman,South Branch,740,True,5,0,402700,5136,216,147056,93,72041,93,72041,10,FastApp 12m,FastApp 12m,72,48442,6286,22.4,amber,144,98614,opportunity,False,income_missing;no_fico_any_member,19
+H294,Priya Raman,South Branch,714,False,4,0,240550,2860,246,124197,106,60383,106,60383,2,HELOAN Pink 240m,HELOAN Pink 240m,103,52924,2860,0.0,none,143,71273,opportunity,False,,20
+H239,Priya Raman,South Branch,633,False,4,0,320700,3936,215,161344,104,87213,104,87213,4,FastApp 12m,FastApp 12m,84,65880,4609,17.1,amber,131,95464,opportunity,False,,21
+H169,Priya Raman,South Branch,577,False,7,0,733200,9488,234,573777,108,288324,109,292770,0,,Avalanche,108,288324,9488,0.0,none,126,285453,opportunity,False,,22
+H64,Priya Raman,South Branch,698,False,4,0,238000,2988,219,168633,119,116497,119,116500,7,HELOAN Yellow 180m,HELOAN Yellow 180m,106,76565,2988,0.0,none,113,92068,opportunity,False,,23
+H134,Priya Raman,South Branch,703,False,8,0,566950,7745,198,371530,105,241764,105,242666,7,HELOAN Yellow 180m,HELOAN Yellow 180m,98,187997,7745,0.0,none,100,183533,opportunity,False,,24
+H174,Priya Raman,South Branch,710,False,4,0,380100,5025,199,239465,102,128244,102,128880,0,,Avalanche,102,128244,5025,0.0,none,97,111221,opportunity,False,,25
+H154,Priya Raman,South Branch,725,False,4,0,91100,1865,120,36489,65,29645,65,29645,4,FastApp 12m,FastApp 12m,23,6785,4382,135.0,red,97,29704,opportunity,False,,26
+H84,Priya Raman,South Branch,614,False,2,0,262800,2263,318,332087,222,239370,222,239370,0,,Avalanche,222,239370,2263,0.0,none,96,92717,opportunity,False,,27
+H79,Priya Raman,South Branch,609,False,4,0,255950,2753,234,190738,140,128803,140,128896,0,,Avalanche,140,128803,2753,0.0,none,94,61935,opportunity,False,,28
+H189,Priya Raman,South Branch,667,False,8,0,138200,3605,120,39649,46,25991,46,26071,4,FastApp 12m,FastApp 12m,28,10144,5316,47.5,red,92,29505,opportunity,False,,29
+H289,Priya Raman,South Branch,674,False,6,0,581450,5785,213,222899,128,157383,128,157525,5,HELOAN Yellow 180m,HELOAN Yellow 180m,126,147098,5785,0.0,none,87,75801,opportunity,False,,30
+H114,Priya Raman,South Branch,674,False,3,0,449850,3899,267,373747,185,268214,185,268214,0,,Avalanche,185,268214,3899,0.0,none,82,105533,opportunity,False,,31
+H99,Priya Raman,South Branch,717,False,3,0,295550,3048,215,195954,138,125051,138,125051,0,,Avalanche,138,125051,3048,0.0,none,77,70903,opportunity,False,,32
+H49,Priya Raman,South Branch,819,False,3,1,197000,2035,185,51205,115,36326,115,36326,2,HELOAN Pink 240m,HELOAN Pink 240m,113,32506,2035,0.0,none,72,18699,opportunity,False,zero_payment,33
+H59,Priya Raman,South Branch,755,False,4,0,232350,2471,180,65756,115,49504,115,49577,7,HELOAN Yellow 180m,HELOAN Yellow 180m,109,36116,2471,0.0,none,71,29640,opportunity,False,,34
+H139,Priya Raman,South Branch,700,False,7,0,667650,6608,204,318454,140,254222,140,256197,7,HELOAN Yellow 180m,HELOAN Yellow 180m,135,223148,6608,0.0,none,69,95306,opportunity,False,,35
+H259,Priya Raman,South Branch,698,False,3,0,501500,5516,193,291022,126,193372,126,193372,0,,Avalanche,126,193372,5516,0.0,none,67,97650,opportunity,False,,36
+H264,Priya Raman,South Branch,749,False,6,0,214400,4697,121,57806,56,46753,56,47126,0,,Avalanche,56,46753,4697,0.0,none,65,11053,opportunity,False,,37
+H179,Priya Raman,South Branch,698,False,6,0,500600,5710,180,254646,125,207946,125,208964,2,HELOAN Pink 240m,HELOAN Pink 240m,116,160289,5710,0.0,none,64,94357,opportunity,False,,38
+H219,Priya Raman,South Branch,788,False,3,0,296300,2371,240,159358,177,122830,177,122830,0,,Avalanche,177,122830,2371,0.0,none,63,36528,opportunity,False,,39
+H279,Priya Raman,South Branch,625,False,3,0,43600,1940,73,33904,32,18465,33,18522,5,FastApp 12m,FastApp 12m,12,2544,3845,98.2,red,61,31360,opportunity,False,,40
+H164,Priya Raman,South Branch,700,False,2,0,28450,855,73,28441,67,28291,67,28291,4,FastApp 12m,FastApp 12m,12,1564,2501,192.5,red,61,26877,opportunity,False,,41
+H159,Priya Raman,South Branch,698,False,2,0,24900,748,59,18729,59,18728,59,18728,5,FastApp 12m,FastApp 12m,12,1453,2196,193.6,red,47,17276,opportunity,False,,42
+H149,Priya Raman,South Branch,740,True,4,0,98300,1526,121,27807,81,23841,81,23841,0,,Avalanche,81,23841,1526,0.0,none,40,3966,opportunity,False,no_fico_any_member,43
+H234,Priya Raman,South Branch,743,False,5,0,123950,2133,121,57304,83,51959,83,51965,0,,Avalanche,83,51959,2133,0.0,none,38,5345,opportunity,False,,44
+H54,Priya Raman,South Branch,648,False,2,0,342850,2553,257,250745,220,216897,220,216897,0,,Avalanche,220,216897,2553,0.0,none,37,33848,opportunity,True,,45
+H284,Priya Raman,South Branch,716,False,5,0,62350,2142,72,19420,35,11955,36,12967,0,,Avalanche,35,11955,2142,0.0,none,37,7465,opportunity,False,,46
+H214,Priya Raman,South Branch,722,False,3,0,77900,2300,50,18192,42,17954,42,17960,4,FastApp 12m,FastApp 12m,19,4237,4553,98.0,red,31,13955,opportunity,False,,47
+H254,Priya Raman,South Branch,697,False,2,0,24400,333,120,7605,94,6601,94,6601,0,,Avalanche,94,6601,333,0.0,none,26,1004,opportunity,False,,48
+H44,Priya Raman,South Branch,693,False,3,0,78950,2375,68,36574,47,32075,47,32075,0,,Avalanche,47,32075,2375,0.0,none,21,4499,opportunity,False,,49
+H24,Priya Raman,South Branch,609,False,3,0,20600,740,62,14564,43,10960,43,11138,0,,Avalanche,43,10960,740,0.0,none,19,3604,opportunity,False,,50
+H269,Priya Raman,South Branch,708,False,5,0,113050,3703,57,36204,39,29529,39,29764,0,,Avalanche,39,29529,3703,0.0,none,18,6675,opportunity,False,,51
+H104,Priya Raman,South Branch,712,False,4,0,62000,2173,57,23692,39,22620,39,22620,0,,Avalanche,39,22620,2173,0.0,none,18,1072,opportunity,False,,52
+H129,Priya Raman,South Branch,594,False,4,0,56150,1706,68,31226,51,29297,51,29424,0,,Avalanche,51,29297,1706,0.0,none,17,1929,opportunity,False,,53
+H29,Priya Raman,South Branch,709,False,2,0,47300,1124,55,10113,52,10047,52,10047,0,,Avalanche,52,10047,1124,0.0,none,3,66,opportunity,False,income_implausible,54
+H94,Priya Raman,South Branch,631,False,1,0,58200,692,121,24960,121,24960,121,24960,0,,Current path,121,24960,692,0.0,none,0,0,no_action_needed,True,,55
+H209,Priya Raman,South Branch,664,False,1,1,11450,344,50,5468,50,5468,50,5468,0,,Current path,50,5468,344,0.0,none,0,0,no_action_needed,False,zero_payment,56
+H249,Priya Raman,South Branch,682,False,1,0,12650,128,121,2748,121,2748,121,2748,0,,Current path,121,2748,128,0.0,none,0,0,no_action_needed,False,,57
+H113,Tom Brennan,North Branch,750,False,7,0,246450,3121,398,278065,114,107729,116,114287,0,,Avalanche,114,107729,3121,0.0,none,284,170336,opportunity,False,,1
+H118,Tom Brennan,North Branch,656,False,6,0,305500,3735,336,124146,96,52136,97,53333,9,FastApp 12m,FastApp 12m,56,23801,5935,58.9,red,280,100345,opportunity,False,,2
+H188,Tom Brennan,North Branch,771,False,7,0,473750,4983,328,481529,148,259821,148,260827,11,FastApp 12m,FastApp 12m,82,123748,7289,46.3,red,246,357781,opportunity,False,,3
+H23,Tom Brennan,North Branch,662,False,7,0,369850,4417,309,282259,117,143287,117,143445,10,FastApp 12m,FastApp 12m,68,70280,6556,48.4,red,241,211979,opportunity,False,,4
+H273,Tom Brennan,North Branch,677,False,7,0,247000,4978,293,123150,61,54278,61,54333,5,HELOAN Yellow 180m,HELOAN Yellow 180m,56,27743,4978,0.0,none,237,95407,opportunity,False,,5
+H63,Tom Brennan,North Branch,670,False,5,0,372200,4144,301,363986,138,197589,138,197678,10,FastApp 12m,FastApp 12m,66,77956,6864,65.6,red,235,286030,opportunity,False,,6
+H108,Tom Brennan,North Branch,709,False,4,0,222500,2486,339,246332,142,128567,142,128826,7,HELOAN Yellow 180m,HELOAN Yellow 180m,123,81579,2486,0.0,none,216,164753,opportunity,False,,7
+H183,Tom Brennan,North Branch,729,False,6,0,281700,4637,274,147913,77,70800,77,71489,7,HELOAN Yellow 180m,HELOAN Yellow 180m,70,39651,4637,0.0,none,204,108262,opportunity,False,,8
+H228,Tom Brennan,North Branch,692,False,4,0,207900,2927,300,186670,100,84364,100,84364,0,,Avalanche,100,84364,2927,0.0,none,200,102306,opportunity,False,,9
+H153,Tom Brennan,North Branch,760,False,3,0,361100,3591,338,365309,144,154160,144,154160,7,HELOAN Yellow 180m,HELOAN Yellow 180m,140,141554,3591,0.0,none,198,223755,opportunity,False,,10
+H58,Tom Brennan,North Branch,691,False,4,0,230150,2547,292,122952,122,80092,122,80119,7,HELOAN Yellow 180m,HELOAN Yellow 180m,107,42105,2547,0.0,none,185,80847,opportunity,False,,11
+H123,Tom Brennan,North Branch,740,False,5,0,297400,3543,224,116739,108,82408,108,82439,11,FastApp 12m,FastApp 12m,41,20310,7823,120.8,red,183,96429,opportunity,False,,12
+H178,Tom Brennan,North Branch,802,False,6,0,315000,3355,285,183096,126,107031,129,116699,7,HELOAN Yellow 180m,HELOAN Yellow 180m,115,70714,3355,0.0,none,170,112382,opportunity,False,possible_duplicate,13
+H128,Tom Brennan,North Branch,729,False,5,0,328700,3909,247,153089,106,82884,106,84210,4,FastApp 12m,FastApp 12m,80,54071,4813,23.1,amber,167,99018,opportunity,False,,14
+H238,Tom Brennan,North Branch,794,False,5,0,366200,5515,250,269334,88,117324,88,117324,7,HELOAN Yellow 180m,HELOAN Yellow 180m,86,105020,5515,0.0,none,164,164314,opportunity,False,,15
+H138,Tom Brennan,North Branch,740,True,3,0,425900,3738,259,350077,186,267733,186,267733,11,FastApp 12m,FastApp 12m,97,117708,5608,50.0,red,162,232369,opportunity,False,no_fico_any_member,16
+H213,Tom Brennan,North Branch,771,False,7,0,446100,4462,307,385850,151,223913,151,224871,7,HELOAN Yellow 180m,HELOAN Yellow 180m,145,200684,4462,0.0,none,162,185166,opportunity,False,,17
+H163,Tom Brennan,North Branch,650,False,6,0,188450,3060,228,65323,75,39119,75,39481,5,HELOAN Yellow 180m,HELOAN Yellow 180m,71,26099,3060,0.0,none,157,39224,opportunity,False,,18
+H98,Tom Brennan,North Branch,608,False,4,0,495150,4888,309,368099,153,250181,153,250854,0,,Avalanche,153,250181,4888,0.0,none,156,117918,opportunity,False,,19
+H223,Tom Brennan,North Branch,683,False,4,0,333000,2944,294,183767,157,128778,157,128778,7,HELOAN Yellow 180m,HELOAN Yellow 180m,140,76240,2944,0.0,none,154,107527,opportunity,False,,20
+H288,Tom Brennan,North Branch,644,False,5,0,407700,6353,233,234577,80,95299,80,95605,0,,Avalanche,80,95299,6353,0.0,none,153,139278,opportunity,False,,21
+H03,Tom Brennan,North Branch,740,True,5,0,269800,3228,209,148233,115,99520,115,99783,4,FastApp 12m,FastApp 12m,64,44942,4981,54.3,red,145,103291,opportunity,False,no_fico_any_member,22
+H168,Tom Brennan,North Branch,734,False,6,0,300750,4652,190,174337,87,103175,88,105886,11,FastApp 12m,FastApp 12m,46,39422,7504,61.3,red,144,134915,opportunity,False,,23
+H158,Tom Brennan,North Branch,659,False,3,0,554050,3160,321,357482,272,305432,272,305432,5,FastApp 12m,FastApp 12m,184,194657,4084,29.2,red,137,162825,opportunity,False,,24
+H233,Tom Brennan,North Branch,680,False,5,0,237350,2898,233,134622,110,80762,111,81609,2,HELOAN Pink 240m,HELOAN Pink 240m,103,61046,2898,0.0,none,130,73576,opportunity,False,,25
+H08,Tom Brennan,North Branch,652,False,4,0,309900,3318,255,249386,138,147011,138,147029,5,HELOAN Yellow 180m,HELOAN Yellow 180m,132,126376,3318,0.0,none,123,123010,opportunity,False,income_implausible;zero_rate,26
+H78,Tom Brennan,North Branch,720,False,5,0,221800,3440,194,113445,85,67415,85,69062,7,HELOAN Yellow 180m,HELOAN Yellow 180m,80,51090,3440,0.0,none,114,62355,opportunity,False,,27
+H193,Tom Brennan,North Branch,685,False,5,0,208600,2031,242,73372,128,50855,128,50874,0,,Avalanche,128,50855,2031,0.0,none,114,22517,opportunity,False,,28
+H258,Tom Brennan,North Branch,628,False,3,0,456350,3715,299,390410,191,252797,197,274286,0,,Avalanche,191,252797,3715,0.0,none,108,137613,opportunity,False,missing_comfort_zone,29
+H88,Tom Brennan,North Branch,728,False,4,0,70450,1689,121,48585,69,46061,69,46070,4,FastApp 12m,FastApp 12m,17,4409,4448,163.4,red,104,44176,opportunity,False,,30
+H68,Tom Brennan,North Branch,706,False,4,0,272600,3692,196,195801,111,134783,111,134970,7,HELOAN Pink 240m,HELOAN Pink 240m,99,91355,3692,0.0,none,97,104446,opportunity,False,,31
+H14,Tom Brennan,North Branch,742,False,5,0,348000,3456,238,248557,152,174623,152,174630,2,HELOAN Pink 240m,HELOAN Pink 240m,145,151991,3456,0.0,none,93,96566,opportunity,False,,32
+H253,Tom Brennan,North Branch,781,False,6,0,469500,3947,272,354456,184,255914,184,255930,4,HELOAN Pink 240m,HELOAN Pink 240m,181,241894,3947,0.0,none,91,112562,opportunity,False,,33
+H53,Tom Brennan,North Branch,728,False,6,0,560250,5455,212,183229,129,139977,129,140555,5,HELOAN Yellow 180m,HELOAN Yellow 180m,122,104122,5455,0.0,none,90,79107,opportunity,False,,34
+H198,Tom Brennan,North Branch,764,False,6,0,310400,3396,199,99679,113,71488,113,71488,7,HELOAN Yellow 180m,HELOAN Yellow 180m,109,56815,3396,0.0,none,90,42864,opportunity,False,,35
+H48,Tom Brennan,North Branch,816,False,4,0,58950,2071,120,22782,36,13992,36,13992,0,,Avalanche,36,13992,2071,0.0,none,84,8790,opportunity,False,,36
+H203,Tom Brennan,North Branch,766,False,5,0,300350,3581,187,113942,106,76162,106,76162,7,HELOAN Yellow 180m,HELOAN Yellow 180m,104,69813,3581,0.0,none,83,44129,opportunity,False,,37
+H173,Tom Brennan,North Branch,800,False,8,0,121950,2876,120,40564,54,30651,54,31271,0,,Avalanche,54,30651,2876,0.0,none,66,9913,opportunity,False,,38
+H298,Tom Brennan,North Branch,654,False,4,0,115000,2499,121,30645,58,27687,58,27687,0,,Avalanche,58,27687,2499,0.0,none,63,2958,opportunity,False,,39
+H73,Tom Brennan,North Branch,621,False,4,0,78400,1797,120,25940,57,23873,57,23873,0,,Avalanche,57,23873,1797,0.0,none,63,2067,opportunity,False,,40
+H18,Tom Brennan,North Branch,765,False,3,0,279900,2638,225,207754,166,156001,166,156001,0,,Avalanche,166,156001,2638,0.0,none,59,51753,opportunity,False,,41
+H38,Tom Brennan,North Branch,769,False,2,0,241800,1628,252,88981,194,72412,194,72412,0,,Avalanche,194,72412,1628,0.0,none,58,16569,opportunity,False,,42
+H11,Tom Brennan,North Branch,740,True,4,0,51900,1562,69,35523,54,32197,55,32597,4,FastApp 12m,FastApp 12m,12,2680,4548,191.2,red,57,32843,opportunity,False,no_fico_any_member;possible_duplicate,43
+H243,Tom Brennan,North Branch,751,False,4,0,125300,2508,121,42795,66,38713,66,38763,0,,Avalanche,66,38713,2508,0.0,none,55,4082,opportunity,False,,44
+H218,Tom Brennan,North Branch,684,False,2,0,174150,1616,189,62587,143,56328,143,56328,0,,Avalanche,143,56328,1616,0.0,none,46,6259,opportunity,False,,45
+H208,Tom Brennan,North Branch,711,False,2,0,202950,1668,226,114098,182,99343,182,99343,0,,Avalanche,182,99343,1668,0.0,none,44,14755,opportunity,False,,46
+H133,Tom Brennan,North Branch,682,False,2,0,50850,821,121,15896,79,13890,79,13890,0,,Avalanche,79,13890,821,0.0,none,42,2006,opportunity,False,,47
+H283,Tom Brennan,North Branch,703,False,2,0,27250,870,51,13501,47,13167,47,13167,4,FastApp 12m,FastApp 12m,12,1498,2396,175.4,red,39,12003,opportunity,False,,48
+H143,Tom Brennan,North Branch,693,False,3,0,61000,2385,50,25189,35,22054,35,22072,4,FastApp 12m,FastApp 12m,12,3150,5346,124.2,red,38,22039,opportunity,False,,49
+H278,Tom Brennan,North Branch,723,False,3,0,71250,2492,72,33355,38,23060,39,25268,0,,Avalanche,38,23060,2492,0.0,none,34,10295,opportunity,False,,50
+H293,Tom Brennan,North Branch,646,False,4,1,85950,2465,75,37788,47,29490,48,31669,0,,Avalanche,47,29490,2465,0.0,none,28,8298,opportunity,False,zero_payment,51
+H268,Tom Brennan,North Branch,796,False,2,0,45750,2100,56,21197,30,16382,30,16382,0,,Avalanche,30,16382,2100,0.0,none,26,4815,opportunity,False,,52
+H148,Tom Brennan,North Branch,714,False,6,0,95750,3778,57,21370,31,18459,31,18502,0,,Avalanche,31,18459,3778,0.0,none,26,2911,opportunity,False,,53
+H248,Tom Brennan,North Branch,565,False,4,0,58500,2180,55,8048,31,7197,31,7197,0,,Avalanche,31,7197,2180,0.0,none,24,851,opportunity,False,zero_rate,54
+H04,Tom Brennan,North Branch,740,True,4,0,23400,643,74,12206,54,11088,54,11099,0,,Avalanche,54,11088,643,0.0,none,20,1118,opportunity,True,no_fico_any_member,55
+H33,Tom Brennan,North Branch,747,False,3,0,25100,1089,42,4139,27,3978,27,3978,0,,Avalanche,27,3978,1089,0.0,none,15,161,opportunity,False,,56
+H83,Tom Brennan,North Branch,623,False,3,1,29200,729,73,14692,60,13929,60,13938,0,,Avalanche,60,13929,729,0.0,none,13,763,opportunity,False,zero_payment,57
+H16,Tom Brennan,North Branch,728,False,3,0,34300,1102,60,20019,48,18504,48,18534,0,,Avalanche,48,18504,1102,0.0,none,12,1515,opportunity,True,missing_comfort_zone,58
+H28,Tom Brennan,North Branch,648,False,2,0,20350,717,54,11013,43,10191,43,10191,0,,Avalanche,43,10191,717,0.0,none,11,822,opportunity,False,,59
+H103,Tom Brennan,North Branch,740,True,2,0,14600,438,75,15782,69,15472,69,15472,0,,Avalanche,69,15472,438,0.0,none,6,310,opportunity,False,no_fico_any_member,60
+H263,Tom Brennan,North Branch,684,False,2,0,39150,1174,57,24105,54,24001,54,24001,0,,Avalanche,54,24001,1174,0.0,none,3,104,opportunity,False,,61
+H43,Tom Brennan,North Branch,775,False,1,0,158000,1181,182,56907,182,56907,182,56907,0,,Current path,182,56907,1181,0.0,none,0,0,no_action_needed,False,,62
+H93,Tom Brennan,North Branch,665,False,1,0,2700,81,61,2200,61,2200,61,2200,0,,Current path,61,2200,81,0.0,none,0,0,no_action_needed,False,,63

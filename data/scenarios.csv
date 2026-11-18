@@ -1,0 +1,279 @@
+scenario_id,case_id,household_id,name,strategy,loan_source,product,term_months,loan_amount,loan_rate,debts_paid_off,extra_payment_ids,created_by,is_recommended,advisor_reason
+S0001,C0001,H01,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0002,C0001,H01,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,35000,7.875,H01-D02;H01-D03;H01-D04,,Pamela Wilson,False,
+S0003,C0001,H01,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,35000,7.875,H01-D02;H01-D03;H01-D04,E0001,Pamela Wilson,True,Tool suggestion (fastest plan)
+S0004,C0002,H07,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0005,C0002,H07,Avalanche + extras,avalanche,none,,,0,,,E0002,Pamela Wilson,False,
+S0006,C0003,H08,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0007,C0003,H08,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,35400,7.875,H08-D03;H08-D04,,Tom Brennan,False,
+S0008,C0003,H08,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,35400,7.875,H08-D03;H08-D04,E0003;E0004,Tom Brennan,True,Tool suggestion (fastest plan)
+S0009,C0004,H09,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0010,C0004,H09,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,37900,10.0,H09-D02;H09-D03;H09-D04,,Elena Duarte,False,
+S0011,C0004,H09,FastApp 3-yr,avalanche,product,FastApp,36,37900,10.5,H09-D02;H09-D03;H09-D04,,Elena Duarte,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0012,C0004,H09,FastApp 3-yr + extras,avalanche,product,FastApp,36,37900,10.5,H09-D02;H09-D03;H09-D04,E0005,Elena Duarte,False,
+S0013,C0005,H11,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0014,C0005,H11,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,39250,9.4,H11-D01;H11-D03;H11-D04,,Tom Brennan,False,
+S0015,C0005,H11,FastApp 3-yr,avalanche,product,FastApp,36,39250,9.9,H11-D01;H11-D03;H11-D04,,Tom Brennan,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0016,C0005,H11,FastApp 3-yr + extras,avalanche,product,FastApp,36,39250,9.9,H11-D01;H11-D03;H11-D04,E0006,Tom Brennan,False,
+S0017,C0006,H15,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0018,C0006,H15,Avalanche + extras,avalanche,none,,,0,,,E0007,Elena Duarte,True,Tool suggestion (fastest plan)
+S0019,C0007,H16,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0020,C0007,H16,Avalanche + extras,avalanche,none,,,0,,,E0008;E0009,Tom Brennan,False,Tool suggestion (fastest plan)
+S0021,C0008,H04,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0022,C0008,H04,Avalanche + extras,avalanche,none,,,0,,,E0010;E0011,Tom Brennan,True,Tool suggestion (fastest plan)
+S0023,C0009,H12,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0024,C0009,H12,Avalanche + extras,avalanche,none,,,0,,,E0012;E0013,Elena Duarte,True,Tool suggestion (fastest plan)
+S0025,C0010,H291,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0026,C0010,H291,Avalanche + extras,avalanche,none,,,0,,,E0014,Elena Duarte,False,
+S0027,C0011,H82,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0028,C0011,H82,Avalanche + extras,avalanche,none,,,0,,,E0015,Marcus Webb,False,
+S0029,C0012,H199,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0030,C0012,H199,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,44700,10.0,H199-D05;H199-D04;H199-D02;H199-D03,,Priya Raman,False,
+S0031,C0012,H199,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,44700,7.875,H199-D05;H199-D04;H199-D02;H199-D03,,Priya Raman,False,
+S0032,C0012,H199,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,44700,7.875,H199-D05;H199-D04;H199-D02;H199-D03,E0016,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0033,C0013,H113,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0034,C0013,H113,Avalanche + extras,avalanche,none,,,0,,,E0017,Tom Brennan,False,
+S0035,C0014,H231,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0036,C0014,H231,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,37650,10.0,H231-D02;H231-D03,,Elena Duarte,False,
+S0037,C0014,H231,FastApp 3-yr,avalanche,product,FastApp,36,37650,10.5,H231-D02;H231-D03,,Elena Duarte,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0038,C0015,H257,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0039,C0015,H257,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,78350,10.0,H257-D03;H257-D08;H257-D02;H257-D04;H257-D05,,Marcus Webb,False,
+S0040,C0015,H257,FastApp 3-yr,avalanche,product,FastApp,36,78350,10.5,H257-D03;H257-D08;H257-D02;H257-D04;H257-D05,,Marcus Webb,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0041,C0016,H55,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0042,C0016,H55,Avalanche + extras,avalanche,none,,,0,,,E0018,Pamela Wilson,False,Tool suggestion (fastest plan)
+S0043,C0017,H74,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0044,C0017,H74,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,59450,7.875,H74-D04;H74-D05;H74-D03;H74-D02;H74-D06,,Priya Raman,False,
+S0045,C0017,H74,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,59450,7.875,H74-D04;H74-D05;H74-D03;H74-D02;H74-D06,E0019,Priya Raman,False,Tool suggestion (fastest plan)
+S0046,C0017,H74,Local credit union 3-yr,avalanche,custom,L001,36,59450,10.15,H74-D04;H74-D05;H74-D03;H74-D02;H74-D06,,Priya Raman,False,
+S0047,C0018,H118,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0048,C0018,H118,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,46800,10.0,H118-D04;H118-D02;H118-D03,,Tom Brennan,False,
+S0049,C0018,H118,FastApp 2-yr,avalanche,product,FastApp,24,46800,10.2,H118-D04;H118-D02;H118-D03,,Tom Brennan,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0050,C0018,H118,FastApp 2-yr + extras,avalanche,product,FastApp,24,46800,10.2,H118-D04;H118-D02;H118-D03,E0020,Tom Brennan,False,
+S0051,C0019,H161,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0052,C0019,H161,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,52200,9.4,H161-D02;H161-D03;H161-D05;H161-D04,,Elena Duarte,False,
+S0053,C0019,H161,FastApp 2-yr,avalanche,product,FastApp,24,52200,9.6,H161-D02;H161-D03;H161-D05;H161-D04,,Elena Duarte,False,
+S0054,C0019,H161,FastApp 2-yr + extras,avalanche,product,FastApp,24,52200,9.6,H161-D02;H161-D03;H161-D05;H161-D04,E0021;E0022,Elena Duarte,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0055,C0020,H172,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0056,C0020,H172,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,49450,9.4,H172-D03;H172-D05;H172-D04,,Marcus Webb,False,
+S0057,C0020,H172,HELOAN Pink 20-yr,avalanche,product,HELOAN Pink,240,70250,8.0,H172-D02;H172-D03;H172-D05;H172-D04,,Marcus Webb,False,
+S0058,C0020,H172,HELOAN Pink 20-yr + extras,avalanche,product,HELOAN Pink,240,70250,8.0,H172-D02;H172-D03;H172-D05;H172-D04,E0023;E0024,Marcus Webb,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0059,C0021,H175,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0060,C0021,H175,Avalanche + extras,avalanche,none,,,0,,,E0025,Pamela Wilson,False,Tool suggestion (fastest plan)
+S0061,C0022,H229,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0062,C0022,H229,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,43650,10.6,H229-D05;H229-D03;H229-D04,,Priya Raman,False,
+S0063,C0022,H229,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,67350,7.875,H229-D05;H229-D03;H229-D02;H229-D04,,Priya Raman,False,
+S0064,C0022,H229,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,67350,7.875,H229-D05;H229-D03;H229-D02;H229-D04,E0026,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0065,C0023,H188,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0066,C0023,H188,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,41200,10.0,H188-D02;H188-D05;H188-D04;H188-D03,,Tom Brennan,False,
+S0067,C0023,H188,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,41200,7.875,H188-D02;H188-D05;H188-D04;H188-D03,,Tom Brennan,False,
+S0068,C0023,H188,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,41200,7.875,H188-D02;H188-D05;H188-D04;H188-D03,E0027;E0028,Tom Brennan,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0069,C0023,H188,Employer credit union 3-yr,avalanche,custom,L002,36,25400,8.69,H188-D02;H188-D05;H188-D04,,Tom Brennan,False,
+S0070,C0024,H131,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0071,C0024,H131,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,70650,9.4,H131-D02;H131-D05;H131-D04;H131-D03,,Elena Duarte,False,
+S0072,C0024,H131,FastApp 2-yr,avalanche,product,FastApp,24,70650,9.6,H131-D02;H131-D05;H131-D04;H131-D03,,Elena Duarte,False,
+S0073,C0024,H131,FastApp 2-yr + extras,avalanche,product,FastApp,24,70650,9.6,H131-D02;H131-D05;H131-D04;H131-D03,E0029;E0030,Elena Duarte,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0074,C0025,H297,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0075,C0025,H297,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,41100,10.6,H297-D06;H297-D05;H297-D04,,Marcus Webb,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0076,C0025,H297,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,85700,7.875,H297-D02;H297-D06;H297-D05;H297-D04;H297-D03,,Marcus Webb,False,
+S0077,C0026,H200,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0078,C0026,H200,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,77800,9.4,H200-D03;H200-D04;H200-D05;H200-D06,,Pamela Wilson,False,
+S0079,C0026,H200,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,77800,7.875,H200-D03;H200-D04;H200-D05;H200-D06,,Pamela Wilson,False,
+S0080,C0026,H200,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,77800,7.875,H200-D03;H200-D04;H200-D05;H200-D06,E0031,Pamela Wilson,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0081,C0027,H119,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0082,C0027,H119,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,14500,10.6,H119-D02;H119-D03;H119-D06,,Priya Raman,False,
+S0083,C0027,H119,FastApp 2-yr,avalanche,product,FastApp,24,14500,10.8,H119-D02;H119-D03;H119-D06,,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0084,C0027,H119,FastApp 2-yr + extras,avalanche,product,FastApp,24,14500,10.8,H119-D02;H119-D03;H119-D06,E0032;E0033,Priya Raman,False,
+S0085,C0028,H23,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0086,C0028,H23,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,37350,10.6,H23-D03;H23-D05;H23-D07,,Tom Brennan,False,
+S0087,C0028,H23,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,117500,7.875,H23-D02;H23-D03;H23-D05;H23-D07;H23-D04;H23-D06,,Tom Brennan,False,
+S0088,C0028,H23,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,117500,7.875,H23-D02;H23-D03;H23-D05;H23-D07;H23-D04;H23-D06,E0034;E0035,Tom Brennan,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0089,C0028,H23,Local credit union 3-yr,avalanche,custom,L003,36,56900,9.03,H23-D03;H23-D05;H23-D07;H23-D04,,Tom Brennan,False,
+S0090,C0029,H36,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0091,C0029,H36,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,35700,9.4,H36-D02;H36-D03,,Elena Duarte,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0092,C0029,H36,FastApp 3-yr,avalanche,product,FastApp,36,35700,9.9,H36-D02;H36-D03,,Elena Duarte,False,
+S0093,C0029,H36,FastApp 3-yr + extras,avalanche,product,FastApp,36,35700,9.9,H36-D02;H36-D03,E0036;E0037,Elena Duarte,False,
+S0094,C0030,H187,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0095,C0030,H187,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,40450,9.4,H187-D03;H187-D04;H187-D05,,Marcus Webb,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0096,C0030,H187,FastApp 1-yr + extras,avalanche,product,FastApp,12,40450,9.4,H187-D03;H187-D04;H187-D05,E0038,Marcus Webb,False,
+S0097,C0031,H265,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0098,C0031,H265,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,72100,9.4,H265-D05;H265-D06;H265-D03;H265-D04;H265-D07,,Pamela Wilson,False,
+S0099,C0031,H265,HELOAN Yellow 15-yr,avalanche,product,HELOAN Yellow,180,72100,7.875,H265-D05;H265-D06;H265-D03;H265-D04;H265-D07,,Pamela Wilson,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0100,C0032,H194,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0101,C0032,H194,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,31750,10.6,H194-D03;H194-D02;H194-D04,,Priya Raman,False,
+S0102,C0032,H194,FastApp 3-yr,avalanche,product,FastApp,36,31750,11.1,H194-D03;H194-D02;H194-D04,,Priya Raman,False,
+S0103,C0032,H194,FastApp 3-yr + extras,avalanche,product,FastApp,36,31750,11.1,H194-D03;H194-D02;H194-D04,E0039,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0104,C0033,H273,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0105,C0033,H273,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,118950,7.875,H273-D02;H273-D05;H273-D04;H273-D07;H273-D03;H273-D06,,Tom Brennan,False,
+S0106,C0033,H273,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,118950,7.875,H273-D02;H273-D05;H273-D04;H273-D07;H273-D03;H273-D06,E0040,Tom Brennan,True,Tool suggestion (fastest plan)
+S0107,C0034,H261,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0108,C0034,H261,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,42550,7.875,H261-D04;H261-D05;H261-D02;H261-D03,,Elena Duarte,False,
+S0109,C0034,H261,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,42550,7.875,H261-D04;H261-D05;H261-D02;H261-D03,E0041;E0042,Elena Duarte,True,Tool suggestion (fastest plan)
+S0110,C0035,H27,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0111,C0035,H27,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,33600,7.875,H27-D03;H27-D04;H27-D05,,Marcus Webb,False,Tool suggestion (fastest plan)
+S0112,C0036,H80,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0113,C0036,H80,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,52250,10.0,H80-D03;H80-D04;H80-D05,,Pamela Wilson,False,
+S0114,C0036,H80,FastApp 2-yr,avalanche,product,FastApp,24,52250,10.2,H80-D03;H80-D04;H80-D05,,Pamela Wilson,False,
+S0115,C0036,H80,FastApp 2-yr + extras,avalanche,product,FastApp,24,52250,10.2,H80-D03;H80-D04;H80-D05,E0043,Pamela Wilson,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0116,C0037,H224,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0117,C0037,H224,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,60300,10.0,H224-D03;H224-D04;H224-D05,,Priya Raman,False,
+S0118,C0037,H224,FastApp 3-yr,avalanche,product,FastApp,36,60300,10.5,H224-D03;H224-D04;H224-D05,,Priya Raman,False,
+S0119,C0037,H224,FastApp 3-yr + extras,avalanche,product,FastApp,36,60300,10.5,H224-D03;H224-D04;H224-D05,E0044,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0120,C0038,H63,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0121,C0038,H63,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,46750,10.6,H63-D04;H63-D02;H63-D03,,Tom Brennan,False,
+S0122,C0038,H63,FastApp 3-yr,avalanche,product,FastApp,36,46750,11.1,H63-D04;H63-D02;H63-D03,,Tom Brennan,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0123,C0039,H166,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0124,C0039,H166,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,97700,10.0,H166-D03;H166-D02;H166-D04;H166-D05,,Elena Duarte,False,
+S0125,C0039,H166,FastApp 2-yr,avalanche,product,FastApp,24,97700,10.2,H166-D03;H166-D02;H166-D04;H166-D05,,Elena Duarte,False,
+S0126,C0039,H166,FastApp 2-yr + extras,avalanche,product,FastApp,24,97700,10.2,H166-D03;H166-D02;H166-D04;H166-D05,E0045,Elena Duarte,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0127,C0039,H166,Bank relationship loan 5-yr,avalanche,custom,L004,60,22000,9.61,H166-D03,,Elena Duarte,False,
+S0128,C0040,H182,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0129,C0040,H182,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,40250,10.6,H182-D02;H182-D03,,Marcus Webb,False,
+S0130,C0040,H182,FastApp 3-yr,avalanche,product,FastApp,36,40250,11.1,H182-D02;H182-D03,,Marcus Webb,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0131,C0040,H182,Local credit union 3-yr,avalanche,custom,L005,36,16850,11.4,H182-D02,,Marcus Webb,False,
+S0132,C0041,H35,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0133,C0041,H35,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,53000,7.875,H35-D04;H35-D02;H35-D03;H35-D05,,Pamela Wilson,False,Tool suggestion (fastest plan)
+S0134,C0042,H89,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0135,C0042,H89,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,56700,9.4,H89-D03;H89-D04;H89-D05;H89-D02,,Priya Raman,False,
+S0136,C0042,H89,FastApp 3-yr,avalanche,product,FastApp,36,56700,9.9,H89-D03;H89-D04;H89-D05;H89-D02,,Priya Raman,False,
+S0137,C0042,H89,FastApp 3-yr + extras,avalanche,product,FastApp,36,56700,9.9,H89-D03;H89-D04;H89-D05;H89-D02,E0046;E0047,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0138,C0043,H108,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0139,C0043,H108,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,42150,7.875,H108-D02;H108-D03;H108-D04,,Tom Brennan,False,Tool suggestion (fastest plan)
+S0140,C0044,H51,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0141,C0044,H51,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,43050,10.6,H51-D03;H51-D05;H51-D02;H51-D04,,Elena Duarte,False,
+S0142,C0044,H51,FastApp 3-yr,avalanche,product,FastApp,36,43050,11.1,H51-D03;H51-D05;H51-D02;H51-D04,,Elena Duarte,False,
+S0143,C0044,H51,FastApp 3-yr + extras,avalanche,product,FastApp,36,43050,11.1,H51-D03;H51-D05;H51-D02;H51-D04,E0048,Elena Duarte,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0144,C0045,H142,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0145,C0045,H142,Avalanche + extras,avalanche,none,,,0,,,E0049;E0050,Marcus Webb,True,Tool suggestion (fastest plan)
+S0146,C0045,H142,Local credit union 5-yr,avalanche,custom,L006,60,23350,11.26,H142-D03,,Marcus Webb,False,
+S0147,C0046,H90,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0148,C0046,H90,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,46800,9.4,H90-D03;H90-D02;H90-D04,,Pamela Wilson,False,Household accepted the higher payment after the alert (new income confirmed on call)
+S0149,C0046,H90,FastApp 2-yr,avalanche,product,FastApp,24,46800,9.6,H90-D03;H90-D02;H90-D04,,Pamela Wilson,False,
+S0150,C0047,H274,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0151,C0047,H274,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,17100,9.4,H274-D04;H274-D02;H274-D03,,Priya Raman,False,
+S0152,C0047,H274,FastApp 3-yr,avalanche,product,FastApp,36,17100,9.9,H274-D04;H274-D02;H274-D03,,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0153,C0047,H274,FastApp 3-yr + extras,avalanche,product,FastApp,36,17100,9.9,H274-D04;H274-D02;H274-D03,E0051;E0052,Priya Raman,False,
+S0154,C0048,H183,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0155,C0048,H183,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,87800,7.875,H183-D04;H183-D05;H183-D03;H183-D02;H183-D06,,Tom Brennan,True,Tool suggestion (fastest plan)
+S0156,C0049,H21,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0157,C0049,H21,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,44150,10.0,H21-D03;H21-D04,,Elena Duarte,False,
+S0158,C0049,H21,FastApp 3-yr,avalanche,product,FastApp,36,44150,10.5,H21-D03;H21-D04,,Elena Duarte,False,
+S0159,C0049,H21,FastApp 3-yr + extras,avalanche,product,FastApp,36,44150,10.5,H21-D03;H21-D04,E0053,Elena Duarte,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0160,C0050,H17,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0161,C0050,H17,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,38900,7.875,H17-D04;H17-D03,,Marcus Webb,True,Tool suggestion (fastest plan)
+S0162,C0051,H190,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0163,C0051,H190,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,40550,10.6,H190-D04;H190-D03;H190-D02,,Pamela Wilson,False,
+S0164,C0051,H190,FastApp 2-yr,avalanche,product,FastApp,24,40550,10.8,H190-D04;H190-D03;H190-D02,,Pamela Wilson,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0165,C0051,H190,FastApp 2-yr + extras,avalanche,product,FastApp,24,40550,10.8,H190-D04;H190-D03;H190-D02,E0054,Pamela Wilson,False,
+S0166,C0052,H109,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0167,C0052,H109,Avalanche + extras,avalanche,none,,,0,,,E0055,Priya Raman,False,Tool suggestion (fastest plan)
+S0168,C0053,H228,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0169,C0053,H228,Avalanche + extras,avalanche,none,,,0,,,E0056,Tom Brennan,True,Tool suggestion (fastest plan)
+S0170,C0054,H246,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,Tool suggestion (fastest plan)
+S0171,C0055,H167,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0172,C0055,H167,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,66850,10.0,H167-D04;H167-D02;H167-D05;H167-D03,,Marcus Webb,False,
+S0173,C0055,H167,FastApp 3-yr,avalanche,product,FastApp,36,66850,10.5,H167-D04;H167-D02;H167-D05;H167-D03,,Marcus Webb,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0174,C0056,H145,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0175,C0056,H145,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,16950,10.0,H145-D04;H145-D02;H145-D03,,Pamela Wilson,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0176,C0056,H145,FastApp 2-yr,avalanche,product,FastApp,24,16950,10.2,H145-D04;H145-D02;H145-D03,,Pamela Wilson,False,
+S0177,C0056,H145,Bank relationship loan 3-yr,avalanche,custom,L007,36,16950,10.99,H145-D04;H145-D02;H145-D03,,Pamela Wilson,False,
+S0178,C0057,H39,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0179,C0057,H39,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,42700,10.0,H39-D02;H39-D03;H39-D04,,Priya Raman,False,
+S0180,C0057,H39,FastApp 3-yr,avalanche,product,FastApp,36,42700,10.5,H39-D02;H39-D03;H39-D04,,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0181,C0058,H153,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0182,C0058,H153,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,30850,7.875,H153-D03;H153-D02,,Tom Brennan,False,
+S0183,C0058,H153,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,30850,7.875,H153-D03;H153-D02,E0057;E0058,Tom Brennan,False,Tool suggestion (fastest plan)
+S0184,C0059,H236,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0185,C0059,H236,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,29650,10.0,H236-D04;H236-D03;H236-D05,,Elena Duarte,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0186,C0059,H236,FastApp 3-yr,avalanche,product,FastApp,36,29650,10.5,H236-D04;H236-D03;H236-D05,,Elena Duarte,False,
+S0187,C0060,H117,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0188,C0060,H117,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,14300,10.6,H117-D02;H117-D03,,Marcus Webb,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0189,C0060,H117,FastApp 2-yr,avalanche,product,FastApp,24,14300,10.8,H117-D02;H117-D03,,Marcus Webb,False,
+S0190,C0060,H117,FastApp 2-yr + extras,avalanche,product,FastApp,24,14300,10.8,H117-D02;H117-D03,E0059,Marcus Webb,False,
+S0191,C0061,H45,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0192,C0061,H45,Avalanche + extras,avalanche,none,,,0,,,E0060,Pamela Wilson,True,Tool suggestion (fastest plan)
+S0193,C0062,H69,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0194,C0062,H69,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,29450,10.0,H69-D03;H69-D04,,Priya Raman,False,
+S0195,C0062,H69,FastApp 2-yr,avalanche,product,FastApp,24,29450,10.2,H69-D03;H69-D04,,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0196,C0062,H69,Bank relationship loan 5-yr,avalanche,custom,L008,60,29450,8.23,H69-D03;H69-D04,,Priya Raman,False,
+S0197,C0063,H58,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0198,C0063,H58,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,55350,7.875,H58-D03;H58-D02;H58-D04,,Tom Brennan,False,Tool suggestion (fastest plan)
+S0199,C0064,H126,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0200,C0064,H126,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,40900,7.875,H126-D02;H126-D03,,Elena Duarte,False,
+S0201,C0064,H126,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,40900,7.875,H126-D02;H126-D03,E0061;E0062,Elena Duarte,True,Tool suggestion (fastest plan)
+S0202,C0064,H126,Local credit union 5-yr,avalanche,custom,L009,60,40900,9.16,H126-D02;H126-D03,,Elena Duarte,False,
+S0203,C0065,H282,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0204,C0065,H282,Avalanche + extras,avalanche,none,,,0,,,E0063,Marcus Webb,True,Tool suggestion (fastest plan)
+S0205,C0066,H280,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0206,C0066,H280,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,19750,9.4,H280-D03;H280-D02,,Pamela Wilson,False,Household accepted the higher payment after the alert (new income confirmed on call)
+S0207,C0066,H280,FastApp 2-yr,avalanche,product,FastApp,24,19750,9.6,H280-D03;H280-D02,,Pamela Wilson,False,
+S0208,C0066,H280,FastApp 2-yr + extras,avalanche,product,FastApp,24,19750,9.6,H280-D03;H280-D02,E0064,Pamela Wilson,False,
+S0209,C0067,H299,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0210,C0067,H299,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,72350,10.0,H299-D04;H299-D03;H299-D06;H299-D02;H299-D05,,Priya Raman,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0211,C0067,H299,FastApp 3-yr,avalanche,product,FastApp,36,72350,10.5,H299-D04;H299-D03;H299-D06;H299-D02;H299-D05,,Priya Raman,False,
+S0212,C0067,H299,FastApp 3-yr + extras,avalanche,product,FastApp,36,72350,10.5,H299-D04;H299-D03;H299-D06;H299-D02;H299-D05,E0065;E0066,Priya Raman,False,
+S0213,C0068,H123,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0214,C0068,H123,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,73900,9.4,H123-D03;H123-D02;H123-D04;H123-D05,,Tom Brennan,False,
+S0215,C0068,H123,FastApp 3-yr,avalanche,product,FastApp,36,73900,9.9,H123-D03;H123-D02;H123-D04;H123-D05,,Tom Brennan,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0216,C0069,H258,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0217,C0069,H258,Avalanche + extras,avalanche,none,,,0,,,E0067,Tom Brennan,True,Tool suggestion (fastest plan)
+S0218,C0070,H223,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0219,C0070,H223,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,50450,7.875,H223-D02;H223-D04;H223-D03,,Tom Brennan,True,Tool suggestion (fastest plan)
+S0220,C0071,H49,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0221,C0071,H49,HELOAN Pink 20-yr (nightly best),avalanche,product,HELOAN Pink,240,24200,8.0,H49-D04;H49-D02,,Priya Raman,False,
+S0222,C0071,H49,HELOAN Pink 20-yr + extras,avalanche,product,HELOAN Pink,240,24200,8.0,H49-D04;H49-D02,E0068,Priya Raman,True,Tool suggestion (fastest plan)
+S0223,C0072,H192,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0224,C0072,H192,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,39700,9.4,H192-D01;H192-D02,,Marcus Webb,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0225,C0072,H192,FastApp 3-yr,avalanche,product,FastApp,36,39700,9.9,H192-D01;H192-D02,,Marcus Webb,False,
+S0226,C0072,H192,FastApp 3-yr + extras,avalanche,product,FastApp,36,39700,9.9,H192-D01;H192-D02,E0069;E0070,Marcus Webb,False,
+S0227,C0073,H184,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0228,C0073,H184,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,29600,7.875,H184-D04;H184-D03;H184-D02;H184-D05,,Priya Raman,True,Tool suggestion (fastest plan)
+S0229,C0074,H138,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0230,C0074,H138,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,32450,9.4,H138-D03;H138-D02,,Tom Brennan,False,
+S0231,C0074,H138,FastApp 3-yr,avalanche,product,FastApp,36,32450,9.9,H138-D03;H138-D02,,Tom Brennan,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0232,C0075,H252,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,True,Tool suggestion (fastest plan)
+S0233,C0076,H292,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0234,C0076,H292,Avalanche + extras,avalanche,none,,,0,,,E0071;E0072,Marcus Webb,False,Tool suggestion (fastest plan)
+S0235,C0077,H221,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0236,C0077,H221,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,20450,10.6,H221-D03;H221-D02,,Elena Duarte,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0237,C0077,H221,FastApp 3-yr,avalanche,product,FastApp,36,20450,11.1,H221-D03;H221-D02,,Elena Duarte,False,
+S0238,C0078,H86,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0239,C0078,H86,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,40500,7.875,H86-D03;H86-D05;H86-D04;H86-D02,,Elena Duarte,False,
+S0240,C0078,H86,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,40500,7.875,H86-D03;H86-D05;H86-D04;H86-D02,E0073,Elena Duarte,True,Tool suggestion (fastest plan)
+S0241,C0079,H149,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0242,C0079,H149,Avalanche + extras,avalanche,none,,,0,,,E0074;E0075,Priya Raman,False,Tool suggestion (fastest plan)
+S0243,C0079,H149,Bank relationship loan 4-yr,avalanche,custom,L010,48,6000,11.17,H149-D01,,Priya Raman,False,
+S0244,C0080,H136,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0245,C0080,H136,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,48500,7.875,H136-D03;H136-D04;H136-D02;H136-D05,,Elena Duarte,False,
+S0246,C0080,H136,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,48500,7.875,H136-D03;H136-D04;H136-D02;H136-D05,E0076;E0077,Elena Duarte,True,Tool suggestion (fastest plan)
+S0247,C0081,H227,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0248,C0081,H227,Avalanche + extras,avalanche,none,,,0,,,E0078,Marcus Webb,False,
+S0249,C0082,H276,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0250,C0082,H276,Avalanche + extras,avalanche,none,,,0,,,E0079;E0080,Elena Duarte,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0251,C0083,H61,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0252,C0083,H61,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,40000,7.875,H61-D02;H61-D04;H61-D03,,Elena Duarte,False,
+S0253,C0083,H61,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,40000,7.875,H61-D02;H61-D04;H61-D03,E0081;E0082,Elena Duarte,False,Tool suggestion (fastest plan)
+S0254,C0084,H34,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0255,C0084,H34,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,24600,10.0,H34-D02,,Priya Raman,False,
+S0256,C0084,H34,FastApp 3-yr,avalanche,product,FastApp,36,24600,10.5,H34-D02,,Priya Raman,True,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0257,C0085,H139,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0258,C0085,H139,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,127900,7.875,H139-D02;H139-D04;H139-D05;H139-D03;H139-D06,,Priya Raman,True,Tool suggestion (fastest plan)
+S0259,C0086,H53,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0260,C0086,H53,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,75850,7.875,H53-D02;H53-D03;H53-D05,,Tom Brennan,False,
+S0261,C0086,H53,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,75850,7.875,H53-D02;H53-D03;H53-D05,E0083;E0084,Tom Brennan,False,Tool suggestion (fastest plan)
+S0262,C0087,H124,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0263,C0087,H124,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,21550,9.4,H124-D02;H124-D03,,Priya Raman,False,
+S0264,C0087,H124,FastApp 3-yr,avalanche,product,FastApp,36,21550,9.9,H124-D02;H124-D03,,Priya Raman,False,Payment alert on the fastest plan; household chose a plan that keeps today's payment
+S0265,C0088,H295,Avalanche (edited data),avalanche,none,,,0,,,,Pamela Wilson,False,
+S0266,C0088,H295,Local credit union 5-yr,avalanche,custom,L011,60,11500,9.05,H295-D02;H295-D04;H295-D03,,Pamela Wilson,False,Tool suggestion (fastest plan)
+S0267,C0089,H213,Avalanche (edited data),avalanche,none,,,0,,,,Tom Brennan,False,
+S0268,C0089,H213,HELOAN Yellow 15-yr (nightly best),avalanche,product,HELOAN Yellow,180,38000,7.875,H213-D04;H213-D02;H213-D03;H213-D05,,Tom Brennan,False,
+S0269,C0089,H213,HELOAN Yellow 15-yr + extras,avalanche,product,HELOAN Yellow,180,38000,7.875,H213-D04;H213-D02;H213-D03;H213-D05,E0085,Tom Brennan,False,Tool suggestion (fastest plan)
+S0270,C0090,H241,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0271,C0090,H241,Avalanche + extras,avalanche,none,,,0,,,E0086,Elena Duarte,True,Tool suggestion (fastest plan)
+S0272,C0091,H26,Avalanche (edited data),avalanche,none,,,0,,,,Elena Duarte,False,
+S0273,C0091,H26,Local credit union 4-yr,avalanche,custom,L012,48,20950,10.34,H26-D03,,Elena Duarte,False,Tool suggestion (fastest plan)
+S0274,C0092,H47,Avalanche (edited data),avalanche,none,,,0,,,,Marcus Webb,False,
+S0275,C0092,H47,Avalanche + extras,avalanche,none,,,0,,,E0087,Marcus Webb,True,Tool suggestion (fastest plan)
+S0276,C0093,H159,Avalanche (edited data),avalanche,none,,,0,,,,Priya Raman,False,
+S0277,C0093,H159,FastApp 1-yr (nightly best),avalanche,product,FastApp,12,24900,10.6,H159-D01;H159-D02,,Priya Raman,True,Household accepted the higher payment after the alert (new income confirmed on call)
+S0278,C0093,H159,FastApp 3-yr,avalanche,product,FastApp,36,24900,11.1,H159-D01;H159-D02,,Priya Raman,False,

@@ -1,0 +1,142 @@
+[
+  {
+    "product": "FastApp",
+    "term_months": 12,
+    "comfort_zone": 1,
+    "rate": 10.6,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 12,
+    "comfort_zone": 2,
+    "rate": 10,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 12,
+    "comfort_zone": 3,
+    "rate": 9.4,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 24,
+    "comfort_zone": 1,
+    "rate": 10.8,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 24,
+    "comfort_zone": 2,
+    "rate": 10.2,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 24,
+    "comfort_zone": 3,
+    "rate": 9.6,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 36,
+    "comfort_zone": 1,
+    "rate": 11.1,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 36,
+    "comfort_zone": 2,
+    "rate": 10.5,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 36,
+    "comfort_zone": 3,
+    "rate": 9.9,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 48,
+    "comfort_zone": 1,
+    "rate": 11.25,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 48,
+    "comfort_zone": 2,
+    "rate": 10.65,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 48,
+    "comfort_zone": 3,
+    "rate": 10.2,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "FastApp",
+    "term_months": 60,
+    "comfort_zone": 1,
+    "rate": 11.4,
+    "rates_as_of": "2026-11-11"
+  },
+  {
+    "product": "HELOAN Yellow",
+    "term_months": 120,
+    "comfort_zone": "All",
+    "rate": 7.875,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Yellow",
+    "term_months": 180,
+    "comfort_zone": "All",
+    "rate": 7.875,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Yellow",
+    "term_months": 240,
+    "comfort_zone": "All",
+    "rate": 8,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Yellow",
+    "term_months": 300,
+    "comfort_zone": "All",
+    "rate": 8.125,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Yellow",
+    "term_months": 360,
+    "comfort_zone": "All",
+    "rate": 8.25,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Pink",
+    "term_months": 240,
+    "comfort_zone": "All",
+    "rate": 8,
+    "rates_as_of": "2026-10-30"
+  },
+  {
+    "product": "HELOAN Pink",
+    "term_months": 360,
+    "comfort_zone": "All",
+    "rate": 8.25,
+    "rates_as_of": "2026-10-30"
+  }
+]

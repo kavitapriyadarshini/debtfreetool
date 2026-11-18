@@ -1,0 +1,1349 @@
+debt_id,household_id,debt_name,debt_type,balance,rate,monthly_payment,property_id,last_updated
+H01-D01,H01,Rocket Mortgage,Mortgage,280000,6.25,2050,P01,2026-11-07
+H01-D02,H01,Chase Sapphire,Credit card,12000,24.99,360,,2026-11-07
+H01-D03,H01,Citi Double Cash,Credit card,8000,21.5,240,,2026-11-07
+H01-D04,H01,SoFi Personal Loan,Personal,15000,13.0,450,,2026-11-07
+H01-D05,H01,Toyota Financial,Auto,22000,6.9,520,,2026-11-07
+H02-D01,H02,Amex Gold,Credit card,9800,27.24,294,,2026-11-07
+H02-D02,H02,Discover It,Credit card,6400,24.49,192,,2026-11-07
+H02-D03,H02,Capital One Quicksilver,Credit card,4200,29.99,126,,2026-11-07
+H02-D04,H02,LendingClub Personal,Personal,11500,17.9,415,,2026-11-07
+H02-D05,H02,Honda Financial,Auto,18600,5.49,455,,2026-11-07
+H03-D01,H03,Mr. Cooper Mortgage,Mortgage,212000,5.75,1610,P03,2026-11-07
+H03-D02,H03,Chase Freedom,Credit card,14300,26.49,429,,2026-11-07
+H03-D03,H03,Barclays Arrival,Credit card,7900,23.74,237,,2026-11-07
+H03-D04,H03,Best Egg Personal,Personal,9200,19.99,342,,2026-11-07
+H03-D05,H03,Ford Credit,Auto,26400,7.4,610,,2026-11-07
+H04-D01,H04,Synchrony Amazon,Credit card,3100,29.24,93,,2026-11-07
+H04-D02,H04,Credit One,Credit card,2400,28.49,72,,2026-11-07
+H04-D03,H04,Capital One Platinum,Credit card,3100,30.24,93,,2026-11-07
+H04-D04,H04,Nissan Motor Acceptance,Auto,14800,8.9,385,,2026-11-07
+H05-D01,H05,Huntington Mortgage,Mortgage,248000,6.1,1890,P05A,2026-11-07
+H05-D02,H05,PNC Mortgage (rental),Mortgage,151000,7.15,1210,P05B,2026-11-07
+H05-D03,H05,Chase Ink Business,Business,18500,21.24,555,,2026-11-07
+H05-D04,H05,Amex Platinum,Credit card,11200,26.99,336,,2026-11-07
+H05-D05,H05,Upstart Personal,Personal,16800,15.49,590,,2026-11-07
+H05-D06,H05,Bank of America Cash Rewards,Credit card,6900,24.24,207,,2026-11-07
+H06-D01,H06,Wells Fargo Mortgage,Mortgage,226000,4.25,1480,P06,2026-11-07
+H06-D02,H06,Figure Home Equity,Home equity loan,38500,9.75,505,P06,2026-11-07
+H06-D03,H06,Citi Custom Cash,Credit card,13400,25.99,402,,2026-11-07
+H06-D04,H06,Discover It,Credit card,8800,23.99,264,,2026-11-07
+H06-D05,H06,GM Financial,Auto,21300,6.2,515,,2026-11-07
+H07-D01,H07,AAG Reverse Mortgage,Reverse mortgage,142000,6.8,0,P07,2026-11-07
+H07-D02,H07,Chase Slate,Credit card,14000,26.99,250,,2026-11-07
+H07-D03,H07,Citi Simplicity,Credit card,5200,22.99,156,,2026-11-07
+H07-D04,H07,Medical Payment Plan,Other,2800,9.0,120,,2026-11-07
+H08-D01,H08,Guaranteed Rate Mortgage,Mortgage,268000,6.6,1960,P08,2026-11-07
+H08-D02,H08,Wells Fargo Reflect,Credit card,6500,0.0,200,,2026-11-07
+H08-D03,H08,Capital One Venture,Credit card,15600,27.49,468,,2026-11-07
+H08-D04,H08,Marcus Personal,Personal,19800,14.99,690,,2026-11-07
+H09-D01,H09,Flagstar Mortgage,Mortgage,310000,6.9,2280,P09,2026-11-07
+H09-D02,H09,Amex Blue Cash,Credit card,17900,26.24,537,,2026-11-07
+H09-D03,H09,Chase Freedom Unlimited,Credit card,11300,24.99,339,,2026-11-07
+H09-D04,H09,Prosper Personal,Personal,8700,18.49,318,,2026-11-07
+H10-D01,H10,Chase Mortgage,Mortgage,512000,6.4,3890,P10,2026-11-07
+H10-D02,H10,Navient Student Loan,Student loan,38200,6.8,0,,2026-11-07
+H10-D03,H10,Citi Premier,Credit card,21400,25.24,642,,2026-11-07
+H10-D04,H10,Apple Card,Credit card,7300,22.49,219,,2026-11-07
+H10-D05,H10,Nelnet Student Loan,Student loan,24600,5.05,280,,2026-11-07
+H11-D01,H11,Capital One Venture,Credit card,12650,28.99,380,,2026-11-07
+H11-D02,H11,Capital One Venture,Credit card,12650,28.99,380,,2026-11-07
+H11-D03,H11,OneMain Personal,Personal,9400,24.99,372,,2026-11-07
+H11-D04,H11,Santander Consumer,Auto,17200,11.9,430,,2026-11-07
+H12-D01,H12,Citizens Mortgage,Mortgage,388000,3.1,2105,P12,2026-11-07
+H13-D01,H13,Northfield Mortgage,Mortgage,241000,6.05,1790,P13,2026-11-07
+H13-D02,H13,Payoff Debt Consolidation,Debt consolidation,21800,14.9,640,,2026-11-07
+H13-D03,H13,Barclays View,Credit card,9600,25.74,288,,2026-11-07
+H13-D04,H13,Discover It,Credit card,5100,22.24,153,,2026-11-07
+H14-D01,H14,US Bank Mortgage,Mortgage,301000,6.35,2230,P14,2026-11-07
+H14-D02,H14,Amex Everyday,Credit card,9900,26.49,297,,2026-11-07
+H14-D03,H14,Chase Sapphire,Credit card,7400,24.74,222,,2026-11-07
+H14-D04,H14,Citi Rewards+,Credit card,4900,23.24,147,,2026-11-07
+H14-D05,H14,Toyota Financial,Auto,24800,6.7,560,,2026-11-07
+H15-D01,H15,Truist Mortgage,Mortgage,219000,5.95,1640,,2026-11-07
+H15-D02,H15,Chase Freedom Flex,Credit card,16200,26.74,486,,2026-11-07
+H15-D03,H15,Bank of America Travel,Credit card,9800,24.24,294,,2026-11-07
+H15-D04,H15,Avant Personal,Personal,7600,22.99,290,,2026-11-07
+H16-D01,H16,Citi Double Cash,Credit card,13700,25.99,411,,2026-11-07
+H16-D02,H16,Wells Fargo Active Cash,Credit card,8200,24.49,246,,2026-11-07
+H16-D03,H16,Discover Personal,Personal,12400,16.99,445,,2026-11-07
+H17-D01,H17,US Bank Mortgage,Mortgage,268700,3.34,1264,P17A,2026-11-13
+H17-D02,H17,Chase Freedom,Credit card,17300,20.01,520,,2026-11-13
+H17-D03,H17,Citi Double Cash,Credit card,15350,24.58,460,,2026-11-13
+H17-D04,H17,Synchrony Store Card,Credit card,23550,25.14,1138,,2026-11-13
+H18-D01,H18,Flagstar Mortgage,Mortgage,264500,6.74,2077,P18A,2026-11-13
+H18-D02,H18,Amex Blue Cash,Credit card,7300,27.82,351,,2026-11-13
+H18-D03,H18,Best Egg Personal,Personal,8100,16.82,210,,2026-11-13
+H19-D01,H19,Wells Fargo Mortgage,Mortgage,292800,3.14,1777,P19A,2026-11-13
+H19-D02,H19,Figure Home Equity,Home equity loan,67350,9.12,756,P19A,2026-11-13
+H19-D03,H19,Citi Custom Cash,Credit card,20750,26.07,1119,,2026-11-13
+H19-D04,H19,Discover It,Credit card,10750,25.9,719,,2026-11-13
+H19-D05,H19,Bank of America Cash Rewards,Credit card,11050,25.24,765,,2026-11-13
+H20-D01,H20,Truist Mortgage,Mortgage,182250,6.66,1536,P20A,2026-11-13
+H20-D02,H20,Figure Home Equity,Home equity loan,18500,10.3,254,P20A,2026-11-13
+H20-D03,H20,PNC Mortgage (rental),Mortgage,161850,6.83,1187,P20B,2026-11-13
+H20-D04,H20,Amex Blue Cash,Credit card,9700,24.89,292,,2026-11-13
+H20-D05,H20,Amex Gold,Credit card,8650,29.43,259,,2026-11-13
+H20-D06,H20,Hyundai Capital,Auto,17950,9.67,388,,2026-11-13
+H20-D07,H20,Nissan Motor Acceptance,Auto,34250,3.99,1202,,2026-11-13
+H20-D08,H20,Nelnet Student Loan,Student loan,57250,5.6,624,,2026-11-13
+H20-D09,H20,MOHELA Student Loan,Student loan,13750,3.85,138,,2026-11-13
+H21-D01,H21,Rocket Mortgage,Mortgage,140000,3.29,776,P21A,2026-11-13
+H21-D02,H21,Figure Home Equity,Home equity loan,20600,8.93,233,P21A,2026-11-13
+H21-D03,H21,Synchrony Store Card,Credit card,14900,28.99,447,,2026-11-13
+H21-D04,H21,Chase Ink Business,Business,29250,23.3,877,,2026-11-13
+H23-D01,H23,Guaranteed Rate Mortgage,Mortgage,252350,5.38,1511,P23A,2026-11-13
+H23-D02,H23,Figure Home Equity,Home equity loan,47000,9.28,535,P23A,2026-11-13
+H23-D03,H23,Bank of America Cash Rewards,Credit card,16800,24.12,503,,2026-11-13
+H23-D04,H23,Chase Freedom,Credit card,19550,20.59,587,,2026-11-13
+H23-D05,H23,Wells Fargo Active Cash,Credit card,12800,23.51,384,,2026-11-13
+H23-D06,H23,LendingClub Personal,Personal,13600,20.03,629,,2026-11-13
+H23-D07,H23,Avant Personal,Personal,7750,22.22,268,,2026-11-13
+H24-D01,H24,Capital One Venture,Credit card,16400,26.8,493,,2026-11-13
+H24-D02,H24,Amex Gold,Credit card,2750,29.5,204,,2026-11-13
+H24-D03,H24,Medical Payment Plan,Other,1450,0.48,43,,2026-11-13
+H25-D01,H25,Guaranteed Rate Mortgage,Mortgage,416350,6.51,3278,P25A,2026-11-13
+H25-D02,H25,Bank of America Cash Rewards,Credit card,13600,22.22,764,,2026-11-13
+H25-D03,H25,Chase Sapphire,Credit card,4900,19.57,250,,2026-11-13
+H25-D04,H25,Amex Blue Cash,Credit card,20450,23.65,613,,2026-11-13
+H25-D05,H25,LendingClub Personal,Personal,12600,21.28,477,,2026-11-13
+H25-D06,H25,Toyota Financial,Auto,20650,6.57,540,,2026-11-13
+H25-D07,H25,MOHELA Student Loan,Student loan,31050,4.85,327,,2026-11-13
+H26-D01,H26,Rocket Mortgage,Mortgage,796850,6.15,5841,P26A,2026-11-13
+H26-D02,H26,Wells Fargo Active Cash,Credit card,5650,22.58,289,,2026-11-13
+H26-D03,H26,Amex Blue Cash,Credit card,20950,24.02,1365,,2026-11-13
+H26-D04,H26,Capital One Venture,Credit card,14000,21.51,420,,2026-11-13
+H26-D05,H26,Upstart Personal,Personal,23550,18.4,752,,2026-11-13
+H26-D06,H26,Hyundai Capital,Auto,26250,6.96,617,,2026-11-13
+H27-D01,H27,Chase Mortgage,Mortgage,132550,6.99,1088,P27A,2026-11-13
+H27-D02,H27,PNC Mortgage (rental),Mortgage,167000,7.16,1150,P27B,2026-11-13
+H27-D03,H27,Amex Gold,Credit card,16300,28.63,489,,2026-11-13
+H27-D04,H27,Apple Card,Credit card,9850,21.03,295,,2026-11-13
+H27-D05,H27,LendingClub Personal,Personal,7450,9.76,320,,2026-11-13
+H27-D06,H27,Hyundai Capital,Auto,39350,5.34,1404,,2026-11-13
+H27-D07,H27,Toyota Financial,Auto,29800,4.32,530,,2026-11-13
+H28-D01,H28,Barclays View,Credit card,7500,26.81,331,,2026-11-13
+H28-D02,H28,Synchrony Store Card,Credit card,12850,23.19,386,,2026-11-13
+H29-D01,H29,OneMain Personal,Personal,10350,19.45,331,,2026-11-13
+H29-D02,H29,Nissan Motor Acceptance,Auto,36950,6.65,793,,2026-11-13
+H30-D01,H30,Amex Blue Cash,Credit card,15300,26.76,459,,2026-11-13
+H30-D02,H30,Chase Sapphire,Credit card,8500,29.43,255,,2026-11-13
+H30-D03,H30,Amex Blue Cash,Credit card,14000,24.01,421,,2026-11-13
+H30-D04,H30,Chase Sapphire,Credit card,7200,22.26,216,,2026-11-13
+H30-D05,H30,Marcus Personal,Personal,18450,12.57,427,,2026-11-13
+H30-D06,H30,Sallie Mae Student Loan,Student loan,47100,6.43,533,,2026-11-13
+H30-D07,H30,Sallie Mae Student Loan,Student loan,35200,6.69,403,,2026-11-13
+H31-D01,H31,Amex Blue Cash,Credit card,13050,25.66,391,,2026-11-13
+H31-D02,H31,Chase Freedom,Credit card,8950,22.86,268,,2026-11-13
+H31-D03,H31,Chase Ink Business,Business,13100,18.09,393,,2026-11-13
+H32-D01,H32,Wells Fargo Mortgage,Mortgage,188750,3.53,1166,P32A,2026-11-13
+H32-D02,H32,Figure Home Equity,Home equity loan,24450,9.25,302,P32A,2026-11-13
+H32-D03,H32,Synchrony Store Card,Credit card,12600,20.67,600,,2026-11-13
+H32-D04,H32,OneMain Personal,Personal,15550,18.94,426,,2026-11-13
+H32-D05,H32,Hyundai Capital,Auto,33950,4.97,640,,2026-11-13
+H32-D06,H32,Chase Business Line,Line of credit,13600,13.32,340,,2026-11-13
+H32-D07,H32,Payoff Debt Consolidation,Debt consolidation,27250,13.34,711,,2026-11-13
+H33-D01,H33,Barclays View,Credit card,13450,19.49,705,,2026-11-13
+H33-D02,H33,Wells Fargo Active Cash,Credit card,2100,26.52,136,,2026-11-13
+H33-D03,H33,Honda Financial,Auto,9550,4.91,248,,2026-11-13
+H34-D01,H34,Mr. Cooper Mortgage,Mortgage,209800,6.96,1658,P34A,2026-11-13
+H34-D02,H34,Avant Personal,Personal,24600,14.34,613,,2026-11-13
+H35-D01,H35,Mr. Cooper Mortgage,Mortgage,328900,6.6,2140,P35A,2026-11-13
+H35-D02,H35,Synchrony Store Card,Credit card,17450,18.99,686,,2026-11-13
+H35-D03,H35,Synchrony Store Card,Credit card,14300,18.78,430,,2026-11-13
+H35-D04,H35,Citi Double Cash,Credit card,12000,29.01,785,,2026-11-13
+H35-D05,H35,Best Egg Personal,Personal,9250,10.11,330,,2026-11-13
+H35-D06,H35,Ally Auto,Auto,16200,5.3,415,,2026-11-13
+H36-D01,H36,Huntington Mortgage,Mortgage,164600,6.52,1156,P36A,2026-11-13
+H36-D02,H36,US Bank Altitude,Credit card,12950,28.3,389,,2026-11-13
+H36-D03,H36,SoFi Personal,Personal,22750,24.65,717,,2026-11-13
+H37-D01,H37,Truist Mortgage,Mortgage,262300,6.89,2079,P37A,2026-11-13
+H37-D02,H37,Chase Freedom,Credit card,18450,20.76,880,,2026-11-13
+H37-D03,H37,Bank of America Cash Rewards,Credit card,20900,28.25,1455,,2026-11-13
+H38-D01,H38,Mr. Cooper Mortgage,Mortgage,228850,3.09,1239,P38A,2026-11-13
+H38-D02,H38,Wells Fargo Active Cash,Credit card,12950,21.32,389,,2026-11-13
+H39-D01,H39,Huntington Mortgage,Mortgage,86650,4.8,582,P39A,2026-11-13
+H39-D02,H39,Capital One Venture,Credit card,12900,28.65,387,,2026-11-13
+H39-D03,H39,Chase Sapphire,Credit card,13450,24.49,403,,2026-11-13
+H39-D04,H39,Marcus Personal,Personal,16350,22.54,469,,2026-11-13
+H39-D05,H39,Nissan Motor Acceptance,Auto,32800,4.58,1030,,2026-11-13
+H39-D06,H39,Medical Payment Plan,Other,4750,3.02,143,,2026-11-13
+H40-D01,H40,Barclays View,Credit card,6750,29.11,202,,2026-11-13
+H40-D02,H40,Citi Double Cash,Credit card,2900,26.38,87,,2026-11-13
+H40-D03,H40,Synchrony Store Card,Credit card,22300,28.8,669,,2026-11-13
+H40-D04,H40,Prosper Personal,Personal,23950,12.51,962,,2026-11-13
+H40-D05,H40,Chase Business Line,Line of credit,12300,9.97,307,,2026-11-13
+H41-D01,H41,GM Financial,Auto,13750,8.34,270,,2026-11-13
+H41-D02,H41,Chase Ink Business,Business,29300,17.62,879,,2026-11-13
+H42-D01,H42,Mr. Cooper Mortgage,Mortgage,244150,4.05,1422,P42A,2026-11-13
+H42-D02,H42,Chase Freedom,Credit card,6350,19.43,262,,2026-11-13
+H42-D03,H42,Best Egg Personal,Personal,18050,24.36,874,,2026-11-13
+H43-D01,H43,Mr. Cooper Mortgage,Mortgage,158000,4.27,1181,P43A,2026-11-13
+H44-D01,H44,Amex Blue Cash,Credit card,15800,28.67,475,,2026-11-13
+H44-D02,H44,Capital One Quicksilver,Credit card,23550,25.0,706,,2026-11-13
+H44-D03,H44,Ford Credit,Auto,39600,5.45,1194,,2026-11-13
+H45-D01,H45,Guaranteed Rate Mortgage,Mortgage,113450,3.18,547,P45A,2026-11-13
+H45-D02,H45,Bank of America Cash Rewards,Credit card,6950,27.79,209,,2026-11-13
+H45-D03,H45,Capital One Auto,Auto,28300,6.58,790,,2026-11-13
+H45-D04,H45,Sallie Mae Student Loan,Student loan,57350,7.2,672,,2026-11-13
+H45-D05,H45,MOHELA Student Loan,Student loan,30950,4.04,314,,2026-11-13
+H46-D01,H46,US Bank Mortgage,Mortgage,277550,5.11,1558,P46A,2026-11-13
+H46-D02,H46,PNC Mortgage (rental),Mortgage,150700,7.27,1155,P46B,2026-11-13
+H46-D03,H46,Apple Card,Credit card,19900,19.21,1314,,2026-11-13
+H46-D04,H46,Sallie Mae Student Loan,Student loan,45950,7.06,535,,2026-11-13
+H47-D01,H47,Mr. Cooper Mortgage,Mortgage,275650,7.11,2415,P47A,2026-11-13
+H47-D02,H47,PNC Mortgage (rental),Mortgage,156750,6.93,1104,P47B,2026-11-13
+H47-D03,H47,Chase Sapphire,Credit card,22150,22.11,1157,,2026-11-13
+H47-D04,H47,Chase Freedom,Credit card,20650,28.27,619,,2026-11-13
+H47-D05,H47,Capital One Quicksilver,Credit card,8150,26.79,245,,2026-11-13
+H48-D01,H48,Apple Card,Credit card,6650,29.92,199,,2026-11-13
+H48-D02,H48,Chase Sapphire,Credit card,20450,26.89,1313,,2026-11-13
+H48-D03,H48,Toyota Financial,Auto,15850,10.81,377,,2026-11-13
+H48-D04,H48,MOHELA Student Loan,Student loan,16000,6.52,182,,2026-11-13
+H49-D01,H49,Guaranteed Rate Mortgage,Mortgage,172800,3.13,1183,P49A,2026-11-13
+H49-D02,H49,SoFi Personal,Personal,14250,12.09,553,,2026-11-13
+H49-D03,H49,MOHELA Student Loan,Student loan,26350,4.83,0,,2026-11-13
+H49-D04,H49,Chase Ink Business,Business,9950,17.74,299,,2026-11-13
+H50-D01,H50,Wells Fargo Mortgage,Mortgage,292450,3.19,1806,P50A,2026-11-13
+H50-D02,H50,Figure Home Equity,Home equity loan,49750,10.3,742,P50A,2026-11-13
+H50-D03,H50,Capital One Quicksilver,Credit card,7200,27.54,217,,2026-11-13
+H50-D04,H50,Wells Fargo Active Cash,Credit card,16100,23.42,843,,2026-11-13
+H50-D05,H50,Capital One Auto,Auto,15000,7.29,312,,2026-11-13
+H50-D06,H50,Nelnet Student Loan,Student loan,20350,6.39,230,,2026-11-13
+H51-D01,H51,Wells Fargo Mortgage,Mortgage,184350,2.93,977,P51A,2026-11-13
+H51-D02,H51,Bank of America Cash Rewards,Credit card,7050,19.82,211,,2026-11-13
+H51-D03,H51,Amex Gold,Credit card,4050,27.11,121,,2026-11-13
+H51-D04,H51,Amex Blue Cash,Credit card,21250,19.28,637,,2026-11-13
+H51-D05,H51,Apple Card,Credit card,10700,26.32,322,,2026-11-13
+H51-D06,H51,Toyota Financial,Auto,36400,9.18,1083,,2026-11-13
+H52-D01,H52,Capital One Venture,Credit card,21800,24.1,654,,2026-11-13
+H52-D02,H52,Wells Fargo Active Cash,Credit card,17350,23.41,521,,2026-11-13
+H52-D03,H52,GM Financial,Auto,9450,5.57,162,,2026-11-13
+H52-D04,H52,Navient Student Loan,Student loan,37450,3.82,376,,2026-11-13
+H53-D01,H53,PNC Mortgage,Mortgage,430850,3.15,2654,P53A,2026-11-13
+H53-D02,H53,Amex Blue Cash,Credit card,23700,28.66,710,,2026-11-13
+H53-D03,H53,Apple Card,Credit card,12100,24.98,363,,2026-11-13
+H53-D04,H53,Toyota Financial,Auto,18000,5.73,310,,2026-11-13
+H53-D05,H53,Ford Credit,Auto,40050,10.77,1066,,2026-11-13
+H53-D06,H53,MOHELA Student Loan,Student loan,35550,3.5,352,,2026-11-13
+H54-D01,H54,Guaranteed Rate Mortgage,Mortgage,330050,5.84,2257,P54A,2026-11-13
+H54-D02,H54,Ally Auto,Auto,12800,8.73,296,,2026-11-13
+H55-D01,H55,Amex Gold,Credit card,19050,28.07,307,,2026-11-13
+H55-D02,H55,Capital One Quicksilver,Credit card,16650,21.06,1322,,2026-11-13
+H55-D03,H55,Bank of America Cash Rewards,Credit card,15100,19.4,690,,2026-11-13
+H55-D04,H55,Synchrony Store Card,Credit card,13300,29.88,569,,2026-11-13
+H56-D01,H56,Mr. Cooper Mortgage,Mortgage,453200,4.15,2992,P56A,2026-11-13
+H56-D02,H56,SoFi Personal,Personal,16400,17.49,566,,2026-11-13
+H56-D03,H56,Sallie Mae Student Loan,Student loan,30200,4.09,307,,2026-11-13
+H56-D04,H56,Sallie Mae Student Loan,Student loan,38450,5.32,414,,2026-11-13
+H57-D01,H57,Rocket Mortgage,Mortgage,105100,3.15,580,P57A,2026-11-13
+H57-D02,H57,Amex Blue Cash,Credit card,15000,18.65,449,,2026-11-13
+H57-D03,H57,Wells Fargo Active Cash,Credit card,19500,27.13,585,,2026-11-13
+H58-D01,H58,US Bank Mortgage,Mortgage,174800,3.45,887,P58A,2026-11-13
+H58-D02,H58,Amex Blue Cash,Credit card,16150,25.24,484,,2026-11-13
+H58-D03,H58,Barclays View,Credit card,19000,27.8,570,,2026-11-13
+H58-D04,H58,Synchrony Store Card,Credit card,20200,20.13,606,,2026-11-13
+H59-D01,H59,Flagstar Mortgage,Mortgage,206450,3.1,1436,P59A,2026-11-13
+H59-D02,H59,Capital One Quicksilver,Credit card,18300,30.01,748,,2026-11-13
+H59-D03,H59,Citi Custom Cash,Credit card,3050,27.79,151,,2026-11-13
+H59-D04,H59,Apple Card,Credit card,4550,20.91,136,,2026-11-13
+H60-D01,H60,Rocket Mortgage,Mortgage,326550,4.45,1973,P60A,2026-11-13
+H60-D02,H60,Synchrony Store Card,Credit card,6650,18.7,377,,2026-11-13
+H60-D03,H60,Amex Gold,Credit card,4150,29.99,124,,2026-11-13
+H60-D04,H60,Barclays View,Credit card,19900,30.36,597,,2026-11-13
+H60-D05,H60,Upstart Personal,Personal,15750,20.11,753,,2026-11-13
+H60-D06,H60,Discover Personal,Personal,22200,24.17,947,,2026-11-13
+H60-D07,H60,Nissan Motor Acceptance,Auto,26500,6.05,571,,2026-11-13
+H61-D01,H61,Rocket Mortgage,Mortgage,187650,5.31,1089,P61A,2026-11-13
+H61-D02,H61,Figure Home Equity,Home equity loan,31550,10.41,330,P61A,2026-11-13
+H61-D03,H61,Synchrony Store Card,Credit card,1700,22.27,51,,2026-11-13
+H61-D04,H61,Chase Sapphire,Credit card,6750,23.71,435,,2026-11-13
+H61-D05,H61,Honda Financial,Auto,39000,4.37,625,,2026-11-13
+H62-D01,H62,Guaranteed Rate Mortgage,Mortgage,95100,3.16,461,P62A,2026-11-13
+H62-D02,H62,PNC Mortgage (rental),Mortgage,132150,6.53,944,P62B,2026-11-13
+H62-D03,H62,Chase Sapphire,Credit card,10300,30.48,309,,2026-11-13
+H62-D04,H62,OneMain Personal,Personal,9100,10.53,277,,2026-11-13
+H62-D05,H62,Nissan Motor Acceptance,Auto,19850,5.31,352,,2026-11-13
+H63-D01,H63,Wells Fargo Mortgage,Mortgage,285050,7.16,2043,P63A,2026-11-13
+H63-D02,H63,Citi Custom Cash,Credit card,20800,21.85,625,,2026-11-13
+H63-D03,H63,Chase Sapphire,Credit card,8650,20.96,259,,2026-11-13
+H63-D04,H63,Capital One Venture,Credit card,17300,24.86,519,,2026-11-13
+H63-D05,H63,Honda Financial,Auto,40400,5.81,698,,2026-11-13
+H64-D01,H64,Flagstar Mortgage,Mortgage,187300,6.52,1468,P64A,2026-11-13
+H64-D02,H64,Citi Custom Cash,Credit card,9750,20.04,293,,2026-11-13
+H64-D03,H64,Citi Double Cash,Credit card,22500,28.01,674,,2026-11-13
+H64-D04,H64,Barclays View,Credit card,18450,21.09,553,,2026-11-13
+H65-D01,H65,Mr. Cooper Mortgage,Mortgage,378900,6.21,3020,P65A,2026-11-13
+H65-D02,H65,Amex Blue Cash,Credit card,10400,22.98,602,,2026-11-13
+H65-D03,H65,Citi Custom Cash,Credit card,18550,19.87,557,,2026-11-13
+H65-D04,H65,Chase Sapphire,Credit card,16000,27.52,1050,,2026-11-13
+H65-D05,H65,Avant Personal,Personal,19700,24.1,660,,2026-11-13
+H65-D06,H65,Hyundai Capital,Auto,26750,5.02,447,,2026-11-13
+H66-D01,H66,Bank of America Cash Rewards,Credit card,10700,25.56,406,,2026-11-13
+H66-D02,H66,Barclays View,Credit card,17500,24.73,525,,2026-11-13
+H66-D03,H66,Avant Personal,Personal,24550,9.8,581,,2026-11-13
+H66-D04,H66,Nelnet Student Loan,Student loan,47150,4.66,492,,2026-11-13
+H66-D05,H66,MOHELA Student Loan,Student loan,38350,4.46,397,,2026-11-13
+H67-D01,H67,Capital One Quicksilver,Credit card,14550,22.61,437,,2026-11-13
+H67-D02,H67,Navient Student Loan,Student loan,10750,5.11,115,,2026-11-13
+H67-D03,H67,MOHELA Student Loan,Student loan,57250,4.38,590,,2026-11-13
+H68-D01,H68,PNC Mortgage,Mortgage,219400,7.3,1920,P68A,2026-11-13
+H68-D02,H68,Amex Blue Cash,Credit card,15400,29.41,462,,2026-11-13
+H68-D03,H68,Amex Gold,Credit card,21700,27.29,827,,2026-11-13
+H68-D04,H68,US Bank Altitude,Credit card,16100,23.71,483,,2026-11-13
+H69-D01,H69,PNC Mortgage,Mortgage,322500,5.15,2027,P69A,2026-11-13
+H69-D02,H69,PNC Mortgage (rental),Mortgage,144800,7.02,1116,P69B,2026-11-13
+H69-D03,H69,Citi Double Cash,Credit card,19550,19.07,587,,2026-11-13
+H69-D04,H69,OneMain Personal,Personal,9900,16.67,277,,2026-11-13
+H69-D05,H69,Ally Auto,Auto,34000,3.99,1090,,2026-11-13
+H69-D06,H69,GM Financial,Auto,11300,5.69,197,,2026-11-13
+H69-D07,H69,Nelnet Student Loan,Student loan,37600,4.12,383,,2026-11-13
+H70-D01,H70,Chase Freedom,Credit card,11850,30.27,642,,2026-11-13
+H70-D02,H70,Bank of America Cash Rewards,Credit card,4450,29.24,341,,2026-11-13
+H70-D03,H70,Honda Financial,Auto,35250,8.76,873,,2026-11-13
+H70-D04,H70,Honda Financial,Auto,31150,5.04,541,,2026-11-13
+H70-D05,H70,Chase Business Line,Line of credit,17800,9.13,445,,2026-11-13
+H71-D01,H71,Huntington Mortgage,Mortgage,386700,2.87,2390,P71A,2026-11-13
+H71-D02,H71,Prosper Personal,Personal,25050,14.23,997,,2026-11-13
+H72-D01,H72,Wells Fargo Mortgage,Mortgage,314300,5.43,2356,P72A,2026-11-13
+H72-D02,H72,Figure Home Equity,Home equity loan,37800,9.83,455,P72A,2026-11-13
+H72-D03,H72,US Bank Altitude,Credit card,15700,20.6,471,,2026-11-13
+H72-D04,H72,LendingClub Personal,Personal,10700,19.83,282,,2026-11-13
+H72-D05,H72,MOHELA Student Loan,Student loan,49150,6.91,568,,2026-11-13
+H72-D06,H72,Nelnet Student Loan,Student loan,29550,4.31,304,,2026-11-13
+H72-D07,H72,Payoff Debt Consolidation,Debt consolidation,24800,12.83,598,,2026-11-13
+H73-D01,H73,Barclays View,Credit card,11150,24.37,334,,2026-11-13
+H73-D02,H73,SoFi Personal,Personal,18650,18.86,541,,2026-11-13
+H73-D03,H73,Hyundai Capital,Auto,34700,4.93,756,,2026-11-13
+H73-D04,H73,Navient Student Loan,Student loan,13900,7.63,166,,2026-11-13
+H74-D01,H74,Chase Mortgage,Mortgage,174400,5.27,994,P74A,2026-11-13
+H74-D02,H74,Wells Fargo Active Cash,Credit card,14200,19.0,426,,2026-11-13
+H74-D03,H74,Amex Blue Cash,Credit card,3700,20.05,278,,2026-11-13
+H74-D04,H74,Amex Gold,Credit card,18500,24.86,1127,,2026-11-13
+H74-D05,H74,LendingClub Personal,Personal,11400,22.57,322,,2026-11-13
+H74-D06,H74,Discover Personal,Personal,11650,12.06,293,,2026-11-13
+H75-D01,H75,Chase Mortgage,Mortgage,204700,6.31,1523,P75A,2026-11-13
+H75-D02,H75,Figure Home Equity,Home equity loan,46350,9.33,575,P75A,2026-11-13
+H75-D03,H75,US Bank Altitude,Credit card,15050,22.55,451,,2026-11-13
+H75-D04,H75,Toyota Financial,Auto,26900,12.78,641,,2026-11-13
+H75-D05,H75,Nissan Motor Acceptance,Auto,27750,5.43,883,,2026-11-13
+H76-D01,H76,Guaranteed Rate Mortgage,Mortgage,262200,5.83,1943,P76A,2026-11-13
+H77-D01,H77,Barclays View,Credit card,19400,28.91,582,,2026-11-13
+H77-D02,H77,Amex Gold,Credit card,13600,22.55,637,,2026-11-13
+H78-D01,H78,PNC Mortgage,Mortgage,137050,6.78,1165,P78A,2026-11-13
+H78-D02,H78,Amex Blue Cash,Credit card,12600,19.53,477,,2026-11-13
+H78-D03,H78,OneMain Personal,Personal,20050,18.99,636,,2026-11-13
+H78-D04,H78,OneMain Personal,Personal,25750,17.07,900,,2026-11-13
+H78-D05,H78,Nelnet Student Loan,Student loan,26350,3.61,262,,2026-11-13
+H79-D01,H79,US Bank Mortgage,Mortgage,215950,6.73,1660,P79A,2026-11-13
+H79-D02,H79,Capital One Quicksilver,Credit card,17400,24.65,522,,2026-11-13
+H79-D03,H79,SoFi Personal,Personal,4950,19.59,158,,2026-11-13
+H79-D04,H79,Toyota Financial,Auto,17650,9.95,413,,2026-11-13
+H80-D01,H80,Chase Mortgage,Mortgage,352500,6.44,2281,P80A,2026-11-13
+H80-D02,H80,Figure Home Equity,Home equity loan,44250,9.36,505,P80A,2026-11-13
+H80-D03,H80,Amex Blue Cash,Credit card,18800,24.45,920,,2026-11-13
+H80-D04,H80,Best Egg Personal,Personal,26050,22.22,1355,,2026-11-13
+H80-D05,H80,Upstart Personal,Personal,7400,11.71,180,,2026-11-13
+H80-D06,H80,Nissan Motor Acceptance,Auto,15500,4.0,527,,2026-11-13
+H81-D01,H81,Wells Fargo Mortgage,Mortgage,154950,6.39,1302,P81A,2026-11-13
+H81-D02,H81,Amex Gold,Credit card,14450,22.49,433,,2026-11-13
+H81-D03,H81,Amex Gold,Credit card,3050,26.68,92,,2026-11-13
+H81-D04,H81,Capital One Quicksilver,Credit card,22250,25.25,1142,,2026-11-13
+H82-D01,H82,Amex Gold,Credit card,8950,26.4,149,,2026-11-13
+H82-D02,H82,Bank of America Cash Rewards,Credit card,7750,26.12,233,,2026-11-13
+H82-D03,H82,Barclays View,Credit card,18950,29.1,1168,,2026-11-13
+H82-D04,H82,Capital One Auto,Auto,25250,9.35,485,,2026-11-13
+H83-D01,H83,US Bank Altitude,Credit card,7950,29.99,238,,2026-11-13
+H83-D02,H83,Amex Gold,Credit card,3300,26.8,99,,2026-11-13
+H83-D03,H83,GM Financial,Auto,17950,5.96,392,,2026-11-13
+H83-D04,H83,Nelnet Student Loan,Student loan,10450,4.19,0,,2026-11-13
+H84-D01,H84,Truist Mortgage,Mortgage,246500,7.41,1774,P84A,2026-11-13
+H84-D02,H84,Barclays View,Credit card,16300,28.29,489,,2026-11-13
+H85-D01,H85,Amex Gold,Credit card,18050,24.5,973,,2026-11-13
+H85-D02,H85,Amex Blue Cash,Credit card,5450,18.93,163,,2026-11-13
+H85-D03,H85,Citi Custom Cash,Credit card,3850,21.91,115,,2026-11-13
+H85-D04,H85,Capital One Venture,Credit card,6750,28.77,203,,2026-11-13
+H86-D01,H86,Truist Mortgage,Mortgage,164850,4.61,1081,P86A,2026-11-13
+H86-D02,H86,Apple Card,Credit card,3500,19.5,105,,2026-11-13
+H86-D03,H86,Amex Blue Cash,Credit card,11700,26.98,351,,2026-11-13
+H86-D04,H86,Chase Sapphire,Credit card,21200,24.32,636,,2026-11-13
+H86-D05,H86,Barclays View,Credit card,4100,25.87,123,,2026-11-13
+H87-D01,H87,Huntington Mortgage,Mortgage,270900,4.05,1462,P87A,2026-11-13
+H87-D02,H87,Chase Freedom,Credit card,20350,28.19,610,,2026-11-13
+H87-D03,H87,Prosper Personal,Personal,7550,12.84,345,,2026-11-13
+H87-D04,H87,Hyundai Capital,Auto,20700,4.81,420,,2026-11-13
+H88-D01,H88,Chase Freedom,Credit card,15050,28.63,452,,2026-11-13
+H88-D02,H88,Citi Custom Cash,Credit card,16200,27.59,486,,2026-11-13
+H88-D03,H88,Navient Student Loan,Student loan,22800,6.57,259,,2026-11-13
+H88-D04,H88,Chase Ink Business,Business,16400,23.03,492,,2026-11-13
+H89-D01,H89,Rocket Mortgage,Mortgage,218800,3.3,1163,P89A,2026-11-13
+H89-D02,H89,Chase Sapphire,Credit card,19750,22.7,593,,2026-11-13
+H89-D03,H89,Capital One Quicksilver,Credit card,7300,28.81,219,,2026-11-13
+H89-D04,H89,Citi Custom Cash,Credit card,21400,28.21,642,,2026-11-13
+H89-D05,H89,Bank of America Cash Rewards,Credit card,8250,26.22,488,,2026-11-13
+H89-D06,H89,Nissan Motor Acceptance,Auto,8150,5.26,162,,2026-11-13
+H90-D01,H90,Chase Mortgage,Mortgage,383650,2.79,1802,P90A,2026-11-13
+H90-D02,H90,Amex Blue Cash,Credit card,16200,23.29,485,,2026-11-13
+H90-D03,H90,Amex Blue Cash,Credit card,10250,24.51,308,,2026-11-13
+H90-D04,H90,Synchrony Store Card,Credit card,20350,19.61,1255,,2026-11-13
+H90-D05,H90,Nissan Motor Acceptance,Auto,25200,8.71,938,,2026-11-13
+H90-D06,H90,Nelnet Student Loan,Student loan,55100,3.53,546,,2026-11-13
+H91-D01,H91,Truist Mortgage,Mortgage,380900,5.87,2431,P91A,2026-11-13
+H91-D02,H91,US Bank Altitude,Credit card,3600,25.79,190,,2026-11-13
+H91-D03,H91,Ally Auto,Auto,8350,6.28,147,,2026-11-13
+H92-D01,H92,Mr. Cooper Mortgage,Mortgage,351400,7.07,2641,P92A,2026-11-13
+H92-D02,H92,Capital One Quicksilver,Credit card,8650,28.44,259,,2026-11-13
+H93-D01,H93,Capital One Venture,Credit card,2700,26.3,81,,2026-11-13
+H94-D01,H94,Nelnet Student Loan,Student loan,58200,7.56,692,,2026-11-13
+H95-D01,H95,Chase Mortgage,Mortgage,179300,5.29,1100,P95A,2026-11-13
+H95-D02,H95,Chase Ink Business,Business,24350,22.78,730,,2026-11-13
+H96-D01,H96,AAG Reverse Mortgage,Reverse mortgage,82500,7.2,0,P96A,2026-11-13
+H96-D02,H96,LendingClub Personal,Personal,7350,12.48,169,,2026-11-13
+H96-D03,H96,GM Financial,Auto,27950,5.12,684,,2026-11-13
+H96-D04,H96,Hyundai Capital,Auto,20900,12.73,417,,2026-11-13
+H97-D01,H97,US Bank Mortgage,Mortgage,266600,3.54,1547,P97A,2026-11-13
+H97-D02,H97,Amex Blue Cash,Credit card,8850,24.66,311,,2026-11-13
+H97-D03,H97,Discover It,Credit card,20050,21.83,601,,2026-11-13
+H97-D04,H97,Upstart Personal,Personal,12250,16.34,318,,2026-11-13
+H97-D05,H97,Capital One Auto,Auto,35750,5.18,1075,,2026-11-13
+H98-D01,H98,Rocket Mortgage,Mortgage,309050,6.92,2705,P98A,2026-11-13
+H98-D02,H98,PNC Mortgage (rental),Mortgage,140400,7.15,996,P98B,2026-11-13
+H98-D03,H98,Discover It,Credit card,4350,20.48,302,,2026-11-13
+H98-D04,H98,Ford Credit,Auto,41350,4.12,885,,2026-11-13
+H99-D01,H99,Huntington Mortgage,Mortgage,281850,6.34,2197,P99A,2026-11-13
+H99-D02,H99,Bank of America Cash Rewards,Credit card,4700,26.43,141,,2026-11-13
+H99-D03,H99,Bank of America Cash Rewards,Credit card,9000,27.17,710,,2026-11-13
+H100-D01,H100,Synchrony Store Card,Credit card,10850,22.59,326,,2026-11-13
+H100-D02,H100,Amex Gold,Credit card,22950,27.0,689,,2026-11-13
+H100-D03,H100,Capital One Quicksilver,Credit card,6450,26.18,194,,2026-11-13
+H100-D04,H100,Citi Custom Cash,Credit card,18300,25.83,548,,2026-11-13
+H100-D05,H100,Sallie Mae Student Loan,Student loan,56150,5.38,606,,2026-11-13
+H100-D06,H100,Navient Student Loan,Student loan,30900,3.77,309,,2026-11-13
+H101-D01,H101,Chase Mortgage,Mortgage,240450,5.17,1486,P101A,2026-11-13
+H101-D02,H101,US Bank Altitude,Credit card,5000,28.24,150,,2026-11-13
+H101-D03,H101,Navient Student Loan,Student loan,58550,5.99,650,,2026-11-13
+H102-D01,H102,Capital One Quicksilver,Credit card,21250,25.24,637,,2026-11-13
+H102-D02,H102,Bank of America Cash Rewards,Credit card,3900,28.54,117,,2026-11-13
+H102-D03,H102,US Bank Altitude,Credit card,14700,20.23,441,,2026-11-13
+H102-D04,H102,SoFi Personal,Personal,19100,11.38,533,,2026-11-13
+H103-D01,H103,Capital One Quicksilver,Credit card,10200,30.36,306,,2026-11-13
+H103-D02,H103,Wells Fargo Active Cash,Credit card,4400,25.31,132,,2026-11-13
+H104-D01,H104,Barclays View,Credit card,6600,24.38,197,,2026-11-13
+H104-D02,H104,Apple Card,Credit card,10450,20.69,314,,2026-11-13
+H104-D03,H104,Marcus Personal,Personal,26250,22.09,1023,,2026-11-13
+H104-D04,H104,Payoff Debt Consolidation,Debt consolidation,18700,13.95,639,,2026-11-13
+H105-D01,H105,Chase Mortgage,Mortgage,403600,4.95,3111,P105A,2026-11-13
+H105-D02,H105,Wells Fargo Active Cash,Credit card,13000,20.63,878,,2026-11-13
+H105-D03,H105,MOHELA Student Loan,Student loan,42900,5.5,465,,2026-11-13
+H106-D01,H106,Flagstar Mortgage,Mortgage,638800,5.9,3899,P106A,2026-11-13
+H106-D02,H106,Apple Card,Credit card,7400,20.69,222,,2026-11-13
+H106-D03,H106,Ally Auto,Auto,9050,11.0,199,,2026-11-13
+H107-D01,H107,Chase Mortgage,Mortgage,138850,3.38,890,P107A,2026-11-13
+H107-D02,H107,US Bank Altitude,Credit card,15750,25.56,472,,2026-11-13
+H107-D03,H107,Discover It,Credit card,19300,19.99,578,,2026-11-13
+H107-D04,H107,Upstart Personal,Personal,5250,17.67,253,,2026-11-13
+H107-D05,H107,Capital One Auto,Auto,23900,4.55,405,,2026-11-13
+H108-D01,H108,Truist Mortgage,Mortgage,180350,6.35,1147,P108A,2026-11-13
+H108-D02,H108,Amex Blue Cash,Credit card,23750,29.4,713,,2026-11-13
+H108-D03,H108,Discover It,Credit card,12350,27.0,371,,2026-11-13
+H108-D04,H108,Prosper Personal,Personal,6050,23.24,255,,2026-11-13
+H109-D01,H109,Rocket Mortgage,Mortgage,113950,4.5,623,P109A,2026-11-13
+H109-D02,H109,Capital One Quicksilver,Credit card,6450,26.91,345,,2026-11-13
+H109-D03,H109,Barclays View,Credit card,21100,19.35,634,,2026-11-13
+H109-D04,H109,Hyundai Capital,Auto,18350,6.1,305,,2026-11-13
+H109-D05,H109,Medical Payment Plan,Other,3450,8.31,128,,2026-11-13
+H110-D01,H110,Truist Mortgage,Mortgage,226400,4.7,1546,P110A,2026-11-13
+H110-D02,H110,Bank of America Cash Rewards,Credit card,5400,18.52,162,,2026-11-13
+H110-D03,H110,Capital One Quicksilver,Credit card,11200,19.34,761,,2026-11-13
+H110-D04,H110,Capital One Auto,Auto,15300,6.07,414,,2026-11-13
+H110-D05,H110,Nelnet Student Loan,Student loan,53350,7.53,634,,2026-11-13
+H110-D06,H110,Chase Ink Business,Business,24250,19.39,728,,2026-11-13
+H111-D01,H111,Huntington Mortgage,Mortgage,312150,3.09,1606,P111A,2026-11-13
+H111-D02,H111,Figure Home Equity,Home equity loan,56950,8.91,713,P111A,2026-11-13
+H111-D03,H111,US Bank Altitude,Credit card,7950,25.55,239,,2026-11-13
+H111-D04,H111,Discover It,Credit card,19200,19.45,968,,2026-11-13
+H111-D05,H111,MOHELA Student Loan,Student loan,43300,4.46,448,,2026-11-13
+H112-D01,H112,Chase Sapphire,Credit card,9300,22.75,279,,2026-11-13
+H112-D02,H112,Bank of America Cash Rewards,Credit card,15350,26.07,1098,,2026-11-13
+H112-D03,H112,Citi Double Cash,Credit card,9750,28.21,293,,2026-11-13
+H112-D04,H112,Honda Financial,Auto,31100,6.67,727,,2026-11-13
+H112-D05,H112,Sallie Mae Student Loan,Student loan,45800,3.52,453,,2026-11-13
+H113-D01,H113,Flagstar Mortgage,Mortgage,58650,4.65,324,P113A,2026-11-13
+H113-D02,H113,PNC Mortgage (rental),Mortgage,119550,7.47,813,P113B,2026-11-13
+H113-D03,H113,Chase Freedom,Credit card,22900,21.88,688,,2026-11-13
+H113-D04,H113,Capital One Venture,Credit card,19350,19.45,581,,2026-11-13
+H113-D05,H113,Discover It,Credit card,11650,22.56,349,,2026-11-13
+H113-D06,H113,Citi Double Cash,Credit card,5700,22.82,218,,2026-11-13
+H113-D07,H113,Toyota Financial,Auto,8650,4.07,148,,2026-11-13
+H114-D01,H114,Flagstar Mortgage,Mortgage,410050,6.45,2901,P114A,2026-11-13
+H114-D02,H114,Citi Double Cash,Credit card,14800,24.2,445,,2026-11-13
+H114-D03,H114,Toyota Financial,Auto,25000,3.93,553,,2026-11-13
+H115-D01,H115,PNC Mortgage,Mortgage,449000,3.48,2669,P115A,2026-11-13
+H115-D02,H115,Apple Card,Credit card,19300,26.09,579,,2026-11-13
+H115-D03,H115,Wells Fargo Active Cash,Credit card,10050,23.38,550,,2026-11-13
+H115-D04,H115,US Bank Altitude,Credit card,3250,21.25,162,,2026-11-13
+H115-D05,H115,Avant Personal,Personal,21850,9.19,773,,2026-11-13
+H115-D06,H115,Toyota Financial,Auto,38350,7.12,1283,,2026-11-13
+H115-D07,H115,Capital One Auto,Auto,32950,12.53,937,,2026-11-13
+H115-D08,H115,Sallie Mae Student Loan,Student loan,15000,4.33,154,,2026-11-13
+H115-D09,H115,MOHELA Student Loan,Student loan,39200,7.63,468,,2026-11-13
+H115-D10,H115,Chase Business Line,Line of credit,14150,10.37,354,,2026-11-13
+H116-D01,H116,Discover It,Credit card,16300,30.07,489,,2026-11-13
+H116-D02,H116,Barclays View,Credit card,20900,21.25,627,,2026-11-13
+H117-D01,H117,Wells Fargo Mortgage,Mortgage,186850,4.17,1030,P117A,2026-11-13
+H117-D02,H117,Barclays View,Credit card,3300,19.49,201,,2026-11-13
+H117-D03,H117,Upstart Personal,Personal,11000,11.76,517,,2026-11-13
+H117-D04,H117,GM Financial,Auto,14600,5.75,272,,2026-11-13
+H118-D01,H118,Flagstar Mortgage,Mortgage,227450,2.89,990,P118A,2026-11-13
+H118-D02,H118,Bank of America Cash Rewards,Credit card,5200,21.14,371,,2026-11-13
+H118-D03,H118,Best Egg Personal,Personal,13650,11.87,561,,2026-11-13
+H118-D04,H118,Best Egg Personal,Personal,27950,24.51,982,,2026-11-13
+H118-D05,H118,GM Financial,Auto,9700,6.69,255,,2026-11-13
+H118-D06,H118,Ally Auto,Auto,21550,3.94,576,,2026-11-13
+H119-D01,H119,Wells Fargo Mortgage,Mortgage,188300,3.35,903,P119A,2026-11-13
+H119-D02,H119,Bank of America Cash Rewards,Credit card,2600,23.99,77,,2026-11-13
+H119-D03,H119,Bank of America Cash Rewards,Credit card,1550,19.14,115,,2026-11-13
+H119-D04,H119,Toyota Financial,Auto,36600,11.95,767,,2026-11-13
+H119-D05,H119,Ally Auto,Auto,31600,5.61,1035,,2026-11-13
+H119-D06,H119,Payoff Debt Consolidation,Debt consolidation,10350,13.84,308,,2026-11-13
+H120-D01,H120,Capital One Venture,Credit card,8000,30.16,240,,2026-11-13
+H120-D02,H120,Synchrony Store Card,Credit card,2850,19.23,118,,2026-11-13
+H120-D03,H120,Discover Personal,Personal,23450,16.09,721,,2026-11-13
+H120-D04,H120,Hyundai Capital,Auto,36300,11.97,779,,2026-11-13
+H120-D05,H120,Hyundai Capital,Auto,23500,12.55,490,,2026-11-13
+H120-D06,H120,Sallie Mae Student Loan,Student loan,24200,7.21,284,,2026-11-13
+H120-D07,H120,MOHELA Student Loan,Student loan,9000,5.37,97,,2026-11-13
+H121-D01,H121,Truist Mortgage,Mortgage,237700,5.97,1635,P121A,2026-11-13
+H121-D02,H121,Bank of America Cash Rewards,Credit card,4300,29.56,129,,2026-11-13
+H121-D03,H121,SoFi Personal,Personal,6650,21.6,244,,2026-11-13
+H122-D01,H122,Guaranteed Rate Mortgage,Mortgage,111350,6.94,870,P122A,2026-11-13
+H122-D02,H122,Capital One Quicksilver,Credit card,15450,23.7,463,,2026-11-13
+H122-D03,H122,Amex Blue Cash,Credit card,9150,21.02,275,,2026-11-13
+H122-D04,H122,Citi Custom Cash,Credit card,4050,19.25,142,,2026-11-13
+H122-D05,H122,OneMain Personal,Personal,12300,14.16,421,,2026-11-13
+H123-D01,H123,US Bank Mortgage,Mortgage,223500,3.38,1347,P123A,2026-11-13
+H123-D02,H123,Apple Card,Credit card,16750,22.77,502,,2026-11-13
+H123-D03,H123,US Bank Altitude,Credit card,17750,26.07,532,,2026-11-13
+H123-D04,H123,Capital One Quicksilver,Credit card,15950,19.15,478,,2026-11-13
+H123-D05,H123,Discover Personal,Personal,23450,14.99,684,,2026-11-13
+H124-D01,H124,Rocket Mortgage,Mortgage,407350,4.25,2285,P124A,2026-11-13
+H124-D02,H124,Wells Fargo Active Cash,Credit card,3950,28.53,119,,2026-11-13
+H124-D03,H124,US Bank Altitude,Credit card,17600,23.45,529,,2026-11-13
+H125-D01,H125,Rocket Mortgage,Mortgage,197900,6.53,1356,P125A,2026-11-13
+H125-D02,H125,Capital One Quicksilver,Credit card,1800,30.0,125,,2026-11-13
+H125-D03,H125,Toyota Financial,Auto,20850,4.38,620,,2026-11-13
+H125-D04,H125,Navient Student Loan,Student loan,28000,4.53,290,,2026-11-13
+H126-D01,H126,Wells Fargo Mortgage,Mortgage,181350,3.38,883,P126A,2026-11-13
+H126-D02,H126,Capital One Quicksilver,Credit card,9650,29.04,756,,2026-11-13
+H126-D03,H126,Nissan Motor Acceptance,Auto,31250,10.19,582,,2026-11-13
+H126-D04,H126,Medical Payment Plan,Other,2050,0.92,114,,2026-11-13
+H127-D01,H127,Flagstar Mortgage,Mortgage,173350,4.3,1056,P127A,2026-11-13
+H127-D02,H127,Amex Gold,Credit card,7600,21.23,228,,2026-11-13
+H127-D03,H127,Upstart Personal,Personal,8150,23.49,307,,2026-11-13
+H128-D01,H128,Rocket Mortgage,Mortgage,223800,4.73,1422,P128A,2026-11-13
+H128-D02,H128,Synchrony Store Card,Credit card,8650,29.16,338,,2026-11-13
+H128-D03,H128,US Bank Altitude,Credit card,8400,28.92,252,,2026-11-13
+H128-D04,H128,GM Financial,Auto,41900,7.11,1441,,2026-11-13
+H128-D05,H128,Navient Student Loan,Student loan,45950,3.56,456,,2026-11-13
+H129-D01,H129,Chase Sapphire,Credit card,13050,28.66,392,,2026-11-13
+H129-D02,H129,Best Egg Personal,Personal,13650,19.45,373,,2026-11-13
+H129-D03,H129,OneMain Personal,Personal,27100,19.17,876,,2026-11-13
+H129-D04,H129,Medical Payment Plan,Other,2350,4.04,65,,2026-11-13
+H130-D01,H130,Chase Sapphire,Credit card,15350,24.74,461,,2026-11-13
+H130-D02,H130,Citi Double Cash,Credit card,15550,20.3,467,,2026-11-13
+H130-D03,H130,Chase Sapphire,Credit card,15800,28.65,474,,2026-11-13
+H130-D04,H130,US Bank Altitude,Credit card,20600,26.98,1015,,2026-11-13
+H130-D05,H130,Discover Personal,Personal,8000,17.43,281,,2026-11-13
+H130-D06,H130,Toyota Financial,Auto,28050,6.44,880,,2026-11-13
+H130-D07,H130,Navient Student Loan,Student loan,41550,3.73,415,,2026-11-13
+H130-D08,H130,Nelnet Student Loan,Student loan,47900,5.08,510,,2026-11-13
+H131-D01,H131,Rocket Mortgage,Mortgage,239550,6.4,1670,P131A,2026-11-13
+H131-D02,H131,Chase Sapphire,Credit card,22600,26.4,1681,,2026-11-13
+H131-D03,H131,Chase Freedom,Credit card,13800,22.11,697,,2026-11-13
+H131-D04,H131,Chase Sapphire,Credit card,21950,23.86,658,,2026-11-13
+H131-D05,H131,Citi Double Cash,Credit card,12300,26.24,824,,2026-11-13
+H132-D01,H132,Mr. Cooper Mortgage,Mortgage,94400,6.93,766,P132A,2026-11-13
+H132-D02,H132,Citi Double Cash,Credit card,21350,24.62,1238,,2026-11-13
+H132-D03,H132,Wells Fargo Active Cash,Credit card,19400,22.21,583,,2026-11-13
+H132-D04,H132,GM Financial,Auto,20250,7.26,548,,2026-11-13
+H133-D01,H133,Discover Personal,Personal,21950,10.69,499,,2026-11-13
+H133-D02,H133,Navient Student Loan,Student loan,28900,6.13,322,,2026-11-13
+H134-D01,H134,Chase Mortgage,Mortgage,425850,7.36,3722,P134A,2026-11-13
+H134-D02,H134,Capital One Venture,Credit card,20050,26.43,601,,2026-11-13
+H134-D03,H134,Apple Card,Credit card,23000,20.58,691,,2026-11-13
+H134-D04,H134,Citi Double Cash,Credit card,17500,21.49,525,,2026-11-13
+H134-D05,H134,Capital One Quicksilver,Credit card,18550,24.68,556,,2026-11-13
+H134-D06,H134,Capital One Auto,Auto,34500,7.23,1125,,2026-11-13
+H134-D07,H134,Honda Financial,Auto,19350,6.23,322,,2026-11-13
+H134-D08,H134,Chase Business Line,Line of credit,8150,13.94,203,,2026-11-13
+H135-D01,H135,Truist Mortgage,Mortgage,303050,3.73,2099,P135A,2026-11-13
+H135-D02,H135,Synchrony Store Card,Credit card,5550,24.01,167,,2026-11-13
+H135-D03,H135,Amex Gold,Credit card,9100,22.94,273,,2026-11-13
+H135-D04,H135,US Bank Altitude,Credit card,16500,23.86,494,,2026-11-13
+H135-D05,H135,Marcus Personal,Personal,4050,24.02,176,,2026-11-13
+H135-D06,H135,Avant Personal,Personal,19150,24.76,1020,,2026-11-13
+H135-D07,H135,Sallie Mae Student Loan,Student loan,43500,7.05,506,,2026-11-13
+H135-D08,H135,Sallie Mae Student Loan,Student loan,58250,6.56,663,,2026-11-13
+H136-D01,H136,Rocket Mortgage,Mortgage,143600,5.41,907,P136A,2026-11-13
+H136-D02,H136,Amex Gold,Credit card,16200,24.78,486,,2026-11-13
+H136-D03,H136,Chase Freedom,Credit card,20650,26.86,620,,2026-11-13
+H136-D04,H136,Citi Double Cash,Credit card,9050,26.58,271,,2026-11-13
+H136-D05,H136,Wells Fargo Active Cash,Credit card,2600,23.71,77,,2026-11-13
+H136-D06,H136,Capital One Auto,Auto,27300,7.16,490,,2026-11-13
+H137-D01,H137,Chase Mortgage,Mortgage,281600,4.76,1555,P137A,2026-11-13
+H137-D02,H137,Figure Home Equity,Home equity loan,32350,9.19,398,P137A,2026-11-13
+H137-D03,H137,Apple Card,Credit card,1700,23.81,50,,2026-11-13
+H138-D01,H138,Mr. Cooper Mortgage,Mortgage,393450,6.22,2764,P138A,2026-11-13
+H138-D02,H138,Chase Freedom,Credit card,9650,26.04,289,,2026-11-13
+H138-D03,H138,Discover It,Credit card,22800,27.17,685,,2026-11-13
+H139-D01,H139,PNC Mortgage,Mortgage,480500,4.97,3504,P139A,2026-11-13
+H139-D02,H139,Figure Home Equity,Home equity loan,76250,8.65,941,P139A,2026-11-13
+H139-D03,H139,Wells Fargo Active Cash,Credit card,10200,20.37,307,,2026-11-13
+H139-D04,H139,Capital One Quicksilver,Credit card,2300,23.58,160,,2026-11-13
+H139-D05,H139,LendingClub Personal,Personal,27350,22.35,761,,2026-11-13
+H139-D06,H139,Ally Auto,Auto,11800,9.96,258,,2026-11-13
+H139-D07,H139,Nelnet Student Loan,Student loan,59250,6.65,677,,2026-11-13
+H140-D01,H140,Chase Mortgage,Mortgage,213150,3.56,1405,P140A,2026-11-13
+H140-D02,H140,Wells Fargo Active Cash,Credit card,9100,23.68,273,,2026-11-13
+H140-D03,H140,Bank of America Cash Rewards,Credit card,19450,28.1,583,,2026-11-13
+H140-D04,H140,Wells Fargo Active Cash,Credit card,9950,29.29,298,,2026-11-13
+H140-D05,H140,Avant Personal,Personal,13650,9.21,526,,2026-11-13
+H140-D06,H140,Capital One Auto,Auto,10650,6.66,304,,2026-11-13
+H141-D01,H141,Flagstar Mortgage,Mortgage,214250,4.58,1449,P141A,2026-11-13
+H141-D02,H141,Chase Freedom,Credit card,7200,26.37,217,,2026-11-13
+H141-D03,H141,Chase Freedom,Credit card,4800,19.72,144,,2026-11-13
+H141-D04,H141,Synchrony Store Card,Credit card,18950,26.03,568,,2026-11-13
+H141-D05,H141,Amex Blue Cash,Credit card,13000,25.37,390,,2026-11-13
+H141-D06,H141,Nelnet Student Loan,Student loan,31600,4.03,320,,2026-11-13
+H142-D01,H142,US Bank Mortgage,Mortgage,163950,3.02,785,P142A,2026-11-13
+H142-D02,H142,Figure Home Equity,Home equity loan,36500,9.14,540,P142A,2026-11-13
+H142-D03,H142,Citi Double Cash,Credit card,23350,23.29,1805,,2026-11-13
+H142-D04,H142,Navient Student Loan,Student loan,17100,3.73,171,,2026-11-13
+H143-D01,H143,Chase Sapphire,Credit card,13750,29.42,865,,2026-11-13
+H143-D02,H143,Apple Card,Credit card,20100,20.59,604,,2026-11-13
+H143-D03,H143,Discover Personal,Personal,27150,20.88,916,,2026-11-13
+H144-D01,H144,Guaranteed Rate Mortgage,Mortgage,579200,4.0,2937,P144A,2026-11-13
+H144-D02,H144,Amex Gold,Credit card,19200,25.31,576,,2026-11-13
+H144-D03,H144,LendingClub Personal,Personal,29550,13.76,1205,,2026-11-13
+H144-D04,H144,Hyundai Capital,Auto,24200,8.74,513,,2026-11-13
+H145-D01,H145,Chase Mortgage,Mortgage,198350,6.31,1334,P145A,2026-11-13
+H145-D02,H145,Capital One Venture,Credit card,5800,25.79,268,,2026-11-13
+H145-D03,H145,Citi Double Cash,Credit card,2950,21.2,88,,2026-11-13
+H145-D04,H145,Barclays View,Credit card,8200,26.99,246,,2026-11-13
+H146-D01,H146,Truist Mortgage,Mortgage,268000,4.02,1538,P146A,2026-11-13
+H146-D02,H146,Amex Gold,Credit card,3150,21.34,173,,2026-11-13
+H146-D03,H146,Capital One Venture,Credit card,16450,26.39,494,,2026-11-13
+H146-D04,H146,Honda Financial,Auto,30700,8.68,549,,2026-11-13
+H146-D05,H146,Sallie Mae Student Loan,Student loan,19650,3.52,0,,2026-11-13
+H147-D01,H147,Bank of America Cash Rewards,Credit card,7700,28.11,232,,2026-11-13
+H147-D02,H147,Honda Financial,Auto,20750,7.35,628,,2026-11-13
+H148-D01,H148,Capital One Venture,Credit card,17050,23.65,775,,2026-11-13
+H148-D02,H148,Barclays View,Credit card,15200,26.16,1126,,2026-11-13
+H148-D03,H148,Discover It,Credit card,2200,19.11,66,,2026-11-13
+H148-D04,H148,Wells Fargo Active Cash,Credit card,2450,24.17,73,,2026-11-13
+H148-D05,H148,Avant Personal,Personal,19050,21.89,851,,2026-11-13
+H148-D06,H148,Nissan Motor Acceptance,Auto,39800,5.2,887,,2026-11-13
+H149-D01,H149,Capital One Venture,Credit card,6000,29.08,180,,2026-11-13
+H149-D02,H149,Nissan Motor Acceptance,Auto,28050,8.12,674,,2026-11-13
+H149-D03,H149,Navient Student Loan,Student loan,25850,5.04,275,,2026-11-13
+H149-D04,H149,MOHELA Student Loan,Student loan,38400,4.47,397,,2026-11-13
+H150-D01,H150,Flagstar Mortgage,Mortgage,203600,7.4,1597,P150A,2026-11-13
+H150-D02,H150,Capital One Quicksilver,Credit card,5500,24.19,165,,2026-11-13
+H150-D03,H150,Prosper Personal,Personal,6450,21.59,335,,2026-11-13
+H150-D04,H150,Discover Personal,Personal,9050,22.26,429,,2026-11-13
+H151-D01,H151,US Bank Mortgage,Mortgage,296350,2.93,1481,P151A,2026-11-13
+H151-D02,H151,Capital One Quicksilver,Credit card,12550,21.33,376,,2026-11-13
+H151-D03,H151,Barclays View,Credit card,9450,26.1,283,,2026-11-13
+H151-D04,H151,Upstart Personal,Personal,28550,23.29,1408,,2026-11-13
+H151-D05,H151,Chase Business Line,Line of credit,8500,12.4,213,,2026-11-13
+H152-D01,H152,Citi Double Cash,Credit card,5850,24.8,175,,2026-11-13
+H152-D02,H152,US Bank Altitude,Credit card,1600,20.2,48,,2026-11-13
+H152-D03,H152,Capital One Auto,Auto,23800,4.76,710,,2026-11-13
+H152-D04,H152,Ally Auto,Auto,28100,6.48,611,,2026-11-13
+H153-D01,H153,PNC Mortgage,Mortgage,330250,5.96,2020,P153A,2026-11-13
+H153-D02,H153,Bank of America Cash Rewards,Credit card,16700,24.1,500,,2026-11-13
+H153-D03,H153,Amex Blue Cash,Credit card,14150,27.43,1071,,2026-11-13
+H154-D01,H154,Discover It,Credit card,9250,22.41,278,,2026-11-13
+H154-D02,H154,Marcus Personal,Personal,21650,19.81,589,,2026-11-13
+H154-D03,H154,Capital One Auto,Auto,12800,10.19,458,,2026-11-13
+H154-D04,H154,Sallie Mae Student Loan,Student loan,47400,6.56,540,,2026-11-13
+H155-D01,H155,Wells Fargo Mortgage,Mortgage,207200,4.96,1288,P155A,2026-11-13
+H155-D02,H155,Discover It,Credit card,17300,25.6,518,,2026-11-13
+H155-D03,H155,Apple Card,Credit card,18050,30.18,892,,2026-11-13
+H155-D04,H155,Prosper Personal,Personal,18200,24.9,940,,2026-11-13
+H155-D05,H155,GM Financial,Auto,29150,12.99,634,,2026-11-13
+H155-D06,H155,Hyundai Capital,Auto,35150,10.22,691,,2026-11-13
+H156-D01,H156,Flagstar Mortgage,Mortgage,187200,3.43,1199,P156A,2026-11-13
+H156-D02,H156,Amex Gold,Credit card,5400,22.26,162,,2026-11-13
+H157-D01,H157,Mr. Cooper Mortgage,Mortgage,352600,4.58,2240,P157A,2026-11-13
+H157-D02,H157,Citi Custom Cash,Credit card,7050,30.21,212,,2026-11-13
+H157-D03,H157,Navient Student Loan,Student loan,34800,5.95,385,,2026-11-13
+H157-D04,H157,Navient Student Loan,Student loan,54850,3.81,550,,2026-11-13
+H158-D01,H158,Chase Mortgage,Mortgage,539250,4.13,2779,P158A,2026-11-13
+H158-D02,H158,Chase Sapphire,Credit card,2200,27.04,66,,2026-11-13
+H158-D03,H158,Chase Business Line,Line of credit,12600,11.48,315,,2026-11-13
+H159-D01,H159,Barclays View,Credit card,14700,25.52,441,,2026-11-13
+H159-D02,H159,Chase Sapphire,Credit card,10200,25.34,307,,2026-11-13
+H160-D01,H160,US Bank Mortgage,Mortgage,107950,5.39,800,P160A,2026-11-13
+H160-D02,H160,PNC Mortgage (rental),Mortgage,96900,7.19,680,P160B,2026-11-13
+H160-D03,H160,Capital One Venture,Credit card,15500,28.4,464,,2026-11-13
+H160-D04,H160,Apple Card,Credit card,2500,23.01,75,,2026-11-13
+H161-D01,H161,Chase Mortgage,Mortgage,397800,4.41,2071,P161A,2026-11-13
+H161-D02,H161,Chase Freedom,Credit card,12900,23.91,1027,,2026-11-13
+H161-D03,H161,Citi Custom Cash,Credit card,3600,23.6,107,,2026-11-13
+H161-D04,H161,Chase Sapphire,Credit card,18450,19.71,554,,2026-11-13
+H161-D05,H161,LendingClub Personal,Personal,17250,21.24,680,,2026-11-13
+H161-D06,H161,Navient Student Loan,Student loan,13050,6.5,148,,2026-11-13
+H162-D01,H162,PNC Mortgage,Mortgage,452550,7.31,3334,P162A,2026-11-13
+H162-D02,H162,PNC Mortgage (rental),Mortgage,80300,6.89,570,P162B,2026-11-13
+H162-D03,H162,Amex Gold,Credit card,16800,19.39,504,,2026-11-13
+H162-D04,H162,Synchrony Store Card,Credit card,13500,28.72,1045,,2026-11-13
+H162-D05,H162,Synchrony Store Card,Credit card,14550,29.28,436,,2026-11-13
+H162-D06,H162,Nissan Motor Acceptance,Auto,27350,8.77,530,,2026-11-13
+H162-D07,H162,Navient Student Loan,Student loan,8750,6.91,101,,2026-11-13
+H163-D01,H163,Flagstar Mortgage,Mortgage,115150,3.45,691,P163A,2026-11-13
+H163-D02,H163,Amex Blue Cash,Credit card,6600,28.16,387,,2026-11-13
+H163-D03,H163,Synchrony Store Card,Credit card,9900,21.35,296,,2026-11-13
+H163-D04,H163,Bank of America Cash Rewards,Credit card,20200,20.01,606,,2026-11-13
+H163-D05,H163,Best Egg Personal,Personal,12800,9.77,402,,2026-11-13
+H163-D06,H163,Capital One Auto,Auto,23800,10.36,678,,2026-11-13
+H164-D01,H164,Apple Card,Credit card,19300,27.65,580,,2026-11-13
+H164-D02,H164,Chase Freedom,Credit card,9150,29.98,275,,2026-11-13
+H165-D01,H165,Chase Mortgage,Mortgage,356250,5.47,2209,P165A,2026-11-13
+H165-D02,H165,Citi Double Cash,Credit card,3600,22.01,109,,2026-11-13
+H165-D03,H165,Apple Card,Credit card,11150,28.37,335,,2026-11-13
+H165-D04,H165,Bank of America Cash Rewards,Credit card,6850,25.3,206,,2026-11-13
+H165-D05,H165,Amex Blue Cash,Credit card,16350,19.51,490,,2026-11-13
+H165-D06,H165,Toyota Financial,Auto,33850,6.04,843,,2026-11-13
+H166-D01,H166,US Bank Mortgage,Mortgage,146950,6.73,1129,P166A,2026-11-13
+H166-D02,H166,Chase Freedom,Credit card,22100,25.16,663,,2026-11-13
+H166-D03,H166,Bank of America Cash Rewards,Credit card,22000,29.96,1539,,2026-11-13
+H166-D04,H166,SoFi Personal,Personal,27150,17.95,1025,,2026-11-13
+H166-D05,H166,Prosper Personal,Personal,26450,14.37,1230,,2026-11-13
+H166-D06,H166,Capital One Auto,Auto,23450,6.03,697,,2026-11-13
+H167-D01,H167,Truist Mortgage,Mortgage,127850,5.07,845,P167A,2026-11-13
+H167-D02,H167,Bank of America Cash Rewards,Credit card,20750,27.1,623,,2026-11-13
+H167-D03,H167,Citi Double Cash,Credit card,20550,22.93,617,,2026-11-13
+H167-D04,H167,US Bank Altitude,Credit card,6750,30.47,203,,2026-11-13
+H167-D05,H167,Apple Card,Credit card,18800,26.9,564,,2026-11-13
+H167-D06,H167,Sallie Mae Student Loan,Student loan,24750,4.28,254,,2026-11-13
+H168-D01,H168,Chase Mortgage,Mortgage,196500,6.92,1709,P168A,2026-11-13
+H168-D02,H168,Chase Sapphire,Credit card,22150,30.31,1068,,2026-11-13
+H168-D03,H168,Barclays View,Credit card,15050,29.38,452,,2026-11-13
+H168-D04,H168,Wells Fargo Active Cash,Credit card,6450,24.87,401,,2026-11-13
+H168-D05,H168,Discover Personal,Personal,17200,24.96,577,,2026-11-13
+H168-D06,H168,MOHELA Student Loan,Student loan,43400,4.27,445,,2026-11-13
+H169-D01,H169,US Bank Mortgage,Mortgage,578200,7.49,4840,P169A,2026-11-13
+H169-D02,H169,PNC Mortgage (rental),Mortgage,78900,6.63,602,P169B,2026-11-13
+H169-D03,H169,Barclays View,Credit card,17100,23.65,1361,,2026-11-13
+H169-D04,H169,Citi Custom Cash,Credit card,5050,30.48,151,,2026-11-13
+H169-D05,H169,Discover It,Credit card,14650,22.32,736,,2026-11-13
+H169-D06,H169,Bank of America Cash Rewards,Credit card,21200,24.87,927,,2026-11-13
+H169-D07,H169,OneMain Personal,Personal,18100,20.76,871,,2026-11-13
+H170-D01,H170,Apple Card,Credit card,10750,25.69,322,,2026-11-13
+H170-D02,H170,OneMain Personal,Personal,20050,21.34,942,,2026-11-13
+H170-D03,H170,Honda Financial,Auto,14050,6.03,324,,2026-11-13
+H170-D04,H170,Ally Auto,Auto,17350,6.85,430,,2026-11-13
+H171-D01,H171,Citi Double Cash,Credit card,15050,18.65,621,,2026-11-13
+H171-D02,H171,Discover It,Credit card,2850,28.18,86,,2026-11-13
+H171-D03,H171,Apple Card,Credit card,15000,22.4,785,,2026-11-13
+H171-D04,H171,Discover Personal,Personal,24700,16.11,761,,2026-11-13
+H172-D01,H172,Truist Mortgage,Mortgage,81750,4.31,432,P172A,2026-11-13
+H172-D02,H172,Figure Home Equity,Home equity loan,20800,10.19,239,P172A,2026-11-13
+H172-D03,H172,Barclays View,Credit card,18550,25.92,556,,2026-11-13
+H172-D04,H172,Avant Personal,Personal,20900,18.62,629,,2026-11-13
+H172-D05,H172,Best Egg Personal,Personal,10000,19.39,403,,2026-11-13
+H173-D01,H173,Wells Fargo Active Cash,Credit card,1550,21.77,47,,2026-11-13
+H173-D02,H173,Citi Custom Cash,Credit card,5250,23.56,354,,2026-11-13
+H173-D03,H173,Wells Fargo Active Cash,Credit card,18900,27.09,568,,2026-11-13
+H173-D04,H173,Amex Gold,Credit card,11200,19.44,335,,2026-11-13
+H173-D05,H173,Upstart Personal,Personal,5850,20.24,181,,2026-11-13
+H173-D06,H173,Discover Personal,Personal,7050,19.1,332,,2026-11-13
+H173-D07,H173,Toyota Financial,Auto,31300,4.12,636,,2026-11-13
+H173-D08,H173,Sallie Mae Student Loan,Student loan,40850,4.45,423,,2026-11-13
+H174-D01,H174,Rocket Mortgage,Mortgage,335500,6.8,2816,P174A,2026-11-13
+H174-D02,H174,Synchrony Store Card,Credit card,16150,22.38,485,,2026-11-13
+H174-D03,H174,Amex Blue Cash,Credit card,20450,23.04,1554,,2026-11-13
+H174-D04,H174,Prosper Personal,Personal,8000,9.29,170,,2026-11-13
+H175-D01,H175,Chase Freedom,Credit card,4900,30.46,346,,2026-11-13
+H175-D02,H175,Chase Sapphire,Credit card,12600,18.93,178,,2026-11-13
+H175-D03,H175,Capital One Quicksilver,Credit card,23050,19.59,691,,2026-11-13
+H175-D04,H175,Prosper Personal,Personal,6050,23.23,239,,2026-11-13
+H175-D05,H175,OneMain Personal,Personal,24750,20.0,725,,2026-11-13
+H175-D06,H175,Navient Student Loan,Student loan,19050,5.32,205,,2026-11-13
+H176-D01,H176,Flagstar Mortgage,Mortgage,335000,3.01,1639,P176A,2026-11-13
+H176-D02,H176,Capital One Venture,Credit card,2650,23.96,79,,2026-11-13
+H176-D03,H176,Capital One Venture,Credit card,7150,24.19,215,,2026-11-13
+H176-D04,H176,Capital One Auto,Auto,22150,5.16,468,,2026-11-13
+H177-D01,H177,Amex Gold,Credit card,1850,25.31,55,,2026-11-13
+H177-D02,H177,Wells Fargo Active Cash,Credit card,21900,26.32,656,,2026-11-13
+H177-D03,H177,Amex Blue Cash,Credit card,23200,20.32,1018,,2026-11-13
+H177-D04,H177,Chase Sapphire,Credit card,7750,24.39,586,,2026-11-13
+H177-D05,H177,Medical Payment Plan,Other,1300,4.17,62,,2026-11-13
+H178-D01,H178,Truist Mortgage,Mortgage,232350,4.01,1266,P178A,2026-11-13
+H178-D02,H178,Citi Custom Cash,Credit card,17150,30.22,515,,2026-11-13
+H178-D03,H178,Capital One Venture,Credit card,8100,25.24,465,,2026-11-13
+H178-D04,H178,Nissan Motor Acceptance,Auto,23700,5.92,397,,2026-11-13
+H178-D05,H178,MOHELA Student Loan,Student loan,16550,7.58,197,,2026-11-13
+H179-D01,H179,Huntington Mortgage,Mortgage,358850,6.09,3046,P179A,2026-11-13
+H179-D02,H179,Amex Blue Cash,Credit card,19350,29.11,580,,2026-11-13
+H179-D03,H179,Chase Freedom,Credit card,20150,22.34,605,,2026-11-13
+H179-D04,H179,Discover Personal,Personal,21100,19.71,613,,2026-11-13
+H179-D05,H179,MOHELA Student Loan,Student loan,54450,4.55,566,,2026-11-13
+H179-D06,H179,Navient Student Loan,Student loan,26700,6.27,300,,2026-11-13
+H180-D01,H180,Chase Mortgage,Mortgage,331350,3.46,1632,P180A,2026-11-13
+H180-D02,H180,Amex Gold,Credit card,5250,29.91,158,,2026-11-13
+H180-D03,H180,Discover It,Credit card,5550,24.79,166,,2026-11-13
+H180-D04,H180,MOHELA Student Loan,Student loan,59900,3.73,599,,2026-11-13
+H181-D01,H181,PNC Mortgage,Mortgage,185900,6.87,1352,P181A,2026-11-13
+H181-D02,H181,LendingClub Personal,Personal,11800,9.57,346,,2026-11-13
+H181-D03,H181,OneMain Personal,Personal,6250,14.55,195,,2026-11-13
+H181-D04,H181,Nelnet Student Loan,Student loan,48850,7.7,585,,2026-11-13
+H182-D01,H182,Wells Fargo Mortgage,Mortgage,190300,4.16,1044,,2026-11-13
+H182-D02,H182,Wells Fargo Active Cash,Credit card,16850,22.12,506,,2026-11-13
+H182-D03,H182,Amex Blue Cash,Credit card,23400,21.42,702,,2026-11-13
+H182-D04,H182,Nelnet Student Loan,Student loan,54900,6.71,629,,2026-11-13
+H183-D01,H183,US Bank Mortgage,Mortgage,193900,4.12,1095,P183A,2026-11-13
+H183-D02,H183,Capital One Venture,Credit card,15250,21.66,458,,2026-11-13
+H183-D03,H183,Barclays View,Credit card,14150,25.62,927,,2026-11-13
+H183-D04,H183,Citi Double Cash,Credit card,23700,29.34,1049,,2026-11-13
+H183-D05,H183,Barclays View,Credit card,14400,27.02,432,,2026-11-13
+H183-D06,H183,Discover Personal,Personal,20300,19.0,676,,2026-11-13
+H184-D01,H184,Guaranteed Rate Mortgage,Mortgage,289700,2.82,1341,P184A,2026-11-13
+H184-D02,H184,US Bank Altitude,Credit card,6900,21.92,207,,2026-11-13
+H184-D03,H184,Amex Blue Cash,Credit card,11250,25.67,751,,2026-11-13
+H184-D04,H184,Chase Freedom,Credit card,2750,30.12,82,,2026-11-13
+H184-D05,H184,Synchrony Store Card,Credit card,8700,20.37,262,,2026-11-13
+H185-D01,H185,Huntington Mortgage,Mortgage,307800,5.98,2187,P185A,2026-11-13
+H185-D02,H185,Citi Double Cash,Credit card,19950,29.01,599,,2026-11-13
+H185-D03,H185,Synchrony Store Card,Credit card,10650,23.25,320,,2026-11-13
+H185-D04,H185,Best Egg Personal,Personal,14450,9.07,484,,2026-11-13
+H186-D01,H186,Huntington Mortgage,Mortgage,184950,5.24,1144,P186A,2026-11-13
+H186-D02,H186,Hyundai Capital,Auto,14450,6.49,454,,2026-11-13
+H187-D01,H187,Mr. Cooper Mortgage,Mortgage,350400,6.94,2404,P187A,2026-11-13
+H187-D02,H187,PNC Mortgage (rental),Mortgage,102500,7.03,697,P187B,2026-11-13
+H187-D03,H187,Wells Fargo Active Cash,Credit card,20750,25.57,1598,,2026-11-13
+H187-D04,H187,Capital One Quicksilver,Credit card,5650,24.02,232,,2026-11-13
+H187-D05,H187,US Bank Altitude,Credit card,14050,20.98,1033,,2026-11-13
+H187-D06,H187,Honda Financial,Auto,31400,4.03,723,,2026-11-13
+H187-D07,H187,Sallie Mae Student Loan,Student loan,35250,6.46,400,,2026-11-13
+H188-D01,H188,Truist Mortgage,Mortgage,336700,7.09,2328,P188A,2026-11-13
+H188-D02,H188,Citi Custom Cash,Credit card,7200,28.51,216,,2026-11-13
+H188-D03,H188,Discover It,Credit card,15800,20.13,475,,2026-11-13
+H188-D04,H188,Capital One Venture,Credit card,6800,27.53,204,,2026-11-13
+H188-D05,H188,Capital One Venture,Credit card,11400,28.46,421,,2026-11-13
+H188-D06,H188,Nissan Motor Acceptance,Auto,38800,7.3,699,,2026-11-13
+H188-D07,H188,Sallie Mae Student Loan,Student loan,57050,6.22,640,,2026-11-13
+H189-D01,H189,Citi Double Cash,Credit card,6250,28.64,187,,2026-11-13
+H189-D02,H189,Capital One Venture,Credit card,8450,26.12,254,,2026-11-13
+H189-D03,H189,Capital One Venture,Credit card,16950,25.04,1215,,2026-11-13
+H189-D04,H189,Apple Card,Credit card,10100,20.03,303,,2026-11-13
+H189-D05,H189,Capital One Auto,Auto,22350,8.87,463,,2026-11-13
+H189-D06,H189,Capital One Auto,Auto,28600,5.7,534,,2026-11-13
+H189-D07,H189,Navient Student Loan,Student loan,40350,3.76,404,,2026-11-13
+H189-D08,H189,Medical Payment Plan,Other,5150,8.03,245,,2026-11-13
+H190-D01,H190,Guaranteed Rate Mortgage,Mortgage,189900,7.25,1428,P190A,2026-11-13
+H190-D02,H190,Citi Custom Cash,Credit card,15050,21.92,911,,2026-11-13
+H190-D03,H190,Capital One Quicksilver,Credit card,10300,26.05,308,,2026-11-13
+H190-D04,H190,Amex Gold,Credit card,15200,26.74,456,,2026-11-13
+H190-D05,H190,Ally Auto,Auto,11550,6.98,348,,2026-11-13
+H190-D06,H190,Capital One Auto,Auto,20200,4.61,396,,2026-11-13
+H190-D07,H190,Sallie Mae Student Loan,Student loan,34800,7.69,416,,2026-11-13
+H191-D01,H191,Wells Fargo Active Cash,Credit card,10150,21.91,304,,2026-11-13
+H191-D02,H191,Barclays View,Credit card,10900,23.47,327,,2026-11-13
+H191-D03,H191,Citi Custom Cash,Credit card,20950,26.19,628,,2026-11-13
+H191-D04,H191,LendingClub Personal,Personal,29000,20.59,1352,,2026-11-13
+H192-D01,H192,Wells Fargo Active Cash,Credit card,16400,23.54,493,,2026-11-13
+H192-D02,H192,Ford Credit,Auto,23300,12.81,613,,2026-11-13
+H192-D03,H192,Hyundai Capital,Auto,12950,4.81,272,,2026-11-13
+H192-D04,H192,Chase Business Line,Line of credit,23550,9.17,589,,2026-11-13
+H193-D01,H193,Flagstar Mortgage,Mortgage,166600,3.03,921,P193A,2026-11-13
+H193-D02,H193,Amex Gold,Credit card,9250,21.93,277,,2026-11-13
+H193-D03,H193,Capital One Venture,Credit card,3650,29.26,110,,2026-11-13
+H193-D04,H193,Best Egg Personal,Personal,6250,14.4,152,,2026-11-13
+H193-D05,H193,Chase Business Line,Line of credit,22850,10.84,571,,2026-11-13
+H194-D01,H194,Huntington Mortgage,Mortgage,313700,3.62,1577,P194A,2026-11-13
+H194-D02,H194,Apple Card,Credit card,6350,23.97,190,,2026-11-13
+H194-D03,H194,Chase Sapphire,Credit card,11450,29.19,344,,2026-11-13
+H194-D04,H194,Citi Custom Cash,Credit card,13950,19.55,418,,2026-11-13
+H194-D05,H194,Hyundai Capital,Auto,27400,9.4,972,,2026-11-13
+H195-D01,H195,Chase Mortgage,Mortgage,151200,6.81,1169,P195A,2026-11-13
+H195-D02,H195,Prosper Personal,Personal,5450,12.43,152,,2026-11-13
+H195-D03,H195,Medical Payment Plan,Other,4550,3.39,207,,2026-11-13
+H196-D01,H196,Amex Gold,Credit card,15200,29.53,1034,,2026-11-13
+H196-D02,H196,Amex Gold,Credit card,13200,26.39,694,,2026-11-13
+H196-D03,H196,OneMain Personal,Personal,8350,18.58,317,,2026-11-13
+H196-D04,H196,Capital One Auto,Auto,28350,10.24,776,,2026-11-13
+H197-D01,H197,Flagstar Mortgage,Mortgage,133650,4.05,842,,2026-11-13
+H197-D02,H197,Capital One Quicksilver,Credit card,6600,24.63,197,,2026-11-13
+H197-D03,H197,Amex Blue Cash,Credit card,19200,28.33,576,,2026-11-13
+H197-D04,H197,Honda Financial,Auto,28750,4.15,605,,2026-11-13
+H197-D05,H197,MOHELA Student Loan,Student loan,26900,7.37,317,,2026-11-13
+H198-D01,H198,Flagstar Mortgage,Mortgage,242750,3.6,1622,P198A,2026-11-13
+H198-D02,H198,Wells Fargo Active Cash,Credit card,21100,18.85,633,,2026-11-13
+H198-D03,H198,Capital One Venture,Credit card,10200,19.61,306,,2026-11-13
+H198-D04,H198,US Bank Altitude,Credit card,1900,23.64,56,,2026-11-13
+H198-D05,H198,OneMain Personal,Personal,4750,21.89,166,,2026-11-13
+H198-D06,H198,GM Financial,Auto,29700,4.0,613,,2026-11-13
+H199-D01,H199,Chase Mortgage,Mortgage,199350,6.28,1283,P199A,2026-11-13
+H199-D02,H199,Amex Blue Cash,Credit card,5350,23.71,161,,2026-11-13
+H199-D03,H199,Bank of America Cash Rewards,Credit card,9400,22.62,282,,2026-11-13
+H199-D04,H199,Chase Sapphire,Credit card,13550,25.43,975,,2026-11-13
+H199-D05,H199,Barclays View,Credit card,16400,28.17,930,,2026-11-13
+H199-D06,H199,Nelnet Student Loan,Student loan,50550,4.95,535,,2026-11-13
+H200-D01,H200,Wells Fargo Mortgage,Mortgage,142800,4.43,805,P200A,2026-11-13
+H200-D02,H200,PNC Mortgage (rental),Mortgage,127850,7.26,883,P200B,2026-11-13
+H200-D03,H200,Capital One Quicksilver,Credit card,18150,26.79,1056,,2026-11-13
+H200-D04,H200,Capital One Venture,Credit card,9550,25.07,287,,2026-11-13
+H200-D05,H200,Citi Double Cash,Credit card,9800,21.96,361,,2026-11-13
+H200-D06,H200,Ford Credit,Auto,40300,12.08,1205,,2026-11-13
+H200-D07,H200,GM Financial,Auto,27800,7.25,605,,2026-11-13
+H201-D01,H201,US Bank Mortgage,Mortgage,406600,6.08,2516,P201A,2026-11-13
+H201-D02,H201,MOHELA Student Loan,Student loan,15800,4.23,161,,2026-11-13
+H201-D03,H201,Chase Business Line,Line of credit,9750,9.28,244,,2026-11-13
+H202-D01,H202,Flagstar Mortgage,Mortgage,343800,5.98,2455,P202A,2026-11-13
+H202-D02,H202,Discover It,Credit card,13650,24.26,410,,2026-11-13
+H202-D03,H202,US Bank Altitude,Credit card,4850,25.46,145,,2026-11-13
+H202-D04,H202,Avant Personal,Personal,4000,16.47,163,,2026-11-13
+H202-D05,H202,Nissan Motor Acceptance,Auto,10900,4.36,194,,2026-11-13
+H202-D06,H202,Ally Auto,Auto,28650,4.69,983,,2026-11-13
+H202-D07,H202,Nelnet Student Loan,Student loan,35550,4.9,375,,2026-11-13
+H202-D08,H202,Chase Ink Business,Business,8200,18.69,245,,2026-11-13
+H203-D01,H203,Truist Mortgage,Mortgage,226350,4.72,1718,P203A,2026-11-13
+H203-D02,H203,Amex Blue Cash,Credit card,2350,28.82,70,,2026-11-13
+H203-D03,H203,Best Egg Personal,Personal,8700,13.96,241,,2026-11-13
+H203-D04,H203,GM Financial,Auto,36400,11.11,1253,,2026-11-13
+H203-D05,H203,Nelnet Student Loan,Student loan,26550,6.33,299,,2026-11-13
+H204-D01,H204,Mr. Cooper Mortgage,Mortgage,197600,3.36,1278,P204A,2026-11-13
+H204-D02,H204,Capital One Quicksilver,Credit card,23550,25.86,706,,2026-11-13
+H204-D03,H204,Upstart Personal,Personal,18800,19.23,775,,2026-11-13
+H204-D04,H204,Toyota Financial,Auto,20350,3.91,348,,2026-11-13
+H205-D01,H205,Huntington Mortgage,Mortgage,486250,3.27,2628,P205A,2026-11-13
+H205-D02,H205,Apple Card,Credit card,13450,21.97,403,,2026-11-13
+H205-D03,H205,Chase Sapphire,Credit card,22300,29.7,668,,2026-11-13
+H205-D04,H205,Best Egg Personal,Personal,16750,23.63,564,,2026-11-13
+H205-D05,H205,SoFi Personal,Personal,22500,20.93,639,,2026-11-13
+H205-D06,H205,Honda Financial,Auto,26100,5.43,606,,2026-11-13
+H206-D01,H206,Honda Financial,Auto,25150,5.87,558,,2026-11-13
+H206-D02,H206,Chase Business Line,Line of credit,8050,13.74,202,,2026-11-13
+H207-D01,H207,Truist Mortgage,Mortgage,283850,6.38,1867,P207A,2026-11-13
+H207-D02,H207,Toyota Financial,Auto,10150,7.35,274,,2026-11-13
+H208-D01,H208,Wells Fargo Mortgage,Mortgage,190000,4.78,1280,P208A,2026-11-13
+H208-D02,H208,Amex Gold,Credit card,12950,30.4,388,,2026-11-13
+H209-D01,H209,AAG Reverse Mortgage,Reverse mortgage,211100,6.29,0,P209A,2026-11-13
+H209-D02,H209,Capital One Quicksilver,Credit card,11450,20.17,344,,2026-11-13
+H210-D01,H210,Huntington Mortgage,Mortgage,326100,3.04,1593,P210A,2026-11-13
+H210-D02,H210,Chase Sapphire,Credit card,3550,20.1,107,,2026-11-13
+H210-D03,H210,Capital One Quicksilver,Credit card,4450,28.66,133,,2026-11-13
+H210-D04,H210,Honda Financial,Auto,11000,8.68,272,,2026-11-13
+H211-D01,H211,Wells Fargo Mortgage,Mortgage,217850,4.82,1592,P211A,2026-11-13
+H211-D02,H211,Nissan Motor Acceptance,Auto,30750,12.3,706,,2026-11-13
+H212-D01,H212,Wells Fargo Active Cash,Credit card,5200,22.33,246,,2026-11-13
+H212-D02,H212,Capital One Quicksilver,Credit card,23100,21.62,693,,2026-11-13
+H212-D03,H212,Synchrony Store Card,Credit card,19900,22.11,597,,2026-11-13
+H212-D04,H212,Ford Credit,Auto,32300,4.56,520,,2026-11-13
+H213-D01,H213,Truist Mortgage,Mortgage,315500,6.49,2111,P213A,2026-11-13
+H213-D02,H213,Discover It,Credit card,14500,22.28,436,,2026-11-13
+H213-D03,H213,US Bank Altitude,Credit card,4150,18.73,257,,2026-11-13
+H213-D04,H213,US Bank Altitude,Credit card,16300,22.72,488,,2026-11-13
+H213-D05,H213,Prosper Personal,Personal,3050,15.89,103,,2026-11-13
+H213-D06,H213,Nelnet Student Loan,Student loan,51550,7.28,606,,2026-11-13
+H213-D07,H213,Navient Student Loan,Student loan,41050,6.22,461,,2026-11-13
+H214-D01,H214,Discover It,Credit card,11700,20.39,351,,2026-11-13
+H214-D02,H214,Best Egg Personal,Personal,28100,16.4,884,,2026-11-13
+H214-D03,H214,Ford Credit,Auto,38100,5.31,1065,,2026-11-13
+H215-D01,H215,PNC Mortgage,Mortgage,229250,7.11,1603,P215A,2026-11-13
+H215-D02,H215,Discover It,Credit card,9650,27.95,289,,2026-11-13
+H215-D03,H215,Synchrony Store Card,Credit card,19050,25.81,572,,2026-11-13
+H215-D04,H215,SoFi Personal,Personal,20600,19.2,618,,2026-11-13
+H216-D01,H216,Chase Mortgage,Mortgage,223950,3.54,1140,P216A,2026-11-13
+H216-D02,H216,Apple Card,Credit card,11450,18.61,343,,2026-11-13
+H216-D03,H216,Citi Double Cash,Credit card,5350,28.73,160,,2026-11-13
+H216-D04,H216,Best Egg Personal,Personal,23800,24.75,742,,2026-11-13
+H216-D05,H216,Nissan Motor Acceptance,Auto,23550,5.66,480,,2026-11-13
+H216-D06,H216,Chase Business Line,Line of credit,22850,13.81,571,,2026-11-13
+H217-D01,H217,Barclays View,Credit card,9450,28.09,283,,2026-11-13
+H217-D02,H217,Synchrony Store Card,Credit card,8250,24.91,247,,2026-11-13
+H217-D03,H217,Barclays View,Credit card,7650,26.34,230,,2026-11-13
+H217-D04,H217,Capital One Quicksilver,Credit card,20000,30.31,600,,2026-11-13
+H217-D05,H217,Prosper Personal,Personal,20000,20.38,563,,2026-11-13
+H217-D06,H217,Honda Financial,Auto,23400,11.18,638,,2026-11-13
+H218-D01,H218,Huntington Mortgage,Mortgage,154300,2.94,1021,P218A,2026-11-13
+H218-D02,H218,Apple Card,Credit card,19850,30.19,595,,2026-11-13
+H219-D01,H219,PNC Mortgage,Mortgage,271550,4.87,1773,P219A,2026-11-13
+H219-D02,H219,Honda Financial,Auto,10900,6.42,194,,2026-11-13
+H219-D03,H219,Payoff Debt Consolidation,Debt consolidation,13850,12.64,404,,2026-11-13
+H220-D01,H220,Chase Mortgage,Mortgage,201050,2.82,1281,P220A,2026-11-13
+H220-D02,H220,Bank of America Cash Rewards,Credit card,22800,19.3,1454,,2026-11-13
+H220-D03,H220,Chase Freedom,Credit card,7700,24.22,231,,2026-11-13
+H220-D04,H220,Nissan Motor Acceptance,Auto,32150,7.1,709,,2026-11-13
+H221-D01,H221,Guaranteed Rate Mortgage,Mortgage,135300,6.38,972,P221A,2026-11-13
+H221-D02,H221,Capital One Venture,Credit card,17450,22.62,524,,2026-11-13
+H221-D03,H221,Citi Double Cash,Credit card,3000,25.13,89,,2026-11-13
+H221-D04,H221,MOHELA Student Loan,Student loan,43350,7.66,518,,2026-11-13
+H222-D01,H222,Barclays View,Credit card,13700,19.8,411,,2026-11-13
+H222-D02,H222,Barclays View,Credit card,17550,23.92,526,,2026-11-13
+H222-D03,H222,Chase Freedom,Credit card,20800,22.59,625,,2026-11-13
+H222-D04,H222,Upstart Personal,Personal,19300,24.04,885,,2026-11-13
+H223-D01,H223,Rocket Mortgage,Mortgage,282550,3.47,1431,P223A,2026-11-13
+H223-D02,H223,Bank of America Cash Rewards,Credit card,16750,29.93,502,,2026-11-13
+H223-D03,H223,Apple Card,Credit card,23500,26.19,705,,2026-11-13
+H223-D04,H223,Synchrony Store Card,Credit card,10200,26.38,306,,2026-11-13
+H224-D01,H224,Guaranteed Rate Mortgage,Mortgage,286650,4.92,1649,P224A,2026-11-13
+H224-D02,H224,PNC Mortgage (rental),Mortgage,241100,7.41,1826,P224B,2026-11-13
+H224-D03,H224,Amex Gold,Credit card,2700,21.67,81,,2026-11-13
+H224-D04,H224,Prosper Personal,Personal,22700,15.63,639,,2026-11-13
+H224-D05,H224,GM Financial,Auto,34900,12.97,951,,2026-11-13
+H225-D01,H225,Flagstar Mortgage,Mortgage,236300,5.97,1458,P225A,2026-11-13
+H225-D02,H225,Figure Home Equity,Home equity loan,32100,9.39,383,P225A,2026-11-13
+H225-D03,H225,PNC Mortgage (rental),Mortgage,204350,7.21,1413,P225B,2026-11-13
+H225-D04,H225,Discover It,Credit card,11450,25.59,911,,2026-11-13
+H225-D05,H225,Apple Card,Credit card,13700,28.67,412,,2026-11-13
+H226-D01,H226,Bank of America Cash Rewards,Credit card,11150,18.5,335,,2026-11-13
+H226-D02,H226,US Bank Altitude,Credit card,14050,26.69,421,,2026-11-13
+H226-D03,H226,Barclays View,Credit card,7300,19.12,219,,2026-11-13
+H226-D04,H226,Chase Ink Business,Business,10850,22.51,326,,2026-11-13
+H227-D01,H227,Chase Mortgage,Mortgage,203050,4.05,1313,P227A,2026-11-13
+H227-D02,H227,Ford Credit,Auto,17650,5.8,487,,2026-11-13
+H228-D01,H228,Wells Fargo Mortgage,Mortgage,141400,7.05,1004,P228A,2026-11-13
+H228-D02,H228,Synchrony Store Card,Credit card,8300,30.33,249,,2026-11-13
+H228-D03,H228,Best Egg Personal,Personal,28600,16.94,941,,2026-11-13
+H228-D04,H228,Capital One Auto,Auto,29600,11.27,733,,2026-11-13
+H229-D01,H229,Huntington Mortgage,Mortgage,140400,4.61,821,P229A,2026-11-13
+H229-D02,H229,Barclays View,Credit card,23700,24.45,712,,2026-11-13
+H229-D03,H229,Wells Fargo Active Cash,Credit card,16900,27.7,507,,2026-11-13
+H229-D04,H229,Amex Blue Cash,Credit card,16900,23.7,507,,2026-11-13
+H229-D05,H229,Capital One Quicksilver,Credit card,9850,30.19,296,,2026-11-13
+H230-D01,H230,PNC Mortgage,Mortgage,268200,3.3,1506,P230A,2026-11-13
+H230-D02,H230,Citi Double Cash,Credit card,3000,20.96,108,,2026-11-13
+H230-D03,H230,Discover It,Credit card,4800,24.02,143,,2026-11-13
+H230-D04,H230,Prosper Personal,Personal,18300,16.74,491,,2026-11-13
+H230-D05,H230,Hyundai Capital,Auto,36000,5.89,912,,2026-11-13
+H230-D06,H230,Sallie Mae Student Loan,Student loan,26350,4.85,278,,2026-11-13
+H231-D01,H231,Mr. Cooper Mortgage,Mortgage,115300,4.86,636,P231A,2026-11-13
+H231-D02,H231,Chase Sapphire,Credit card,17650,30.1,529,,2026-11-13
+H231-D03,H231,Wells Fargo Active Cash,Credit card,20000,22.67,600,,2026-11-13
+H231-D04,H231,Toyota Financial,Auto,11000,4.92,179,,2026-11-13
+H232-D01,H232,Chase Freedom,Credit card,3200,0.0,96,,2026-11-13
+H232-D02,H232,Capital One Quicksilver,Credit card,5950,24.26,364,,2026-11-13
+H232-D03,H232,US Bank Altitude,Credit card,7400,30.4,222,,2026-11-13
+H232-D04,H232,Best Egg Personal,Personal,10200,15.4,296,,2026-11-13
+H232-D05,H232,MOHELA Student Loan,Student loan,48500,7.65,579,,2026-11-13
+H232-D06,H232,Payoff Debt Consolidation,Debt consolidation,8950,14.0,248,,2026-11-13
+H233-D01,H233,Flagstar Mortgage,Mortgage,167550,5.41,1166,P233A,2026-11-13
+H233-D02,H233,Discover It,Credit card,6650,27.8,421,,2026-11-13
+H233-D03,H233,Capital One Quicksilver,Credit card,13000,19.24,390,,2026-11-13
+H233-D04,H233,Capital One Quicksilver,Credit card,19900,26.02,598,,2026-11-13
+H233-D05,H233,MOHELA Student Loan,Student loan,30250,5.11,323,,2026-11-13
+H234-D01,H234,Amex Blue Cash,Credit card,21550,29.77,647,,2026-11-13
+H234-D02,H234,Prosper Personal,Personal,4200,15.98,107,,2026-11-13
+H234-D03,H234,Nelnet Student Loan,Student loan,49200,5.52,535,,2026-11-13
+H234-D04,H234,Navient Student Loan,Student loan,27300,5.94,302,,2026-11-13
+H234-D05,H234,Chase Business Line,Line of credit,21700,13.07,542,,2026-11-13
+H235-D01,H235,Flagstar Mortgage,Mortgage,257650,4.14,1786,P235A,2026-11-13
+H235-D02,H235,Amex Blue Cash,Credit card,4600,22.09,312,,2026-11-13
+H235-D03,H235,Synchrony Store Card,Credit card,2650,26.15,196,,2026-11-13
+H235-D04,H235,LendingClub Personal,Personal,9800,23.33,389,,2026-11-13
+H236-D01,H236,Truist Mortgage,Mortgage,279650,6.78,1942,P236A,2026-11-13
+H236-D02,H236,PNC Mortgage (rental),Mortgage,136300,6.72,970,P236B,2026-11-13
+H236-D03,H236,US Bank Altitude,Credit card,14350,28.21,431,,2026-11-13
+H236-D04,H236,US Bank Altitude,Credit card,12350,29.39,371,,2026-11-13
+H236-D05,H236,Capital One Venture,Credit card,2950,26.72,88,,2026-11-13
+H236-D06,H236,Capital One Auto,Auto,22850,9.6,670,,2026-11-13
+H237-D01,H237,PNC Mortgage,Mortgage,391350,4.34,2672,P237A,2026-11-13
+H237-D02,H237,Capital One Quicksilver,Credit card,5350,26.01,160,,2026-11-13
+H237-D03,H237,Chase Freedom,Credit card,14500,23.11,436,,2026-11-13
+H237-D04,H237,Honda Financial,Auto,27850,9.83,589,,2026-11-13
+H237-D05,H237,Sallie Mae Student Loan,Student loan,24050,7.09,281,,2026-11-13
+H237-D06,H237,Nelnet Student Loan,Student loan,23650,7.66,283,,2026-11-13
+H238-D01,H238,Wells Fargo Mortgage,Mortgage,236900,7.22,1837,P238A,2026-11-13
+H238-D02,H238,Figure Home Equity,Home equity loan,62250,9.22,797,P238A,2026-11-13
+H238-D03,H238,Apple Card,Credit card,9250,20.79,277,,2026-11-13
+H238-D04,H238,Bank of America Cash Rewards,Credit card,16650,19.8,1238,,2026-11-13
+H238-D05,H238,Honda Financial,Auto,41150,11.91,1366,,2026-11-13
+H239-D01,H239,Flagstar Mortgage,Mortgage,262900,5.36,1910,P239A,2026-11-13
+H239-D02,H239,Discover It,Credit card,11500,21.0,799,,2026-11-13
+H239-D03,H239,Bank of America Cash Rewards,Credit card,8050,28.79,241,,2026-11-13
+H239-D04,H239,GM Financial,Auto,38250,6.88,986,,2026-11-13
+H240-D01,H240,Synchrony Store Card,Credit card,2400,19.4,72,,2026-11-13
+H240-D02,H240,Wells Fargo Active Cash,Credit card,23100,26.93,693,,2026-11-13
+H240-D03,H240,Ally Auto,Auto,16500,8.63,340,,2026-11-13
+H241-D01,H241,Rocket Mortgage,Mortgage,432050,3.02,2454,P241A,2026-11-13
+H241-D02,H241,Figure Home Equity,Home equity loan,72050,9.97,825,P241A,2026-11-13
+H241-D03,H241,Chase Sapphire,Credit card,9250,21.49,278,,2026-11-13
+H241-D04,H241,Honda Financial,Auto,31800,5.71,963,,2026-11-13
+H242-D01,H242,US Bank Mortgage,Mortgage,197550,6.7,1566,P242A,2026-11-13
+H242-D02,H242,Citi Double Cash,Credit card,21150,19.57,635,,2026-11-13
+H242-D03,H242,Citi Custom Cash,Credit card,5550,20.64,167,,2026-11-13
+H242-D04,H242,Chase Sapphire,Credit card,18150,22.17,545,,2026-11-13
+H242-D05,H242,Amex Blue Cash,Credit card,6950,19.04,551,,2026-11-13
+H242-D06,H242,Capital One Auto,Auto,24000,6.74,672,,2026-11-13
+H243-D01,H243,Citi Custom Cash,Credit card,23600,23.78,707,,2026-11-13
+H243-D02,H243,Amex Blue Cash,Credit card,17350,20.2,521,,2026-11-13
+H243-D03,H243,Ally Auto,Auto,36450,5.24,760,,2026-11-13
+H243-D04,H243,Nelnet Student Loan,Student loan,47900,5.51,520,,2026-11-13
+H244-D01,H244,Rocket Mortgage,Mortgage,241950,2.75,1104,P244A,2026-11-13
+H244-D02,H244,Synchrony Store Card,Credit card,3450,27.7,255,,2026-11-13
+H244-D03,H244,Citi Custom Cash,Credit card,13100,27.71,637,,2026-11-13
+H244-D04,H244,Payoff Debt Consolidation,Debt consolidation,9600,16.52,235,,2026-11-13
+H245-D01,H245,Truist Mortgage,Mortgage,344250,2.83,1681,P245A,2026-11-13
+H245-D02,H245,Bank of America Cash Rewards,Credit card,6700,20.18,403,,2026-11-13
+H245-D03,H245,Amex Gold,Credit card,9400,29.37,727,,2026-11-13
+H245-D04,H245,Chase Sapphire,Credit card,3050,19.97,92,,2026-11-13
+H245-D05,H245,SoFi Personal,Personal,6950,13.15,178,,2026-11-13
+H245-D06,H245,SoFi Personal,Personal,4200,9.7,135,,2026-11-13
+H246-D01,H246,Rocket Mortgage,Mortgage,190850,4.36,1025,P246A,2026-11-13
+H246-D02,H246,Apple Card,Credit card,12000,22.33,873,,2026-11-13
+H246-D03,H246,Toyota Financial,Auto,31550,5.05,756,,2026-11-13
+H247-D01,H247,Synchrony Store Card,Credit card,3000,23.84,90,,2026-11-13
+H247-D02,H247,Chase Sapphire,Credit card,3900,29.29,117,,2026-11-13
+H247-D03,H247,Best Egg Personal,Personal,9650,16.87,359,,2026-11-13
+H247-D04,H247,Ford Credit,Auto,38550,6.67,691,,2026-11-13
+H247-D05,H247,Payoff Debt Consolidation,Debt consolidation,22950,16.41,575,,2026-11-13
+H248-D01,H248,Bank of America Cash Rewards,Credit card,4300,0.0,258,,2026-11-13
+H248-D02,H248,Chase Freedom,Credit card,12700,27.86,798,,2026-11-13
+H248-D03,H248,Honda Financial,Auto,29200,5.95,866,,2026-11-13
+H248-D04,H248,Ally Auto,Auto,12300,6.26,258,,2026-11-13
+H249-D01,H249,Nelnet Student Loan,Student loan,12650,4.03,128,,2026-11-13
+H250-D01,H250,Citi Double Cash,Credit card,6500,25.29,365,,2026-11-13
+H250-D02,H250,Chase Sapphire,Credit card,5300,27.29,159,,2026-11-13
+H250-D03,H250,Sallie Mae Student Loan,Student loan,38000,7.54,452,,2026-11-13
+H250-D04,H250,Navient Student Loan,Student loan,15350,6.1,171,,2026-11-13
+H250-D05,H250,Chase Business Line,Line of credit,18800,12.58,469,,2026-11-13
+H251-D01,H251,Rocket Mortgage,Mortgage,325000,6.61,2430,P251A,2026-11-13
+H251-D02,H251,Citi Custom Cash,Credit card,23300,24.75,699,,2026-11-13
+H251-D03,H251,US Bank Altitude,Credit card,11050,30.46,331,,2026-11-13
+H251-D04,H251,Barclays View,Credit card,6250,27.16,188,,2026-11-13
+H251-D05,H251,MOHELA Student Loan,Student loan,43050,7.76,517,,2026-11-13
+H252-D01,H252,Citi Custom Cash,Credit card,3000,23.83,132,,2026-11-13
+H252-D02,H252,Toyota Financial,Auto,18250,4.92,404,,2026-11-13
+H253-D01,H253,Flagstar Mortgage,Mortgage,260050,5.39,1661,P253A,2026-11-13
+H253-D02,H253,PNC Mortgage (rental),Mortgage,177850,7.0,1379,P253B,2026-11-13
+H253-D03,H253,Citi Custom Cash,Credit card,4450,19.98,134,,2026-11-13
+H253-D04,H253,Apple Card,Credit card,8550,20.65,319,,2026-11-13
+H253-D05,H253,Chase Sapphire,Credit card,7900,21.45,237,,2026-11-13
+H253-D06,H253,Ally Auto,Auto,10700,6.9,217,,2026-11-13
+H254-D01,H254,Prosper Personal,Personal,3650,13.91,105,,2026-11-13
+H254-D02,H254,Navient Student Loan,Student loan,20750,5.74,228,,2026-11-13
+H255-D01,H255,Guaranteed Rate Mortgage,Mortgage,168100,4.53,1255,P255A,2026-11-13
+H255-D02,H255,Capital One Quicksilver,Credit card,13600,0.0,408,,2026-11-13
+H255-D03,H255,Capital One Venture,Credit card,15650,19.05,470,,2026-11-13
+H255-D04,H255,Capital One Auto,Auto,23200,7.35,604,,2026-11-13
+H256-D01,H256,Huntington Mortgage,Mortgage,188450,4.63,1137,P256A,2026-11-13
+H256-D02,H256,Bank of America Cash Rewards,Credit card,23600,21.23,708,,2026-11-13
+H256-D03,H256,US Bank Altitude,Credit card,12600,24.95,378,,2026-11-13
+H256-D04,H256,Barclays View,Credit card,17750,20.51,532,,2026-11-13
+H256-D05,H256,Nissan Motor Acceptance,Auto,13250,7.14,344,,2026-11-13
+H257-D01,H257,Rocket Mortgage,Mortgage,153800,4.91,861,P257A,2026-11-13
+H257-D02,H257,Synchrony Store Card,Credit card,15400,21.95,462,,2026-11-13
+H257-D03,H257,Chase Sapphire,Credit card,1850,25.42,56,,2026-11-13
+H257-D04,H257,Citi Double Cash,Credit card,14800,20.94,444,,2026-11-13
+H257-D05,H257,Prosper Personal,Personal,23550,17.12,824,,2026-11-13
+H257-D06,H257,Sallie Mae Student Loan,Student loan,20900,6.94,0,,2026-11-13
+H257-D07,H257,MOHELA Student Loan,Student loan,19450,6.66,223,,2026-11-13
+H257-D08,H257,Chase Ink Business,Business,22750,22.98,682,,2026-11-13
+H258-D01,H258,US Bank Mortgage,Mortgage,187350,4.99,1171,P258A,2026-11-13
+H258-D02,H258,PNC Mortgage (rental),Mortgage,243900,6.87,1707,P258B,2026-11-13
+H258-D03,H258,GM Financial,Auto,25100,8.79,837,,2026-11-13
+H259-D01,H259,Chase Mortgage,Mortgage,474400,6.37,3946,P259A,2026-11-13
+H259-D02,H259,US Bank Altitude,Credit card,16400,20.9,1171,,2026-11-13
+H259-D03,H259,Wells Fargo Active Cash,Credit card,10700,25.03,399,,2026-11-13
+H260-D01,H260,US Bank Altitude,Credit card,17100,22.14,513,,2026-11-13
+H260-D02,H260,Honda Financial,Auto,39350,4.66,796,,2026-11-13
+H261-D01,H261,PNC Mortgage,Mortgage,124300,5.92,812,P261A,2026-11-13
+H261-D02,H261,Synchrony Store Card,Credit card,4350,24.45,266,,2026-11-13
+H261-D03,H261,Bank of America Cash Rewards,Credit card,4700,23.77,140,,2026-11-13
+H261-D04,H261,US Bank Altitude,Credit card,23300,27.8,1205,,2026-11-13
+H261-D05,H261,Citi Custom Cash,Credit card,10200,25.74,306,,2026-11-13
+H262-D01,H262,Chase Mortgage,Mortgage,220100,3.48,1186,P262A,2026-11-13
+H262-D02,H262,Apple Card,Credit card,11650,25.81,350,,2026-11-13
+H262-D03,H262,Discover It,Credit card,15750,20.68,472,,2026-11-13
+H262-D04,H262,Barclays View,Credit card,17650,24.56,529,,2026-11-13
+H262-D05,H262,Nelnet Student Loan,Student loan,22750,4.64,237,,2026-11-13
+H262-D06,H262,Medical Payment Plan,Other,1700,1.25,132,,2026-11-13
+H263-D01,H263,Capital One Quicksilver,Credit card,16500,20.97,495,,2026-11-13
+H263-D02,H263,Barclays View,Credit card,22650,24.43,679,,2026-11-13
+H264-D01,H264,Capital One Venture,Credit card,22800,23.23,1008,,2026-11-13
+H264-D02,H264,Synchrony Store Card,Credit card,21050,22.7,631,,2026-11-13
+H264-D03,H264,Hyundai Capital,Auto,40500,10.67,1233,,2026-11-13
+H264-D04,H264,Sallie Mae Student Loan,Student loan,50250,4.45,519,,2026-11-13
+H264-D05,H264,Navient Student Loan,Student loan,52550,4.2,537,,2026-11-13
+H264-D06,H264,Payoff Debt Consolidation,Debt consolidation,27250,11.46,769,,2026-11-13
+H265-D01,H265,PNC Mortgage,Mortgage,242050,3.43,1686,P265A,2026-11-13
+H265-D02,H265,PNC Mortgage (rental),Mortgage,223150,7.59,1591,P265B,2026-11-13
+H265-D03,H265,Barclays View,Credit card,11100,20.87,333,,2026-11-13
+H265-D04,H265,Citi Custom Cash,Credit card,19650,18.53,589,,2026-11-13
+H265-D05,H265,Amex Blue Cash,Credit card,3000,26.81,90,,2026-11-13
+H265-D06,H265,Citi Double Cash,Credit card,21850,22.37,857,,2026-11-13
+H265-D07,H265,LendingClub Personal,Personal,16500,16.04,556,,2026-11-13
+H265-D08,H265,Honda Financial,Auto,19100,5.39,607,,2026-11-13
+H266-D01,H266,Mr. Cooper Mortgage,Mortgage,177250,2.76,762,P266A,2026-11-13
+H266-D02,H266,PNC Mortgage (rental),Mortgage,131000,7.02,935,P266B,2026-11-13
+H266-D03,H266,US Bank Altitude,Credit card,3150,30.44,94,,2026-11-13
+H266-D04,H266,Bank of America Cash Rewards,Credit card,8200,21.35,246,,2026-11-13
+H266-D05,H266,Citi Double Cash,Credit card,2950,19.28,88,,2026-11-13
+H266-D06,H266,SoFi Personal,Personal,9000,16.5,224,,2026-11-13
+H267-D01,H267,Huntington Mortgage,Mortgage,238900,2.91,1339,P267A,2026-11-13
+H267-D02,H267,Chase Sapphire,Credit card,14600,22.48,438,,2026-11-13
+H267-D03,H267,Capital One Venture,Credit card,2900,27.8,87,,2026-11-13
+H268-D01,H268,Citi Custom Cash,Credit card,23550,28.14,1434,,2026-11-13
+H268-D02,H268,Chase Ink Business,Business,22200,23.93,666,,2026-11-13
+H269-D01,H269,Chase Sapphire,Credit card,20850,20.39,1294,,2026-11-13
+H269-D02,H269,Wells Fargo Active Cash,Credit card,22150,21.55,665,,2026-11-13
+H269-D03,H269,Citi Custom Cash,Credit card,16050,19.02,482,,2026-11-13
+H269-D04,H269,Amex Gold,Credit card,18800,20.22,564,,2026-11-13
+H269-D05,H269,Toyota Financial,Auto,35200,5.18,698,,2026-11-13
+H270-D01,H270,US Bank Mortgage,Mortgage,100550,5.32,776,P270A,2026-11-13
+H270-D02,H270,US Bank Altitude,Credit card,18500,25.55,555,,2026-11-13
+H270-D03,H270,Wells Fargo Active Cash,Credit card,16100,25.78,482,,2026-11-13
+H270-D04,H270,Discover It,Credit card,5750,29.6,172,,2026-11-13
+H271-D01,H271,US Bank Altitude,Credit card,14650,28.19,439,,2026-11-13
+H271-D02,H271,US Bank Altitude,Credit card,2650,29.22,80,,2026-11-13
+H271-D03,H271,Discover Personal,Personal,28350,13.48,713,,2026-11-13
+H271-D04,H271,Discover Personal,Personal,6300,10.53,221,,2026-11-13
+H272-D01,H272,Chase Mortgage,Mortgage,132550,3.29,725,P272A,2026-11-13
+H272-D02,H272,LendingClub Personal,Personal,12700,24.77,381,,2026-11-13
+H272-D03,H272,Sallie Mae Student Loan,Student loan,59750,7.32,703,,2026-11-13
+H273-D01,H273,Chase Mortgage,Mortgage,128050,3.41,645,P273A,2026-11-13
+H273-D02,H273,Figure Home Equity,Home equity loan,32100,10.44,424,P273A,2026-11-13
+H273-D03,H273,Capital One Quicksilver,Credit card,3950,21.24,239,,2026-11-13
+H273-D04,H273,Capital One Venture,Credit card,23350,27.85,1770,,2026-11-13
+H273-D05,H273,Citi Custom Cash,Credit card,13850,29.17,416,,2026-11-13
+H273-D06,H273,Chase Freedom,Credit card,19000,20.91,569,,2026-11-13
+H273-D07,H273,LendingClub Personal,Personal,26700,21.86,915,,2026-11-13
+H274-D01,H274,Chase Mortgage,Mortgage,294750,6.5,1919,P274A,2026-11-13
+H274-D02,H274,Citi Double Cash,Credit card,3900,22.21,116,,2026-11-13
+H274-D03,H274,Citi Double Cash,Credit card,5200,22.12,156,,2026-11-13
+H274-D04,H274,Barclays View,Credit card,8000,23.93,239,,2026-11-13
+H274-D05,H274,Medical Payment Plan,Other,2850,6.74,101,,2026-11-13
+H275-D01,H275,Wells Fargo Mortgage,Mortgage,264750,3.3,1384,P275A,2026-11-13
+H275-D02,H275,PNC Mortgage (rental),Mortgage,207900,6.64,1563,P275B,2026-11-13
+H275-D03,H275,Citi Double Cash,Credit card,11000,25.16,329,,2026-11-13
+H275-D04,H275,Capital One Venture,Credit card,5750,25.67,173,,2026-11-13
+H275-D05,H275,LendingClub Personal,Personal,6950,24.07,250,,2026-11-13
+H275-D06,H275,Prosper Personal,Personal,22000,23.54,954,,2026-11-13
+H276-D01,H276,Guaranteed Rate Mortgage,Mortgage,134250,6.96,976,P276A,2026-11-13
+H276-D02,H276,PNC Mortgage (rental),Mortgage,116050,6.63,803,P276B,2026-11-13
+H276-D03,H276,Bank of America Cash Rewards,Credit card,3300,27.27,100,,2026-11-13
+H276-D04,H276,Apple Card,Credit card,5600,26.43,167,,2026-11-13
+H276-D05,H276,Hyundai Capital,Auto,38200,3.97,997,,2026-11-13
+H276-D06,H276,Navient Student Loan,Student loan,21000,7.73,252,,2026-11-13
+H276-D07,H276,Nelnet Student Loan,Student loan,18250,6.56,208,,2026-11-13
+H277-D01,H277,Flagstar Mortgage,Mortgage,316900,6.82,2462,P277A,2026-11-13
+H277-D02,H277,Discover It,Credit card,22450,25.86,674,,2026-11-13
+H277-D03,H277,Discover It,Credit card,14850,22.49,446,,2026-11-13
+H277-D04,H277,Synchrony Store Card,Credit card,20200,19.89,607,,2026-11-13
+H277-D05,H277,Hyundai Capital,Auto,8950,6.41,198,,2026-11-13
+H277-D06,H277,Ford Credit,Auto,9450,4.42,223,,2026-11-13
+H278-D01,H278,Wells Fargo Active Cash,Credit card,20600,29.78,618,,2026-11-13
+H278-D02,H278,Wells Fargo Active Cash,Credit card,21750,28.63,1238,,2026-11-13
+H278-D03,H278,Nissan Motor Acceptance,Auto,28900,4.6,636,,2026-11-13
+H279-D01,H279,Citi Custom Cash,Credit card,9700,29.3,291,,2026-11-13
+H279-D02,H279,Barclays View,Credit card,17800,30.05,535,,2026-11-13
+H279-D03,H279,Capital One Venture,Credit card,16100,19.38,1114,,2026-11-13
+H280-D01,H280,Guaranteed Rate Mortgage,Mortgage,151250,7.4,1157,P280A,2026-11-13
+H280-D02,H280,Synchrony Store Card,Credit card,16650,20.77,499,,2026-11-13
+H280-D03,H280,Chase Sapphire,Credit card,3100,30.01,92,,2026-11-13
+H280-D04,H280,Ford Credit,Auto,39950,6.47,804,,2026-11-13
+H280-D05,H280,Navient Student Loan,Student loan,13900,7.37,164,,2026-11-13
+H280-D06,H280,Sallie Mae Student Loan,Student loan,62750,6.59,715,,2026-11-13
+H281-D01,H281,SoFi Personal,Personal,17900,15.71,614,,2026-11-13
+H281-D02,H281,Payoff Debt Consolidation,Debt consolidation,20150,15.62,559,,2026-11-13
+H281-D03,H281,Medical Payment Plan,Other,1200,4.65,72,,2026-11-13
+H282-D01,H282,US Bank Mortgage,Mortgage,68600,5.09,451,P282A,2026-11-13
+H282-D02,H282,Chase Freedom,Credit card,18950,22.36,1011,,2026-11-13
+H282-D03,H282,Citi Double Cash,Credit card,9500,24.25,284,,2026-11-13
+H282-D04,H282,Chase Freedom,Credit card,4700,23.88,198,,2026-11-13
+H282-D05,H282,Hyundai Capital,Auto,26850,6.27,476,,2026-11-13
+H282-D06,H282,Capital One Auto,Auto,35900,10.27,900,,2026-11-13
+H282-D07,H282,MOHELA Student Loan,Student loan,14050,5.37,151,,2026-11-13
+H282-D08,H282,Chase Business Line,Line of credit,19150,10.22,479,,2026-11-13
+H283-D01,H283,Wells Fargo Active Cash,Credit card,22150,21.03,665,,2026-11-13
+H283-D02,H283,SoFi Personal,Personal,5100,24.57,205,,2026-11-13
+H284-D01,H284,Wells Fargo Active Cash,Credit card,9350,29.52,280,,2026-11-13
+H284-D02,H284,Discover It,Credit card,17800,19.25,1150,,2026-11-13
+H284-D03,H284,SoFi Personal,Personal,5050,17.86,139,,2026-11-13
+H284-D04,H284,GM Financial,Auto,19350,4.73,398,,2026-11-13
+H284-D05,H284,Toyota Financial,Auto,10800,4.85,175,,2026-11-13
+H285-D01,H285,Flagstar Mortgage,Mortgage,226900,4.06,1422,,2026-11-13
+H285-D02,H285,Bank of America Cash Rewards,Credit card,22850,21.86,1217,,2026-11-13
+H285-D03,H285,Amex Gold,Credit card,24000,23.85,720,,2026-11-13
+H285-D04,H285,Apple Card,Credit card,22400,21.22,1131,,2026-11-13
+H285-D05,H285,LendingClub Personal,Personal,22350,24.49,958,,2026-11-13
+H286-D01,H286,Guaranteed Rate Mortgage,Mortgage,245600,5.85,1767,P286A,2026-11-13
+H286-D02,H286,Barclays View,Credit card,3000,29.5,122,,2026-11-13
+H286-D03,H286,Citi Custom Cash,Credit card,21500,21.97,646,,2026-11-13
+H286-D04,H286,Nissan Motor Acceptance,Auto,33150,6.23,782,,2026-11-13
+H286-D05,H286,GM Financial,Auto,35900,9.09,1268,,2026-11-13
+H287-D01,H287,Wells Fargo Mortgage,Mortgage,387450,2.78,1863,P287A,2026-11-13
+H287-D02,H287,PNC Mortgage (rental),Mortgage,174250,7.35,1217,P287B,2026-11-13
+H287-D03,H287,Bank of America Cash Rewards,Credit card,8450,24.36,253,,2026-11-13
+H287-D04,H287,Barclays View,Credit card,7250,24.33,218,,2026-11-13
+H287-D05,H287,US Bank Altitude,Credit card,18500,22.92,554,,2026-11-13
+H287-D06,H287,Synchrony Store Card,Credit card,10550,24.81,474,,2026-11-13
+H287-D07,H287,Avant Personal,Personal,8100,13.61,295,,2026-11-13
+H288-D01,H288,Flagstar Mortgage,Mortgage,316900,5.93,2298,P288A,2026-11-13
+H288-D02,H288,Barclays View,Credit card,20300,21.58,1478,,2026-11-13
+H288-D03,H288,Bank of America Cash Rewards,Credit card,20650,23.46,1327,,2026-11-13
+H288-D04,H288,Discover Personal,Personal,17250,20.05,575,,2026-11-13
+H288-D05,H288,Honda Financial,Auto,32600,4.95,675,,2026-11-13
+H289-D01,H289,US Bank Mortgage,Mortgage,419300,4.0,2753,P289A,2026-11-13
+H289-D02,H289,US Bank Altitude,Credit card,5300,23.65,158,,2026-11-13
+H289-D03,H289,Apple Card,Credit card,6550,24.66,196,,2026-11-13
+H289-D04,H289,Honda Financial,Auto,40300,10.65,1414,,2026-11-13
+H289-D05,H289,Nelnet Student Loan,Student loan,64650,6.85,746,,2026-11-13
+H289-D06,H289,MOHELA Student Loan,Student loan,45350,6.6,518,,2026-11-13
+H290-D01,H290,Chase Mortgage,Mortgage,225900,3.59,1239,P290A,2026-11-13
+H290-D02,H290,Chase Sapphire,Credit card,3350,25.08,100,,2026-11-13
+H290-D03,H290,Citi Double Cash,Credit card,19650,28.17,890,,2026-11-13
+H290-D04,H290,Medical Payment Plan,Other,5000,6.82,142,,2026-11-13
+H291-D01,H291,Amex Blue Cash,Credit card,16200,21.13,254,,2026-11-13
+H291-D02,H291,Ally Auto,Auto,18400,10.68,358,,2026-11-13
+H292-D01,H292,Chase Sapphire,Credit card,10050,30.43,301,,2026-11-13
+H292-D02,H292,Capital One Venture,Credit card,21300,20.14,639,,2026-11-13
+H292-D03,H292,Best Egg Personal,Personal,18950,24.44,655,,2026-11-13
+H292-D04,H292,MOHELA Student Loan,Student loan,40500,6.08,451,,2026-11-13
+H293-D01,H293,AAG Reverse Mortgage,Reverse mortgage,100050,6.53,0,P293A,2026-11-13
+H293-D02,H293,Chase Sapphire,Credit card,12500,22.05,606,,2026-11-13
+H293-D03,H293,Chase Sapphire,Credit card,19450,30.37,583,,2026-11-13
+H293-D04,H293,Ford Credit,Auto,20850,12.08,510,,2026-11-13
+H293-D05,H293,Ford Credit,Auto,33150,6.05,766,,2026-11-13
+H294-D01,H294,Chase Mortgage,Mortgage,208700,4.67,1320,P294A,2026-11-13
+H294-D02,H294,Capital One Quicksilver,Credit card,13750,20.1,565,,2026-11-13
+H294-D03,H294,Chase Sapphire,Credit card,5700,22.56,334,,2026-11-13
+H294-D04,H294,Marcus Personal,Personal,12400,21.43,641,,2026-11-13
+H295-D01,H295,Truist Mortgage,Mortgage,134400,5.87,906,P295A,2026-11-13
+H295-D02,H295,Chase Freedom,Credit card,7700,29.92,590,,2026-11-13
+H295-D03,H295,Amex Blue Cash,Credit card,1750,21.8,52,,2026-11-13
+H295-D04,H295,Capital One Venture,Credit card,2050,26.85,75,,2026-11-13
+H296-D01,H296,Chase Mortgage,Mortgage,319400,6.28,2118,P296A,2026-11-13
+H296-D02,H296,PNC Mortgage (rental),Mortgage,194700,7.31,1407,P296B,2026-11-13
+H296-D03,H296,Discover It,Credit card,13050,27.11,705,,2026-11-13
+H296-D04,H296,US Bank Altitude,Credit card,12900,25.05,387,,2026-11-13
+H296-D05,H296,Capital One Auto,Auto,14650,4.67,278,,2026-11-13
+H296-D06,H296,Sallie Mae Student Loan,Student loan,48150,3.61,479,,2026-11-13
+H297-D01,H297,Chase Mortgage,Mortgage,100350,3.43,486,P297A,2026-11-13
+H297-D02,H297,Figure Home Equity,Home equity loan,32550,10.33,402,P297A,2026-11-13
+H297-D03,H297,Amex Blue Cash,Credit card,12050,19.41,362,,2026-11-13
+H297-D04,H297,Wells Fargo Active Cash,Credit card,17350,19.6,521,,2026-11-13
+H297-D05,H297,Amex Gold,Credit card,18250,20.14,548,,2026-11-13
+H297-D06,H297,Best Egg Personal,Personal,5500,23.21,176,,2026-11-13
+H298-D01,H298,Chase Sapphire,Credit card,17100,26.1,513,,2026-11-13
+H298-D02,H298,Ford Credit,Auto,39050,6.85,805,,2026-11-13
+H298-D03,H298,Ford Credit,Auto,34450,7.37,933,,2026-11-13
+H298-D04,H298,Nelnet Student Loan,Student loan,24400,4.12,248,,2026-11-13
+H299-D01,H299,Truist Mortgage,Mortgage,176400,4.23,1206,P299A,2026-11-13
+H299-D02,H299,US Bank Altitude,Credit card,13750,19.53,412,,2026-11-13
+H299-D03,H299,Chase Sapphire,Credit card,5300,20.58,158,,2026-11-13
+H299-D04,H299,Chase Freedom,Credit card,4500,24.32,135,,2026-11-13
+H299-D05,H299,OneMain Personal,Personal,20800,10.92,565,,2026-11-13
+H299-D06,H299,Upstart Personal,Personal,28000,19.65,794,,2026-11-13
+H299-D07,H299,Capital One Auto,Auto,35350,5.1,816,,2026-11-13
+H299-D08,H299,MOHELA Student Loan,Student loan,14500,5.48,157,,2026-11-13
+H300-D01,H300,Flagstar Mortgage,Mortgage,136250,5.08,759,P300A,2026-11-13
+H300-D02,H300,PNC Mortgage (rental),Mortgage,196650,7.39,1343,P300B,2026-11-13
+H300-D03,H300,Capital One Venture,Credit card,12050,18.82,361,,2026-11-13
+H300-D04,H300,Discover It,Credit card,5650,27.62,170,,2026-11-13
+H45-D06,H45,Bank of America Cash Rewards,Credit card,6950,27.79,209,,2026-11-13
+H265-D09,H265,Barclays View,Credit card,11100,20.87,333,,2026-11-13
+H178-D06,H178,Citi Custom Cash,Credit card,17150,30.22,515,,2026-11-13

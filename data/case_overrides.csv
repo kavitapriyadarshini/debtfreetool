@@ -1,0 +1,22 @@
+override_id,case_id,household_id,entity_type,entity_id,field,source_value,override_value,reason,reported_to_backend,changed_by,changed_at
+O0001,C0002,H07,debt,H07-D02,monthly_payment,250,595,Household confirmed their actual monthly payment,True,Pamela Wilson,2026-11-02
+O0002,C0003,H08,debt,H08-D02,rate,0.0,22.99,Promotional rate ended; household confirmed 22.99%,True,Tom Brennan,2026-09-18
+O0003,C0004,H09,property,P09,value,95000,271000,Household shared a 2026 appraisal,True,Elena Duarte,2026-11-13
+O0004,C0005,H11,debt,H11-D02,excluded,False,True,Household confirmed it is the same card listed twice,True,Tom Brennan,2026-10-15
+O0005,C0005,H11,member,H11-M1,fico,,698,Household shared a recent credit report,False,Tom Brennan,2026-10-15
+O0006,C0006,H15,debt,H15-D01,property_id,,P15,Mortgage is on the household's home,True,Elena Duarte,2026-10-24
+O0007,C0007,H16,household,H16,comfort_zone,,2,Advisor confirmed comfort zone 2,True,Tom Brennan,2026-10-16
+O0008,C0008,H04,member,H04-M1,fico,,780,Household shared a recent credit report,False,Tom Brennan,2026-09-27
+O0009,C0010,H291,debt,H291-D01,monthly_payment,254,609,Household confirmed their actual monthly payment,True,Elena Duarte,2026-10-25
+O0010,C0011,H82,debt,H82-D01,monthly_payment,149,376,Household confirmed their actual monthly payment,True,Marcus Webb,2026-11-13
+O0011,C0016,H55,debt,H55-D01,monthly_payment,307,827,Household confirmed their actual monthly payment,True,Pamela Wilson,2026-10-21
+O0012,C0021,H175,debt,H175-D02,monthly_payment,178,451,Household confirmed their actual monthly payment,True,Pamela Wilson,2026-11-13
+O0013,C0031,H265,debt,H265-D09,excluded,False,True,Household confirmed it is the same card listed twice,True,Pamela Wilson,2026-10-05
+O0014,C0036,H80,member,H80-M1,fico,,690,Household shared a recent credit report,False,Pamela Wilson,2026-11-03
+O0015,C0040,H182,debt,H182-D01,property_id,,P182A,Mortgage is on the household's home,True,Marcus Webb,2026-11-10
+O0016,C0041,H35,member,H35-M1,fico,,694,Household shared a recent credit report,False,Pamela Wilson,2026-09-25
+O0017,C0052,H109,property,P109A,value,99000,314000,Household shared a 2026 appraisal,True,Priya Raman,2026-09-10
+O0018,C0061,H45,debt,H45-D06,excluded,False,True,Household confirmed it is the same card listed twice,True,Pamela Wilson,2026-11-13
+O0019,C0069,H258,household,H258,comfort_zone,,2,Advisor confirmed comfort zone 2,True,Tom Brennan,2026-11-13
+O0020,C0074,H138,member,H138-M1,fico,,741,Household shared a recent credit report,False,Tom Brennan,2026-10-22
+O0021,C0079,H149,member,H149-M1,fico,,698,Household shared a recent credit report,False,Priya Raman,2026-09-21
