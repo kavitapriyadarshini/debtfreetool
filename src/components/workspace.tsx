@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -24,6 +24,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { SavingsText } from "@/components/savings-text";
 import { CompareView } from "@/components/compare-view";
 import { PLAN_START } from "@/lib/config";
 import { useDemoStore } from "@/lib/store";
@@ -94,9 +96,27 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
   const [selected, setSelected] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
   const [builder, setBuilder] = useState<Builder>(() => blankBuilder(""));
+  const [previewBuilder, setPreviewBuilder] = useState<Builder>(() => blankBuilder(""));
   const [error, setError] = useState<string | null>(null);
+  const [pressed, setPressed] = useState<string | null>(null);
+  const numbers = numberKey(builder);
+  const shape = shapeKey(builder);
 
-  const draft = useMemo(() => (model ? draftFrom(builder, model) : null), [builder, model]);
+  useEffect(() => {
+    setPreviewBuilder(builder);
+    // Shape changes (product, term, debts, strategy) update the preview immediately.
+    // `builder` is the value from this render; listing it would also fire on each keystroke.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shape]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setPreviewBuilder(builder), 150);
+    return () => window.clearTimeout(timer);
+    // Number fields wait 150ms so a keystroke does not recalculate on every digit.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numbers]);
+
+  const draft = useMemo(() => (model ? draftFrom(previewBuilder, model) : null), [previewBuilder, model]);
   const keptPreview = useKeptResult(() => {
     if (!draft) return null;
     return previewHousehold(householdId, caseId ?? "draft", { overrides, extraPayments, customLoans }, draft);
@@ -123,11 +143,13 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
 
   const compareIds = compare.split(",").map((id) => id.trim()).filter((id) => id !== "");
   if (compareIds.length > 0) {
-    return <CompareView householdId={householdId} selectedIds={compareIds} />;
+    return <CompareView householdId={householdId} householdName={model.name} selectedIds={compareIds} />;
   }
 
-  const builtIn = model.cards.filter((card) => card.kind === "builtin");
-  const advisor = model.cards.filter((card) => card.kind === "advisor");
+  const today = model.cards.filter((card) => card.origin === "today");
+  const nightly = model.cards.filter((card) => card.nightly && card.origin !== "today");
+  const builtIn = model.cards.filter((card) => card.origin === "builtin" && !card.nightly);
+  const advisor = model.cards.filter((card) => card.origin === "advisor");
   const noProducts = model.choices.length === 0;
 
   function toggleCompare(id: string) {
@@ -256,32 +278,14 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
   const shownDebts = model.debts.filter((debt) => !debt.propertyId || debt.propertyId === choice?.propertyId);
 
   return (
-    <div className="flex min-w-0 flex-col gap-6">
+    <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset)}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
-      <header className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-medium tracking-wide text-muted-foreground">S3</p>
-          <h1 className="text-2xl font-semibold tracking-tight">{model.name}</h1>
-          <div className="flex gap-3">
-            <Link href={`/households/${householdId}`} className="text-sm text-muted-foreground underline-offset-2 hover:underline">
-              Household overview
-            </Link>
-            <Link href={`/households/${householdId}/present`} className="text-sm text-muted-foreground underline-offset-2 hover:underline">
-              Present
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Button variant="outline" onClick={openNew}>
-            New scenario
-          </Button>
-          <Button
-            disabled={selected.length === 0}
-            onClick={() => router.push(`/households/${householdId}/workspace?compare=${selected.join(",")}`)}
-          >
-            Compare{selected.length > 0 ? ` ${selected.length}` : ""}
-          </Button>
-        </div>
+      <header>
+        <p className="text-xs font-medium tracking-wide text-muted-foreground">S3</p>
+        <h1 className="text-2xl font-semibold tracking-tight">{model.name}</h1>
+        <Link href={`/households/${householdId}`} className="text-sm text-muted-foreground underline-offset-2 hover:underline">
+          Household overview
+        </Link>
       </header>
 
       <p className="text-sm text-muted-foreground">Select up to {COMPARE_LIMIT} scenarios to compare.</p>
@@ -299,23 +303,16 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
         </div>
       ) : null}
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-base font-medium">Built-in scenarios</h2>
-        <div className="grid gap-3 md:grid-cols-2">
-          {builtIn.map((card) => (
-            <ScenarioCardView
-              key={card.id}
-              card={card}
-              selected={selected.includes(card.id)}
-              disabled={selected.length >= COMPARE_LIMIT && !selected.includes(card.id)}
-              onCompare={() => toggleCompare(card.id)}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGroup title="Current path" cards={today} selected={selected} onCompare={toggleCompare} />
+      {nightly.length > 0 ? (
+        <CardGroup title="Nightly best" cards={nightly} selected={selected} onCompare={toggleCompare} />
+      ) : null}
+      {builtIn.length > 0 ? (
+        <CardGroup title="Built-in" cards={builtIn} selected={selected} onCompare={toggleCompare} />
+      ) : null}
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-base font-medium">Your scenarios</h2>
+        <h2 className="text-base font-medium">Built by you</h2>
         {advisor.length === 0 ? (
           <p className="text-sm text-muted-foreground">No scenarios yet.</p>
         ) : (
@@ -338,7 +335,7 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
         )}
       </section>
 
-      <Sheet open={open} onOpenChange={setOpen}>
+      {open ? <Sheet open onOpenChange={(next) => { if (!next) setOpen(false); }}>
         <SheetContent className="w-full overflow-y-auto sm:max-w-lg" style={{ maxWidth: "36rem" }}>
           <SheetHeader>
             <SheetTitle>{builder.scenarioId ? "Edit scenario" : "New scenario"}</SheetTitle>
@@ -558,10 +555,52 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
             {error ? <p className="text-sm text-muted-foreground">{error}</p> : null}
           </div>
           <SheetFooter>
-            <Button onClick={save}>Save scenario</Button>
+            <Button
+              aria-busy={pressed === "save"}
+              onClick={() => {
+                setPressed("save");
+                window.setTimeout(() => {
+                  save();
+                  setPressed(null);
+                }, 0);
+              }}
+            >
+              {pressed === "save" ? "Saving…" : "Save scenario"}
+            </Button>
           </SheetFooter>
         </SheetContent>
-      </Sheet>
+      </Sheet> : null}
+      <ActionBar name={model.name}>
+        <Button
+          variant="outline"
+          aria-busy={pressed === "new"}
+          onClick={() => {
+            setPressed("new");
+            window.setTimeout(() => {
+              openNew();
+              setPressed(null);
+            }, 0);
+          }}
+        >
+          {pressed === "new" ? "Opening…" : "New scenario"}
+        </Button>
+        <Button
+          disabled={selected.length < 2}
+          aria-busy={pressed === "compare"}
+          onClick={() => {
+            const next = selected.join(",");
+            setPressed("compare");
+            window.setTimeout(() => {
+              router.push(`/households/${householdId}/workspace?compare=${next}`);
+            }, 0);
+          }}
+        >
+          {pressed === "compare" ? "Opening…" : `Compare ${selected.length}`}
+        </Button>
+        <Link href={`/households/${householdId}/present`} className={buttonVariants({ variant: "outline" })}>
+          Present
+        </Link>
+      </ActionBar>
     </div>
   );
 
@@ -578,6 +617,21 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
       extras: current.extras.map((row) => (row.key === key ? { ...row, ...patch } : row)),
     }));
   }
+}
+
+function numberKey(builder: Builder): string {
+  return [builder.amount, builder.customRate, builder.customTerm, builder.customMax, ...builder.extras.map((extra) => extra.amount)].join("|");
+}
+
+function shapeKey(builder: Builder): string {
+  return [
+    builder.strategy,
+    builder.loanSource,
+    builder.choiceId,
+    builder.debtIds.join(","),
+    builder.lender,
+    ...builder.extras.map((extra) => `${extra.type}:${extra.month}:${extra.id ?? ""}`),
+  ].join("|");
 }
 
 function blankBuilder(choiceId: string): Builder {
@@ -670,6 +724,57 @@ function validate(builder: Builder, model: WorkspaceModel, draft: ScenarioDraft)
   return null;
 }
 
+function CardGroup({
+  title,
+  cards,
+  selected,
+  onCompare,
+}: {
+  title: string;
+  cards: ScenarioCard[];
+  selected: string[];
+  onCompare: (id: string) => void;
+}) {
+  return (
+    <section className="flex flex-col gap-3">
+      <h2 className="text-base font-medium">{title}</h2>
+      <div className="grid gap-3 md:grid-cols-2">
+        {cards.map((card) => (
+          <ScenarioCardView
+            key={card.id}
+            card={card}
+            selected={selected.includes(card.id)}
+            disabled={selected.length >= COMPARE_LIMIT && !selected.includes(card.id)}
+            onCompare={() => onCompare(card.id)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SourceBadges({ badges }: { badges: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-1">
+      {badges.map((badge) => (
+        <span
+          key={badge}
+          className={cn(
+            "rounded-full px-2 py-0.5 text-xs",
+            badge === "Suggested"
+              ? "bg-primary text-primary-foreground"
+              : badge === "Today"
+                ? "bg-foreground text-background"
+                : "border text-muted-foreground",
+          )}
+        >
+          {badge}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function ScenarioCardView({
   card,
   selected,
@@ -686,9 +791,18 @@ function ScenarioCardView({
   onRemove?: () => void;
 }) {
   return (
-    <article data-scenario={card.name} className="flex flex-col gap-2 rounded-xl bg-card p-4 text-sm ring-1 ring-foreground/10">
+    <article
+      data-scenario={card.name}
+      className={cn(
+        "flex flex-col gap-2 rounded-xl p-4 text-sm ring-1 ring-foreground/10",
+        card.origin === "today" ? "bg-muted" : "bg-card",
+      )}
+    >
       <div className="flex items-start justify-between gap-2">
-        <h3 className="font-medium">{card.name}</h3>
+        <div className="flex min-w-0 flex-col gap-1">
+          <h3 className="font-medium">{card.name}</h3>
+          <SourceBadges badges={card.badges} />
+        </div>
         <label className="flex items-center gap-2 text-xs text-muted-foreground">
           <Checkbox checked={selected} disabled={disabled} onCheckedChange={onCompare} aria-label={`Compare ${card.name}`} />
           Compare
@@ -698,14 +812,14 @@ function ScenarioCardView({
         <dt className="text-muted-foreground">Debt-free in</dt>
         <dd>{card.debtFree}</dd>
         <dt className="text-muted-foreground">Total interest</dt>
-        <dd>{card.interest}</dd>
+        <dd><SavingsText value={card.interest} /></dd>
         <dt className="text-muted-foreground">Months saved</dt>
-        <dd>{card.monthsSaved}</dd>
+        <dd><SavingsText value={card.monthsSaved} /></dd>
         <dt className="text-muted-foreground">Monthly payment</dt>
         <dd>{card.monthly}</dd>
       </dl>
       <AlertBadge alert={card.alert} label={card.alertLabel} />
-      {card.note ? <p>{card.note}</p> : null}
+      {card.note && card.note !== card.debtFree ? <p>{card.note}</p> : null}
       {card.labels.length > 0 ? <p className="text-muted-foreground">{card.labels.join(" · ")}</p> : null}
       {onEdit || onRemove ? (
         <div className="flex gap-2">

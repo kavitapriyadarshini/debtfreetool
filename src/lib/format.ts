@@ -11,6 +11,22 @@ export function formatMoney(amount: number): string {
   return money.format(Math.round(amount));
 }
 
+/** Shown when today's payments never finish, so months and interest saved have no baseline. */
+export const NOT_COMPARABLE = "Not comparable";
+
+export const NOT_COMPARABLE_REASON =
+  "Today's payments never clear the debt, so there's no interest total to compare against.";
+
+/** 106 becomes "8 yrs 10 mos". Used for the "Never → …" months-saved line. */
+export function compactSpan(months: number): string {
+  const years = Math.floor(months / 12);
+  const rest = months % 12;
+  const parts: string[] = [];
+  if (years > 0) parts.push(`${years} ${years === 1 ? "yr" : "yrs"}`);
+  if (rest > 0) parts.push(`${rest} ${rest === 1 ? "mo" : "mos"}`);
+  return parts.length > 0 ? parts.join(" ") : "0 mos";
+}
+
 /** 134 becomes "11 years 2 months". A plan that never finishes is "Never". */
 export function formatMonths(months: number | null | "never"): string {
   if (months == null || months === "never") return "Never";

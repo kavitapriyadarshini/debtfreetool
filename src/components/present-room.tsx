@@ -1,11 +1,12 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
+import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,7 @@ import { outreachReasonRequired } from "@/lib/decision";
 import { formatDate } from "@/lib/format";
 import { presentFor, type PresentChoice, type PresentModel, type PresentSide } from "@/lib/present";
 import { useDemoStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
 import type { ContactChannel, Decision } from "@/lib/types";
 
 export function PresentRoom({ householdId, initialPlan }: { householdId: string; initialPlan: string }) {
@@ -33,6 +35,7 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
   const recommend = useDemoStore((state) => state.recommend);
   const recordDecision = useDemoStore((state) => state.recordDecision);
   const contacts = useDemoStore((state) => state.contacts);
+  const role = useDemoStore((state) => state.user.role);
   const [planId, setPlanId] = useState(initialPlan);
   const [pending, setPending] = useState<Decision | null>(null);
   const [channel, setChannel] = useState<ContactChannel | "">("");
@@ -119,8 +122,8 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
   }
 
   return (
-    <div className="relative min-h-screen bg-background px-6 py-10 text-foreground sm:px-10">
-      <AdvisorBar householdId={householdId} model={model} onPlan={setPlanId} />
+    <div className={cn("relative min-h-screen bg-background px-6 py-10 text-foreground sm:px-10", actionBarOffset)}>
+      <AdvisorBar model={model} onPlan={setPlanId} />
       <div className="mx-auto flex max-w-5xl flex-col gap-10">
         <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
         <header className="flex flex-col gap-2 pr-16">
@@ -162,20 +165,28 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
           )}
         </section>
 
-        <div className="flex flex-wrap gap-3">
-          <Button size="lg" onClick={() => openDecision("agreed")}>
-            Agreed
-          </Button>
-          <Button size="lg" variant="outline" onClick={() => openDecision("declined")}>
-            Not now
-          </Button>
-          <Button size="lg" variant="outline" onClick={() => openDecision("undecided")}>
-            Needs time
-          </Button>
-        </div>
         {caseRow?.decision ? <p className="text-lg text-muted-foreground">Answer recorded: {answerLabel(caseRow.decision)}</p> : null}
       </div>
-      <Dialog open={pending != null} onOpenChange={(open) => { if (!open) setPending(null); }}>
+      <ActionBar name={model.name} edge="screen">
+        <Button size="lg" onClick={() => openDecision("agreed")}>
+          Agreed
+        </Button>
+        <Button size="lg" variant="outline" onClick={() => openDecision("declined")}>
+          Not now
+        </Button>
+        <Button size="lg" variant="outline" onClick={() => openDecision("undecided")}>
+          Needs time
+        </Button>
+        {role === "advisor" ? (
+          <Link
+            href={`/households/${householdId}/workspace`}
+            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "font-normal text-muted-foreground")}
+          >
+            Back to workspace
+          </Link>
+        ) : null}
+      </ActionBar>
+      {pending ? <Dialog open onOpenChange={(open) => { if (!open) setPending(null); }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Record the answer</DialogTitle>
@@ -211,7 +222,7 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </Dialog> : null}
     </div>
   );
 }
@@ -240,11 +251,9 @@ function Column({
 }
 
 function AdvisorBar({
-  householdId,
   model,
   onPlan,
 }: {
-  householdId: string;
   model: PresentModel;
   onPlan: (id: string) => void;
 }) {
@@ -266,9 +275,6 @@ function AdvisorBar({
             ))}
           </select>
         </label>
-        <Link href={`/households/${householdId}/workspace`} className="underline-offset-2 hover:underline">
-          Back to the workspace
-        </Link>
       </div>
     </details>
   );

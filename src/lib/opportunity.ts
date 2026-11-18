@@ -1,6 +1,6 @@
 import { AS_OF } from "./config";
-import { formatMoney, formatMonths } from "./format";
-import { runPipeline } from "./engine/pipeline";
+import { compactSpan, formatMoney, formatMonths, NOT_COMPARABLE } from "./format";
+import { pipelineFlags, pipelineOffers, pipelineResults } from "./data";
 import { fastAppMiss, type FastAppMiss } from "./engine/offers";
 import { outreachStatus } from "./engine/outreach";
 import type {
@@ -57,6 +57,10 @@ export type OpportunityRow = {
   name: string;
   monthsSaved: number | "from never";
   interestSaved: number | "n/a";
+  /** Months the nightly best plan takes. Null when that plan also never finishes. */
+  bestPlanMonths: number | null;
+  /** The nightly best plan's own total interest, even when savings are not comparable. */
+  bestPlanInterest: number;
   planType: PlanType;
   alert: PaymentAlert;
   paymentChangePct: number;
@@ -84,21 +88,20 @@ const missReasons = new Map<string, string | null>();
 
 function pipelineIndex(): IndexedPipeline {
   if (indexed) return indexed;
-  const pipeline = runPipeline();
   const products = new Map<string, Set<string>>();
-  for (const offer of pipeline.offers) {
+  for (const offer of pipelineOffers) {
     const found = products.get(offer.household_id) ?? new Set<string>();
     found.add(offer.product);
     products.set(offer.household_id, found);
   }
   const flags = new Map<string, DataFlag[]>();
-  for (const flag of pipeline.flags) {
+  for (const flag of pipelineFlags) {
     const list = flags.get(flag.household_id) ?? [];
     if (!list.includes(flag.flag)) list.push(flag.flag);
     flags.set(flag.household_id, list);
   }
   indexed = {
-    results: new Map(pipeline.results.map((row) => [row.household_id, row])),
+    results: new Map(pipelineResults.map((row) => [row.household_id, row])),
     products: new Map(
       [...products].map(([id, names]) => [id, PRODUCT_ORDER.filter((product) => names.has(product))]),
     ),
@@ -136,10 +139,20 @@ function noOfferReason(result: PipelineResult): string | null {
   return reason;
 }
 
-export function monthsSavedLabel(row: Pick<OpportunityRow, "noAction" | "monthsSaved">): string {
+export function monthsSavedLabel(
+  row: Pick<OpportunityRow, "noAction" | "monthsSaved" | "bestPlanMonths">,
+): string {
   if (row.noAction) return "No action needed";
-  if (row.monthsSaved === "from never") return "From never";
+  if (row.monthsSaved === "from never") {
+    return row.bestPlanMonths == null ? "Never" : `Never → ${compactSpan(row.bestPlanMonths)}`;
+  }
   return formatMonths(row.monthsSaved);
+}
+
+/** Interest saved for the list. A current path that never finishes has no total to subtract. */
+export function interestSavedLabel(row: Pick<OpportunityRow, "monthsSaved" | "interestSaved">): string {
+  if (row.monthsSaved === "from never" || row.interestSaved === "n/a") return NOT_COMPARABLE;
+  return formatMoney(row.interestSaved);
 }
 
 function monthsRank(row: OpportunityRow): number {
@@ -233,6 +246,8 @@ export function listOpportunities(
       name: household.household_name,
       monthsSaved: result.months_saved,
       interestSaved: result.interest_saved,
+      bestPlanMonths: result.best_plan_months === "never" ? null : result.best_plan_months,
+      bestPlanInterest: result.best_plan_interest,
       planType: planType(result.best_plan),
       alert: result.best_plan_payment_alert,
       paymentChangePct: result.best_plan_payment_change_pct,

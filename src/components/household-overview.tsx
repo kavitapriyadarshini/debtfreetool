@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -46,6 +47,27 @@ import { cn } from "@/lib/utils";
 
 const COMFORT_ITEMS = { "1": "Zone 1", "2": "Zone 2", "3": "Zone 3" };
 
+function fieldKey(field: EditableField): string {
+  return `${field.entityType}:${field.entityId}:${field.field}`;
+}
+
+function reportableFields(overview: NonNullable<ReturnType<typeof buildHouseholdOverview>>): EditableField[] {
+  const found: EditableField[] = [];
+  const take = (field: ShownField | null) => {
+    if (field?.report) found.push(field.report);
+  };
+  take(overview.comfort);
+  for (const member of overview.members) take(member.fico);
+  for (const property of overview.properties) take(property.value);
+  for (const debt of overview.debts) {
+    take(debt.payment);
+    take(debt.rate);
+    take(debt.link);
+    take(debt.exclude);
+  }
+  return found;
+}
+
 type DialogState = { mode: "edit" | "report"; field: EditableField } | null;
 
 export function HouseholdOverview({ householdId }: { householdId: string }) {
@@ -77,6 +99,7 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
   const overview = kept.value;
 
   const [dialog, setDialog] = useState<DialogState>(null);
+  const [opening, setOpening] = useState(false);
   const [draft, setDraft] = useState("");
   const [reason, setReason] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -209,8 +232,10 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
     overview.properties.map((property) => [property.propertyId, property.address]),
   );
 
+  const issues = reportableFields(overview);
+
   return (
-    <div className="flex min-w-0 flex-col gap-8">
+    <div className={cn("flex min-w-0 flex-col gap-8", actionBarOffset)}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
@@ -219,24 +244,14 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
             {overview.householdId} · {overview.advisor}, {overview.branch} · {overview.state}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {snapshots.some((row) => row.household_id === householdId) ? (
-            <Link
-              href={`/households/${householdId}/summary`}
-              className="inline-flex h-8 items-center rounded-lg border px-3 text-sm hover:bg-muted"
-            >
-              One-page summary
-            </Link>
-          ) : null}
-          <Button
-            onClick={() => {
-              if (!overview.hasCase) startCase(householdId);
-              router.push(`/households/${householdId}/workspace`);
-            }}
+        {snapshots.some((row) => row.household_id === householdId) ? (
+          <Link
+            href={`/households/${householdId}/summary`}
+            className="inline-flex h-8 items-center rounded-lg border px-3 text-sm hover:bg-muted"
           >
-            {overview.hasCase ? "Continue case" : "Start case"}
-          </Button>
-        </div>
+            One-page summary
+          </Link>
+        ) : null}
       </header>
 
       {overview.waiting ? (
@@ -260,7 +275,7 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
         <div className="flex flex-col gap-1">
           <dt className="text-sm text-muted-foreground">Comfort zone</dt>
           <dd>
-            <FieldView field={overview.comfort} onEdit={openEdit} onReport={openReport} />
+            <FieldView field={overview.comfort} onEdit={openEdit} />
           </dd>
         </div>
         <div className="flex flex-col gap-1">
@@ -298,7 +313,7 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
                 <TableCell>{member.name}</TableCell>
                 <TableCell>{member.role}</TableCell>
                 <TableCell>
-                  <FieldView field={member.fico} onEdit={openEdit} onReport={openReport} />
+                  <FieldView field={member.fico} onEdit={openEdit} />
                 </TableCell>
               </TableRow>
             ))}
@@ -325,7 +340,7 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
                   <TableCell>{property.address}</TableCell>
                   <TableCell>{property.type}</TableCell>
                   <TableCell>
-                    <FieldView field={property.value} onEdit={openEdit} onReport={openReport} />
+                    <FieldView field={property.value} onEdit={openEdit} />
                   </TableCell>
                   <TableCell className={property.stale ? "text-payment-red" : undefined}>
                     {property.valueDate}
@@ -359,26 +374,20 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
                   ))}
                   {debt.exclude ? (
                     <div className="mt-2">
-                      <FieldView
-                        field={debt.exclude}
-                        onEdit={openEdit}
-                        onReport={openReport}
-                        hideText
-                        editLabel="Exclude from plans"
-                      />
+                      <FieldView field={debt.exclude} onEdit={openEdit} hideText editLabel="Exclude from plans" />
                     </div>
                   ) : null}
                 </TableCell>
                 <TableCell>{debt.balance}</TableCell>
                 <TableCell>
-                  <FieldView field={debt.payment} onEdit={openEdit} onReport={openReport} />
+                  <FieldView field={debt.payment} onEdit={openEdit} />
                 </TableCell>
                 <TableCell>
-                  <FieldView field={debt.rate} onEdit={openEdit} onReport={openReport} />
+                  <FieldView field={debt.rate} onEdit={openEdit} />
                 </TableCell>
                 <TableCell>
                   {debt.link ? (
-                    <FieldView field={debt.link} onEdit={openEdit} onReport={openReport} />
+                    <FieldView field={debt.link} onEdit={openEdit} />
                   ) : (
                     "—"
                   )}
@@ -447,22 +456,52 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
         )}
       </Section>
 
-      <Dialog open={dialog != null} onOpenChange={(open) => { if (!open) closeDialog(); }}>
-        <DialogContent>
-          {dialog ? (
+      {dialog ? (
+        <Dialog open onOpenChange={(next) => { if (!next) closeDialog(); }}>
+          <DialogContent>
             <CaseDialog
               dialog={dialog}
+              fields={issues}
               draft={draft}
               reason={reason}
               error={error}
               propertyItems={propertyItems}
               onDraft={setDraft}
               onReason={setReason}
+              onField={(field) => {
+                setDialog({ mode: "report", field });
+                setReason("");
+                setError(null);
+              }}
               onSave={dialog.mode === "edit" ? saveEdit : saveReport}
             />
-          ) : null}
-        </DialogContent>
-      </Dialog>
+          </DialogContent>
+        </Dialog>
+      ) : null}
+      <ActionBar name={overview.name}>
+        <Button
+          aria-busy={opening}
+          onClick={() => {
+            setOpening(true);
+            window.setTimeout(() => {
+              if (!overview.hasCase) startCase(householdId);
+              router.push(`/households/${householdId}/workspace`);
+            }, 0);
+          }}
+        >
+          {opening ? "Opening…" : overview.hasCase ? "Continue case" : "Start case"}
+        </Button>
+        <Button
+          variant="outline"
+          disabled={issues.length === 0}
+          onClick={() => {
+            const first = issues[0];
+            if (first) openReport(first);
+          }}
+        >
+          Report data issue
+        </Button>
+      </ActionBar>
     </div>
   );
 }
@@ -505,13 +544,11 @@ function OverrideLine({ override }: { override: ShownOverride }) {
 function FieldView({
   field,
   onEdit,
-  onReport,
   hideText = false,
   editLabel = "Edit for this case",
 }: {
   field: ShownField;
   onEdit: (field: EditableField) => void;
-  onReport: (field: EditableField) => void;
   hideText?: boolean;
   editLabel?: string;
 }) {
@@ -522,43 +559,43 @@ function FieldView({
       {field.notes.map((note) => (
         <NoteLine key={note.text} note={note} />
       ))}
-      <div className="flex flex-wrap gap-1">
-        {field.edit ? (
+      {field.edit ? (
+        <div className="flex flex-wrap gap-1">
           <Button variant="ghost" size="xs" onClick={() => onEdit(field.edit!)}>
             {editLabel}
           </Button>
-        ) : null}
-        {field.report ? (
-          <Button variant="ghost" size="xs" onClick={() => onReport(field.report!)}>
-            Report data issue
-          </Button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 }
 
 function CaseDialog({
   dialog,
+  fields,
   draft,
   reason,
   error,
   propertyItems,
   onDraft,
   onReason,
+  onField,
   onSave,
 }: {
   dialog: { mode: "edit" | "report"; field: EditableField };
+  fields: EditableField[];
   draft: string;
   reason: string;
   error: string | null;
   propertyItems: Record<string, string>;
   onDraft: (value: string) => void;
   onReason: (value: string) => void;
+  onField: (field: EditableField) => void;
   onSave: () => void;
 }) {
   const field = dialog.field;
   const editing = dialog.mode === "edit";
+  const issueItems = Object.fromEntries(fields.map((row) => [fieldKey(row), row.label]));
   return (
     <form
       onSubmit={(event) => {
@@ -569,10 +606,34 @@ function CaseDialog({
       <DialogHeader>
         <DialogTitle>{editing ? "Edit for this case" : "Report data issue"}</DialogTitle>
         <DialogDescription>
-          {field.label}. This stays on the case. Source data is left as it is.
+          {editing ? `${field.label}. ` : ""}This stays on the case. Source data is left as it is.
         </DialogDescription>
       </DialogHeader>
       <div className="flex flex-col gap-3 py-2">
+        {editing ? null : (
+          <label className="flex flex-col gap-1 text-sm">
+            Which value
+            <Select
+              items={issueItems}
+              value={fieldKey(field)}
+              onValueChange={(value) => {
+                const next = fields.find((row) => fieldKey(row) === value);
+                if (next) onField(next);
+              }}
+            >
+              <SelectTrigger aria-label="Which value">
+                <SelectValue placeholder="Choose a value" />
+              </SelectTrigger>
+              <SelectContent>
+                {fields.map((row) => (
+                  <SelectItem key={fieldKey(row)} value={fieldKey(row)}>
+                    {row.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </label>
+        )}
         {editing && field.kind !== "exclude" ? (
           <ValueInput field={field} draft={draft} propertyItems={propertyItems} onDraft={onDraft} />
         ) : null}

@@ -46,12 +46,19 @@ function rankInterest(saved: PipelineResult["interest_saved"]): number {
   return typeof saved === "number" ? saved : 0;
 }
 
-/** Nightly results, offers and flags for every household, in source order. */
+let pipelineCache: {
+  results: PipelineResult[];
+  offers: PipelineOffer[];
+  flags: PipelineFlag[];
+} | null = null;
+
+/** Nightly results, offers and flags for every household, in source order. Memoised: the source book does not change at runtime. */
 export function runPipeline(): {
   results: PipelineResult[];
   offers: PipelineOffer[];
   flags: PipelineFlag[];
 } {
+  if (pipelineCache) return pipelineCache;
   const results: PipelineResult[] = [];
   const offers: PipelineOffer[] = [];
   const flagRows: PipelineFlag[] = [];
@@ -136,5 +143,6 @@ export function runPipeline(): {
     });
   }
 
-  return { results, offers, flags: flagRows };
+  pipelineCache = { results, offers, flags: flagRows };
+  return pipelineCache;
 }

@@ -1,9 +1,9 @@
-import { loanProducts } from "./data";
+import { loanProducts, pipelineResults } from "./data";
 import { householdFico, todayPayment, validDebts, type WorkingHousehold } from "./engine/household";
 import { buildOffers, fastAppMiss, type BuiltOffer } from "./engine/offers";
-import { builtInPlans } from "./engine/bestPlan";
+import { bestOffer, builtInPlans, suggestion, type PlanOption, type PlanRisk } from "./engine/bestPlan";
 import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
-import { formatMoney, formatPercent } from "./format";
+import { formatMoney, formatPercent, NOT_COMPARABLE } from "./format";
 import { describeFastAppMiss } from "./opportunity";
 import type { ExtraPayment, PaymentAlert, Property, Scenario } from "./types";
 
@@ -57,9 +57,19 @@ export type MovableDebt = {
   mandatory: boolean;
 };
 
+export type CardOrigin = "today" | "builtin" | "advisor";
+
 export type ScenarioCard = {
   id: string;
   kind: "builtin" | "advisor";
+  origin: CardOrigin;
+  /** The nightly pipeline's best plan. Exactly one card in the workspace. */
+  nightly: boolean;
+  /** Rule 6 across every scenario in the case, including ones the advisor built. */
+  suggested: boolean;
+  /** Current path can be recommended only when nothing else beats it. */
+  recommendable: boolean;
+  badges: string[];
   name: string;
   debtFree: string;
   interest: string;
@@ -80,6 +90,9 @@ export type WorkspaceModel = {
   choices: OfferChoice[];
   debts: MovableDebt[];
   properties: Property[];
+  suggestionId: string;
+  suggestionName: string;
+  suggestionWhy: string;
 };
 
 export type DraftExtra = {
@@ -129,17 +142,27 @@ function termLabel(months: number): string {
 }
 
 function monthCount(months: number | null): string {
-  if (months == null) return "Never";
+  if (months == null) return NEVER_NOTE;
   return `${months} ${months === 1 ? "month" : "months"}`;
 }
 
-function monthsSaved(current: number | null, months: number | null, baseline: boolean): string {
-  if (baseline) return "—";
-  if (current == null && months != null) return "From never";
-  if (current == null || months == null) return "—";
+/** Months saved against the current path. A path that never finishes has nothing to subtract. */
+export function savingsText(current: number | null, months: number | null, baseline: boolean): string {
+  if (current == null) return NOT_COMPARABLE;
+  if (baseline || months == null) return "—";
   const saved = current - months;
   if (saved <= 0) return "0 months";
   return `${saved} ${saved === 1 ? "month" : "months"}`;
+}
+
+export function sourceBadges(card: Pick<ScenarioCard, "origin" | "nightly" | "suggested">): string[] {
+  const badges: string[] = [];
+  if (card.origin === "today") badges.push("Today");
+  if (card.nightly) badges.push("Nightly best");
+  else if (card.origin === "builtin") badges.push("Built-in");
+  else if (card.origin === "advisor") badges.push("Built by you");
+  if (card.suggested) badges.push("Suggested");
+  return badges;
 }
 
 export function alertLabel(alert: PaymentAlert, percent: number): string {
@@ -179,6 +202,7 @@ export function loanLabels(
 function cardFromNumbers(input: {
   id: string;
   kind: ScenarioCard["kind"];
+  origin: CardOrigin;
   name: string;
   months: number | null;
   interest: number;
@@ -190,19 +214,82 @@ function cardFromNumbers(input: {
   labels: string[];
   scenarioId: string | null;
 }): ScenarioCard {
+  const unfinished = input.months == null;
   return {
     id: input.id,
     kind: input.kind,
+    origin: input.origin,
+    nightly: false,
+    suggested: false,
+    recommendable: input.origin !== "today",
+    badges: [],
     name: input.name,
     debtFree: monthCount(input.months),
-    interest: formatMoney(input.interest),
-    monthsSaved: monthsSaved(input.currentMonths, input.months, input.baseline),
+    interest: unfinished ? NOT_COMPARABLE : formatMoney(input.interest),
+    monthsSaved: savingsText(input.currentMonths, input.months, input.baseline),
     monthly: formatMoney(input.monthly),
     alert: input.alert,
     alertLabel: alertLabel(input.alert, input.percent),
-    note: input.months == null ? NEVER_NOTE : null,
+    note: unfinished ? NEVER_NOTE : null,
     labels: input.labels,
     scenarioId: input.scenarioId,
+  };
+}
+
+function scenarioRisk(scenario: Scenario): PlanRisk {
+  if (scenario.loan_source === "none") return "none";
+  if (scenario.product?.startsWith("HELOAN")) return "secured";
+  return "unsecured";
+}
+
+function nightlyCardId(bestPlan: string, cards: readonly ScenarioCard[]): string | null {
+  if (bestPlan === "Current path") return cards.some((card) => card.id === "current") ? "current" : null;
+  if (bestPlan === "Avalanche") return cards.some((card) => card.id === "avalanche") ? "avalanche" : null;
+  if (bestPlan === "Snowball") return cards.some((card) => card.id === "snowball") ? "snowball" : null;
+  const match = /^(.*) (\d+)m$/.exec(bestPlan);
+  if (!match) return null;
+  const prefix = `offer:${match[1]}:${match[2]}:`;
+  return cards.find((card) => card.id.startsWith(prefix))?.id ?? null;
+}
+
+/** Paint the pipeline's best plan onto its card, with the nightly payment alert, and rank the case. */
+function settleCards(
+  householdId: string,
+  cards: ScenarioCard[],
+  ranked: { id: string; plan: PlanOption }[],
+  currentMonths: number | null,
+): { suggestionId: string; suggestionName: string; suggestionWhy: string } {
+  const picked = suggestion(ranked.map((row) => row.plan));
+  const suggestionId = ranked.find((row) => row.plan === picked.plan)?.id ?? cards[0]?.id ?? "current";
+  for (const card of cards) {
+    card.suggested = card.id === suggestionId;
+    card.recommendable = card.origin !== "today" || card.suggested;
+  }
+
+  const nightly = pipelineResults.find((row) => row.household_id === householdId);
+  const nightlyId = nightly ? nightlyCardId(nightly.best_plan, cards) : null;
+  const nightlyCard = cards.find((card) => card.id === nightlyId);
+  if (nightly && nightlyCard) {
+    const months = nightly.best_plan_months === "never" ? null : nightly.best_plan_months;
+    nightlyCard.nightly = true;
+    nightlyCard.debtFree = monthCount(months);
+    nightlyCard.interest = months == null ? NOT_COMPARABLE : formatMoney(nightly.best_plan_interest);
+    nightlyCard.monthly = formatMoney(nightly.best_plan_monthly);
+    nightlyCard.alert = nightly.best_plan_payment_alert;
+    nightlyCard.alertLabel = alertLabel(nightly.best_plan_payment_alert, nightly.best_plan_payment_change_pct);
+    nightlyCard.note = months == null ? NEVER_NOTE : null;
+    nightlyCard.monthsSaved = savingsText(
+      currentMonths,
+      months,
+      nightlyCard.origin === "today",
+    );
+  }
+  for (const card of cards) card.badges = sourceBadges(card);
+  const winner = cards.find((card) => card.id === suggestionId);
+  return {
+    suggestionId,
+    suggestionName: winner?.name ?? picked.plan.name,
+    suggestionWhy: picked.why,
   };
 }
 
@@ -401,7 +488,7 @@ export function previewDraft(
     draft.debtIds,
   );
   return {
-    debtFree: monthCount(result.months),
+    debtFree: result.months == null ? NEVER_NOTE : monthCount(result.months),
     interest: formatMoney(result.totalInterest),
     monthly: formatMoney(result.requiredMonthly),
     alert: result.paymentAlert,
@@ -424,10 +511,16 @@ export function assembleWorkspace(
   const scoreEstimated = householdFico(state.members).defaulted;
   const currentMonths = plans.current.months;
   const pay = todayPayment(state.debts);
+  const ranked: { id: string; plan: PlanOption }[] = [
+    { id: "current", plan: plans.current },
+    { id: "avalanche", plan: plans.avalanche },
+    { id: "snowball", plan: plans.snowball },
+  ];
   const cards: ScenarioCard[] = [
     cardFromNumbers({
       id: "current",
       kind: "builtin",
+      origin: "today",
       name: "Current path",
       months: plans.current.months,
       interest: plans.current.interest,
@@ -442,6 +535,7 @@ export function assembleWorkspace(
     cardFromNumbers({
       id: "avalanche",
       kind: "builtin",
+      origin: "builtin",
       name: "Avalanche",
       months: plans.avalanche.months,
       interest: plans.avalanche.interest,
@@ -456,6 +550,7 @@ export function assembleWorkspace(
     cardFromNumbers({
       id: "snowball",
       kind: "builtin",
+      origin: "builtin",
       name: "Snowball",
       months: plans.snowball.months,
       interest: plans.snowball.interest,
@@ -481,6 +576,7 @@ export function assembleWorkspace(
       cardFromNumbers({
         id: choice.id,
         kind: "builtin",
+        origin: "builtin",
         name: choice.label,
         months: offer.months,
         interest: offer.total_interest,
@@ -495,12 +591,42 @@ export function assembleWorkspace(
     );
   }
 
+  const best = bestOffer(offers);
+  if (best) {
+    const id = `offer:${best.product}:${best.term_months}:${best.property_id ?? "none"}`;
+    ranked.push({
+      id,
+      plan: {
+        name: choices.find((choice) => choice.id === id)?.label ?? `${best.product} ${best.term_months}m`,
+        months: best.months,
+        interest: best.total_interest,
+        contractual: best.contractual_monthly,
+        risk: best.security,
+        schedule: [],
+        payoffOrder: [],
+      },
+    });
+  }
+
   for (const scenario of scenarios) {
     const result = runScenario(state, caseState, scenario);
+    ranked.push({
+      id: scenario.scenario_id,
+      plan: {
+        name: scenario.name,
+        months: result.months,
+        interest: result.totalInterest,
+        contractual: result.contractualMonthly,
+        risk: scenarioRisk(scenario),
+        schedule: [],
+        payoffOrder: [],
+      },
+    });
     cards.push(
       cardFromNumbers({
         id: scenario.scenario_id,
         kind: "advisor",
+        origin: "advisor",
         name: scenario.name,
         months: result.months,
         interest: result.totalInterest,
@@ -522,6 +648,7 @@ export function assembleWorkspace(
     );
   }
 
+  const settled = settleCards(state.household.household_id, cards, ranked, currentMonths);
   return {
     householdId: state.household.household_id,
     name: state.household.household_name,
@@ -530,6 +657,9 @@ export function assembleWorkspace(
     choices,
     debts: movableDebts(state, null),
     properties: state.properties,
+    suggestionId: settled.suggestionId,
+    suggestionName: settled.suggestionName,
+    suggestionWhy: settled.suggestionWhy,
   };
 }
 

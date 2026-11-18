@@ -581,8 +581,16 @@ export const useDemoStore = create<DemoState>()(
     }),
     {
       name: "debt-free-v1",
+      version: 2,
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
+      migrate: (persisted, version) => {
+        const state = persisted as { snapshots?: FrozenSnapshot[] };
+        if (version < 2 && state.snapshots) {
+          state.snapshots = state.snapshots.map((row) => ({ ...row, schedule: [] }));
+        }
+        return persisted as DemoState;
+      },
       partialize: (state) => ({
         user: state.user,
         cases: state.cases,
@@ -592,7 +600,7 @@ export const useDemoStore = create<DemoState>()(
         caseOverrides: state.caseOverrides,
         customLoans: state.customLoans,
         contacts: state.contacts,
-        snapshots: state.snapshots,
+        snapshots: (state.snapshots ?? []).map((row) => ({ ...row, schedule: [] })),
       }),
     },
   ),

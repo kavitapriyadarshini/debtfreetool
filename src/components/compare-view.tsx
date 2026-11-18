@@ -1,12 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { SavingsText } from "@/components/savings-text";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
@@ -26,7 +28,15 @@ import type { PaymentAlert } from "@/lib/types";
 
 const SERIES_COLOR = ["#1d4e89", "#5c6b7a", "#8b98a5", "#16324f", "#6d8cae", "#2f4558", "#a8b4c0", "#3d5a73"];
 
-export function CompareView({ householdId, selectedIds }: { householdId: string; selectedIds: string[] }) {
+export function CompareView({
+  householdId,
+  householdName,
+  selectedIds,
+}: {
+  householdId: string;
+  householdName: string;
+  selectedIds: string[];
+}) {
   const router = useRouter();
   const cases = useDemoStore((state) => state.cases);
   const scenarios = useDemoStore((state) => state.scenarios);
@@ -108,17 +118,26 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
     toast.success("Plan recommended");
   }
 
+  const yours = active != null && active.savedScenarioId != null && active.savedScenarioId === caseRow?.recommended_scenario_id;
+  const presentHref = active ? `/households/${householdId}/present?plan=${encodeURIComponent(active.id)}` : null;
+
   if (!view || view.columns.length === 0) {
     return (
-      <div className="flex flex-col gap-3">
-        <Button variant="outline" className="w-fit" onClick={back}>
-          Back to scenarios
-        </Button>
+      <div className={cn("flex flex-col gap-3", actionBarOffset)}>
         {kept.failed ? (
           <StaleNotice failed stale={kept.stale} onRetry={kept.retry} />
         ) : (
           <p className="text-sm text-muted-foreground">Choose a scenario to compare.</p>
         )}
+        <ActionBar name={householdName}>
+          <Button disabled>Mark as recommended</Button>
+          <Button variant="outline" disabled>
+            Present
+          </Button>
+          <Button variant="outline" onClick={back}>
+            Back to scenarios
+          </Button>
+        </ActionBar>
       </div>
     );
   }
@@ -129,26 +148,11 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
   const canSave = shown != null && (!needsAck || acknowledged) && (!needsReason || reasonReady);
 
   return (
-    <div className="flex min-w-0 flex-col gap-6">
+    <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset)}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex min-w-0 flex-col gap-2">
-          <div className="flex flex-wrap items-center gap-3">
-            <Button variant="outline" className="w-fit" onClick={back}>
-              Back to scenarios
-            </Button>
-            {active ? (
-              <Link
-                href={`/households/${householdId}/present?plan=${encodeURIComponent(active.id)}`}
-                className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-              >
-                Present
-              </Link>
-            ) : null}
-          </div>
-          <p className="text-xs font-medium tracking-wide text-muted-foreground">S4</p>
-          <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
-        </div>
+      <div>
+        <p className="text-xs font-medium tracking-wide text-muted-foreground">S4</p>
+        <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
       </div>
 
       <section className="flex flex-col gap-1 rounded-lg border bg-card p-4" data-testid="suggestion">
@@ -171,16 +175,29 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
               key={column.id}
               data-scenario={column.name}
               className={cn(
-                "flex min-w-0 flex-col gap-3 rounded-lg border bg-card p-4",
+                "flex min-w-0 flex-col gap-3 rounded-lg border p-4",
+                column.badges.includes("Today") ? "bg-muted" : "bg-card",
                 column.matchesSuggestion && "border-primary",
               )}
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <h2 className="font-medium">{column.name}</h2>
                 <div className="flex flex-wrap gap-1">
-                  {column.matchesSuggestion ? (
-                    <span className="rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
-                  ) : null}
+                  {column.badges.map((badge) => (
+                    <span
+                      key={badge}
+                      className={cn(
+                        "rounded-full px-2 py-0.5 text-xs",
+                        badge === "Suggested"
+                          ? "bg-primary text-primary-foreground"
+                          : badge === "Today"
+                            ? "bg-foreground text-background"
+                            : "border text-muted-foreground",
+                      )}
+                    >
+                      {badge}
+                    </span>
+                  ))}
                   {yours ? (
                     <span className="rounded-full border px-2 py-0.5 text-xs text-muted-foreground">Your pick</span>
                   ) : null}
@@ -190,17 +207,14 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
                 <dt className="text-muted-foreground">Debt-free date</dt>
                 <dd>{column.debtFreeDate}</dd>
                 <dt className="text-muted-foreground">Months saved</dt>
-                <dd>{column.monthsSaved}</dd>
+                <dd><SavingsText value={column.monthsSaved} /></dd>
                 <dt className="text-muted-foreground">Total interest</dt>
-                <dd>{column.interest}</dd>
+                <dd><SavingsText value={column.interest} /></dd>
                 <dt className="text-muted-foreground">Monthly payment</dt>
                 <dd>{column.monthly}</dd>
               </dl>
               <AlertBadge alert={column.alert} label={column.alertLabel} />
               {column.note ? <p className="text-sm text-muted-foreground">{column.note}</p> : null}
-              <Button variant={yours ? "outline" : "default"} disabled={yours} onClick={() => ask(column)}>
-                {yours ? "Recommended" : "Mark as recommended"}
-              </Button>
             </article>
           );
         })}
@@ -266,7 +280,7 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
         </section>
       ) : null}
 
-      <Dialog open={pending != null} onOpenChange={(open) => { if (!open) setPending(null); }}>
+      {pending ? <Dialog open onOpenChange={(open) => { if (!open) setPending(null); }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Mark as recommended</DialogTitle>
@@ -304,7 +318,29 @@ export function CompareView({ householdId, selectedIds }: { householdId: string;
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </Dialog> : null}
+      <ActionBar name={householdName}>
+        <Button
+          disabled={!active || yours || !active.recommendable}
+          onClick={() => {
+            if (active?.recommendable) ask(active);
+          }}
+        >
+          {yours ? "Recommended" : "Mark as recommended"}
+        </Button>
+        {presentHref ? (
+          <Link href={presentHref} className={buttonVariants({ variant: "outline" })}>
+            Present
+          </Link>
+        ) : (
+          <Button variant="outline" disabled>
+            Present
+          </Button>
+        )}
+        <Button variant="outline" onClick={back}>
+          Back to scenarios
+        </Button>
+      </ActionBar>
     </div>
   );
 }

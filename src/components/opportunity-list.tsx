@@ -35,12 +35,14 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { SavingsText } from "@/components/savings-text";
 import { PAGE_SIZE } from "@/lib/config";
 import { formatDate, formatMoney, formatPercent } from "@/lib/format";
 import {
   CASE_STATUS_LABEL,
   FLAG_LABEL,
   filterOpportunities,
+  interestSavedLabel,
   listOpportunities,
   monthsSavedLabel,
   nextReadyDate,
@@ -398,7 +400,14 @@ export function OpportunityList() {
                     {monthsSavedLabel(row)}
                   </TableCell>
                   <TableCell>
-                    {row.interestSaved === "n/a" ? "—" : formatMoney(row.interestSaved)}
+                    {row.monthsSaved === "from never" ? (
+                      <span className="inline-flex flex-wrap items-baseline gap-x-2">
+                        <SavingsText value={interestSavedLabel(row)} />
+                        <span>{formatMoney(row.bestPlanInterest)}</span>
+                      </span>
+                    ) : (
+                      <SavingsText value={interestSavedLabel(row)} />
+                    )}
                   </TableCell>
                   <TableCell>{row.planType}</TableCell>
                   <TableCell>

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { caseOverrides, cases, customLoans, extraPayments, scenarios } from "../data";
 import { householdWithCase } from "../engine/scenario";
+import { NOT_COMPARABLE } from "../format";
 import {
   BELOW_MINIMUM,
   NEVER_NOTE,
@@ -113,7 +114,31 @@ describe("scenario workspace", () => {
 
   it("says when the current path never pays off", () => {
     const view = workspaceFor("H07", null, empty, []);
-    expect(view?.cards.find((card) => card.id === "current")?.note).toBe(NEVER_NOTE);
+    const current = view?.cards.find((card) => card.id === "current");
+    expect(current?.note).toBe(NEVER_NOTE);
+    expect(current?.debtFree).toBe(NEVER_NOTE);
+    expect(current?.monthsSaved).toBe(NOT_COMPARABLE);
+    expect(current?.interest).toBe(NOT_COMPARABLE);
+    const saved = view?.cards.map((card) => card.monthsSaved) ?? [];
+    expect(saved.every((value) => value === NOT_COMPARABLE)).toBe(true);
+    expect(saved.join(" ")).not.toMatch(/from never|n\/a|—/i);
+  });
+
+  it("pins H01's current path first and gives Nightly best to Yellow 15-year only", () => {
+    const view = model("H01");
+    expect(view?.cards[0]?.name).toBe("Current path");
+    expect(view?.cards[0]?.origin).toBe("today");
+    expect(view?.cards[0]?.badges).toContain("Today");
+    const nightly = view?.cards.filter((card) => card.nightly) ?? [];
+    expect(nightly).toHaveLength(1);
+    expect(nightly[0]?.name).toBe("HELOAN Yellow 15-year");
+    expect(nightly[0]?.badges).toContain("Nightly best");
+    const builtIn = view?.cards.filter((card) => card.origin === "builtin" && !card.nightly) ?? [];
+    expect(builtIn.some((card) => card.name === "HELOAN Yellow 15-year")).toBe(false);
+    expect(builtIn.map((card) => card.name)).toEqual(
+      expect.arrayContaining(["Avalanche", "Snowball"]),
+    );
+    expect(view?.cards.filter((card) => card.origin === "advisor").every((card) => card.badges.includes("Built by you"))).toBe(true);
   });
 
   it("marks a home-equity offer as estimated when nobody has a FICO score", () => {

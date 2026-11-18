@@ -108,16 +108,82 @@ export function householdWithCase(
   };
 }
 
+const scenarioCache = new Map<string, ScenarioRun>();
+let scenarioComputes = 0;
+
+function householdKey(household: string | Household | WorkingHousehold): string {
+  if (typeof household === "string") return household;
+  if ("household_id" in household) return `row:${household.household_id}`;
+  const home = household.household;
+  const debts = household.debts
+    .map((debt) => [debt.debt_id, debt.balance, debt.rate, debt.monthly_payment, debt.property_id].join(","))
+    .join(";");
+  const members = household.members.map((member) => [member.member_id, member.fico].join(",")).join(";");
+  const properties = household.properties
+    .map((property) => [property.property_id, property.value, property.value_as_of].join(","))
+    .join(";");
+  return [home.household_id, home.comfort_zone, home.home_state, home.annual_income, debts, members, properties].join("|");
+}
+
+function scenarioKey(household: string | Household | WorkingHousehold, caseState: CaseState, scenario: Scenario): string {
+  const overrides = caseState.overrides
+    .filter((row) => row.case_id === scenario.case_id)
+    .map((row) => [row.entity_type, row.entity_id, row.field, String(row.override_value)].join(":"))
+    .sort()
+    .join(";");
+  const extras = caseState.extraPayments
+    .filter((row) => row.case_id === scenario.case_id)
+    .map((row) => [row.extra_id, row.type, row.amount, row.start_month, row.end_month].join(":"))
+    .sort()
+    .join(";");
+  const loans = caseState.customLoans
+    .filter((row) => row.case_id === scenario.case_id)
+    .map((row) => [row.custom_loan_id, row.rate, row.term_months, row.max_amount].join(":"))
+    .sort()
+    .join(";");
+  return [
+    householdKey(household),
+    scenario.scenario_id,
+    scenario.strategy,
+    scenario.loan_source,
+    scenario.product,
+    scenario.term_months,
+    scenario.loan_amount,
+    scenario.loan_rate,
+    scenario.debts_paid_off,
+    scenario.extra_payment_ids,
+    overrides,
+    extras,
+    loans,
+  ].join("~");
+}
+
+/** Drops memoised scenario results. Tests use this so one file does not reuse another's runs. */
+export function resetScenarioCache(): void {
+  scenarioCache.clear();
+  scenarioComputes = 0;
+}
+
+/** How many scenario runs missed the cache since the last reset. */
+export function scenarioComputeCount(): number {
+  return scenarioComputes;
+}
+
 /**
  * Runs one advisor scenario on the household after this case's edits.
  * Debt payment, rate and exclusion change the simulation. Property value,
  * FICO, mortgage link and comfort zone are applied and eligibility is rebuilt.
+ * The same inputs return the previous result instead of simulating again.
  */
 export function runScenario(
   household: string | Household | WorkingHousehold,
   caseState: CaseState,
   scenario: Scenario,
 ): ScenarioRun {
+  const key = scenarioKey(household, caseState, scenario);
+  const cached = scenarioCache.get(key);
+  if (cached) return cached;
+  scenarioComputes += 1;
   const edited = householdWithCase(household, {
     ...caseState,
     overrides: caseState.overrides.filter((override) => override.case_id === scenario.case_id),
@@ -159,7 +225,7 @@ export function runScenario(
   const simulated = simulate(simDebts, scenario.strategy, pay, extras);
   const rise = today ? Math.max(pay, required) / today - 1 : 0;
 
-  return {
+  const result: ScenarioRun = {
     months: simulated.months,
     totalInterest: simulated.totalInterest,
     monthly: pythonRound(pay),
@@ -172,4 +238,6 @@ export function runScenario(
     payoffOrder: simulated.payoffOrder,
     offers,
   };
+  scenarioCache.set(key, result);
+  return result;
 }

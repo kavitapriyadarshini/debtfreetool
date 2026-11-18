@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { compareFor, planDate } from "../compare";
 import { caseOverrides, cases, customLoans, extraPayments, scenarios } from "../data";
-import { workspaceFor } from "../workspace";
+import { NOT_COMPARABLE } from "../format";
+import { NEVER_NOTE, workspaceFor } from "../workspace";
 
 const state = { overrides: caseOverrides, extraPayments, customLoans };
 
@@ -16,24 +17,36 @@ describe("compare view", () => {
     const yellow = model?.choices.find((row) => row.label === "HELOAN Yellow 15-year");
     if (!yellow) throw new Error("Missing Yellow 15-year");
     const view = open("H01", [yellow.id]);
-    expect(view?.suggestionName).toBe("HELOAN Yellow 15-year");
+    expect(view?.suggestionName).toBe("HELOAN Yellow 15-yr + extras");
     expect(view?.why).toBe(
+      "8 months sooner and $23,100 less interest than paying smarter without a loan. Secured on your home.",
+    );
+    const bare = compareFor("H01", null, { overrides: [], extraPayments: [], customLoans: [] }, [], [yellow.id]);
+    expect(bare?.suggestionName).toBe("HELOAN Yellow 15-year");
+    expect(bare?.why).toBe(
       "5 months sooner and $18,200 less interest than paying smarter without a loan. Secured on your home.",
     );
     expect(view?.addedBaselines).toBe(true);
     expect(view?.columns.map((column) => column.name)).toEqual([
+      "Current path",
       "Avalanche",
       "Snowball",
       "HELOAN Yellow 15-year",
     ]);
+    expect(view?.columns[0]?.badges).toContain("Today");
+    expect(view?.columns.filter((column) => column.badges.includes("Nightly best"))).toHaveLength(1);
+    expect(view?.columns.find((column) => column.badges.includes("Nightly best"))?.name).toBe(
+      "HELOAN Yellow 15-year",
+    );
     const loan = view?.columns.find((column) => column.name === "HELOAN Yellow 15-year");
     expect(loan).toMatchObject({
       debtFreeDate: "Aug 2037",
       monthsSaved: "111 months",
       interest: "$127,511",
       alert: "none",
-      matchesSuggestion: true,
+      matchesSuggestion: false,
     });
+    expect(view?.columns[0]?.recommendable).toBe(false);
     expect(loan?.points).toHaveLength(129);
     expect(loan?.payoff.map((step) => step.name)).toEqual([
       "Chase Sapphire",
@@ -48,14 +61,15 @@ describe("compare view", () => {
 
   it("keeps a no-loan comparison to the plans that were selected", () => {
     const view = open("H01", ["avalanche"]);
-    expect(view?.columns.map((column) => column.name)).toEqual(["Avalanche"]);
+    expect(view?.columns.map((column) => column.name)).toEqual(["Current path", "Avalanche"]);
     expect(view?.addedBaselines).toBe(false);
   });
 
   it("names the tie-break when nothing else separates the plans", () => {
-    const view = open("H12", ["current"]);
+    const view = compareFor("H12", null, { overrides: [], extraPayments: [], customLoans: [] }, [], ["current"]);
     expect(view?.suggestionName).toBe("Current path");
     expect(view?.why).toBe("Tied on time, interest, and payment.");
+    expect(view?.columns[0]?.recommendable).toBe(true);
   });
 
   it("marks H11's FastApp 1-year as the suggestion with a red alert", () => {
@@ -71,8 +85,13 @@ describe("compare view", () => {
   });
 
   it("says a plan that never finishes is never debt free", () => {
-    const view = compareFor("H07", null, { overrides: [], extraPayments: [], customLoans: [] }, [], ["current"]);
-    expect(view?.columns[0]?.note).toBe("Never debt free at these payments");
+    const view = compareFor("H07", null, { overrides: [], extraPayments: [], customLoans: [] }, [], ["avalanche"]);
+    expect(view?.columns[0]?.name).toBe("Current path");
+    expect(view?.columns[0]?.debtFreeDate).toBe(NEVER_NOTE);
+    expect(view?.columns[0]?.note).toBe(NEVER_NOTE);
+    expect(view?.columns[0]?.monthsSaved).toBe(NOT_COMPARABLE);
+    expect(view?.columns[0]?.interest).toBe(NOT_COMPARABLE);
+    expect(view?.columns.map((column) => column.monthsSaved).join(" ")).not.toMatch(/from never|n\/a|—/i);
   });
 
   it("marks a home-equity column as estimated when the score is the default", () => {

@@ -1,14 +1,10 @@
 import { PLAN_START } from "./config";
-import { bestOffer, builtInPlans, planFromOffer, suggestion } from "./engine/bestPlan";
 import { householdFico } from "./engine/household";
-import { buildOffers } from "./engine/offers";
 import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
 import type { ScheduleRow } from "./engine/simulate";
-import { formatMoney } from "./format";
 import type { PaymentAlert, Scenario } from "./types";
 import {
   NEVER_NOTE,
-  alertLabel,
   workspaceFor,
   type OfferChoice,
   type ScenarioCard,
@@ -46,6 +42,8 @@ export type CompareColumn = {
   alertLabel: string;
   note: string | null;
   loan: boolean;
+  badges: string[];
+  recommendable: boolean;
   matchesSuggestion: boolean;
   savedScenarioId: string | null;
   draft: RecommendDraft;
@@ -80,14 +78,6 @@ function monthCount(months: number | null): string {
   return `${months} ${months === 1 ? "month" : "months"}`;
 }
 
-function monthsSaved(current: number | null, months: number | null, baseline: boolean): string {
-  if (baseline) return "—";
-  if (current == null && months != null) return "From never";
-  if (current == null || months == null) return "—";
-  const saved = current - months;
-  if (saved <= 0) return "0 months";
-  return `${saved} ${saved === 1 ? "month" : "months"}`;
-}
 
 function isLoanCard(card: ScenarioCard, scenarios: readonly Scenario[]): boolean {
   if (card.id === "current" || card.id === "avalanche" || card.id === "snowball") return false;
@@ -247,6 +237,7 @@ export function compareFor(
   const chosen = selectedIds.filter((id) => cards.has(id));
   const loanSelected = chosen.some((id) => isLoanCard(cards.get(id)!, saved));
   const ordered: string[] = [];
+  if (cards.has("current")) ordered.push("current");
   if (loanSelected) {
     if (cards.has("avalanche")) ordered.push("avalanche");
     if (cards.has("snowball")) ordered.push("snowball");
@@ -258,35 +249,26 @@ export function compareFor(
   const addedBaselines =
     loanSelected && (!chosen.includes("avalanche") || !chosen.includes("snowball"));
 
-  const plans = builtInPlans(state, { schedule: false });
-  const offers = buildOffers(state);
-  const best = bestOffer(offers);
-  const options = [plans.current, plans.avalanche, plans.snowball];
-  if (best) options.push(planFromOffer(best));
-  const suggested = suggestion(options);
-  const suggestionId =
-    suggested.plan.name === "Current path"
-      ? "current"
-      : suggested.plan.name === "Avalanche"
-        ? "avalanche"
-        : suggested.plan.name === "Snowball"
-          ? "snowball"
-          : best
-            ? `offer:${best.product}:${best.term_months}:${best.property_id ?? "none"}`
-            : "current";
+  const suggestionId = model.suggestionId;
   const suggestionCard = cards.get(suggestionId);
+  const suggestionChoice = model.choices.find((row) => row.id === suggestionId);
   const suggestionSaved =
+    (suggestionCard?.scenarioId
+      ? saved.find((row) => row.scenario_id === suggestionCard.scenarioId)
+      : undefined) ??
     saved.find((row) =>
-      best && suggestionId.startsWith("offer:")
-        ? sameOffer(row, best)
-        : suggestionId === "current"
-          ? sameBuiltin(row, "current")
-          : suggestionId === "avalanche"
-            ? sameBuiltin(row, "avalanche")
-            : suggestionId === "snowball"
-              ? sameBuiltin(row, "snowball")
-              : false,
-    ) ?? null;
+      suggestionChoice
+        ? sameOffer(row, {
+            product: suggestionChoice.product,
+            term_months: suggestionChoice.termMonths,
+            loan_amount: suggestionChoice.amount,
+            debts_paid_off: suggestionChoice.debtIds.join(";"),
+          })
+        : suggestionId === "current" || suggestionId === "avalanche" || suggestionId === "snowball"
+          ? sameBuiltin(row, suggestionId)
+          : false,
+    ) ??
+    null;
 
   const names = new Map(state.debts.map((debt) => [debt.debt_id, debt.debt_name]));
   const boundCase = caseId ?? "draft";
@@ -323,21 +305,21 @@ export function compareFor(
             : false,
       )?.scenario_id ??
       null;
-    const matchesSuggestion =
-      id === suggestionId || (savedScenarioId != null && savedScenarioId === suggestionSaved?.scenario_id);
     return [
       {
         id,
         name: card.name,
-        debtFreeDate: result.months == null ? "Never" : planDate(result.months),
-        monthsSaved: monthsSaved(plans.current.months, result.months, id === "current"),
-        interest: formatMoney(result.totalInterest),
-        monthly: formatMoney(result.requiredMonthly),
-        alert: result.paymentAlert,
-        alertLabel: alertLabel(result.paymentAlert, result.paymentChangePct),
+        debtFreeDate: result.months == null ? NEVER_NOTE : planDate(result.months),
+        monthsSaved: card.monthsSaved,
+        interest: card.interest,
+        monthly: card.monthly,
+        alert: card.alert,
+        alertLabel: card.alertLabel,
         note: columnNote(result.months, scoreEstimated && (scenario.product?.startsWith("HELOAN") || card.name.startsWith("HELOAN"))),
         loan: isLoanCard(card, saved),
-        matchesSuggestion,
+        badges: card.badges,
+        recommendable: card.recommendable,
+        matchesSuggestion: card.suggested,
         savedScenarioId,
         draft: toDraft(scenario),
         series: schedule.series,
@@ -350,9 +332,9 @@ export function compareFor(
   return {
     columns,
     suggestionId,
-    suggestionName: suggestionCard?.name ?? suggested.plan.name,
+    suggestionName: model.suggestionName,
     suggestionSavedId: suggestionSaved?.scenario_id ?? null,
-    why: suggested.why,
+    why: model.suggestionWhy,
     addedBaselines,
     dropped: ordered.length > COMPARE_LIMIT,
   };
