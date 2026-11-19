@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -34,6 +36,7 @@ import { cn } from "@/lib/utils";
 import {
   LOAN_MOVES_NOTHING,
   paymentRule,
+  paymentSummary,
   previewHousehold,
   rateText,
   reservedPlanNames,
@@ -359,6 +362,7 @@ export function Workspace({
       <header>
         <p className="text-xs font-medium tracking-wide text-muted-foreground">S3</p>
         <h1 className="text-2xl font-semibold tracking-tight">{model.name}</h1>
+        <p className="text-sm text-muted-foreground">Scenarios</p>
         <Link href={`/households/${householdId}`} className="text-sm text-muted-foreground underline-offset-2 hover:underline">
           Household overview
         </Link>
@@ -834,9 +838,9 @@ function validate(
   return null;
 }
 
-const LABEL_CELL = "sticky left-0 z-20 min-w-36 border-b bg-background px-3 py-2 text-left align-top text-sm font-medium";
-const TODAY_CELL = "sticky left-36 z-10 min-w-44 border-b bg-muted px-3 py-2 text-left align-top text-sm";
-const PLAN_CELL = "min-w-44 border-b bg-background px-3 py-2 text-left align-top text-sm";
+const LABEL_CELL = "sticky left-0 z-20 box-border w-[168px] min-w-[168px] max-w-[168px] break-words border-b bg-background px-3 py-2 text-left align-top text-sm font-medium";
+const TODAY_CELL = "sticky left-[168px] z-10 box-border w-[200px] min-w-[200px] max-w-[200px] break-words border-b bg-muted px-3 py-2 text-left align-top text-sm";
+const PLAN_CELL = "box-border w-[200px] min-w-[200px] max-w-[200px] break-words border-b bg-background px-3 py-2 text-left align-top text-sm";
 
 function PlanTable({
   columns,
@@ -871,7 +875,7 @@ function PlanTable({
     { label: "Months saved", cell: (card) => <SavingsText value={card.monthsSaved} reason={note} /> },
     { label: "Total interest", cell: (card) => <SavingsText value={card.interest} /> },
     { label: "Interest saved", cell: (card) => <SavingsText value={card.interestSaved} reason={note} /> },
-    { label: "Monthly payment", cell: (card) => card.monthly },
+    { label: "Monthly payment", cell: (card) => <PaymentCell monthly={card.monthly} /> },
     { label: "Payment alert", cell: (card) => <PaymentDot alert={card.alert} label={card.alertLabel} /> },
     {
       label: "Loan",
@@ -885,8 +889,12 @@ function PlanTable({
   ];
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-max border-separate border-spacing-0 text-sm">
+    <>
+    <div className="min-w-0 overflow-x-auto">
+      <table
+        className="border-separate border-spacing-0 text-sm"
+        style={{ width: 168 + columns.length * 200 }}
+      >
         <caption className="sr-only">Plans for this household. Tick up to 3 to compare. The current path is always included.</caption>
         <thead>
           <tr>
@@ -918,9 +926,7 @@ function PlanTable({
                         }
                       />
                     </div>
-                    <button type="button" className="text-left font-medium hover:underline" onClick={() => onOpen(card)}>
-                      {card.name}
-                    </button>
+                    <PlanName name={card.name} onOpen={() => onOpen(card)} />
                     <button
                       type="button"
                       className="text-left text-xs text-muted-foreground hover:underline"
@@ -1027,23 +1033,84 @@ function PlanTable({
             </th>
             {columns.map((card) => (
               <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
-                {moneyOpen ? (
-                  <ul className="flex flex-col gap-1 text-xs">
-                    {card.moneyGoes.length === 0 ? (
-                      <li>No payment changes.</li>
-                    ) : (
-                      card.moneyGoes.map((line) => <li key={line}>{line}</li>)
-                    )}
-                  </ul>
-                ) : null}
+                {moneyOpen ? <MoneyCell lines={card.moneyGoes} /> : null}
               </td>
             ))}
           </tr>
         </tbody>
       </table>
-      <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-        {paymentRule(formatMoney(columns.find((card) => card.origin === "today")?.todayMonthly ?? 0))}
-      </p>
+    </div>
+    <p className="max-w-3xl text-sm text-muted-foreground">
+      {paymentRule(formatMoney(columns.find((card) => card.origin === "today")?.todayMonthly ?? 0))}
+    </p>
+    </>
+  );
+}
+
+function PlanName({ name, onOpen }: { name: string; onOpen: () => void }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [clipped, setClipped] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    setClipped(el.scrollHeight > el.clientHeight + 1);
+  }, [name]);
+  const className = "line-clamp-2 w-full break-words text-left font-medium hover:underline";
+  if (!clipped) {
+    return (
+      <button ref={ref} type="button" className={className} onClick={onOpen}>
+        {name}
+      </button>
+    );
+  }
+  return (
+    <Tooltip>
+      <TooltipTrigger ref={ref} type="button" className={className} onClick={onOpen}>
+        {name}
+      </TooltipTrigger>
+      <TooltipContent className="max-w-xs">{name}</TooltipContent>
+    </Tooltip>
+  );
+}
+
+function DetailList({ items }: { items: string[] }) {
+  return (
+    <Popover>
+      <PopoverTrigger type="button" className="text-xs text-muted-foreground underline-offset-2 hover:underline">
+        Show all
+      </PopoverTrigger>
+      <PopoverContent>
+        <ul className="flex flex-col gap-2">
+          {items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+function PaymentCell({ monthly }: { monthly: string }) {
+  const { summary, steps } = paymentSummary(monthly);
+  return (
+    <div className="flex min-w-0 flex-col items-start gap-1">
+      <p>{summary}</p>
+      {steps.length > 1 ? <DetailList items={steps} /> : null}
+    </div>
+  );
+}
+
+function MoneyCell({ lines }: { lines: string[] }) {
+  if (lines.length === 0) return <p>No payment changes.</p>;
+  return (
+    <div className="flex min-w-0 flex-col items-start gap-1">
+      <p>{lines[0]}</p>
+      {lines.length > 1 ? (
+        <>
+          <p className="text-muted-foreground">+{lines.length - 1} more</p>
+          <DetailList items={lines} />
+        </>
+      ) : null}
     </div>
   );
 }

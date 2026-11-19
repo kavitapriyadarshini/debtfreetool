@@ -13,6 +13,7 @@ import {
   extrasPhrase,
   interestSavedText,
   paymentRule,
+  paymentSummary,
   previewDraft,
   previewHousehold,
   reservedPlanNames,
@@ -174,6 +175,13 @@ describe("scenario workspace", () => {
     expect(interestSavedText(100, 50, 90, 50)).toBe("$0");
   });
 
+  it("summarises a long current-path payment as the opening amount and the last fall", () => {
+    const view = model("H265");
+    expect(paymentSummary(view?.cards.find((card) => card.id === "current")?.monthly ?? "").summary).toBe(
+      "$6,309 now · falls to $1,591 by Jun 2042",
+    );
+  });
+
   it("recalculates H55, including the nightly best, on the case inputs", () => {
     const view = workspaceFor("H55", "C0016", {
       overrides: caseOverrides,
@@ -236,6 +244,11 @@ describe("scenario workspace", () => {
       display: "$3,408; $3,708 from Sep 2027",
       peak: 3708,
     });
+    expect(paymentSummary("$3,408")).toEqual({ summary: "$3,408", steps: ["$3,408"] });
+    expect(paymentSummary("$3,408; $3,708 from Sep 2027").summary).toBe("$3,408 now · $3,708 from Sep 2027");
+    expect(paymentSummary("$3,408; $2,086 from Mar 2028; $1,396 from Apr 2029; $569 from Oct 2029").summary).toBe(
+      "$3,408 now · falls to $569 by Oct 2029",
+    );
   });
 
   it("refuses a loan that moves no debt and a name the case already uses", () => {

@@ -15,6 +15,7 @@ Everything Cursor needs to build a working prototype that matches the requiremen
 | `PROMPTS_FIXES.md` | Fix round 1: slow buttons, bottom action bar, plan source labels, "Not comparable" |
 | `PROMPTS_FIXES_2.md` | Fix round 2: household tabs, scenarios table, compare selection, present mode, household PDF, alert dots |
 | `PROMPTS_FIXES_3.md` | Fix round 3: one set of inputs per case, extras, invalid loans, unique names, compare 3 + today, where the money goes, interest rates |
+| `PROMPTS_FIXES_4.md` | Fix round 4: scenarios table layout, one source per plan, visible tick boxes, fixed plan-rule strip |
 
 ## What you need
 

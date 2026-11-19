@@ -113,6 +113,26 @@ export function describeCurrentPayment(
   };
 }
 
+/** One line for the monthly-payment cell. The steps are the full list behind "Show all". */
+export function paymentSummary(display: string): { summary: string; steps: string[] } {
+  const steps = display.split("; ").filter((step) => step !== "");
+  if (steps.length <= 1) return { summary: display, steps };
+  const opening = steps[0]!;
+  const later = steps.slice(1).map((step) => {
+    const from = step.lastIndexOf(" from ");
+    if (from === -1) return { amount: step, when: "" };
+    return { amount: step.slice(0, from), when: step.slice(from + " from ".length) };
+  });
+  const openingAmount = Number(opening.replace(/[$,]/g, ""));
+  const falling = later.every((step) => Number(step.amount.replace(/[$,]/g, "")) <= openingAmount);
+  if (falling) {
+    const last = later[later.length - 1]!;
+    return { summary: `${opening} now · falls to ${last.amount} by ${last.when}`, steps };
+  }
+  const first = later[0]!;
+  return { summary: `${opening} now · ${first.amount} from ${first.when}`, steps };
+}
+
 /** Who receives money left after each debt's own payment. */
 export function spareMoney(
   strategy: Strategy,
