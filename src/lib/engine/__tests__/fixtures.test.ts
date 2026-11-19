@@ -62,11 +62,12 @@ describe("H01 worked example", () => {
     const offer = bestOffer(offers);
     expect(offer?.product).toBe("HELOAN Yellow");
     expect(offer?.term_months).toBe(180);
+    if (!offer) throw new Error("H01 best offer is missing");
     const suggested = suggestion([
       plans.current,
       plans.avalanche,
       plans.snowball,
-      planFromOffer(offer!),
+      planFromOffer(offer),
     ]);
     expect(suggested.plan.name).toBe("HELOAN Yellow 180m");
     expect(suggested.why).toBe(

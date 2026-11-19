@@ -48,7 +48,8 @@ describe("opportunity list", () => {
     expect(formatPercent(h11?.paymentChangePct ?? 0)).toBe("+191%");
     expect(formatMoney(h11?.currentMonthly ?? 0)).toBe("$1,562");
     expect(formatMoney(h11?.bestMonthly ?? 0)).toBe("$4,548");
-    expect(paymentAlertText(h11!.currentMonthly, h11!.bestMonthly, h11!.paymentChangePct)).toBe(
+    if (!h11) throw new Error("H11 is missing from Tom Brennan's book");
+    expect(paymentAlertText(h11.currentMonthly, h11.bestMonthly, h11.paymentChangePct)).toBe(
       "Monthly payment $1,562 → $4,548 (+191%)",
     );
 
@@ -65,12 +66,13 @@ describe("opportunity list", () => {
     expect(h55?.updatedInCase).toBe(true);
     expect(h55?.monthsSaved).toBe(11);
     expect(h55?.interestSaved).toBe(3304);
-    expect(monthsSavedLabel(h55!)).toBe("11 months");
-    expect(interestSavedLabel(h55!)).toBe("$3,304");
+    if (!h55) throw new Error("H55 is missing from the opportunity list");
+    expect(monthsSavedLabel(h55)).toBe("11 months");
+    expect(interestSavedLabel(h55)).toBe("$3,304");
     expect(h55?.nightlyMonthsLabel).toBe(NOT_COMPARABLE);
     expect(h55?.nightlyInterestLabel).toBe(NOT_COMPARABLE);
     expect(h55?.flags).not.toContain("payment_below_interest");
-    expect(`${monthsSavedLabel(h55!)} ${interestSavedLabel(h55!)}`).not.toMatch(/Never →|Not comparable|from never/);
+    expect(`${monthsSavedLabel(h55)} ${interestSavedLabel(h55)}`).not.toMatch(/Never →|Not comparable|from never/);
 
     const ranked = sortOpportunities(book("Pamela Wilson"), "months");
     const firstComparable = ranked.findIndex((row) => row.monthsSaved !== "from never" && !row.noAction);
@@ -86,7 +88,8 @@ describe("opportunity list", () => {
       "months",
     );
     const h12 = waiting.find((row) => row.householdId === "H12");
-    expect(monthsSavedLabel(h12!)).toBe("No action needed");
+    if (!h12) throw new Error("H12 is missing from Elena Duarte's waiting list");
+    expect(monthsSavedLabel(h12)).toBe("No action needed");
     const index = waiting.findIndex((row) => row.householdId === "H12");
     expect(waiting.slice(index + 1).every((row) => row.noAction)).toBe(true);
   });
@@ -103,11 +106,13 @@ describe("opportunity list", () => {
     expect(filtered.length).toBeGreaterThan(0);
     expect(filtered.every((row) => row.products.includes("FastApp") && row.flags.length > 0)).toBe(true);
 
+    const sample = rows[0];
+    if (!sample) throw new Error("Tom Brennan's book is empty");
     const sorted = sortOpportunities(
       [
-        { ...rows[0]!, householdId: "H2", lastContacted: "2026-01-01" },
-        { ...rows[0]!, householdId: "H10", lastContacted: null },
-        { ...rows[0]!, householdId: "H3", lastContacted: "2026-06-01" },
+        { ...sample, householdId: "H2", lastContacted: "2026-01-01" },
+        { ...sample, householdId: "H10", lastContacted: null },
+        { ...sample, householdId: "H3", lastContacted: "2026-06-01" },
       ],
       "last_contacted",
     );

@@ -15,14 +15,16 @@ describe("recalculation after repeated edits", () => {
     const h01 = cases.find((row) => row.household_id === "H01");
     const originals = scenarios.filter((row) => row.case_id === h01?.case_id);
     expect(originals.length).toBeGreaterThan(1);
-    const [edited, ...rest] = originals;
+    const edited = originals[0];
+    if (!edited) throw new Error("H01 has no saved scenario to edit");
+    const rest = originals.slice(1);
 
     for (const row of originals) runScenario("H01", caseState, row);
     const afterWarm = scenarioComputeCount();
 
     const times: number[] = [];
     for (let edit = 0; edit < 50; edit += 1) {
-      const next = { ...edited!, loan_amount: 20_000 + edit * 500 };
+      const next = { ...edited, loan_amount: 20_000 + edit * 500 };
       const started = performance.now();
       runScenario("H01", caseState, next);
       for (const row of rest) runScenario("H01", caseState, row);
@@ -77,8 +79,8 @@ describe("persisted demo state", () => {
     store.recommend(scenarioId);
     expect(store.recordDecision(caseId, "agreed", { channel: "servicing_call" })).toBe(true);
     const saved = memory.get("debt-free-v1");
-    expect(saved).toBeTruthy();
-    const parsed = JSON.parse(saved!) as {
+    if (!saved) throw new Error("Persisted demo state is missing");
+    const parsed = JSON.parse(saved) as {
       version: number;
       state: { snapshots: { schedule: unknown[]; years: unknown[] }[]; scenarios: unknown[]; cases: unknown[] };
     };

@@ -16,12 +16,15 @@ function booksBalance(label: string, months: number | null, interest: number, sc
     expect(months ?? 0, label).toBe(0);
     return;
   }
-  const opening = schedule[0]!.debts.reduce((sum, debt) => sum + debt.openingBalance, 0);
+  const openingRow = schedule[0];
+  if (!openingRow) throw new Error(`${label} schedule has no opening month`);
+  const opening = openingRow.debts.reduce((sum, debt) => sum + debt.openingBalance, 0);
   let paid = 0;
   for (const row of schedule) {
     for (const debt of row.debts) paid += debt.payment;
   }
-  const last = schedule[schedule.length - 1]!;
+  const last = schedule[schedule.length - 1];
+  if (!last) throw new Error(`${label} schedule has no closing month`);
   const remaining = last.debts.reduce((sum, debt) => sum + debt.closingBalance, 0);
   expect(Math.abs(opening + interest - paid - remaining), label).toBeLessThanOrEqual(1);
   if (months == null) {

@@ -114,9 +114,10 @@ describe("household one-pager", () => {
   });
 
   it("renders H275, H01 and the longest payoff order on one page with no schedule", () => {
-    expect(h275 && h01).toBeTruthy();
-    expect(longest.payoff.length).toBeGreaterThan(h01!.payoff.length);
-    for (const snapshot of [h275!, h01!, longest]) {
+    if (!h275) throw new Error("H275 FastApp snapshot is missing");
+    if (!h01) throw new Error("H01 snapshot is missing");
+    expect(longest.payoff.length).toBeGreaterThan(h01.payoff.length);
+    for (const snapshot of [h275, h01, longest]) {
       const page = onePagerContent(snapshot);
       expect(page.payoff).toHaveLength(snapshot.payoff.length);
       expect(page.heightMm).toBeLessThanOrEqual(SHEET_HEIGHT_MM);
@@ -147,12 +148,13 @@ describe("household one-pager", () => {
   });
 
   it("prints H275's FastApp plan without calling the figures estimated", () => {
-    const page = onePagerContent(h275!);
+    if (!h275) throw new Error("H275 FastApp snapshot is missing");
+    const page = onePagerContent(h275);
     expect(page.title.startsWith("Your recommended plan:")).toBe(true);
     expect(page.plan.some((line) => line.includes("not secured"))).toBe(true);
     expect(page.things.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
     expect(page.edits).toEqual([]);
-    const html = renderToStaticMarkup(createElement(OnePager, { snapshot: h275! }));
+    const html = renderToStaticMarkup(createElement(OnePager, { snapshot: h275 }));
     expect(html).not.toContain("Data edits, if any");
     expect(html).not.toContain("Figures are estimated");
     expect(html).not.toContain("Your schedule");

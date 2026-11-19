@@ -44,8 +44,9 @@ describe("decision and snapshot", () => {
       "contact_logged",
       "snapshot_frozen",
     ]);
+    if (!planned) throw new Error("H07 agreement is missing");
     const outreach = outreachStatus(
-      [...contacts.filter((contact) => contact.household_id === "H07"), planned!.contact],
+      [...contacts.filter((contact) => contact.household_id === "H07"), planned.contact],
       AS_OF,
     );
     expect(outreach.outreach_status).toBe("waiting");
@@ -63,7 +64,8 @@ describe("decision and snapshot", () => {
     expect(snapshot?.years[0]?.months[0]?.label).toBe("Dec 2026");
     expect(snapshot?.advisor).toBe("Tom Brennan");
     expect(snapshot?.frozen_at).toBe(AS_OF);
-    expect(sourceDiffers(snapshot!, loadHousehold("H07"))).toBe(false);
+    if (!snapshot) throw new Error("H07 snapshot is missing");
+    expect(sourceDiffers(snapshot, loadHousehold("H07"))).toBe(false);
   });
 
   it("requires a reason for outreach inside a waiting period and not for a household request", () => {
@@ -82,7 +84,9 @@ describe("decision and snapshot", () => {
     const interest = snapshot.plan.interest;
     const firstMonth = snapshot.years[0]?.months[0]?.payment;
     const changed = structuredClone(snapshot);
-    changed.inputs.debts[0]!.balance += 500;
+    const firstDebt = changed.inputs.debts[0];
+    if (!firstDebt) throw new Error("H07 snapshot has no debts");
+    firstDebt.balance += 500;
     expect(sourceDiffers(changed, loadHousehold("H07"))).toBe(true);
     expect(snapshot.plan.interest).toBe(interest);
     expect(snapshot.years[0]?.months[0]?.payment).toBe(firstMonth);
@@ -128,8 +132,9 @@ describe("decision and snapshot", () => {
     expect(lastYear?.year).toBe(2037);
     expect(lastYear?.months.at(-1)?.balance).toBe("$0");
     expect(planned?.contact.includes_new_loan).toBe(true);
+    if (!planned) throw new Error("H01 agreement is missing");
     const outreach = outreachStatus(
-      [...contacts.filter((contact) => contact.household_id === "H01"), planned!.contact],
+      [...contacts.filter((contact) => contact.household_id === "H01"), planned.contact],
       AS_OF,
     );
     expect(outreach.outreach_status).toBe("waiting");

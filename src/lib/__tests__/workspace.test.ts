@@ -216,7 +216,9 @@ describe("scenario workspace", () => {
       interestSaved: "$3,304",
       spare: "Spare money goes to Synchrony Store Card, the highest rate.",
     });
-    expect(planSource(avalanche![0]!)).toBe("Built-in");
+    const h55Avalanche = avalanche?.[0];
+    if (!h55Avalanche) throw new Error("H55 avalanche plan is missing");
+    expect(planSource(h55Avalanche)).toBe("Built-in");
     expect(avalanche?.[0]?.badges).toContain("Pipeline recommended");
     expect(avalanche?.[0]?.badges).not.toContain("Built by you");
     expect(avalanche?.[0]?.badges.filter((badge) => badge === "Today" || badge === "Built-in" || badge === "Built by you")).toEqual(["Built-in"]);
@@ -317,7 +319,9 @@ describe("scenario workspace", () => {
     const view = model("H265");
     const avalanche = view?.cards.filter((card) => card.name === "Avalanche (edited data)") ?? [];
     expect(avalanche).toHaveLength(1);
-    expect(planSource(avalanche[0]!)).toBe("Built-in");
+    const h265Avalanche = avalanche[0];
+    if (!h265Avalanche) throw new Error("H265 avalanche plan is missing");
+    expect(planSource(h265Avalanche)).toBe("Built-in");
     expect(avalanche[0]?.badges).not.toContain("Built by you");
     expect(avalanche[0]?.badges).not.toContain("Today");
     expect(avalanche[0]?.origin).toBe("builtin");
@@ -359,6 +363,7 @@ describe("scenario workspace", () => {
     const avalancheAt = view?.cards.findIndex((card) => card.name === "Avalanche") ?? -1;
     const lastBuiltIn = view?.cards.reduce((last, card, index) => (card.origin === "builtin" ? index : last), -1) ?? -1;
     const firstOtherAdvisor = view?.cards.findIndex((card, index) => index > 2 && card.origin === "advisor");
+    if (firstOtherAdvisor === undefined) throw new Error("H01 workspace is missing");
     expect(avalancheAt).toBeGreaterThan(2);
     expect(firstOtherAdvisor === -1 || firstOtherAdvisor > lastBuiltIn).toBe(true);
     expect(view?.cards[0]?.name).toBe("Current path");

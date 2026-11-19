@@ -106,7 +106,8 @@ describe("present mode", () => {
       "A new loan needs a credit application.",
       "The loan runs 15 years.",
     ]);
-    onlyRuleNine(model!);
+    if (!model) throw new Error("H01 present screen is missing");
+    onlyRuleNine(model);
     expect(model?.plan.years[0]?.year).toBe(2026);
     expect(model?.plan.years[0]?.months[0]?.label).toBe("Dec 2026");
     expect(model?.plan.years[0]?.cleared).toEqual(expect.arrayContaining(["Chase Sapphire", "Citi Double Cash", "SoFi Personal Loan"]));
@@ -120,7 +121,7 @@ describe("present mode", () => {
     expect(model?.plan.payoff.some((step) => step.when === "When the plan starts" || step.debt.includes("(was"))).toBe(false);
     expect(model?.columns[1]?.sooner).toBe("9 years 6 months");
     expect(model?.columns[1]?.interestSaved).toBe("$107,710");
-    assertPlain(householdText(model!));
+    assertPlain(householdText(model));
   });
 
   it("changes every figure when the advisor switches scenario", () => {
@@ -144,24 +145,27 @@ describe("present mode", () => {
     expect(model?.thingsToKnow).toContain("A new loan needs a credit application.");
     expect(model?.thingsToKnow).toContain("The loan runs 3 years.");
     expect(model?.thingsToKnow).not.toContain("The new loan is secured on your home, which is at risk if payments are missed.");
-    onlyRuleNine(model!);
+    if (!model) throw new Error("H11 present screen is missing");
+    onlyRuleNine(model);
     expect(model?.estimated).toBe(false);
-    assertPlain(householdText(model!));
+    assertPlain(householdText(model));
   });
 
   it("keeps household notes for a missing credit score and a debt left out", () => {
     const missing = show("H03");
     expect(missing?.estimated).toBe(false);
     expect(missing?.thingsToKnow.some((line) => line.includes("estimated"))).toBe(false);
-    onlyRuleNine(missing!);
+    if (!missing) throw new Error("H03 present screen is missing");
+    onlyRuleNine(missing);
     const left = show("H07");
     const leftOut = left?.leftOut ?? [];
     expect(leftOut.length).toBeGreaterThan(0);
     expect(leftOut.every((name) => name.length > 0)).toBe(true);
     for (const name of leftOut) expect(left?.thingsToKnow).toContain(`${name} is not included in this plan.`);
-    onlyRuleNine(left!);
-    assertPlain(householdText(missing!));
-    assertPlain(householdText(left!));
+    if (!left) throw new Error("H07 present screen is missing");
+    onlyRuleNine(left);
+    assertPlain(householdText(missing));
+    assertPlain(householdText(left));
   });
 
   it("shows only Today and Your recommended plan", () => {
@@ -171,7 +175,8 @@ describe("present mode", () => {
     const switched = show("H01", "avalanche");
     expect(switched?.columns).toHaveLength(2);
     expect(switched?.columns[1]?.id).toBe("avalanche");
-    assertPlain(householdText(model!));
+    if (!model) throw new Error("H01 present screen is missing");
+    assertPlain(householdText(model));
   });
 
   it("estimates figures only for a home equity loan when no credit score is on file", () => {
@@ -185,12 +190,14 @@ describe("present mode", () => {
     const home = show("H275", "offer:HELOAN Yellow:180:P275A");
     expect(home?.estimated).toBe(true);
     expect(home?.thingsToKnow).toContain("Figures are estimated because there's no credit score on file.");
-    onlyRuleNine(home!);
+    if (!home) throw new Error("H275 home-equity present screen is missing");
+    onlyRuleNine(home);
     const plain = show("H275", "avalanche");
     expect(plain?.estimated).toBe(false);
     expect(plain?.thingsToKnow.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
-    assertPlain(householdText(fast!));
-    assertPlain(householdText(home!));
+    if (!fast) throw new Error("H275 FastApp present screen is missing");
+    assertPlain(householdText(fast));
+    assertPlain(householdText(home));
   });
 
   it("lists each case edit once, and never inside the payoff order", () => {

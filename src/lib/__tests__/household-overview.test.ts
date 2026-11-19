@@ -87,7 +87,9 @@ describe("household overview", () => {
       by: "Pamela Wilson",
       at: "2 Nov 2026",
     });
-    expect(editedValueLine(card.payment.text, card.payment.override!)).toBe(
+    const cardEdit = card.payment.override;
+    if (!cardEdit) throw new Error("H07 card payment edit is missing");
+    expect(editedValueLine(card.payment.text, cardEdit)).toBe(
       "$595 (was $250) · Household confirmed their actual monthly payment · Pamela Wilson, 2 Nov 2026",
     );
     expect(card.payment.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
@@ -217,7 +219,9 @@ describe("household overview", () => {
     const view = overview("H55");
     const amex = debt(view, "H55-D01");
     expect(amex.payment.override).not.toBeNull();
-    expect(editedValueLine(amex.payment.text, amex.payment.override!)).toBe(
+    const amexEdit = amex.payment.override;
+    if (!amexEdit) throw new Error("H55 Amex payment edit is missing");
+    expect(editedValueLine(amex.payment.text, amexEdit)).toBe(
       "$827 (was $307) · Household confirmed their actual monthly payment · Pamela Wilson, 21 Oct 2026",
     );
     expect(amex.payment.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
@@ -248,14 +252,15 @@ describe("household overview", () => {
 
     const source = debts.find((row) => row.debt_id === "H01-D01");
     const caseRecord = [...cases].reverse().find((row) => row.household_id === "H01");
-    expect(source && caseRecord).toBeTruthy();
-    const sourceBalance = source!.balance;
+    if (!source) throw new Error("H01-D01 is missing from the source debts");
+    if (!caseRecord) throw new Error("H01 has no case");
+    const sourceBalance = source.balance;
     const override: CaseOverride = {
       override_id: "O-balance",
-      case_id: caseRecord!.case_id,
+      case_id: caseRecord.case_id,
       household_id: "H01",
       entity_type: "debt",
-      entity_id: source!.debt_id,
+      entity_id: source.debt_id,
       field: "balance",
       source_value: sourceBalance,
       override_value: sourceBalance + 5000,
@@ -266,7 +271,7 @@ describe("household overview", () => {
     };
     const edited = buildHouseholdOverview({
       householdId: "H01",
-      caseId: caseRecord!.case_id,
+      caseId: caseRecord.case_id,
       overrides: [...caseOverrides, override],
       contacts,
       history: caseHistory,
@@ -274,7 +279,8 @@ describe("household overview", () => {
       extraPayments,
       customLoans,
     });
-    const row = debt(edited!, source!.debt_id);
+    if (!edited) throw new Error("H01 overview is missing after the balance edit");
+    const row = debt(edited, source.debt_id);
     expect(row.balance.text).toBe(formatMoney(sourceBalance + 5000));
     expect(row.balance.override).toMatchObject({
       original: formatMoney(sourceBalance),
@@ -283,12 +289,12 @@ describe("household overview", () => {
       by: "Elena Duarte",
     });
     expect(row.balance.edit?.sourceText).toBe(formatMoney(sourceBalance));
-    expect(source!.balance).toBe(sourceBalance);
+    expect(source.balance).toBe(sourceBalance);
     const state = { overrides: [...caseOverrides, override], extraPayments, customLoans };
     const planned = householdWithCase("H01", state);
-    expect(planned.debts.find((item) => item.debt_id === source!.debt_id)?.balance).toBe(sourceBalance + 5000);
-    const before = workspaceFor("H01", caseRecord!.case_id, { overrides: caseOverrides, extraPayments, customLoans }, scenarios);
-    const after = workspaceFor("H01", caseRecord!.case_id, state, scenarios);
+    expect(planned.debts.find((item) => item.debt_id === source.debt_id)?.balance).toBe(sourceBalance + 5000);
+    const before = workspaceFor("H01", caseRecord.case_id, { overrides: caseOverrides, extraPayments, customLoans }, scenarios);
+    const after = workspaceFor("H01", caseRecord.case_id, state, scenarios);
     expect(after?.cards.find((card) => card.origin === "today")?.interest).not.toBe(
       before?.cards.find((card) => card.origin === "today")?.interest,
     );
