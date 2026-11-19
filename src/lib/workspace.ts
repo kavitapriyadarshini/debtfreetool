@@ -1,11 +1,18 @@
 import { loanProducts, pipelineResults } from "./data";
-import { householdFico, todayPayment, validDebts, type WorkingHousehold } from "./engine/household";
+import { amortise } from "./engine/amortise";
+import { flags, householdFico, loadHousehold, todayPayment, validDebts, type FlagHit, type WorkingHousehold } from "./engine/household";
 import { buildOffers, fastAppMiss, type BuiltOffer } from "./engine/offers";
-import { bestOffer, builtInPlans, suggestion, type PlanOption, type PlanRisk } from "./engine/bestPlan";
-import { casePreview, householdWithCase, runScenario, type CaseState } from "./engine/scenario";
-import { formatMoney, formatMonths, neverComparableReason, paymentAlertText, planDate, NOT_COMPARABLE } from "./format";
+import { bestOffer, paymentAlert, suggestion, type PlanOption, type PlanRisk } from "./engine/bestPlan";
+import { paymentEventLines, type LoanStart, type PaymentDebt } from "./engine/paymentEvents";
+import { pythonRound } from "./engine/round";
+import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
+import { monthIndex, simulate, type ExtraInput, type Strategy } from "./engine/simulate";
+import { caseInputs, editedName, nightlyOnCase, planKey, type CaseInputs } from "./case-inputs";
+import { CAP_MONTHS, PLAN_START, TIE_WINDOW_MONTHS } from "./config";
+import { formatDate, formatMoney, formatMonths, formatPercent, formatRate, neverComparableReason, paymentAlertText, planDate, signedInterestSaved, signedMonthsSaved, NOT_COMPARABLE } from "./format";
+import { editedValueLine } from "./household-overview";
 import { describeFastAppMiss } from "./opportunity";
-import type { ExtraPayment, PaymentAlert, Property, Scenario } from "./types";
+import type { CaseOverride, ExtraPayment, PaymentAlert, Property, Scenario } from "./types";
 
 const MINIMUM: Record<string, number> = {
   FastApp: 10_000,
@@ -29,9 +36,228 @@ const PINK = [
 
 const NOT_UNSECURED = new Set(["Mortgage", "Home equity loan", "Reverse mortgage"]);
 
+/** The line under the scenario table. `today` is already formatted, such as "$3,620". */
+export function paymentRule(today: string): string {
+  return `Every plan pays at least today's ${today} a month; when a debt is paid off, its payment moves to the next debt (highest rate first for avalanche, smallest balance first for snowball).`;
+}
+
 export const NEVER_NOTE = "Never debt free at these payments";
 export const BELOW_MINIMUM = "below minimum";
 export const WONT_SAVE = "won't save money";
+export const INCLUDES_EXTRAS = "Includes extra payments";
+export const LOAN_MOVES_NOTHING = "This loan doesn't pay off any debt";
+export const NAME_TAKEN = "That name is already used.";
+export const NAME_REQUIRED = "Enter a name.";
+
+export type DatedExtra = {
+  type: ExtraPayment["type"];
+  amount: number;
+  startMonth: string;
+};
+
+/**
+ * Day-one payment, then each later recurring extra.
+ * A one-off does not change the monthly amount. The peak is what the alert uses.
+ */
+export function describePayment(
+  base: number,
+  extras: readonly DatedExtra[],
+): { display: string; peak: number } {
+  const recurring = extras.filter((extra) => extra.type === "recurring" && extra.amount > 0);
+  let opening = base;
+  const later = new Map<string, number>();
+  for (const extra of recurring) {
+    if (extra.startMonth <= PLAN_START) opening += extra.amount;
+    else later.set(extra.startMonth, (later.get(extra.startMonth) ?? 0) + extra.amount);
+  }
+  let running = opening;
+  const steps: string[] = [];
+  for (const month of [...later.keys()].sort()) {
+    running += later.get(month)!;
+    steps.push(`${formatMoney(running)} from ${planDate(monthIndex(month))}`);
+  }
+  return {
+    display: steps.length === 0 ? formatMoney(opening) : `${formatMoney(opening)}; ${steps.join("; ")}`,
+    peak: running,
+  };
+}
+
+/**
+ * Current path keeps each debt's own payment, so the total falls the month after a debt clears.
+ * The partial closing month is not a new level. Rollover plans do not use this.
+ */
+export function describeCurrentPayment(
+  debts: readonly { id: string; payment: number }[],
+  payoffMonths: Readonly<Record<string, number>>,
+  spanMonths: number | null,
+): { display: string; peak: number } {
+  const opening = debts.reduce((sum, debt) => sum + debt.payment, 0);
+  const lastMonth = spanMonths ?? CAP_MONTHS;
+  const drops = new Map<number, number>();
+  for (const debt of debts) {
+    const paid = payoffMonths[debt.id];
+    if (paid == null) continue;
+    const from = paid + 1;
+    if (from > lastMonth) continue;
+    drops.set(from, (drops.get(from) ?? 0) + debt.payment);
+  }
+  let running = opening;
+  const steps: string[] = [];
+  for (const month of [...drops.keys()].sort((a, b) => a - b)) {
+    running -= drops.get(month) ?? 0;
+    steps.push(`${formatMoney(running)} from ${planDate(month)}`);
+  }
+  return {
+    display: steps.length === 0 ? formatMoney(opening) : `${formatMoney(opening)}; ${steps.join("; ")}`,
+    peak: opening,
+  };
+}
+
+/** Who receives money left after each debt's own payment. */
+export function spareMoney(
+  strategy: Strategy,
+  debts: readonly { name: string; rate: number; balance: number }[],
+): string {
+  if (strategy === "current" || debts.length === 0) {
+    return "Each debt keeps its own payment, so the amount falls when a debt is paid off.";
+  }
+  let target = debts[0]!;
+  for (const debt of debts.slice(1)) {
+    if (strategy === "snowball") {
+      if (debt.balance < target.balance) target = debt;
+    } else if (debt.rate > target.rate) target = debt;
+  }
+  const why = strategy === "snowball" ? "the smallest balance" : "the highest rate";
+  return `Spare money goes to ${target.name}, ${why}.`;
+}
+
+/** "a $13,300 lump sum in Dec 2026" or "an extra $300 a month from Sep 2027". */
+export function extrasPhrase(extras: readonly DatedExtra[]): string {
+  const parts = extras
+    .filter((extra) => extra.amount > 0)
+    .slice()
+    .sort((a, b) => a.startMonth.localeCompare(b.startMonth) || a.type.localeCompare(b.type))
+    .map((extra) => {
+      const when = planDate(monthIndex(extra.startMonth));
+      if (extra.type === "one_off") return `a ${formatMoney(extra.amount)} lump sum in ${when}`;
+      return `an extra ${formatMoney(extra.amount)} a month from ${when}`;
+    });
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0]!;
+  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+
+/** Names the extras on the plan a why-sentence picked. */
+export function whyWithExtras(why: string, extras: readonly DatedExtra[]): string {
+  const phrase = extrasPhrase(extras);
+  if (!phrase) return why;
+  const secured = " Secured on your home.";
+  const tail = why.endsWith(secured) ? secured : "";
+  const body = tail ? why.slice(0, -tail.length) : why;
+  const stem = body.endsWith(".") ? body.slice(0, -1) : body;
+  return `${stem}, including ${phrase}.${tail}`;
+}
+
+const CARD_RISK = { none: 0, unsecured: 1, secured: 2 } as const;
+const CARD_NEVER = 1_000_000;
+
+function cardMonths(card: ScenarioCard): number {
+  return card.spanMonths == null ? CARD_NEVER : card.spanMonths;
+}
+
+function bestDisplayed(cards: readonly ScenarioCard[]): ScenarioCard {
+  let best = cards[0]!;
+  for (const card of cards.slice(1)) {
+    const key = [card.interestAmount, card.peakMonthly, CARD_RISK[card.risk]];
+    const bestKey = [best.interestAmount, best.peakMonthly, CARD_RISK[best.risk]];
+    if (key[0]! < bestKey[0]! || (key[0] === bestKey[0] && (key[1]! < bestKey[1]! || (key[1] === bestKey[1] && key[2]! < bestKey[2]!)))) {
+      best = card;
+    }
+  }
+  return best;
+}
+
+function soonerFromCards(winner: ScenarioCard, baseline: ScenarioCard, than: string): string {
+  const secured = winner.risk === "secured" ? " Secured on your home." : "";
+  if (baseline.spanMonths == null && winner.spanMonths != null) {
+    const unit = winner.spanMonths === 1 ? "month" : "months";
+    return `Debt free in ${winner.spanMonths} ${unit} instead of never.${secured}`;
+  }
+  const months = cardMonths(baseline) - cardMonths(winner);
+  const interest = baseline.interestAmount - winner.interestAmount;
+  const unit = months === 1 ? "month" : "months";
+  const dollars = Math.round(Math.abs(interest) / 100) * 100;
+  const interestText =
+    dollars === 0 ? "" : interest > 0 ? ` and ${formatMoney(dollars)} less interest` : ` and ${formatMoney(dollars)} more interest`;
+  return `${months} ${unit} sooner${interestText} than ${than}.${secured}`;
+}
+
+function tieFromCards(winner: ScenarioCard, other: ScenarioCard): string {
+  if (winner.interestAmount < other.interestAmount) return "Tied on time; less interest";
+  if (winner.peakMonthly < other.peakMonthly) return "Tied on time; lower monthly payment";
+  if (CARD_RISK[winner.risk] < CARD_RISK[other.risk]) return "Tied on time; less risk";
+  return "Tied on time, interest, and payment.";
+}
+
+function withPaymentRise(why: string, card: ScenarioCard): string {
+  if (card.alert === "none") return why;
+  const rise = Math.round(card.peakMonthly) - Math.round(card.todayMonthly);
+  if (rise <= 0) return why;
+  const clause = `but raises the monthly payment by ${formatMoney(rise)} (${formatPercent(card.paymentChangePct)})`;
+  if (why.endsWith(".")) return `${why.slice(0, -1)}, ${clause}.`;
+  return `${why}, ${clause}.`;
+}
+
+/** Why the suggestion won, using the months and interest printed on those cards. */
+export function cardWhy(cards: readonly ScenarioCard[], suggestionId: string): string {
+  const winner = cards.find((card) => card.id === suggestionId);
+  if (!winner) return "No action needed";
+  const ranked = cards.filter(
+    (card) =>
+      card.comparable &&
+      (card.id === winner.id ||
+        card.id === "current" ||
+        card.id === "avalanche" ||
+        card.id === "snowball" ||
+        card.origin === "advisor"),
+  );
+  const others = ranked.filter((card) => card.id !== winner.id);
+  const tied = others.filter((card) => cardMonths(card) - cardMonths(winner) <= TIE_WINDOW_MONTHS);
+  if (winner.id === "current" && tied.length === 0) return "No action needed";
+  if (tied.length > 0) return tieFromCards(winner, bestDisplayed(tied));
+  let baseline = cards.find((card) => card.id === "current");
+  let than = "the current path";
+  if (winner.risk !== "none") {
+    const smarter = cards.filter((card) => card.id === "avalanche" || card.id === "snowball");
+    if (smarter.length > 0) {
+      baseline = bestDisplayed(smarter);
+      than = "paying smarter without a loan";
+    }
+  }
+  if (!baseline || baseline.id === winner.id) return "No action needed";
+  return withPaymentRise(whyWithExtras(soonerFromCards(winner, baseline, than), winner.extraPayments), winner);
+}
+
+/** Built-in names, product names, and the case's other scenarios. Matching ignores case. */
+export function reservedPlanNames(
+  choices: readonly { label: string; product: string }[],
+  scenarios: readonly { scenario_id: string; name: string }[],
+  editingId: string | null,
+): string[] {
+  const names = ["Current path", "Avalanche", "Snowball"];
+  for (const choice of choices) names.push(choice.label, choice.product);
+  for (const scenario of scenarios) {
+    if (scenario.scenario_id !== editingId) names.push(scenario.name);
+  }
+  return names;
+}
+
+export function scenarioNameError(name: string, taken: readonly string[]): string | null {
+  const key = name.trim().toLowerCase();
+  if (!key) return NAME_REQUIRED;
+  if (taken.some((row) => row.trim().toLowerCase() === key)) return NAME_TAKEN;
+  return null;
+}
 
 export type ProductGap = { product: string; reason: string };
 
@@ -63,10 +289,27 @@ export type ScenarioCard = {
   id: string;
   kind: "builtin" | "advisor";
   origin: CardOrigin;
-  /** The nightly pipeline's best plan. Exactly one card in the workspace. */
+  /** The nightly pipeline's best plan, recalculated on the case inputs. Exactly one card. */
   nightly: boolean;
+  /** An advisor scenario with the same inputs was folded into this column. */
+  advisorCopy: boolean;
   /** Rule 6 across every scenario in the case, including ones the advisor built. */
   suggested: boolean;
+  /** Same key means the same strategy, loan, debts and extras. */
+  inputKey: string;
+  /** A loan that moves no debt cannot be suggested or compared. */
+  comparable: boolean;
+  includesExtras: boolean;
+  extraPayments: DatedExtra[];
+  /** Debt-free span printed on the card. Null when the plan never finishes. */
+  spanMonths: number | null;
+  /** Total interest printed on the card, in whole dollars. */
+  interestAmount: number;
+  todayMonthly: number;
+  /** Highest monthly payment, the figure the alert uses. */
+  peakMonthly: number;
+  paymentChangePct: number;
+  risk: PlanRisk;
   /** Current path can be recommended only when nothing else beats it. */
   recommendable: boolean;
   badges: string[];
@@ -79,6 +322,14 @@ export type ScenarioCard = {
   loan: string;
   /** Debt-free month for each debt this plan includes. Moved debts say "Paid by new loan". */
   debtWhen: Record<string, string>;
+  /** Payoff month index for each debt that finishes, including the new loan. */
+  payoffMonths: Record<string, number>;
+  /** "New loan · HELOAN Yellow · 7.875%" when this plan adds a loan. */
+  loanDebt: string | null;
+  /** Plain lines for each payment change, in date order. */
+  moneyGoes: string[];
+  /** Who gets money left after each debt's own payment. */
+  spare: string;
   monthly: string;
   alert: PaymentAlert;
   alertLabel: string;
@@ -107,7 +358,13 @@ export type WorkspaceModel = {
 export type DebtRow = {
   debtId: string;
   name: string;
+  /** "28.07%". */
+  rate: string;
   included: boolean;
+  /** Most recent edit of a value shown for this debt, one line each. */
+  edits: string[];
+  /** True when an edit cleared a flag that the source data raised. */
+  resolved: boolean;
 };
 
 export type DraftExtra = {
@@ -145,6 +402,13 @@ function splitIds(value: string | null): string[] {
   return (value ?? "").split(";").filter((id) => id !== "");
 }
 
+function datedExtras(scenario: Scenario, payments: readonly ExtraPayment[]): DatedExtra[] {
+  const ids = new Set(splitIds(scenario.extra_payment_ids));
+  return payments
+    .filter((row) => ids.has(row.extra_id))
+    .map((row) => ({ type: row.type, amount: row.amount, startMonth: row.start_month }));
+}
+
 function blended(parts: readonly { balance: number; rate: number }[]): number {
   const total = parts.reduce((sum, part) => sum + part.balance, 0);
   if (!total) return 0;
@@ -161,54 +425,162 @@ function monthCount(months: number | null): string {
   return `${months} ${months === 1 ? "month" : "months"}`;
 }
 
-/** Months saved against the current path. A path that never finishes has nothing to subtract. */
-export function savingsText(current: number | null, months: number | null, baseline: boolean): string {
-  if (current == null) return NOT_COMPARABLE;
-  if (baseline || months == null) return "—";
-  const saved = current - months;
-  if (saved <= 0) return "0 months";
-  return `${saved} ${saved === 1 ? "month" : "months"}`;
+/** Months saved against the frozen current path. A negative span is "6 months later". */
+export function savingsText(current: number | null, months: number | null): string {
+  if (current == null || months == null) return NOT_COMPARABLE;
+  return signedMonthsSaved(current - months);
 }
 
-export function sourceBadges(card: Pick<ScenarioCard, "origin" | "nightly" | "suggested">): string[] {
+export function sourceBadges(
+  card: Pick<ScenarioCard, "origin" | "nightly" | "suggested" | "advisorCopy" | "includesExtras">,
+): string[] {
   const badges: string[] = [];
   if (card.origin === "today") badges.push("Today");
   if (card.nightly) badges.push("Nightly best");
-  else if (card.origin === "builtin") badges.push("Built-in");
-  else if (card.origin === "advisor") badges.push("Built by you");
+  if (card.origin === "builtin") badges.push("Built-in");
+  if (card.origin === "advisor" || card.advisorCopy) badges.push("Built by you");
   if (card.suggested) badges.push("Suggested");
+  if (card.includesExtras) badges.push(INCLUDES_EXTRAS);
   return badges;
 }
 
-/** Interest saved against today. A path that never finishes has no interest total to subtract. */
+/** Interest saved against the frozen current path. A higher total is "Costs $2,177 more". */
 export function interestSavedText(
   currentMonths: number | null,
   currentInterest: number,
   months: number | null,
   interest: number,
-  baseline: boolean,
 ): string {
-  if (currentMonths == null) return NOT_COMPARABLE;
-  if (baseline || months == null) return "—";
-  const saved = currentInterest - interest;
-  if (saved <= 0) return formatMoney(0);
-  return formatMoney(saved);
+  if (currentMonths == null || months == null) return NOT_COMPARABLE;
+  return signedInterestSaved(Math.round(currentInterest) - Math.round(interest));
+}
+
+function asPaymentDebt(debt: {
+  debt_id: string;
+  debt_name: string;
+  monthly_payment: number;
+  rate: number;
+  balance: number;
+}): PaymentDebt {
+  return {
+    id: debt.debt_id,
+    name: debt.debt_name,
+    payment: debt.monthly_payment,
+    rate: debt.rate,
+    balance: debt.balance,
+  };
+}
+
+/** Where each payment moves, from a fresh run of this plan's schedule. */
+function moneyGoesFor(
+  debts: readonly {
+    debt_id: string;
+    debt_name: string;
+    monthly_payment: number;
+    rate: number;
+    balance: number;
+  }[],
+  strategy: Strategy,
+  budget: number,
+  paidOff: readonly {
+    debt_id: string;
+    debt_name: string;
+    monthly_payment: number;
+    rate: number;
+    balance: number;
+  }[] = [],
+  loan: { amount: number; rate: number; term: number } | null = null,
+  extras: readonly ExtraInput[] = [],
+  schedule?: ReturnType<typeof simulate>["schedule"],
+): string[] {
+  const moved = new Set(paidOff.map((debt) => debt.debt_id));
+  const remaining = debts.filter((debt) => debt.monthly_payment > 0 && !moved.has(debt.debt_id));
+  const facts = remaining.map(asPaymentDebt);
+  let loanStart: LoanStart | null = null;
+  let loanPayment = 0;
+  let loanBalance = 0;
+  let loanRate = 0;
+  if (loan && loan.amount > 0 && loan.term > 0) {
+    loanBalance = loan.amount;
+    loanRate = loan.rate;
+    loanPayment = amortise(loan.amount, loan.rate, loan.term);
+    const payment = pythonRound(loanPayment);
+    facts.push({
+      id: "NEW_LOAN",
+      name: "New loan",
+      payment,
+      rate: loan.rate,
+      balance: loan.amount,
+    });
+    loanStart = { amount: loan.amount, payment };
+  }
+  const rows =
+    schedule ??
+    simulate(
+      [
+        ...remaining.map((debt) => ({
+          id: debt.debt_id,
+          balance: debt.balance,
+          rate: debt.rate,
+          payment: debt.monthly_payment,
+        })),
+        ...(loanStart ? [{ id: "NEW_LOAN", balance: loanBalance, rate: loanRate, payment: loanPayment }] : []),
+      ],
+      strategy,
+      Math.max(budget, remaining.reduce((sum, debt) => sum + debt.monthly_payment, 0) + loanPayment),
+      extras,
+    ).schedule;
+  return paymentEventLines({
+    schedule: rows,
+    debts: facts,
+    paidOff: paidOff.map(asPaymentDebt),
+    loan: loanStart,
+    strategy,
+    extras,
+  });
 }
 
 function debtWhen(
   debtIds: readonly string[],
   payoffMonths: Readonly<Record<string, number>>,
   moved: readonly string[],
-): Record<string, string> {
+  hasLoan: boolean,
+): { when: Record<string, string>; months: Record<string, number> } {
   const movedSet = new Set(moved);
   const when: Record<string, string> = {};
+  const months: Record<string, number> = {};
   for (const id of debtIds) {
     const month = payoffMonths[id];
     if (movedSet.has(id)) when[id] = "Paid by new loan";
-    else if (month != null) when[id] = planDate(month);
-    else when[id] = "Never";
+    else if (month != null) {
+      when[id] = planDate(month);
+      months[id] = month;
+    } else when[id] = "Never";
   }
-  return when;
+  if (hasLoan) {
+    const month = payoffMonths.NEW_LOAN;
+    if (month != null) {
+      when.NEW_LOAN = planDate(month);
+      months.NEW_LOAN = month;
+    } else when.NEW_LOAN = "Never";
+  }
+  return { when, months };
+}
+
+function debtFields(
+  debtIds: readonly string[],
+  payoffMonths: Readonly<Record<string, number>>,
+  moved: readonly string[],
+  hasLoan: boolean,
+): { debtWhen: Record<string, string>; payoffMonths: Record<string, number> } {
+  const schedule = debtWhen(debtIds, payoffMonths, moved, hasLoan);
+  return { debtWhen: schedule.when, payoffMonths: schedule.months };
+}
+
+/** Catalogue and custom loans share this row. The product is "Custom loan" when the advisor set the terms. */
+export function loanDebtLabel(product: string | null, rate: number | null): string | null {
+  if (rate == null) return null;
+  return `New loan · ${product ?? "Custom loan"} · ${formatRate(rate)}`;
 }
 
 function loanLine(input: {
@@ -271,11 +643,21 @@ function cardFromNumbers(input: {
   today: number;
   currentMonths: number | null;
   currentInterest: number;
-  baseline: boolean;
+  inputKey: string;
   labels: string[];
   scenarioId: string | null;
   loan: string;
   debtWhen: Record<string, string>;
+  payoffMonths?: Record<string, number>;
+  loanDebt?: string | null;
+  moneyGoes?: string[];
+  spare?: string;
+  monthlyText?: string;
+  includesExtras?: boolean;
+  comparable?: boolean;
+  extraPayments?: DatedExtra[];
+  warning?: string | null;
+  risk?: PlanRisk;
 }): ScenarioCard {
   const unfinished = input.months == null;
   return {
@@ -283,26 +665,40 @@ function cardFromNumbers(input: {
     kind: input.kind,
     origin: input.origin,
     nightly: false,
+    advisorCopy: false,
     suggested: false,
+    inputKey: input.inputKey,
+    comparable: input.comparable ?? true,
+    includesExtras: input.includesExtras ?? false,
+    extraPayments: input.extraPayments ?? [],
+    spanMonths: input.months,
+    interestAmount: Math.round(input.interest),
+    todayMonthly: input.today,
+    peakMonthly: input.monthly,
+    paymentChangePct: input.percent,
+    risk: input.risk ?? "none",
     recommendable: input.origin !== "today",
     badges: [],
     name: input.name,
     debtFree: monthCount(input.months),
     interest: unfinished ? NOT_COMPARABLE : formatMoney(input.interest),
-    monthsSaved: savingsText(input.currentMonths, input.months, input.baseline),
+    monthsSaved: savingsText(input.currentMonths, input.months),
     interestSaved: interestSavedText(
       input.currentMonths,
       input.currentInterest,
       input.months,
       input.interest,
-      input.baseline,
     ),
     loan: input.loan,
     debtWhen: input.debtWhen,
-    monthly: formatMoney(input.monthly),
+    payoffMonths: input.payoffMonths ?? {},
+    loanDebt: input.loanDebt ?? null,
+    moneyGoes: input.moneyGoes ?? [],
+    spare: input.spare ?? spareMoney("current", []),
+    monthly: input.monthlyText ?? formatMoney(input.monthly),
     alert: input.alert,
     alertLabel: alertLabel(input.alert, input.today, input.monthly, input.percent),
-    note: unfinished ? NEVER_NOTE : null,
+    note: input.warning ?? (unfinished ? NEVER_NOTE : null),
     labels: input.labels,
     scenarioId: input.scenarioId,
   };
@@ -324,13 +720,11 @@ function nightlyCardId(bestPlan: string, cards: readonly ScenarioCard[]): string
   return cards.find((card) => card.id.startsWith(prefix))?.id ?? null;
 }
 
-/** Paint the pipeline's best plan onto its card, with the nightly payment alert, and rank the case. */
+/** Mark the nightly plan and rank the case. Every number stays on the case inputs. */
 function settleCards(
   householdId: string,
   cards: ScenarioCard[],
   ranked: { id: string; plan: PlanOption }[],
-  currentMonths: number | null,
-  currentInterest: number,
 ): { suggestionId: string; suggestionName: string; suggestionWhy: string } {
   const picked = suggestion(ranked.map((row) => row.plan));
   const suggestionId = ranked.find((row) => row.plan === picked.plan)?.id ?? cards[0]?.id ?? "current";
@@ -342,33 +736,7 @@ function settleCards(
   const nightly = pipelineResults.find((row) => row.household_id === householdId);
   const nightlyId = nightly ? nightlyCardId(nightly.best_plan, cards) : null;
   const nightlyCard = cards.find((card) => card.id === nightlyId);
-  if (nightly && nightlyCard) {
-    const months = nightly.best_plan_months === "never" ? null : nightly.best_plan_months;
-    nightlyCard.nightly = true;
-    nightlyCard.debtFree = monthCount(months);
-    nightlyCard.interest = months == null ? NOT_COMPARABLE : formatMoney(nightly.best_plan_interest);
-    nightlyCard.monthly = formatMoney(nightly.best_plan_monthly);
-    nightlyCard.alert = nightly.best_plan_payment_alert;
-    nightlyCard.alertLabel = alertLabel(
-      nightly.best_plan_payment_alert,
-      nightly.current_monthly,
-      nightly.best_plan_monthly,
-      nightly.best_plan_payment_change_pct,
-    );
-    nightlyCard.note = months == null ? NEVER_NOTE : null;
-    nightlyCard.monthsSaved = savingsText(
-      currentMonths,
-      months,
-      nightlyCard.origin === "today",
-    );
-    nightlyCard.interestSaved = interestSavedText(
-      currentMonths,
-      currentInterest,
-      months,
-      nightly.best_plan_interest,
-      nightlyCard.origin === "today",
-    );
-  }
+  if (nightlyCard) nightlyCard.nightly = true;
   for (const card of cards) card.badges = sourceBadges(card);
   const winner = cards.find((card) => card.id === suggestionId);
   return {
@@ -572,32 +940,57 @@ export function previewDraft(
     draft.loanRate,
     draft.debtIds,
   );
+  const invalidLoan = draft.loanSource !== "none" && draft.debtIds.length === 0;
+  const payment = describePayment(result.monthly, draft.extras);
+  const rise = result.todayMonthly ? payment.peak / result.todayMonthly - 1 : 0;
+  const alert = paymentAlert(payment.peak, result.todayMonthly);
+  const percent = pythonRound(rise * 100, 1);
+  if (draft.extras.length > 0) labels.push(INCLUDES_EXTRAS);
   return {
     debtFree: result.months == null ? NEVER_NOTE : monthCount(result.months),
     interest: formatMoney(result.totalInterest),
-    monthly: formatMoney(result.requiredMonthly),
-    alert: result.paymentAlert,
-    alertLabel: alertLabel(result.paymentAlert, result.todayMonthly, result.requiredMonthly, result.paymentChangePct),
-    note: result.months == null ? NEVER_NOTE : null,
+    monthly: payment.display,
+    alert,
+    alertLabel: alertLabel(alert, result.todayMonthly, payment.peak, percent),
+    note: invalidLoan ? LOAN_MOVES_NOTHING : result.months == null ? NEVER_NOTE : null,
     labels,
     months: result.months,
     interestAmount: result.totalInterest,
   };
 }
 
+const NO_LOAN_KEY = {
+  loanSource: "none",
+  product: null,
+  termMonths: null,
+  amount: 0,
+  rate: null,
+  debtIds: [] as string[],
+  extraIds: [] as string[],
+};
+
 export function assembleWorkspace(
-  state: WorkingHousehold,
+  inputs: CaseInputs,
   scenarios: readonly Scenario[],
   caseState: CaseState,
 ): WorkspaceModel {
-  const plans = builtInPlans(state, { schedule: false });
+  const state = inputs.planned;
+  const plans = inputs.plans;
+  const edited = inputs.edited;
   const offers = buildOffers(state);
   const choices = offerChoices(offers, state.properties);
   const scoreEstimated = householdFico(state.members).defaulted;
   const currentMonths = plans.current.months;
   const currentInterest = plans.current.interest;
-  const includedIds = validDebts(state.debts).map((debt) => debt.debt_id);
+  const valid = validDebts(state.debts);
+  const includedIds = valid.map((debt) => debt.debt_id);
   const pay = todayPayment(state.debts);
+  const openFacts = valid.map((debt) => ({ name: debt.debt_name, rate: debt.rate, balance: debt.balance }));
+  const currentPay = describeCurrentPayment(
+    valid.map((debt) => ({ id: debt.debt_id, payment: debt.monthly_payment })),
+    plans.current.payoffMonths,
+    plans.current.months,
+  );
   const noLoan = "None";
   const ranked: { id: string; plan: PlanOption }[] = [
     { id: "current", plan: plans.current },
@@ -609,26 +1002,29 @@ export function assembleWorkspace(
       id: "current",
       kind: "builtin",
       origin: "today",
-      name: "Current path",
+      name: editedName("Current path", edited),
       months: plans.current.months,
       interest: plans.current.interest,
       monthly: pay,
+      monthlyText: currentPay.display,
       alert: "none",
       percent: 0,
       today: pay,
       currentMonths,
       currentInterest,
-      baseline: true,
+      inputKey: planKey({ strategy: "current", ...NO_LOAN_KEY }),
       labels: [],
       scenarioId: null,
       loan: noLoan,
-      debtWhen: debtWhen(includedIds, plans.current.payoffMonths, []),
+      ...debtFields(includedIds, plans.current.payoffMonths, [], false),
+      moneyGoes: moneyGoesFor(valid, "current", pay),
+      spare: spareMoney("current", []),
     }),
     cardFromNumbers({
       id: "avalanche",
       kind: "builtin",
       origin: "builtin",
-      name: "Avalanche",
+      name: editedName("Avalanche", edited),
       months: plans.avalanche.months,
       interest: plans.avalanche.interest,
       monthly: pay,
@@ -637,17 +1033,19 @@ export function assembleWorkspace(
       today: pay,
       currentMonths,
       currentInterest,
-      baseline: false,
+      inputKey: planKey({ strategy: "avalanche", ...NO_LOAN_KEY }),
       labels: [],
       scenarioId: null,
       loan: noLoan,
-      debtWhen: debtWhen(includedIds, plans.avalanche.payoffMonths, []),
+      ...debtFields(includedIds, plans.avalanche.payoffMonths, [], false),
+      moneyGoes: moneyGoesFor(valid, "avalanche", pay),
+      spare: spareMoney("avalanche", openFacts),
     }),
     cardFromNumbers({
       id: "snowball",
       kind: "builtin",
       origin: "builtin",
-      name: "Snowball",
+      name: editedName("Snowball", edited),
       months: plans.snowball.months,
       interest: plans.snowball.interest,
       monthly: pay,
@@ -656,11 +1054,13 @@ export function assembleWorkspace(
       today: pay,
       currentMonths,
       currentInterest,
-      baseline: false,
+      inputKey: planKey({ strategy: "snowball", ...NO_LOAN_KEY }),
       labels: [],
       scenarioId: null,
       loan: noLoan,
-      debtWhen: debtWhen(includedIds, plans.snowball.payoffMonths, []),
+      ...debtFields(includedIds, plans.snowball.payoffMonths, [], false),
+      moneyGoes: moneyGoesFor(valid, "snowball", pay),
+      spare: spareMoney("snowball", openFacts),
     }),
   ];
 
@@ -677,7 +1077,7 @@ export function assembleWorkspace(
         id: choice.id,
         kind: "builtin",
         origin: "builtin",
-        name: choice.label,
+        name: editedName(choice.label, edited),
         months: offer.months,
         interest: offer.total_interest,
         monthly: Math.max(pay, offer.contractual_monthly),
@@ -686,7 +1086,16 @@ export function assembleWorkspace(
         today: pay,
         currentMonths,
         currentInterest,
-        baseline: false,
+        inputKey: planKey({
+          strategy: "avalanche",
+          loanSource: "product",
+          product: choice.product,
+          termMonths: choice.termMonths,
+          amount: choice.amount,
+          rate: choice.rate,
+          debtIds: choice.debtIds,
+          extraIds: [],
+        }),
         labels: scoreEstimated && choice.product.startsWith("HELOAN") ? ["estimated"] : [],
         scenarioId: null,
         loan: loanLine({
@@ -696,7 +1105,25 @@ export function assembleWorkspace(
           amount: choice.amount,
           secured: choice.product.startsWith("HELOAN"),
         }),
-        debtWhen: debtWhen(includedIds, offer.payoffMonths, choice.debtIds),
+        ...debtFields(includedIds, offer.payoffMonths, choice.debtIds, true),
+        loanDebt: loanDebtLabel(choice.product, choice.rate),
+        moneyGoes: moneyGoesFor(
+          valid,
+          "avalanche",
+          pay,
+          choice.debtIds.flatMap((id) => {
+            const debt = valid.find((row) => row.debt_id === id);
+            return debt ? [debt] : [];
+          }),
+          { amount: choice.amount, rate: choice.rate, term: choice.termMonths },
+        ),
+        spare: spareMoney("avalanche", [
+          ...valid
+            .filter((debt) => !choice.debtIds.includes(debt.debt_id))
+            .map((debt) => ({ name: debt.debt_name, rate: debt.rate, balance: debt.balance })),
+          { name: "New loan", rate: choice.rate, balance: choice.amount },
+        ]),
+        risk: offer.security,
       }),
     );
   }
@@ -721,42 +1148,72 @@ export function assembleWorkspace(
 
   for (const scenario of scenarios) {
     const result = runScenario(state, caseState, scenario);
-    ranked.push({
-      id: scenario.scenario_id,
-      plan: {
-        name: scenario.name,
-        months: result.months,
-        interest: result.totalInterest,
-        contractual: result.contractualMonthly,
-        risk: scenarioRisk(scenario),
-        schedule: [],
-        payoffOrder: [],
-        payoffMonths: {},
-      },
-    });
+    const moved = splitIds(scenario.debts_paid_off);
+    const invalidLoan = scenario.loan_source !== "none" && moved.length === 0;
+    const dated = datedExtras(scenario, caseState.extraPayments);
+    const payment = describePayment(result.monthly, dated);
+    const rise = result.todayMonthly ? payment.peak / result.todayMonthly - 1 : 0;
+    const alert = paymentAlert(payment.peak, result.todayMonthly);
+    if (!invalidLoan) {
+      ranked.push({
+        id: scenario.scenario_id,
+        plan: {
+          name: scenario.name,
+          months: result.months,
+          interest: result.totalInterest,
+          contractual: result.contractualMonthly,
+          risk: scenarioRisk(scenario),
+          schedule: [],
+          payoffOrder: [],
+          payoffMonths: {},
+        },
+      });
+    }
     cards.push(
       cardFromNumbers({
         id: scenario.scenario_id,
         kind: "advisor",
         origin: "advisor",
-        name: scenario.name,
+        name: editedName(scenario.name, edited),
         months: result.months,
         interest: result.totalInterest,
-        monthly: result.requiredMonthly,
-        alert: result.paymentAlert,
-        percent: result.paymentChangePct,
+        monthly: payment.peak,
+        monthlyText:
+          scenario.strategy === "current"
+            ? describeCurrentPayment(
+                valid
+                  .filter((debt) => !moved.includes(debt.debt_id))
+                  .map((debt) => ({ id: debt.debt_id, payment: debt.monthly_payment })),
+                result.payoffMonths,
+                result.months,
+              ).display
+            : payment.display,
+        alert,
+        percent: pythonRound(rise * 100, 1),
         today: result.todayMonthly,
         currentMonths,
         currentInterest,
-        baseline: false,
-        labels: loanLabels(
-          state,
-          scenario.loan_source,
-          scenario.product,
-          scenario.loan_amount,
-          scenario.loan_rate,
-          splitIds(scenario.debts_paid_off),
-        ),
+        inputKey: planKey({
+          strategy: scenario.strategy,
+          loanSource: scenario.loan_source,
+          product: scenario.product,
+          termMonths: scenario.term_months,
+          amount: scenario.loan_amount,
+          rate: scenario.loan_rate,
+          debtIds: moved,
+          extraIds: splitIds(scenario.extra_payment_ids),
+        }),
+        labels: [
+          ...(invalidLoan ? [LOAN_MOVES_NOTHING] : []),
+          ...loanLabels(
+            state,
+            scenario.loan_source,
+            scenario.product,
+            scenario.loan_amount,
+            scenario.loan_rate,
+            moved,
+          ),
+        ],
         scenarioId: scenario.scenario_id,
         loan: loanLine({
           source: scenario.loan_source,
@@ -765,33 +1222,167 @@ export function assembleWorkspace(
           amount: scenario.loan_amount,
           secured: scenario.product?.startsWith("HELOAN") ?? false,
         }),
-        debtWhen: debtWhen(includedIds, result.payoffMonths, splitIds(scenario.debts_paid_off)),
+        ...debtFields(includedIds, result.payoffMonths, moved, scenario.loan_amount > 0 && scenario.loan_rate != null),
+        loanDebt:
+          scenario.loan_amount > 0 ? loanDebtLabel(scenario.product, scenario.loan_rate) : null,
+        spare: spareMoney(
+          scenario.strategy,
+          scenario.strategy === "current"
+            ? []
+            : [
+                ...valid
+                  .filter((debt) => !moved.includes(debt.debt_id))
+                  .map((debt) => ({ name: debt.debt_name, rate: debt.rate, balance: debt.balance })),
+                ...(scenario.loan_amount > 0 && scenario.loan_rate != null
+                  ? [{ name: "New loan", rate: scenario.loan_rate, balance: scenario.loan_amount }]
+                  : []),
+              ],
+        ),
+        moneyGoes: moneyGoesFor(
+          valid,
+          scenario.strategy,
+          result.todayMonthly,
+          moved.flatMap((id) => {
+            const debt = valid.find((row) => row.debt_id === id);
+            return debt ? [debt] : [];
+          }),
+          scenario.loan_amount > 0 && scenario.loan_rate != null && scenario.term_months != null
+            ? { amount: scenario.loan_amount, rate: scenario.loan_rate, term: scenario.term_months }
+            : null,
+          caseState.extraPayments
+            .filter((extra) => splitIds(scenario.extra_payment_ids).includes(extra.extra_id))
+            .map((extra) => ({
+              type: extra.type,
+              amount: extra.amount,
+              startIndex: monthIndex(extra.start_month),
+              endIndex: extra.end_month ? monthIndex(extra.end_month) : null,
+            })),
+          result.schedule,
+        ),
+        includesExtras: dated.length > 0,
+        comparable: !invalidLoan,
+        extraPayments: dated,
+        warning: invalidLoan ? LOAN_MOVES_NOTHING : null,
+        risk: scenarioRisk(scenario),
       }),
     );
   }
 
-  const settled = settleCards(state.household.household_id, cards, ranked, currentMonths, currentInterest);
+  const settled = settleCards(state.household.household_id, cards, ranked);
+  const shown = mergeIdentical(cards, settled.suggestionId);
   return {
     householdId: state.household.household_id,
     name: state.household.household_name,
-    cards,
+    cards: shown.cards,
     debtRows: [],
     gaps: productGaps(state, offers),
     choices,
     debts: movableDebts(state, null),
     properties: state.properties,
-    suggestionId: settled.suggestionId,
-    suggestionName: settled.suggestionName,
-    suggestionWhy: settled.suggestionWhy,
-    comparableNote: comparableNote(state.household.household_id, currentMonths),
+    suggestionId: shown.suggestionId,
+    suggestionName: shown.suggestionName || settled.suggestionName,
+    suggestionWhy: cardWhy(shown.cards, shown.suggestionId),
+    comparableNote: comparableNote(inputs),
   };
 }
 
-function comparableNote(householdId: string, currentMonths: number | null): string | null {
-  if (currentMonths != null) return null;
-  const nightly = pipelineResults.find((row) => row.household_id === householdId);
-  const months = nightly && nightly.best_plan_months !== "never" ? nightly.best_plan_months : null;
-  return neverComparableReason(months == null ? null : formatMonths(months));
+function mergeIdentical(
+  cards: ScenarioCard[],
+  suggestionId: string,
+): { cards: ScenarioCard[]; suggestionId: string; suggestionName: string } {
+  const groups = new Map<string, ScenarioCard[]>();
+  for (const card of cards) {
+    const list = groups.get(card.inputKey);
+    if (list) list.push(card);
+    else groups.set(card.inputKey, [card]);
+  }
+  const idMap = new Map<string, string>();
+  const shown: ScenarioCard[] = [];
+  for (const card of cards) {
+    const group = groups.get(card.inputKey) ?? [card];
+    const survivor = group[0]!;
+    idMap.set(card.id, survivor.id);
+    if (card !== survivor) continue;
+    for (const other of group.slice(1)) {
+      survivor.nightly = survivor.nightly || other.nightly;
+      if (other.origin === "advisor" || other.advisorCopy) survivor.advisorCopy = true;
+      if (survivor.scenarioId == null) survivor.scenarioId = other.scenarioId;
+    }
+    shown.push(survivor);
+  }
+  const nextId = idMap.get(suggestionId) ?? suggestionId;
+  for (const card of shown) {
+    card.suggested = card.id === nextId;
+    card.recommendable = card.comparable && (card.origin !== "today" || card.suggested);
+    card.badges = sourceBadges(card);
+  }
+  const winner = shown.find((card) => card.id === nextId);
+  return { cards: shown, suggestionId: nextId, suggestionName: winner?.name ?? "" };
+}
+
+function comparableNote(inputs: CaseInputs): string | null {
+  if (inputs.current.months != null) return null;
+  const nightly = pipelineResults.find((row) => row.household_id === inputs.planned.household.household_id);
+  const plan = nightly ? nightlyOnCase(inputs, nightly.best_plan) : null;
+  return neverComparableReason(plan?.months == null ? null : formatMonths(plan.months));
+}
+
+function latestDebtEdit(
+  overrides: readonly CaseOverride[],
+  debtId: string,
+  field: string,
+): CaseOverride | undefined {
+  const matches = overrides.filter(
+    (row) => row.entity_type === "debt" && row.entity_id === debtId && row.field === field,
+  );
+  return matches[matches.length - 1];
+}
+
+function flagOn(hits: readonly FlagHit[], flag: FlagHit["flag"], entityId: string): boolean {
+  return hits.some((hit) => hit.flag === flag && hit.entityId === entityId);
+}
+
+/** The edit line and whether that edit cleared a source flag. */
+function debtEdit(
+  debtId: string,
+  payment: number,
+  rate: number,
+  overrides: readonly CaseOverride[],
+  sourceFlags: readonly FlagHit[],
+  caseFlags: readonly FlagHit[],
+): { edits: string[]; resolved: boolean } {
+  const edits: string[] = [];
+  let resolved = false;
+  const paymentEdit = latestDebtEdit(overrides, debtId, "monthly_payment");
+  if (paymentEdit) {
+    edits.push(
+      editedValueLine(formatMoney(payment), {
+        original: formatMoney(Number(paymentEdit.source_value)),
+        next: formatMoney(Number(paymentEdit.override_value)),
+        reason: paymentEdit.reason,
+        by: paymentEdit.changed_by,
+        at: formatDate(String(paymentEdit.changed_at)),
+      }),
+    );
+    const cleared =
+      (flagOn(sourceFlags, "payment_below_interest", debtId) && !flagOn(caseFlags, "payment_below_interest", debtId)) ||
+      (flagOn(sourceFlags, "zero_payment", debtId) && !flagOn(caseFlags, "zero_payment", debtId));
+    if (cleared) resolved = true;
+  }
+  const rateEdit = latestDebtEdit(overrides, debtId, "rate");
+  if (rateEdit) {
+    edits.push(
+      editedValueLine(formatRate(rate), {
+        original: formatRate(Number(rateEdit.source_value)),
+        next: formatRate(Number(rateEdit.override_value)),
+        reason: rateEdit.reason,
+        by: rateEdit.changed_by,
+        at: formatDate(String(rateEdit.changed_at)),
+      }),
+    );
+    if (flagOn(sourceFlags, "zero_rate", debtId) && !flagOn(caseFlags, "zero_rate", debtId)) resolved = true;
+  }
+  return { edits, resolved };
 }
 
 export function workspaceFor(
@@ -801,25 +1392,25 @@ export function workspaceFor(
   scenarios: readonly Scenario[],
 ): WorkspaceModel | null {
   const overrides = caseId == null ? [] : caseState.overrides.filter((row) => row.case_id === caseId);
+  const inputs = caseInputs(householdId, overrides);
+  if (!inputs) return null;
   const scoped = { ...caseState, overrides };
-  let preview: ReturnType<typeof casePreview>;
-  try {
-    preview = casePreview(householdId, overrides);
-  } catch {
-    return null;
-  }
-  const { state, excluded } = preview;
-  const planned = {
-    ...state,
-    debts: state.debts.filter((debt) => !excluded.has(debt.debt_id)),
-  };
   const rows = scenarios.filter((scenario) => caseId != null && scenario.case_id === caseId);
-  const model = assembleWorkspace(planned, rows, scoped);
-  model.debtRows = state.debts.map((debt) => ({
-    debtId: debt.debt_id,
-    name: debt.debt_name,
-    included: debt.monthly_payment > 0 && !excluded.has(debt.debt_id),
-  }));
+  const model = assembleWorkspace(inputs, rows, scoped);
+  const source = loadHousehold(householdId);
+  const sourceFlags = flags(source.household, source.members, source.debts, source.properties);
+  const caseFlags = flags(inputs.planned.household, inputs.planned.members, inputs.planned.debts, inputs.planned.properties);
+  model.debtRows = inputs.household.debts.map((debt) => {
+    const story = debtEdit(debt.debt_id, debt.monthly_payment, debt.rate, overrides, sourceFlags, caseFlags);
+    return {
+      debtId: debt.debt_id,
+      name: debt.debt_name,
+      rate: formatRate(debt.rate),
+      included: debt.monthly_payment > 0 && !inputs.excluded.has(debt.debt_id),
+      edits: story.edits,
+      resolved: story.resolved,
+    };
+  });
   return model;
 }
 

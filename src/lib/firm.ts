@@ -1,6 +1,6 @@
 import { getHousehold } from "./data";
 import { runScenario, type CaseState } from "./engine/scenario";
-import { formatDate, formatMoney, formatMonths } from "./format";
+import { formatDate, formatMonths, signedInterestSaved, signedMonthsSaved } from "./format";
 import { listOpportunities } from "./opportunity";
 import type { Case, CaseHistoryEvent, ContactEvent, Household, Scenario } from "./types";
 
@@ -154,7 +154,7 @@ export function firmView(input: {
     return true;
   });
   const cases = latestCases(input.cases);
-  const rows = listOpportunities(visible, input.contacts, input.cases);
+  const rows = listOpportunities(visible, input.contacts, input.cases, input.caseState.overrides);
   const byId = new Map(rows.map((row) => [row.householdId, row]));
   const ready: FirmHousehold[] = [];
   const waiting: FirmHousehold[] = [];
@@ -297,7 +297,7 @@ export function firmHistory(input: {
 }
 
 export function monthsSavedText(months: number, fromNever: number): string {
-  const base = formatMonths(months);
+  const base = months < 0 ? signedMonthsSaved(months) : formatMonths(months);
   if (fromNever === 0) return base;
   const extra = fromNever === 1 ? "1 more, from a path that never clears" : `${fromNever} more, from paths that never clear`;
   return months === 0 ? extra : `${base}, and ${extra}`;
@@ -305,5 +305,5 @@ export function monthsSavedText(months: number, fromNever: number): string {
 
 export function interestSavedText(interest: number | null): string {
   if (interest == null) return "—";
-  return formatMoney(interest);
+  return signedInterestSaved(interest);
 }

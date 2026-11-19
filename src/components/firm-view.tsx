@@ -17,7 +17,7 @@ import {
   type FirmHousehold,
   type FirmStage,
 } from "@/lib/firm";
-import { formatMonths, neverComparableReason, NOT_COMPARABLE } from "@/lib/format";
+import { formatMonths, neverComparableReason, signedMonthsSaved, NOT_COMPARABLE } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { listAdvisors } from "@/lib/users";
 
@@ -392,7 +392,12 @@ function householdSaving(household: FirmHousehold): ReactNode {
       </span>
     );
   }
-  const months = typeof household.monthsSaved === "number" ? formatMonths(household.monthsSaved) : "—";
+  const months =
+    typeof household.monthsSaved === "number"
+      ? household.monthsSaved < 0
+        ? signedMonthsSaved(household.monthsSaved)
+        : formatMonths(household.monthsSaved)
+      : "—";
   const interest = household.interestSaved == null ? "—" : interestSavedText(household.interestSaved);
   return `${months} · ${interest}`;
 }

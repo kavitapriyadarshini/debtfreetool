@@ -1,7 +1,7 @@
 import { householdFico } from "./engine/household";
 import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
 import type { ScheduleRow } from "./engine/simulate";
-import { planDate } from "./format";
+import { formatRate, planDate } from "./format";
 import type { PaymentAlert, Scenario } from "./types";
 import {
   NEVER_NOTE,
@@ -12,7 +12,8 @@ import {
 
 export { planDate };
 
-const COMPARE_LIMIT = 4;
+/** Plans the advisor ticks, besides the current path. */
+export const COMPARE_PICKS = 3;
 const PAID = 0.005;
 
 export type RecommendDraft = {
@@ -26,7 +27,13 @@ export type RecommendDraft = {
   debtsPaidOff: string | null;
 };
 
-export type PayoffStep = { name: string; when: string };
+export type PayoffStep = {
+  name: string;
+  when: string;
+  /** Edited values on this debt, each with its most recent reason. */
+  edits: string[];
+  resolved: boolean;
+};
 
 export type CompareSeries = { key: string; name: string };
 
@@ -48,10 +55,14 @@ export type CompareColumn = {
   recommendable: boolean;
   matchesSuggestion: boolean;
   savedScenarioId: string | null;
+  /** Months saved against the current path. Null when that comparison has no number. */
+  monthsSavedCount: number | null;
   draft: RecommendDraft;
   series: CompareSeries[];
   points: ComparePoint[];
   payoff: PayoffStep[];
+  /** Plain lines for each payment change, in date order. */
+  moneyGoes: string[];
 };
 
 export type CompareView = {
@@ -63,8 +74,30 @@ export type CompareView = {
   /** Set when today's path never finishes. */
   comparableNote: string | null;
   addedBaselines: boolean;
-  dropped: boolean;
 };
+
+/** The ids to show after "Add to comparison". Replaces the plan that saves the fewest months once three are already compared. */
+export function nextComparison(
+  columns: readonly { id: string; name: string; monthsSavedCount: number | null }[],
+  suggestionId: string,
+): { ids: string[]; replaced: string | null } {
+  const others = columns.filter((column) => column.id !== "current");
+  if (others.some((column) => column.id === suggestionId)) {
+    return { ids: others.map((column) => column.id), replaced: null };
+  }
+  if (others.length < COMPARE_PICKS) {
+    return { ids: [...others.map((column) => column.id), suggestionId], replaced: null };
+  }
+  const worst = others.reduce((least, column) => (savedRank(column) < savedRank(least) ? column : least));
+  return {
+    ids: others.map((column) => (column.id === worst.id ? suggestionId : column.id)),
+    replaced: worst.name,
+  };
+}
+
+function savedRank(column: { monthsSavedCount: number | null }): number {
+  return column.monthsSavedCount == null ? Number.NEGATIVE_INFINITY : column.monthsSavedCount;
+}
 
 function splitIds(value: string | null | undefined): string[] {
   return (value ?? "").split(";").filter((id) => id !== "");
@@ -160,14 +193,14 @@ function toDraft(scenario: Scenario): RecommendDraft {
 }
 
 function debtName(id: string, names: Map<string, string>): string {
-  if (id === "NEW_LOAN") return "New loan";
-  return names.get(id) ?? id;
+  return names.get(id) ?? (id === "NEW_LOAN" ? "New loan" : id);
 }
 
 function scheduleOf(
   rows: readonly ScheduleRow[],
   names: Map<string, string>,
   moved: readonly string[],
+  edits: ReadonlyMap<string, { edits: string[]; resolved: boolean }>,
 ): { series: CompareSeries[]; points: ComparePoint[]; payoff: PayoffStep[] } {
   const seen = new Map<string, string>();
   const order: string[] = [];
@@ -192,14 +225,27 @@ function scheduleOf(
       return debt ? Math.max(0, Math.round(debt.closingBalance)) : 0;
     }),
   }));
-  const payoff: PayoffStep[] = moved.map((id) => ({ name: seen.get(id) ?? id, when: "When the plan starts" }));
+  const detail = (id: string) => edits.get(id) ?? { edits: [], resolved: false };
+  const payoff: PayoffStep[] = moved.map((id) => ({
+    name: seen.get(id) ?? id,
+    when: "When the plan starts",
+    edits: detail(id).edits,
+    resolved: detail(id).resolved,
+  }));
   const later = live.flatMap((id) => {
     const row = rows.find((item) => item.debts.some((debt) => debt.id === id && debt.closingBalance <= PAID));
     if (!row) return [];
-    return [{ name: seen.get(id) ?? id, when: planDate(row.month), month: row.month }];
+    return [{ id, name: seen.get(id) ?? id, when: planDate(row.month), month: row.month }];
   });
   later.sort((a, b) => a.month - b.month);
-  for (const step of later) payoff.push({ name: step.name, when: step.when });
+  for (const step of later) {
+    payoff.push({
+      name: step.name,
+      when: step.when,
+      edits: detail(step.id).edits,
+      resolved: detail(step.id).resolved,
+    });
+  }
   return { series, points, payoff };
 }
 
@@ -231,20 +277,21 @@ export function compareFor(
   const saved = scenarios.filter((row) => caseId != null && row.case_id === caseId);
   const scoreEstimated = householdFico(state.members).defaulted;
   const cards = new Map(model.cards.map((card) => [card.id, card]));
-  const chosen = selectedIds.filter((id) => cards.has(id));
+  const chosen = selectedIds.filter((id) => {
+    const card = cards.get(id);
+    return card != null && card.comparable;
+  });
   const loanSelected = chosen.some((id) => isLoanCard(cards.get(id)!, saved));
-  const ordered: string[] = [];
-  if (cards.has("current")) ordered.push("current");
+  const picks = chosen.filter((id) => id !== "current").slice(0, COMPARE_PICKS);
+  const baselines: string[] = [];
   if (loanSelected) {
-    if (cards.has("avalanche")) ordered.push("avalanche");
-    if (cards.has("snowball")) ordered.push("snowball");
+    for (const id of ["avalanche", "snowball"]) {
+      if (baselines.length >= COMPARE_PICKS - picks.length) break;
+      if (!picks.includes(id) && cards.has(id)) baselines.push(id);
+    }
   }
-  for (const id of chosen) {
-    if (!ordered.includes(id)) ordered.push(id);
-  }
-  const ids = ordered.slice(0, COMPARE_LIMIT);
-  const addedBaselines =
-    loanSelected && (!chosen.includes("avalanche") || !chosen.includes("snowball"));
+  const ids = [...(cards.has("current") ? ["current"] : []), ...baselines, ...picks];
+  const addedBaselines = baselines.length > 0;
 
   const suggestionId = model.suggestionId;
   const suggestionCard = cards.get(suggestionId);
@@ -267,7 +314,14 @@ export function compareFor(
     ) ??
     null;
 
-  const names = new Map(state.debts.map((debt) => [debt.debt_id, debt.debt_name]));
+  const currentSpan = cards.get("current")?.spanMonths ?? null;
+  const names = new Map(state.debts.map((debt) => [debt.debt_id, `${debt.debt_name} · ${formatRate(debt.rate)}`]));
+  const edits = new Map(
+    model.debtRows.map((row) => [
+      row.debtId,
+      { edits: row.edits, resolved: row.resolved },
+    ]),
+  );
   const boundCase = caseId ?? "draft";
   const columns = ids.flatMap((id) => {
     const card = cards.get(id);
@@ -286,7 +340,9 @@ export function compareFor(
           );
     const result = runScenario(householdId, scoped, scenario);
     const moved = splitIds(scenario.debts_paid_off);
-    const schedule = scheduleOf(result.schedule, names, moved);
+    const columnNames = new Map(names);
+    if (card.loanDebt) columnNames.set("NEW_LOAN", card.loanDebt);
+    const schedule = scheduleOf(result.schedule, columnNames, moved, edits);
     const savedScenarioId =
       existing?.scenario_id ??
       saved.find((row) =>
@@ -319,10 +375,13 @@ export function compareFor(
         recommendable: card.recommendable,
         matchesSuggestion: card.suggested,
         savedScenarioId,
+        monthsSavedCount:
+          card.spanMonths == null || currentSpan == null ? null : currentSpan - card.spanMonths,
         draft: toDraft(scenario),
         series: schedule.series,
         points: schedule.points,
         payoff: schedule.payoff,
+        moneyGoes: card.moneyGoes,
       } satisfies CompareColumn,
     ];
   });
@@ -335,6 +394,5 @@ export function compareFor(
     why: model.suggestionWhy,
     comparableNote: model.comparableNote,
     addedBaselines,
-    dropped: ordered.length > COMPARE_LIMIT,
   };
 }

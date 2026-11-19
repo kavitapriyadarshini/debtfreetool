@@ -3,7 +3,7 @@ import type { Debt, Household, MonthsOrNever, PaymentAlert } from "../types";
 import { amortise } from "./amortise";
 import { asWorking, householdFico, todayPayment, validDebts, type WorkingHousehold } from "./household";
 import { pythonRound } from "./round";
-import { simulate, type SimDebt } from "./simulate";
+import { simulate, type ScheduleRow, type SimDebt } from "./simulate";
 
 const FASTAPP_LIMIT: Record<number, number> = { 1: 50_000, 2: 150_000, 3: 300_000 };
 const MINIMUM: Record<string, number> = {
@@ -58,6 +58,8 @@ export type BuiltOffer = {
   months: number | null;
   /** Plan month each remaining debt reached zero. Moved debts are not listed. */
   payoffMonths: Record<string, number>;
+  /** Present only when the caller asked for a schedule. */
+  schedule?: ScheduleRow[];
 };
 
 type Candidate = {
@@ -133,7 +135,10 @@ function toSim(debt: Debt): SimDebt {
 }
 
 /** One offer per catalogue row and, for home equity, per eligible property. */
-export function buildOffers(household: string | Household | WorkingHousehold): BuiltOffer[] {
+export function buildOffers(
+  household: string | Household | WorkingHousehold,
+  options?: { schedule?: boolean },
+): BuiltOffer[] {
   const state = asWorking(household);
   const valid = validDebts(state.debts);
   const payTotal = todayPayment(state.debts);
@@ -204,7 +209,7 @@ export function buildOffers(household: string | Household | WorkingHousehold): B
     ];
     const contractual = rest.reduce((sum, debt) => sum + debt.payment, 0);
     const simulated = simulate(rest, "avalanche", Math.max(payTotal, contractual), [], {
-      schedule: false,
+      schedule: options?.schedule === true,
     });
     const rise = payTotal ? contractual / payTotal - 1 : 0;
     offers.push({
@@ -226,6 +231,7 @@ export function buildOffers(household: string | Household | WorkingHousehold): B
       contractualRaw: contractual,
       months: simulated.months,
       payoffMonths: simulated.payoffMonths,
+      ...(options?.schedule ? { schedule: simulated.schedule } : {}),
     });
   }
   return offers;

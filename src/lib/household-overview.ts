@@ -1,11 +1,12 @@
 import { AS_OF } from "./config";
 import { getHousehold, pipelineResults } from "./data";
-import { flags, householdFico, loadHousehold, todayPayment, validDebts } from "./engine/household";
+import { flags, householdFico, loadHousehold, todayPayment, validDebts, type FlagHit } from "./engine/household";
 import { fastAppMiss } from "./engine/offers";
 import { outreachStatus } from "./engine/outreach";
 import { casePreview, householdWithCase, runScenario } from "./engine/scenario";
 import { simulate } from "./engine/simulate";
-import { formatDate, formatMoney, formatMonths, neverComparableReason } from "./format";
+import { caseInputs, nightlyOnCase } from "./case-inputs";
+import { formatDate, formatMoney, formatMonths, formatRate, neverComparableReason, signedInterestSaved, signedMonthsSaved } from "./format";
 import { describeFastAppMiss } from "./opportunity";
 import { sourceDiffers, type FrozenSnapshot } from "./snapshot";
 import type {
@@ -41,9 +42,15 @@ export type FieldNote = {
 export type ShownOverride = {
   original: string;
   next: string;
+  reason: string;
   by: string;
   at: string;
 };
+
+/** "$827 (was $307) · Household confirmed their actual monthly payment · Pamela Wilson, 21 Oct 2026". */
+export function editedValueLine(text: string, override: ShownOverride): string {
+  return `${text} (was ${override.original}) · ${override.reason} · ${override.by}, ${override.at}`;
+}
 
 export type ShownField = {
   text: string;
@@ -103,8 +110,11 @@ export type HouseholdOverview = {
   fico: {
     text: string;
     whose: string | null;
-    flag: string | null;
-    overrides: ShownOverride[];
+    /** Active warning. Null once a case edit has supplied a score. */
+  flag: string | null;
+  /** Set when the source had no score and this case now does. */
+  resolved: string | null;
+  overrides: ShownOverride[];
   };
   income: { text: string; note: string | null };
   members: { memberId: string; name: string; role: string; fico: ShownField }[];
@@ -175,14 +185,6 @@ const OUTCOME_LABEL: Record<string, string> = {
   no_offer: "No offer",
 };
 
-function formatRate(rate: number): string {
-  const text = rate
-    .toFixed(3)
-    .replace(/0+$/, "")
-    .replace(/\.$/, "");
-  return `${text}%`;
-}
-
 function blank(value: ParsedCell): boolean {
   return value == null || value === "";
 }
@@ -204,6 +206,24 @@ function formatKind(kind: EditKind, value: ParsedCell, addressOf: (id: string) =
 
 function belowInterest(debt: Debt): boolean {
   return debt.monthly_payment > 0 && debt.monthly_payment < (debt.balance * debt.rate) / 1200;
+}
+
+const RESOLVED_NOTE: FieldNote = { text: "Resolved in this case", tone: "resolved" };
+
+function flagGone(sourceHits: readonly FlagHit[], caseHits: readonly FlagHit[], flag: FlagHit["flag"], entityId: string): boolean {
+  const had = sourceHits.some((hit) => hit.flag === flag && hit.entityId === entityId);
+  const has = caseHits.some((hit) => hit.flag === flag && hit.entityId === entityId);
+  return had && !has;
+}
+
+function duplicateGone(sourceHits: readonly FlagHit[], caseHits: readonly FlagHit[], debtId: string): boolean {
+  const mentions = (hit: FlagHit) => hit.flag === "possible_duplicate" && hit.entityId.split(";").includes(debtId);
+  return sourceHits.some(mentions) && !caseHits.some(mentions);
+}
+
+function withResolved(notes: FieldNote[], gone: boolean): FieldNote[] {
+  if (!gone || notes.some((note) => note.text === RESOLVED_NOTE.text)) return notes;
+  return [...notes, RESOLVED_NOTE];
 }
 
 function latestOverride(
@@ -248,6 +268,7 @@ function fieldOf(input: {
       ? {
           original: formatKind(input.kind, record.source_value, input.addressOf),
           next: formatKind(input.kind, record.override_value, input.addressOf),
+          reason: record.reason,
           by: record.changed_by,
           at: formatDate(record.changed_at),
         }
@@ -310,18 +331,19 @@ function planInPlay(input: {
   recommended: Scenario | undefined;
   caseState: { overrides: readonly CaseOverride[]; extraPayments: readonly ExtraPayment[]; customLoans: readonly CustomLoan[] };
 }): PlanInPlay {
+  const inputs = caseInputs(input.householdId, input.caseState.overrides);
+  const current = inputs
+    ? { months: inputs.current.months, interest: inputs.current.interest }
+    : input.current;
   const nightly = pipelineResults.find((row) => row.household_id === input.householdId);
   const recommendedRun = input.recommended
     ? runScenario(input.householdId, input.caseState, input.recommended)
     : null;
-  const planMonths = recommendedRun
-    ? recommendedRun.months
-    : nightly && nightly.best_plan_months !== "never"
-      ? nightly.best_plan_months
-      : null;
-  const planInterest = recommendedRun ? recommendedRun.totalInterest : (nightly?.best_plan_interest ?? 0);
+  const recalculated = !recommendedRun && inputs && nightly ? nightlyOnCase(inputs, nightly.best_plan) : null;
+  const planMonths = recommendedRun ? recommendedRun.months : (recalculated?.months ?? null);
+  const planInterest = recommendedRun ? recommendedRun.totalInterest : (recalculated?.interest ?? 0);
   const label = input.recommended ? "Recommended" : "Nightly best";
-  if (input.current.months == null) {
+  if (current.months == null) {
     return {
       label,
       months: null,
@@ -329,13 +351,15 @@ function planInPlay(input: {
       note: neverComparableReason(planMonths == null ? null : formatMonths(planMonths)),
     };
   }
-  if (planMonths == null) return { label, months: "—", interest: "—", note: null };
-  const months = Math.max(0, input.current.months - planMonths);
-  const interest = Math.max(0, input.current.interest - planInterest);
+  if (planMonths == null) {
+    return { label, months: null, interest: null, note: "This plan never clears these debts." };
+  }
+  const months = current.months - planMonths;
+  const interest = Math.round(current.interest) - Math.round(planInterest);
   return {
     label,
-    months: formatMonths(months),
-    interest: formatMoney(interest),
+    months: months < 0 ? signedMonthsSaved(months) : formatMonths(months),
+    interest: signedInterestSaved(interest),
     note: null,
   };
 }
@@ -364,19 +388,25 @@ export function buildHouseholdOverview(input: {
     : [];
   const { state, excluded } = casePreview(source, caseOverrides);
   const lookup = addressOf([...source.properties, ...state.properties]);
-  const editedFlags = flags(state.household, state.members, state.debts, state.properties);
-  const duplicateIds = new Set<string>();
-  for (const hit of editedFlags) {
-    if (hit.flag !== "possible_duplicate") continue;
-    for (const id of hit.entityId.split(";")) {
-      if (id) duplicateIds.add(id);
+  const sourceFlags = flags(source.household, source.members, source.debts, source.properties);
+  const plannedDebts = state.debts.filter((debt) => !excluded.has(debt.debt_id));
+  const editedFlags = flags(state.household, state.members, plannedDebts, state.properties);
+  const listedDuplicates = (hits: readonly FlagHit[]) => {
+    const ids = new Set<string>();
+    for (const hit of hits) {
+      if (hit.flag !== "possible_duplicate") continue;
+      for (const id of hit.entityId.split(";")) {
+        if (id) ids.add(id);
+      }
     }
-  }
+    return ids;
+  };
+  const liveDuplicates = listedDuplicates(editedFlags);
+  const knownDuplicates = listedDuplicates([...sourceFlags, ...editedFlags]);
 
   const sourceByDebt = new Map(source.debts.map((debt) => [debt.debt_id, debt]));
   const householdId = source.household.household_id;
   const fico = householdFico(state.members);
-  const sourceFico = householdFico(source.members);
   const holders = state.members.filter((member) => member.fico != null && member.fico === fico.fico);
 
   const comfortRecord = latestOverride(caseOverrides, "household", householdId, "comfort_zone");
@@ -386,11 +416,8 @@ export function buildHouseholdOverview(input: {
       text: "Comfort zone is missing, so FastApp is not available",
       tone: "flag",
     });
-  } else if (source.household.comfort_zone == null) {
-    comfortNotes.push({
-      text: "Comfort zone was missing, so FastApp was not available",
-      tone: "resolved",
-    });
+  } else if (flagGone(sourceFlags, editedFlags, "missing_comfort_zone", "")) {
+    comfortNotes.push(RESOLVED_NOTE);
   }
 
   const incomeNote = editedFlags.some((hit) => hit.flag === "income_missing")
@@ -470,10 +497,10 @@ export function buildHouseholdOverview(input: {
     fico: {
       text: fico.defaulted ? "740, estimated" : String(fico.fico),
       whose: fico.defaulted ? null : whoseScore(holders.map((member) => member.member_name)),
-      flag: fico.defaulted
-        ? "No FICO score on file"
-        : sourceFico.defaulted
-          ? "No FICO score on file; 740, estimated"
+      flag: fico.defaulted ? "No FICO score on file" : null,
+      resolved:
+        !fico.defaulted && flagGone(sourceFlags, editedFlags, "no_fico_any_member", "")
+          ? RESOLVED_NOTE.text
           : null,
       overrides: holders.flatMap((member) => {
         const record = latestOverride(caseOverrides, "member", member.member_id, "fico");
@@ -482,6 +509,7 @@ export function buildHouseholdOverview(input: {
           {
             original: formatKind("fico", record.source_value, lookup),
             next: formatKind("fico", record.override_value, lookup),
+            reason: record.reason,
             by: record.changed_by,
             at: formatDate(record.changed_at),
           },
@@ -494,6 +522,7 @@ export function buildHouseholdOverview(input: {
     },
     members: state.members.map((member) => {
       const sourceMember = source.members.find((row) => row.member_id === member.member_id);
+      const record = latestOverride(caseOverrides, "member", member.member_id, "fico");
       return {
         memberId: member.member_id,
         name: member.member_name,
@@ -506,8 +535,11 @@ export function buildHouseholdOverview(input: {
           label: `${member.member_name}'s FICO`,
           sourceValue: sourceMember?.fico ?? null,
           currentValue: member.fico,
-          record: latestOverride(caseOverrides, "member", member.member_id, "fico"),
-          notes: [],
+          record,
+          notes: withResolved(
+            [],
+            record != null && flagGone(sourceFlags, editedFlags, "no_fico_any_member", ""),
+          ),
           canEdit: true,
           addressOf: lookup,
         }),
@@ -542,24 +574,34 @@ export function buildHouseholdOverview(input: {
       const grey = debt.monthly_payment <= 0 || excluded.has(debt.debt_id);
       const rowNotes: FieldNote[] = [];
       if (grey) rowNotes.push({ text: "not included in plans", tone: "muted" });
-      if (duplicateIds.has(debt.debt_id)) rowNotes.push({ text: "possible duplicate", tone: "flag" });
+      if (liveDuplicates.has(debt.debt_id)) rowNotes.push({ text: "possible duplicate", tone: "flag" });
 
-      const paymentNotes: FieldNote[] = [];
-      if (belowInterest(debt)) paymentNotes.push({ text: "Never pays off", tone: "flag" });
-      else if (belowInterest(sourceDebt)) {
-        paymentNotes.push({ text: "Never pays off at the original payment", tone: "resolved" });
-      }
+      const paymentRecord = latestOverride(caseOverrides, "debt", debt.debt_id, "monthly_payment");
+      const rateRecord = latestOverride(caseOverrides, "debt", debt.debt_id, "rate");
+      const linkRecord = latestOverride(caseOverrides, "debt", debt.debt_id, "property_id");
+      const excludeRecord = latestOverride(caseOverrides, "debt", debt.debt_id, "excluded");
 
-      const rateNotes: FieldNote[] = [];
-      if (debt.monthly_payment > 0 && debt.rate === 0) {
-        rateNotes.push({ text: "Confirm or edit the rate", tone: "flag" });
-      }
+      const paymentNotes = withResolved(
+        belowInterest(debt) ? [{ text: "Never pays off", tone: "flag" as const }] : [],
+        paymentRecord != null &&
+          (flagGone(sourceFlags, editedFlags, "payment_below_interest", debt.debt_id) ||
+            flagGone(sourceFlags, editedFlags, "zero_payment", debt.debt_id)),
+      );
+
+      const rateNotes = withResolved(
+        debt.monthly_payment > 0 && debt.rate === 0
+          ? [{ text: "Confirm or edit the rate", tone: "flag" as const }]
+          : [],
+        rateRecord != null && flagGone(sourceFlags, editedFlags, "zero_rate", debt.debt_id),
+      );
 
       const secured = SECURED.has(debt.debt_type);
-      const linkNotes: FieldNote[] = [];
-      if (secured && debt.monthly_payment > 0 && !debt.property_id) {
-        linkNotes.push({ text: "Link this mortgage to a property", tone: "flag" });
-      }
+      const linkNotes = withResolved(
+        secured && debt.monthly_payment > 0 && !debt.property_id
+          ? [{ text: "Link this mortgage to a property", tone: "flag" as const }]
+          : [],
+        linkRecord != null && flagGone(sourceFlags, editedFlags, "mortgage_unlinked", debt.debt_id),
+      );
 
       return {
         debtId: debt.debt_id,
@@ -576,7 +618,7 @@ export function buildHouseholdOverview(input: {
           label: `${debt.debt_name} payment`,
           sourceValue: sourceDebt.monthly_payment,
           currentValue: debt.monthly_payment,
-          record: latestOverride(caseOverrides, "debt", debt.debt_id, "monthly_payment"),
+          record: paymentRecord,
           notes: paymentNotes,
           canEdit: true,
           addressOf: lookup,
@@ -589,7 +631,7 @@ export function buildHouseholdOverview(input: {
           label: `${debt.debt_name} rate`,
           sourceValue: sourceDebt.rate,
           currentValue: debt.rate,
-          record: latestOverride(caseOverrides, "debt", debt.debt_id, "rate"),
+          record: rateRecord,
           notes: rateNotes,
           canEdit: true,
           addressOf: lookup,
@@ -603,13 +645,13 @@ export function buildHouseholdOverview(input: {
               label: `${debt.debt_name} property`,
               sourceValue: sourceDebt.property_id,
               currentValue: debt.property_id,
-              record: latestOverride(caseOverrides, "debt", debt.debt_id, "property_id"),
+              record: linkRecord,
               notes: linkNotes,
               canEdit: true,
               addressOf: lookup,
             })
           : null,
-        exclude: duplicateIds.has(debt.debt_id)
+        exclude: knownDuplicates.has(debt.debt_id)
           ? fieldOf({
               kind: "exclude",
               entityType: "debt",
@@ -618,8 +660,8 @@ export function buildHouseholdOverview(input: {
               label: `Exclude ${debt.debt_name}`,
               sourceValue: false,
               currentValue: excluded.has(debt.debt_id),
-              record: latestOverride(caseOverrides, "debt", debt.debt_id, "excluded"),
-              notes: [],
+              record: excludeRecord,
+              notes: withResolved([], excludeRecord != null && duplicateGone(sourceFlags, editedFlags, debt.debt_id)),
               canEdit: !excluded.has(debt.debt_id),
               addressOf: lookup,
             })

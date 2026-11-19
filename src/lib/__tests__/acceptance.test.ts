@@ -164,7 +164,7 @@ describe("acceptance guards", () => {
     expect(pamela.every((household) => household.advisor === "Pamela Wilson")).toBe(true);
     expect(pamela.some((household) => household.advisor !== "Pamela Wilson")).toBe(false);
     const ready = sortOpportunities(
-      listOpportunities(pamela, source.contacts, source.cases).filter((row) => row.outreach === "ready"),
+      listOpportunities(pamela, source.contacts, source.cases, source.caseOverrides).filter((row) => row.outreach === "ready"),
       "months",
     );
     expect(ready.slice(0, PAGE_SIZE)).toHaveLength(PAGE_SIZE);

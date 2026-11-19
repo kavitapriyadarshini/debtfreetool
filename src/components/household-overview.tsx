@@ -40,12 +40,12 @@ import {
   OVERVIEW_TAB_LABEL,
   OVERVIEW_TABS,
   buildHouseholdOverview,
+  editedValueLine,
   overviewTab,
   type EditableField,
   type FieldNote,
   type OverviewTab,
   type ShownField,
-  type ShownOverride,
 } from "@/lib/household-overview";
 import { NOT_COMPARABLE } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
@@ -270,14 +270,21 @@ export function HouseholdOverview({
           <div className="flex flex-col gap-0.5">
             <dt className="text-muted-foreground">Household FICO</dt>
             <dd data-testid="household-fico">
-              <p>
-                {overview.fico.text}
-                {overview.fico.whose ? <span className="text-muted-foreground"> · {overview.fico.whose}</span> : null}
-              </p>
+              {overview.fico.overrides.length > 0 ? (
+                overview.fico.overrides.map((row) => (
+                  <p key={`${row.original}-${row.next}-${row.at}`}>{editedValueLine(overview.fico.text, row)}</p>
+                ))
+              ) : (
+                <p>
+                  {overview.fico.text}
+                  {overview.fico.whose ? <span className="text-muted-foreground"> · {overview.fico.whose}</span> : null}
+                </p>
+              )}
+              {overview.fico.whose && overview.fico.overrides.length > 0 ? (
+                <p className="text-muted-foreground">{overview.fico.whose}</p>
+              ) : null}
               {overview.fico.flag ? <FlagNote text={overview.fico.flag} /> : null}
-              {overview.fico.overrides.map((row) => (
-                <OverrideLine key={`${row.original}-${row.next}-${row.at}`} override={row} />
-              ))}
+              {overview.fico.resolved ? <p className="text-sm text-muted-foreground">{overview.fico.resolved}</p> : null}
             </dd>
           </div>
           <div className="flex flex-col gap-0.5">
@@ -340,8 +347,8 @@ export function HouseholdOverview({
             <TableRow>
               <TableHead>Debt</TableHead>
               <TableHead>Balance</TableHead>
-              <TableHead>Payment</TableHead>
-              <TableHead>Rate</TableHead>
+              <TableHead>Interest rate</TableHead>
+              <TableHead>Monthly payment</TableHead>
               <TableHead>Property</TableHead>
             </TableRow>
           </TableHeader>
@@ -368,10 +375,10 @@ export function HouseholdOverview({
                 </TableCell>
                 <TableCell>{debt.balance}</TableCell>
                 <TableCell>
-                  <FieldView field={debt.payment} onEdit={openEdit} onReport={openReport} />
+                  <FieldView field={debt.rate} onEdit={openEdit} onReport={openReport} />
                 </TableCell>
                 <TableCell>
-                  <FieldView field={debt.rate} onEdit={openEdit} onReport={openReport} />
+                  <FieldView field={debt.payment} onEdit={openEdit} onReport={openReport} />
                 </TableCell>
                 <TableCell>
                   {debt.link ? (
@@ -547,17 +554,6 @@ function NoteLine({ note }: { note: FieldNote }) {
   return <p className="text-sm text-muted-foreground">{note.text}</p>;
 }
 
-function OverrideLine({ override }: { override: ShownOverride }) {
-  return (
-    <p className="text-sm text-muted-foreground">
-      {override.original} → {override.next}
-      <span className="block">
-        {override.by} · {override.at}
-      </span>
-    </p>
-  );
-}
-
 function FieldView({
   field,
   onEdit,
@@ -573,8 +569,11 @@ function FieldView({
 }) {
   return (
     <div className="flex min-w-0 flex-col gap-1">
-      {hideText ? null : <span>{field.text}</span>}
-      {field.override ? <OverrideLine override={field.override} /> : null}
+      {field.override ? (
+        <span>{editedValueLine(field.text, field.override)}</span>
+      ) : hideText ? null : (
+        <span>{field.text}</span>
+      )}
       {field.notes.map((note) => (
         <NoteLine key={note.text} note={note} />
       ))}

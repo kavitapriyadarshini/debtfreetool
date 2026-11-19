@@ -312,10 +312,14 @@ function Comparison({
               >
                 {column.tone === "other" && canSwitch ? (
                   <button type="button" className="text-left font-medium text-muted-foreground underline-offset-2 hover:underline" onClick={() => onSwitch(column.id)}>
-                    {column.heading}
+                    <span className="block">{column.heading}</span>
+                    {column.source ? <span className="block text-xs font-normal">{column.source}</span> : null}
                   </button>
                 ) : (
-                  column.heading
+                  <span className="block">
+                    {column.heading}
+                    {column.source ? <span className="block text-xs font-normal text-muted-foreground">{column.source}</span> : null}
+                  </span>
                 )}
               </th>
             ))}

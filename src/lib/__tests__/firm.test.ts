@@ -20,7 +20,7 @@ function view(branch = "all", advisor = "all") {
 describe("firm view", () => {
   it("matches the store for opportunity, the funnel, and agreed plans", () => {
     const model = view();
-    const opportunities = listOpportunities(households, contacts, cases).filter((row) => !row.noAction);
+    const opportunities = listOpportunities(households, contacts, cases, caseOverrides).filter((row) => !row.noAction);
     expect(model.ready.length + model.waiting.length + model.progress.length).toBe(opportunities.length);
     expect(model.ready.length).toBe(opportunities.filter((row) => row.outreach === "ready").length);
     expect(model.waiting.length).toBe(opportunities.filter((row) => row.outreach === "waiting").length);

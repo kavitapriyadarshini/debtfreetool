@@ -3,7 +3,9 @@ import { householdFico } from "./engine/household";
 import { casePreview, runScenario, type CaseState, type ScenarioRun } from "./engine/scenario";
 import type { BuiltOffer } from "./engine/offers";
 import type { ScheduleRow } from "./engine/simulate";
-import { formatDate, formatMoney, formatMonths } from "./format";
+import { planKey } from "./case-inputs";
+import { formatDate, formatMoney, formatMonths, formatRate } from "./format";
+import { workspaceFor, type ScenarioCard } from "./workspace";
 import type { Scenario } from "./types";
 import { planDate } from "./compare";
 
@@ -62,6 +64,8 @@ export type PresentColumn = {
   interestSaved: string;
   monthly: string;
   payoff: { name: string; when: string }[];
+  /** Origin of a grey column, shown in small text. Empty for Today and Your plan. */
+  source: string;
 };
 
 export type PresentModel = {
@@ -177,14 +181,26 @@ function nameOf(id: string, names: Map<string, string>, loan: string, seen: Map<
   return name;
 }
 
+function ratedDebt(id: string, base: string, rates: ReadonlyMap<string, number>, loanRate: number | null): string {
+  if (id === "NEW_LOAN") return loanRate == null ? base : `${base} · ${formatRate(loanRate)}`;
+  const rate = rates.get(id);
+  return rate == null ? base : `${base} · ${formatRate(rate)}`;
+}
+
 function payoffOf(
   rows: readonly ScheduleRow[],
   names: Map<string, string>,
+  rates: ReadonlyMap<string, number>,
   moved: readonly string[],
   loan: string,
+  loanRate: number | null,
 ): { name: string; when: string }[] {
   const seen = new Map<string, string>();
-  const steps = moved.map((id) => ({ name: nameOf(id, names, loan, seen), when: "When the plan starts", month: 0 }));
+  const steps = moved.map((id) => ({
+    name: ratedDebt(id, nameOf(id, names, loan, seen), rates, loanRate),
+    when: "When the plan starts",
+    month: 0,
+  }));
   const live = new Set<string>();
   for (const row of rows) {
     for (const debt of row.debts) live.add(debt.id);
@@ -192,7 +208,11 @@ function payoffOf(
   const later = [...live].flatMap((id) => {
     const row = rows.find((item) => item.debts.some((debt) => debt.id === id && debt.closingBalance <= PAID));
     if (!row) return [];
-    return [{ name: nameOf(id, names, loan, seen), when: planDate(row.month), month: row.month }];
+    return [{
+      name: ratedDebt(id, nameOf(id, names, loan, seen), rates, loanRate),
+      when: planDate(row.month),
+      month: row.month,
+    }];
   });
   later.sort((a, b) => a.month - b.month);
   return [...steps, ...later].map(({ name, when }) => ({ name, when }));
@@ -260,7 +280,14 @@ function loanSentence(scenario: Scenario): string | null {
   return "This plan includes a loan.";
 }
 
-function sideFrom(result: ScenarioRun, names: Map<string, string>, moved: string[], loan: string): PresentSide {
+function sideFrom(
+  result: ScenarioRun,
+  names: Map<string, string>,
+  rates: ReadonlyMap<string, number>,
+  moved: string[],
+  loan: string,
+  loanRate: number | null,
+): PresentSide {
   return {
     debtFree: result.months == null ? "These payments don't clear the debts." : planDate(result.months),
     interest: result.months == null ? "Not comparable" : formatMoney(result.totalInterest),
@@ -268,9 +295,39 @@ function sideFrom(result: ScenarioRun, names: Map<string, string>, moved: string
     finishes: result.months != null,
     interestAmount: result.totalInterest,
     months: result.months,
-    payoff: payoffOf(result.schedule, names, moved, loan),
+    payoff: payoffOf(result.schedule, names, rates, moved, loan, loanRate),
     years: yearsOf(result.schedule, names, moved, loan),
   };
+}
+
+function scenarioKey(scenario: Scenario): string {
+  return planKey({
+    strategy: scenario.strategy,
+    loanSource: scenario.loan_source,
+    product: scenario.product,
+    termMonths: scenario.term_months,
+    amount: scenario.loan_amount,
+    rate: scenario.loan_rate,
+    debtIds: splitIds(scenario.debts_paid_off),
+    extraIds: splitIds(scenario.extra_payment_ids),
+  });
+}
+
+const SOURCE_LABELS = ["Nightly best", "Built-in", "Built by you", "Previously recommended"];
+
+function columnSource(
+  choice: { id: string; savedId: string | null; scenario: Scenario },
+  card: ScenarioCard | undefined,
+  recommended: string | null,
+): string {
+  const parts = SOURCE_LABELS.filter((label) => card?.badges.includes(label));
+  if (parts.length === 0) {
+    if (choice.id === "avalanche" || choice.id === "snowball" || choice.id.startsWith("offer:")) parts.push("Built-in");
+    else if (choice.savedId) parts.push("Built by you");
+  }
+  const recommendedHere = choice.id === recommended || choice.scenario.scenario_id === recommended;
+  if (recommendedHere && !parts.includes("Previously recommended")) parts.push("Previously recommended");
+  return parts.join(" · ");
 }
 
 function matchOffer(id: string, offers: readonly BuiltOffer[]): BuiltOffer | undefined {
@@ -357,14 +414,14 @@ function monthsSooner(today: number | null, plan: number | null): string {
   if (delta === 0) return "Same time";
   const count = Math.abs(delta);
   const unit = count === 1 ? "month" : "months";
-  return delta > 0 ? `${count} ${unit} sooner` : `${count} ${unit} longer`;
+  return delta > 0 ? `${count} ${unit} sooner` : `${count} ${unit} later`;
 }
 
 function interestSaved(today: PresentSide, plan: PresentSide): string {
   if (!today.finishes || !plan.finishes) return "Not comparable";
   const saved = Math.round(today.interestAmount) - Math.round(plan.interestAmount);
   if (saved > 0) return `${formatMoney(saved)} less`;
-  if (saved < 0) return `${formatMoney(-saved)} more`;
+  if (saved < 0) return `Costs ${formatMoney(-saved)} more`;
   return "The same";
 }
 
@@ -403,8 +460,14 @@ export function presentFor(
   const recommended = saved.find((row) => row.is_recommended)?.scenario_id ?? null;
   const scoped = { ...caseState, overrides };
   const names = new Map(preview.state.debts.map((debt) => [debt.debt_id, debt.debt_name]));
+  const rates = new Map(preview.state.debts.map((debt) => [debt.debt_id, debt.rate]));
   const todayScenario = bare(bound, householdId, "Today", "current");
   const todayResult = runScenario(householdId, scoped, todayScenario);
+  const cards = workspaceFor(householdId, caseId, caseState, scenarios)?.cards ?? [];
+  const cardFor = (choice: { id: string; scenario: Scenario }): ScenarioCard | undefined =>
+    cards.find((card) => card.id === choice.id) ??
+    cards.find((card) => choice.scenario.scenario_id !== "draft" && card.scenarioId === choice.scenario.scenario_id) ??
+    cards.find((card) => card.inputKey === scenarioKey(choice.scenario));
 
   const addOffer = (id: string) => {
     if (!id || id === "current" || choices.some((choice) => choice.id === id)) return;
@@ -424,9 +487,9 @@ export function presentFor(
 
   const planResult = runScenario(householdId, scoped, selected.scenario);
   const loan = loanName(selected.scenario);
-  const today = sideFrom(todayResult, names, [], loan);
+  const today = sideFrom(todayResult, names, rates, [], loan, null);
   const moved = splitIds(selected.scenario.debts_paid_off);
-  const plan = sideFrom(planResult, names, moved, loan);
+  const plan = sideFrom(planResult, names, rates, moved, loan, selected.scenario.loan_rate);
   const leftOut = preview.state.debts
     .filter((debt) => preview.excluded.has(debt.debt_id) || debt.monthly_payment <= 0)
     .map((debt) => debt.debt_name);
@@ -460,6 +523,7 @@ export function presentFor(
       interestSaved: "This is today",
       monthly: today.monthly,
       payoff: today.payoff,
+      source: "",
     },
     {
       id: selected.id,
@@ -471,13 +535,25 @@ export function presentFor(
       interestSaved: interestSaved(today, plan),
       monthly: plan.monthly,
       payoff: plan.payoff,
+      source: "",
     },
   ];
+  const seenPlans = new Set<string>([scenarioKey(selected.scenario)]);
   for (const id of otherIds) {
     const choice = choices.find((row) => row.id === id);
     if (!choice) continue;
+    const key = scenarioKey(choice.scenario);
+    if (seenPlans.has(key)) continue;
+    seenPlans.add(key);
     const result = runScenario(householdId, scoped, choice.scenario);
-    const side = sideFrom(result, names, splitIds(choice.scenario.debts_paid_off), loanName(choice.scenario));
+    const side = sideFrom(
+      result,
+      names,
+      rates,
+      splitIds(choice.scenario.debts_paid_off),
+      loanName(choice.scenario),
+      choice.scenario.loan_rate,
+    );
     columns.push({
       id,
       heading: plainPlanName(choice.scenario),
@@ -488,17 +564,20 @@ export function presentFor(
       interestSaved: interestSaved(today, side),
       monthly: side.monthly,
       payoff: side.payoff,
+      source: columnSource(choice, cardFor(choice), recommended),
     });
   }
-  const shared = new Map<string, number>();
+  const titleCount = new Map<string, number>();
   for (const column of columns) {
     if (column.tone !== "other") continue;
-    shared.set(column.heading, (shared.get(column.heading) ?? 0) + 1);
+    const title = `${column.heading}\n${column.source}`;
+    titleCount.set(title, (titleCount.get(title) ?? 0) + 1);
   }
   for (const column of columns) {
-    if (column.tone === "other" && (shared.get(column.heading) ?? 0) > 1) {
-      column.heading = `${column.heading}, debt free by ${column.debtFree}`;
-    }
+    if (column.tone !== "other") continue;
+    const title = `${column.heading}\n${column.source}`;
+    if ((titleCount.get(title) ?? 0) < 2) continue;
+    column.source = column.source ? `${column.source} · ${column.debtFree}` : column.debtFree;
   }
 
   return {

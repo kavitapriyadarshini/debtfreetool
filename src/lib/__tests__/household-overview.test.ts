@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { caseHistory, caseOverrides, cases, contacts, customLoans, extraPayments, membersOf, scenarios } from "../data";
 import { householdWithCase } from "../engine/scenario";
-import { buildHouseholdOverview, type HouseholdOverview } from "../household-overview";
+import { buildHouseholdOverview, editedValueLine, type HouseholdOverview } from "../household-overview";
 
 function overview(id: string): HouseholdOverview {
   const caseRecord = [...cases].reverse().find((row) => row.household_id === id);
@@ -83,7 +83,11 @@ describe("household overview", () => {
       by: "Pamela Wilson",
       at: "2 Nov 2026",
     });
-    expect(card.payment.notes.map((note) => note.text)).toContain("Never pays off at the original payment");
+    expect(editedValueLine(card.payment.text, card.payment.override!)).toBe(
+      "$595 (was $250) · Household confirmed their actual monthly payment · Pamela Wilson, 2 Nov 2026",
+    );
+    expect(card.payment.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
+    expect(card.payment.notes.map((note) => note.text)).not.toContain("Never pays off at the original payment");
     expect(view.planInPlay).toEqual({
       label: "Recommended",
       months: "1 year 6 months",
@@ -97,7 +101,7 @@ describe("household overview", () => {
     const card = debt(view, "H08-D02");
     expect(card.rate.text).toBe("22.99%");
     expect(card.rate.override).toMatchObject({ original: "0%", next: "22.99%", by: "Tom Brennan" });
-    expect(card.rate.notes).toEqual([]);
+    expect(card.rate.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
     expect(view.income.text).toBe("$18,000");
     expect(view.income.note).toBe("Income looks like a monthly amount entered as annual");
   });
@@ -116,14 +120,16 @@ describe("household overview", () => {
     const view = overview("H11");
     expect(view.fico.text).toBe("698");
     expect(view.fico.whose).toBe("Using Andre Moore's score");
-    expect(view.fico.flag).toContain("740, estimated");
+    expect(view.fico.flag).toBeNull();
+    expect(view.fico.resolved).toBe("Resolved in this case");
     expect(view.fico.overrides[0]).toMatchObject({ original: "No score", next: "698", by: "Tom Brennan" });
     expect(view.waiting).toContain("Ready from 13 Jan 2027");
 
     const first = debt(view, "H11-D01");
     const second = debt(view, "H11-D02");
-    expect(first.rowNotes.map((note) => note.text)).toContain("possible duplicate");
-    expect(second.rowNotes.map((note) => note.text)).toContain("possible duplicate");
+    expect(first.rowNotes.map((note) => note.text)).not.toContain("possible duplicate");
+    expect(second.rowNotes.map((note) => note.text)).not.toContain("possible duplicate");
+    expect(second.exclude?.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
     expect(second.grey).toBe(true);
     expect(second.rowNotes.map((note) => note.text)).toContain("not included in plans");
     expect(second.exclude?.override).toMatchObject({ original: "Included", next: "Excluded" });
@@ -148,14 +154,12 @@ describe("household overview", () => {
       next: "301 Pine Valley Rd, Raleigh, NC",
       by: "Elena Duarte",
     });
-    expect(mortgage.link?.notes).toEqual([]);
+    expect(mortgage.link?.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
 
     const zone = overview("H16");
     expect(zone.comfort.text).toBe("Zone 2");
     expect(zone.comfort.override).toMatchObject({ original: "Not set", next: "Zone 2" });
-    expect(zone.comfort.notes.map((note) => note.text)).toContain(
-      "Comfort zone was missing, so FastApp was not available",
-    );
+    expect(zone.comfort.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
   });
 
   it("shows the source warnings before a case edits them", () => {
@@ -203,6 +207,17 @@ describe("household overview", () => {
     const student = missing.debts.find((row) => row.name === "Navient Student Loan");
     expect(student?.grey).toBe(true);
     expect(student?.rowNotes.map((note) => note.text)).toContain("not included in plans");
+  });
+
+  it("shows H55's edited Amex payment with the original, the reason, and the resolved flag", () => {
+    const view = overview("H55");
+    const amex = debt(view, "H55-D01");
+    expect(amex.payment.override).not.toBeNull();
+    expect(editedValueLine(amex.payment.text, amex.payment.override!)).toBe(
+      "$827 (was $307) · Household confirmed their actual monthly payment · Pamela Wilson, 21 Oct 2026",
+    );
+    expect(amex.payment.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
+    expect(amex.payment.notes.map((note) => note.text)).not.toContain("Never pays off at the original payment");
   });
 
   it("returns nothing for an unknown household", () => {

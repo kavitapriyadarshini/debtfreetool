@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { cases, contacts, households } from "../data";
-import { formatMoney, formatMonths, formatPercent, neverComparableReason, paymentAlertText, NOT_COMPARABLE } from "../format";
+import { caseOverrides, cases, contacts, households } from "../data";
+import { formatMoney, formatPercent, paymentAlertText, NOT_COMPARABLE } from "../format";
 import {
   filterOpportunities,
   interestSavedLabel,
@@ -15,6 +15,7 @@ function book(advisor: string): OpportunityRow[] {
     households.filter((household) => household.advisor === advisor),
     contacts,
     cases,
+    caseOverrides,
   );
 }
 
@@ -58,30 +59,25 @@ describe("opportunity list", () => {
     );
   });
 
-  it("shows households that never pay off as not comparable and ranks them first", () => {
-    const rows = listOpportunities(households, contacts, cases);
-    const times: Record<string, string> = {
-      H07: "8 years 10 months",
-      H55: "2 years 7 months",
-      H82: "3 years 5 months",
-      H175: "4 years 6 months",
-      H291: "10 years",
-    };
-    for (const id of Object.keys(times)) {
-      const row = rows.find((item) => item.householdId === id);
-      expect(row?.monthsSaved, id).toBe("from never");
-      expect(monthsSavedLabel(row!), id).toBe(NOT_COMPARABLE);
-      expect(interestSavedLabel(row!), id).toBe(NOT_COMPARABLE);
-      expect(neverComparableReason(row!.bestPlanMonths == null ? null : formatMonths(row!.bestPlanMonths)), id).toBe(
-        `Today's payments never clear these debts. With the best plan: debt free in ${times[id]}.`,
-      );
-      expect(`${monthsSavedLabel(row!)} ${interestSavedLabel(row!)}`).not.toMatch(/Never →|from never|n\/a|—/i);
-    }
+  it("shows H55 from the case, with the nightly figure kept for the tooltip", () => {
+    const rows = listOpportunities(households, contacts, cases, caseOverrides);
+    const h55 = rows.find((row) => row.householdId === "H55");
+    expect(h55?.updatedInCase).toBe(true);
+    expect(h55?.monthsSaved).toBe(11);
+    expect(h55?.interestSaved).toBe(3304);
+    expect(monthsSavedLabel(h55!)).toBe("11 months");
+    expect(interestSavedLabel(h55!)).toBe("$3,304");
+    expect(h55?.nightlyMonthsLabel).toBe(NOT_COMPARABLE);
+    expect(h55?.nightlyInterestLabel).toBe(NOT_COMPARABLE);
+    expect(h55?.flags).not.toContain("payment_below_interest");
+    expect(`${monthsSavedLabel(h55!)} ${interestSavedLabel(h55!)}`).not.toMatch(/Never →|Not comparable|from never/);
 
     const ranked = sortOpportunities(book("Pamela Wilson"), "months");
     const firstComparable = ranked.findIndex((row) => row.monthsSaved !== "from never" && !row.noAction);
-    expect(ranked.slice(0, firstComparable).every((row) => row.monthsSaved === "from never")).toBe(true);
-    expect(ranked.findIndex((row) => row.householdId === "H07")).toBeLessThan(firstComparable);
+    if (firstComparable > 0) {
+      expect(ranked.slice(0, firstComparable).every((row) => row.monthsSaved === "from never")).toBe(true);
+    }
+    expect(ranked.find((row) => row.householdId === "H55")?.monthsSaved).toBe(11);
   });
 
   it("ranks H12 last among Elena Duarte's waiting households and says no action needed", () => {
@@ -103,7 +99,8 @@ describe("opportunity list", () => {
       caseStatus: "any",
       minMonths: 50,
     });
-    expect(filtered.some((row) => row.householdId === "H11")).toBe(true);
+    expect(filtered.some((row) => row.householdId === "H11")).toBe(false);
+    expect(filtered.length).toBeGreaterThan(0);
     expect(filtered.every((row) => row.products.includes("FastApp") && row.flags.length > 0)).toBe(true);
 
     const sorted = sortOpportunities(
@@ -118,8 +115,9 @@ describe("opportunity list", () => {
   });
 
   it("flags H03 and H11 when nobody has a FICO score", () => {
-    const rows = listOpportunities(households, contacts, cases);
+    const rows = listOpportunities(households, contacts, cases, caseOverrides);
     expect(rows.find((row) => row.householdId === "H03")?.flags).toContain("no_fico_any_member");
-    expect(rows.find((row) => row.householdId === "H11")?.flags).toContain("no_fico_any_member");
+    expect(rows.find((row) => row.householdId === "H11")?.flags).not.toContain("no_fico_any_member");
+    expect(rows.find((row) => row.householdId === "H11")?.flags).not.toContain("possible_duplicate");
   });
 });

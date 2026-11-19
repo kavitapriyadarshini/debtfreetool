@@ -109,12 +109,13 @@ describe("present mode", () => {
     expect(model?.plan.years[0]?.months[0]?.label).toBe("Dec 2026");
     expect(model?.plan.years[0]?.cleared).toEqual(expect.arrayContaining(["Chase Sapphire", "Citi Double Cash", "SoFi Personal Loan"]));
     expect(model?.plan.payoff.slice(0, 3).map((step) => step.name)).toEqual([
-      "Chase Sapphire",
-      "Citi Double Cash",
-      "SoFi Personal Loan",
+      "Chase Sapphire · 24.99%",
+      "Citi Double Cash · 21.5%",
+      "SoFi Personal Loan · 13%",
     ]);
+    expect(model?.plan.payoff.map((step) => step.name)).toContain("Home equity loan · 7.875%");
     expect(model?.plan.payoff.slice(0, 3).every((step) => step.when === "When the plan starts")).toBe(true);
-    expect(model?.plan.payoff.map((step) => step.name)).toContain("Rocket Mortgage");
+    expect(model?.plan.payoff.map((step) => step.name)).toContain("Rocket Mortgage · 6.25%");
     assertPlain(householdText(model!));
   });
 
@@ -164,13 +165,18 @@ describe("present mode", () => {
     const grey = model?.columns.filter((column) => column.tone === "other") ?? [];
     expect(grey.map((column) => column.id)).toEqual(["avalanche", "snowball", "S0002"]);
     expect(grey[0]?.heading).toBe("Keep today's payment and clear the highest rate first");
+    expect(grey[0]?.source).toContain("Built-in");
     expect(grey[1]?.heading).toBe("Keep today's payment and clear the smallest balance first");
     expect(grey[2]?.heading).toBe("Pay off your cards with a home equity loan, then clear the rest in order");
     const twins = show("H01", "avalanche", ["S0002", "S0003"])?.columns.filter((column) => column.tone === "other") ?? [];
-    expect(twins.map((column) => column.heading).sort()).toEqual([
-      "Pay off your cards with a home equity loan, then clear the rest in order, debt free by Aug 2037",
-      "Pay off your cards with a home equity loan, then clear the rest in order, debt free by May 2037",
+    expect(twins.map((column) => column.heading)).toEqual([
+      "Pay off your cards with a home equity loan, then clear the rest in order",
+      "Pay off your cards with a home equity loan, then clear the rest in order",
     ]);
+    expect(new Set(twins.map((column) => `${column.heading}|${column.source}`)).size).toBe(twins.length);
+    const repeated = show("H55", "S0042", ["avalanche", "S0041"])?.columns.filter((column) => column.tone === "other") ?? [];
+    expect(repeated).toHaveLength(1);
+    expect(repeated[0]?.heading).toBe("Keep today's payment and clear the highest rate first");
     assertPlain(householdText(model!));
   });
 

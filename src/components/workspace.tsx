@@ -28,11 +28,16 @@ import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { SavingsText } from "@/components/savings-text";
 import { CompareView } from "@/components/compare-view";
 import { PLAN_START } from "@/lib/config";
+import { formatMoney } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import {
+  LOAN_MOVES_NOTHING,
+  paymentRule,
   previewHousehold,
   rateText,
+  reservedPlanNames,
+  scenarioNameError,
   workspaceFor,
   type DraftPreview,
   type OfferChoice,
@@ -43,7 +48,7 @@ import {
 import { PaymentDot } from "@/components/payment-dot";
 import type { Scenario } from "@/lib/types";
 
-const COMPARE_LIMIT = 4;
+const COMPARE_PICKS = 3;
 
 type ExtraRow = {
   key: string;
@@ -111,6 +116,8 @@ export function Workspace({
   const [error, setError] = useState<string | null>(null);
   const [pressed, setPressed] = useState<string | null>(null);
   const [debtsOpen, setDebtsOpen] = useState(true);
+  const [moneyOpen, setMoneyOpen] = useState(true);
+  const [explained, setExplained] = useState<ScenarioCard | null>(null);
   const numbers = numberKey(builder);
   const shape = shapeKey(builder);
 
@@ -172,10 +179,12 @@ export function Workspace({
   const noProducts = model.choices.length === 0;
 
   function toggleCompare(id: string) {
+    if (id === "current") return;
     setSelected((current) => {
-      if (current.includes(id)) return current.filter((row) => row !== id);
-      if (current.length >= COMPARE_LIMIT) return current;
-      return [...current, id];
+      const picked = current.filter((row) => row !== "current");
+      if (picked.includes(id)) return picked.filter((row) => row !== id);
+      if (picked.length >= COMPARE_PICKS) return picked;
+      return [...picked, id];
     });
   }
 
@@ -275,7 +284,7 @@ export function Workspace({
 
   function save() {
     if (!model || !draft) return;
-    const message = validate(builder, model, draft);
+    const message = validate(builder, model, draft, takenNames);
     if (message) {
       setError(message);
       return;
@@ -334,6 +343,12 @@ export function Workspace({
   }
 
   const choice = model.choices.find((row) => row.id === builder.choiceId) ?? null;
+  const takenNames = reservedPlanNames(
+    model.choices,
+    scenarios.filter((row) => row.case_id === caseId),
+    builder.scenarioId,
+  );
+  const nameError = scenarioNameError(builder.name, takenNames);
   const productNames = [...new Set(model.choices.map((row) => row.product))];
   const termChoices = model.choices.filter((row) => row.product === (choice?.product ?? productNames[0]));
   const shownDebts = model.debts.filter((debt) => !debt.propertyId || debt.propertyId === choice?.propertyId);
@@ -366,13 +381,49 @@ export function Workspace({
         columns={[...today, ...nightly, ...builtIn, ...advisor]}
         debts={model.debtRows}
         debtsOpen={debtsOpen}
+        moneyOpen={moneyOpen}
         selected={selected}
         note={model.comparableNote}
         onToggleDebts={() => setDebtsOpen((open) => !open)}
+        onToggleMoney={() => setMoneyOpen((open) => !open)}
         onCompare={toggleCompare}
         onOpen={openPlan}
+        onExplain={setExplained}
         onRemove={(id) => removeScenario(id)}
       />
+
+      {explained ? (
+        <Sheet open onOpenChange={(next) => { if (!next) setExplained(null); }}>
+          <SheetContent className="w-full overflow-y-auto sm:max-w-lg" style={{ maxWidth: "36rem" }}>
+            <SheetHeader>
+              <SheetTitle>How this is calculated</SheetTitle>
+              <SheetDescription>{explained.name}</SheetDescription>
+            </SheetHeader>
+            <div className="flex flex-col gap-4 px-4 pb-4 text-sm">
+              <section className="flex flex-col gap-1">
+                <h2 className="font-medium">Budget</h2>
+                <p>{explained.monthly}</p>
+              </section>
+              <section className="flex flex-col gap-1">
+                <h2 className="font-medium">Spare money</h2>
+                <p>{explained.spare}</p>
+              </section>
+              <section className="flex flex-col gap-1">
+                <h2 className="font-medium">Payoff events</h2>
+                {explained.moneyGoes.length === 0 ? (
+                  <p>No payment changes.</p>
+                ) : (
+                  <ul className="flex flex-col gap-1">
+                    {explained.moneyGoes.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            </div>
+          </SheetContent>
+        </Sheet>
+      ) : null}
 
       {open ? <Sheet open onOpenChange={(next) => { if (!next) setOpen(false); }}>
         <SheetContent className="w-full overflow-y-auto sm:max-w-lg" style={{ maxWidth: "36rem" }}>
@@ -388,8 +439,14 @@ export function Workspace({
             <Field label="Name">
               <Input
                 value={builder.name}
+                aria-invalid={nameError != null}
                 onChange={(event) => setBuilder((current) => ({ ...current, name: event.target.value, nameTouched: true }))}
               />
+              {nameError ? (
+                <p className="text-sm" role="alert">
+                  {nameError}
+                </p>
+              ) : null}
             </Field>
             <Field label="Strategy">
               <RadioGroup
@@ -552,6 +609,11 @@ export function Workspace({
                     ))
                   )}
                 </fieldset>
+                {builder.debtIds.length === 0 ? (
+                  <p className="text-sm" role="alert">
+                    {LOAN_MOVES_NOTHING}
+                  </p>
+                ) : null}
               </>
             ) : null}
 
@@ -600,6 +662,7 @@ export function Workspace({
           <SheetFooter>
             <Button
               aria-busy={pressed === "save"}
+              disabled={nameError != null}
               onClick={() => {
                 setPressed("save");
                 window.setTimeout(() => {
@@ -628,17 +691,17 @@ export function Workspace({
           {pressed === "new" ? "Opening…" : "New scenario"}
         </Button>
         <Button
-          disabled={selected.length < 2}
+          disabled={selected.filter((id) => id !== "current").length < 1}
           aria-busy={pressed === "compare"}
           onClick={() => {
-            const next = selected.join(",");
+            const next = selected.filter((id) => id !== "current").join(",");
             setPressed("compare");
             window.setTimeout(() => {
               router.push(`/households/${householdId}/workspace?compare=${next}`);
             }, 0);
           }}
         >
-          {pressed === "compare" ? "Opening…" : `Compare ${selected.length}`}
+          {pressed === "compare" ? "Opening…" : `Compare ${selected.filter((id) => id !== "current").length}`}
         </Button>
       </ActionBar>
     </div>
@@ -745,8 +808,14 @@ function draftFrom(builder: Builder, model: WorkspaceModel): ScenarioDraft | nul
   };
 }
 
-function validate(builder: Builder, model: WorkspaceModel, draft: ScenarioDraft): string | null {
-  if (!draft.name.trim()) return "Enter a name.";
+function validate(
+  builder: Builder,
+  model: WorkspaceModel,
+  draft: ScenarioDraft,
+  taken: readonly string[],
+): string | null {
+  const nameError = scenarioNameError(builder.name, taken);
+  if (nameError) return nameError;
   if (builder.loanSource === "product" && !model.choices.some((row) => row.id === builder.choiceId)) {
     return "Choose an eligible product and term.";
   }
@@ -773,21 +842,27 @@ function PlanTable({
   columns,
   debts,
   debtsOpen,
+  moneyOpen,
   selected,
   note,
   onToggleDebts,
+  onToggleMoney,
   onCompare,
   onOpen,
+  onExplain,
   onRemove,
 }: {
   columns: ScenarioCard[];
   debts: WorkspaceModel["debtRows"];
   debtsOpen: boolean;
+  moneyOpen: boolean;
   selected: string[];
   note: string | null;
   onToggleDebts: () => void;
+  onToggleMoney: () => void;
   onCompare: (id: string) => void;
   onOpen: (card: ScenarioCard) => void;
+  onExplain: (card: ScenarioCard) => void;
   onRemove: (scenarioId: string) => void;
 }) {
   const rows: { label: string; cell: (card: ScenarioCard) => ReactNode }[] = [
@@ -812,7 +887,7 @@ function PlanTable({
   return (
     <div className="overflow-x-auto">
       <table className="w-max border-separate border-spacing-0 text-sm">
-        <caption className="sr-only">Plans for this household. Tick up to 4 to compare.</caption>
+        <caption className="sr-only">Plans for this household. Tick up to 3 to compare. The current path is always included.</caption>
         <thead>
           <tr>
             <th className={LABEL_CELL} scope="col">
@@ -820,8 +895,10 @@ function PlanTable({
             </th>
             {columns.map((card) => {
               const today = card.origin === "today";
-              const ticked = selected.includes(card.id);
-              const disabled = selected.length >= COMPARE_LIMIT && !ticked;
+              const ticked = today || selected.includes(card.id);
+              const blocked = !card.comparable;
+              const picked = selected.filter((id) => id !== "current");
+              const disabled = today || blocked || (picked.length >= COMPARE_PICKS && !selected.includes(card.id));
               return (
                 <th key={card.id} className={today ? TODAY_CELL : PLAN_CELL} scope="col">
                   <div className="flex flex-col items-start gap-1">
@@ -829,13 +906,29 @@ function PlanTable({
                       <Checkbox
                         checked={ticked}
                         disabled={disabled}
-                        onCheckedChange={() => onCompare(card.id)}
-                        aria-label={`Compare ${card.name}`}
+                        onCheckedChange={() => {
+                          if (!today && !blocked) onCompare(card.id);
+                        }}
+                        aria-label={
+                          today
+                            ? `${card.name}. Always compared`
+                            : blocked
+                              ? `${card.name}. ${LOAN_MOVES_NOTHING}`
+                              : `Compare ${card.name}`
+                        }
                       />
                     </div>
                     <button type="button" className="text-left font-medium hover:underline" onClick={() => onOpen(card)}>
                       {card.name}
                     </button>
+                    <button
+                      type="button"
+                      className="text-left text-xs text-muted-foreground hover:underline"
+                      onClick={() => onExplain(card)}
+                    >
+                      How this is calculated
+                    </button>
+                    {card.note === LOAN_MOVES_NOTHING ? <p className="text-xs">{LOAN_MOVES_NOTHING}</p> : null}
                     {card.origin === "advisor" && card.scenarioId ? (
                       <button
                         type="button"
@@ -879,11 +972,16 @@ function PlanTable({
               <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL} />
             ))}
           </tr>
-          {debtsOpen
-            ? debts.map((debt) => (
+          {debtsOpen ? (
+            <>
+              {debts.map((debt) => (
                 <tr key={debt.debtId}>
                   <th className={cn(LABEL_CELL, "pl-6 font-normal", debt.included ? "" : "text-muted-foreground")} scope="row">
-                    {debt.name}
+                    <span>{debt.name} · {debt.rate}</span>
+                    {debt.edits.map((line) => (
+                      <span key={line} className="mt-1 block">{line}</span>
+                    ))}
+                    {debt.resolved ? <span className="mt-1 block text-muted-foreground">Resolved in this case</span> : null}
                   </th>
                   {columns.map((card) => (
                     <td
@@ -894,10 +992,58 @@ function PlanTable({
                     </td>
                   ))}
                 </tr>
-              ))
-            : null}
+              ))}
+              {columns.some((card) => card.loanDebt) ? (
+                <tr>
+                  <th className={cn(LABEL_CELL, "pl-6 font-normal")} scope="row">
+                    New loan
+                  </th>
+                  {columns.map((card) => (
+                    <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+                      {card.loanDebt ? (
+                        <span className="flex flex-col gap-1">
+                          <span>{card.loanDebt}</span>
+                          <span>{card.debtWhen.NEW_LOAN}</span>
+                        </span>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ) : null}
+            </>
+          ) : null}
+          <tr>
+            <th className={LABEL_CELL} scope="row">
+              <button
+                type="button"
+                className="font-medium hover:underline"
+                aria-expanded={moneyOpen}
+                onClick={onToggleMoney}
+              >
+                Where the money goes
+              </button>
+            </th>
+            {columns.map((card) => (
+              <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+                {moneyOpen ? (
+                  <ul className="flex flex-col gap-1 text-xs">
+                    {card.moneyGoes.length === 0 ? (
+                      <li>No payment changes.</li>
+                    ) : (
+                      card.moneyGoes.map((line) => <li key={line}>{line}</li>)
+                    )}
+                  </ul>
+                ) : null}
+              </td>
+            ))}
+          </tr>
         </tbody>
       </table>
+      <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
+        {paymentRule(formatMoney(columns.find((card) => card.origin === "today")?.todayMonthly ?? 0))}
+      </p>
     </div>
   );
 }

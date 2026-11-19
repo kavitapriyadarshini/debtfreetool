@@ -13,6 +13,12 @@ export function formatMoney(amount: number): string {
   return money.format(Math.round(amount));
 }
 
+/** An APR for a debt row, for example 28.07 becomes "28.07%" and 7.875 becomes "7.875%". */
+export function formatRate(rate: number): string {
+  const text = rate.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  return `${text}%`;
+}
+
 /** Shown when today's payments never finish, so months and interest saved have no baseline. */
 export const NOT_COMPARABLE = "Not comparable";
 
@@ -28,6 +34,23 @@ export function neverComparableReason(time: string | null): string {
 /** The payment-alert tooltip. "$1,562 → $4,548 (+191%)". */
 export function paymentAlertText(from: number, to: number, percent: number): string {
   return `Monthly payment ${formatMoney(from)} → ${formatMoney(to)} (${formatPercent(percent)})`;
+}
+
+/** Months saved, including a plan that takes longer. Zero stays "0 months". */
+export function signedMonthsSaved(months: number): string {
+  if (months > 0) return `${months} ${months === 1 ? "month" : "months"}`;
+  if (months < 0) {
+    const later = -months;
+    return `${later} ${later === 1 ? "month" : "months"} later`;
+  }
+  return "0 months";
+}
+
+/** Interest saved, including a plan that costs more. Zero stays "$0". */
+export function signedInterestSaved(amount: number): string {
+  if (amount > 0) return formatMoney(amount);
+  if (amount < 0) return `Costs ${formatMoney(-amount)} more`;
+  return formatMoney(0);
 }
 
 /** 134 becomes "11 years 2 months". A plan that never finishes is "Never". */

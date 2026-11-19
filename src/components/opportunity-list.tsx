@@ -113,11 +113,41 @@ function neverReason(row: OpportunityRow): string {
   return neverComparableReason(row.bestPlanMonths == null ? null : formatMonths(row.bestPlanMonths));
 }
 
+function SavedCell({
+  value,
+  detail,
+  mark,
+}: {
+  value: string;
+  detail: string | null;
+  mark: boolean;
+}) {
+  if (mark) {
+    return (
+      <Tooltip>
+        <TooltipTrigger
+          type="button"
+          className="text-left underline decoration-dotted underline-offset-4"
+          aria-label={`${value}. Updated in case. ${detail ?? ""}`}
+          onClick={(event) => event.stopPropagation()}
+          onKeyDown={(event) => event.stopPropagation()}
+        >
+          {value}
+          <span className="ml-1 text-xs text-muted-foreground">Updated in case</span>
+        </TooltipTrigger>
+        {detail ? <TooltipContent className="max-w-xs">{detail}</TooltipContent> : null}
+      </Tooltip>
+    );
+  }
+  return <SavingsText value={value} reason={detail} />;
+}
+
 export function OpportunityList() {
   const router = useRouter();
   const user = useDemoStore((state) => state.user);
   const contacts = useDemoStore((state) => state.contacts);
   const cases = useDemoStore((state) => state.cases);
+  const overrides = useDemoStore((state) => state.caseOverrides);
   const [tab, setTab] = useState<OpportunityTab>("ready");
   const [product, setProduct] = useState<ProductFilter>("any");
   const [flags, setFlags] = useState<OpportunityFilters["flags"]>("any");
@@ -127,8 +157,8 @@ export function OpportunityList() {
   const [page, setPage] = useState(1);
 
   const kept = useKeptResult(
-    () => listOpportunities(selectVisibleHouseholds(user), contacts, cases),
-    [user, contacts, cases],
+    () => listOpportunities(selectVisibleHouseholds(user), contacts, cases, overrides),
+    [user, contacts, cases, overrides],
   );
   const book = kept.value ?? [];
 
@@ -379,15 +409,29 @@ export function OpportunityList() {
                     <div className="text-xs text-muted-foreground">{row.householdId}</div>
                   </TableCell>
                   <TableCell className={row.noAction ? "text-muted-foreground" : undefined}>
-                    <SavingsText
+                    <SavedCell
                       value={monthsSavedLabel(row)}
-                      reason={row.monthsSaved === "from never" ? neverReason(row) : null}
+                      mark={row.updatedInCase}
+                      detail={
+                        row.updatedInCase
+                          ? `Nightly best: ${row.nightlyMonthsLabel}`
+                          : row.monthsSaved === "from never"
+                            ? neverReason(row)
+                            : null
+                      }
                     />
                   </TableCell>
                   <TableCell>
-                    <SavingsText
+                    <SavedCell
                       value={interestSavedLabel(row)}
-                      reason={row.monthsSaved === "from never" ? neverReason(row) : null}
+                      mark={row.updatedInCase}
+                      detail={
+                        row.updatedInCase
+                          ? `Nightly best: ${row.nightlyInterestLabel}`
+                          : row.monthsSaved === "from never"
+                            ? neverReason(row)
+                            : null
+                      }
                     />
                   </TableCell>
                   <TableCell>{row.planType}</TableCell>

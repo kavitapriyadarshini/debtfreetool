@@ -1,10 +1,14 @@
 import { AS_OF } from "./config";
-import { formatMoney, formatMonths, NOT_COMPARABLE } from "./format";
+import { caseInputs, nightlyOnCase, savingsAgainst } from "./case-inputs";
+import { formatMoney, formatMonths, signedInterestSaved, signedMonthsSaved, NOT_COMPARABLE } from "./format";
 import { pipelineFlags, pipelineOffers, pipelineResults } from "./data";
+import { flags } from "./engine/household";
 import { fastAppMiss, type FastAppMiss } from "./engine/offers";
 import { outreachStatus } from "./engine/outreach";
+import { householdWithCase } from "./engine/scenario";
 import type {
   Case,
+  CaseOverride,
   CaseStatus,
   ContactEvent,
   DataFlag,
@@ -75,6 +79,11 @@ export type OpportunityRow = {
   daysUntilReady: number;
   outreach: OutreachStatus;
   noAction: boolean;
+  /** Case corrections replaced the nightly savings figure. */
+  updatedInCase: boolean;
+  /** The nightly pipeline figure, shown when the row uses the case instead. */
+  nightlyMonthsLabel: string | null;
+  nightlyInterestLabel: string | null;
 };
 
 type IndexedPipeline = {
@@ -144,12 +153,14 @@ export function monthsSavedLabel(
 ): string {
   if (row.noAction) return "No action needed";
   if (row.monthsSaved === "from never") return NOT_COMPARABLE;
+  if (row.monthsSaved < 0) return signedMonthsSaved(row.monthsSaved);
   return formatMonths(row.monthsSaved);
 }
 
 /** Interest saved for the list. A current path that never finishes has no total to subtract. */
 export function interestSavedLabel(row: Pick<OpportunityRow, "monthsSaved" | "interestSaved">): string {
   if (row.monthsSaved === "from never" || row.interestSaved === "n/a") return NOT_COMPARABLE;
+  if (row.interestSaved < 0) return signedInterestSaved(row.interestSaved);
   return formatMoney(row.interestSaved);
 }
 
@@ -223,6 +234,7 @@ export function listOpportunities(
   visible: readonly Household[],
   contacts: readonly ContactEvent[],
   cases: readonly Case[],
+  overrides: readonly CaseOverride[] = [],
 ): OpportunityRow[] {
   const snapshot = pipelineIndex();
   const contactsByHousehold = new Map<string, ContactEvent[]>();
@@ -239,11 +251,14 @@ export function listOpportunities(
     const result = snapshot.results.get(household.household_id);
     if (!result) continue;
     const outreach = outreachStatus(contactsByHousehold.get(household.household_id) ?? [], AS_OF);
+    const fresh = caseSavings(household.household_id, caseByHousehold.get(household.household_id), overrides);
+    const monthsSaved = fresh?.monthsSaved ?? result.months_saved;
+    const interestSaved = fresh?.interestSaved ?? result.interest_saved;
     rows.push({
       householdId: household.household_id,
       name: household.household_name,
-      monthsSaved: result.months_saved,
-      interestSaved: result.interest_saved,
+      monthsSaved,
+      interestSaved,
       bestPlanMonths: result.best_plan_months === "never" ? null : result.best_plan_months,
       bestPlanInterest: result.best_plan_interest,
       planType: planType(result.best_plan),
@@ -253,14 +268,64 @@ export function listOpportunities(
       bestMonthly: result.best_plan_monthly,
       products: snapshot.products.get(household.household_id) ?? [],
       noOfferReason: noOfferReason(result),
-      flags: snapshot.flags.get(household.household_id) ?? [],
+      flags: caseFlags(household.household_id, caseByHousehold.get(household.household_id), overrides, snapshot),
       caseStatus: caseByHousehold.get(household.household_id)?.status ?? null,
       lastContacted: outreach.last_contacted_at,
       readyDate: outreach.eligible_for_outreach_from,
       daysUntilReady: outreach.days_until_eligible,
       outreach: outreach.outreach_status,
-      noAction: result.status === "no_action_needed",
+      noAction: result.status === "no_action_needed" && fresh == null,
+      updatedInCase: fresh != null,
+      nightlyMonthsLabel: fresh ? pipelineMonthsLabel(result) : null,
+      nightlyInterestLabel: fresh ? pipelineInterestLabel(result) : null,
     });
   }
   return rows;
+}
+
+function pipelineMonthsLabel(result: PipelineResult): string {
+  if (result.months_saved === "from never") return NOT_COMPARABLE;
+  return formatMonths(result.months_saved);
+}
+
+function pipelineInterestLabel(result: PipelineResult): string {
+  if (result.months_saved === "from never" || result.interest_saved === "n/a") return NOT_COMPARABLE;
+  return formatMoney(result.interest_saved);
+}
+
+/** Flags on the case's confirmed facts. Source flags stay when the case has not edited them. */
+function caseFlags(
+  householdId: string,
+  caseRecord: Case | undefined,
+  overrides: readonly CaseOverride[],
+  snapshot: IndexedPipeline,
+): DataFlag[] {
+  const nightly = snapshot.flags.get(householdId) ?? [];
+  if (!caseRecord) return nightly;
+  const facts = overrides.filter((row) => row.case_id === caseRecord.case_id);
+  if (facts.length === 0) return nightly;
+  const state = householdWithCase(householdId, { overrides: facts, extraPayments: [], customLoans: [] });
+  const live: DataFlag[] = [];
+  for (const hit of flags(state.household, state.members, state.debts, state.properties)) {
+    if (!live.includes(hit.flag)) live.push(hit.flag);
+  }
+  return live;
+}
+
+/** Savings of the nightly plan recalculated on the case's confirmed facts. */
+function caseSavings(
+  householdId: string,
+  caseRecord: Case | undefined,
+  overrides: readonly CaseOverride[],
+): { monthsSaved: number | "from never"; interestSaved: number | "n/a" } | null {
+  if (!caseRecord) return null;
+  const facts = overrides.filter((row) => row.case_id === caseRecord.case_id);
+  if (facts.length === 0) return null;
+  const inputs = caseInputs(householdId, facts);
+  if (!inputs) return null;
+  const nightly = pipelineIndex().results.get(householdId);
+  if (!nightly) return null;
+  const plan = nightlyOnCase(inputs, nightly.best_plan);
+  if (!plan) return null;
+  return savingsAgainst(inputs.current, plan);
 }

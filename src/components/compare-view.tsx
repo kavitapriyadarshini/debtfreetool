@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { compareFor, type CompareColumn, type CompareView } from "@/lib/compare";
+import { compareFor, nextComparison, type CompareColumn, type CompareView } from "@/lib/compare";
 import { formatMoney } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -72,8 +72,8 @@ export function CompareView({
   const [shown, setShown] = useState<CompareColumn | null>(null);
   const [acknowledged, setAcknowledged] = useState(false);
   const [reason, setReason] = useState("");
+  const [replaced, setReplaced] = useState<string | null>(null);
 
-  const recommended = scenarios.find((row) => row.scenario_id === caseRow?.recommended_scenario_id) ?? null;
   const active = view?.columns.find((column) => column.id === selectedId) ?? null;
   const hasRecommendation = caseRow?.recommended_scenario_id != null;
   const selectedIsRecommended =
@@ -124,6 +124,13 @@ export function CompareView({
     setSelectedId((current) => (current === id ? null : id));
   }
 
+  function addSuggestion() {
+    if (!view) return;
+    const next = nextComparison(view.columns, view.suggestionId);
+    setReplaced(next.replaced);
+    router.push(`/households/${householdId}/workspace?compare=${next.ids.join(",")}`);
+  }
+
   if (!view || view.columns.length === 0) {
     return (
       <div className={cn("flex flex-col gap-3", actionBarOffset)}>
@@ -161,20 +168,9 @@ export function CompareView({
         </p>
       ) : null}
 
-      <section className="flex flex-col gap-1 rounded-lg border bg-card p-4" data-testid="suggestion">
-        <p className="text-sm text-muted-foreground">Suggestion</p>
-        <p className="font-medium">
-          <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
-          {view.suggestionName}
-        </p>
-        <p data-testid="suggestion-why">{view.why}</p>
-        {recommended ? <p className="text-sm text-muted-foreground">Your pick: {recommended.name}</p> : null}
-      </section>
-
       {view.addedBaselines ? (
         <p className="text-sm text-muted-foreground">Avalanche and snowball are included next to the loan.</p>
       ) : null}
-      {view.dropped ? <p className="text-sm text-muted-foreground">Only four plans fit side by side.</p> : null}
 
       <div className="grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-4">
         {view.columns.map((column) => {
@@ -218,7 +214,7 @@ export function CompareView({
                     </span>
                   ))}
                   {yours ? (
-                    <span className="rounded-full border px-2 py-0.5 text-xs text-muted-foreground">Your pick</span>
+                    <span className="rounded-full border px-2 py-0.5 text-xs text-muted-foreground">Previously recommended</span>
                   ) : null}
                 </div>
               </div>
@@ -235,15 +231,41 @@ export function CompareView({
                 <dd>{column.monthly}</dd>
               </dl>
               <PaymentDot alert={column.alert} label={column.alertLabel} />
-              {column.matchesSuggestion ? <p className="text-sm">{view.why}</p> : null}
               {column.note ? <p className="text-sm text-muted-foreground">{column.note}</p> : null}
             </div>
           );
         })}
       </div>
 
+      <section className="flex flex-col gap-2 rounded-lg border bg-card p-4" data-testid="suggestion">
+        <p className="text-sm text-muted-foreground">Suggestion</p>
+        <p className="font-medium">
+          <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
+          {view.suggestionName}
+        </p>
+        <p data-testid="suggestion-why">{view.why}</p>
+        {view.columns.some((column) => column.id === view.suggestionId) ? null : (
+          <Button type="button" variant="outline" onClick={addSuggestion}>
+            Add to comparison
+          </Button>
+        )}
+        {replaced ? <p className="text-sm">Replaced {replaced}.</p> : null}
+      </section>
+
       {active ? (
         <section className="flex min-w-0 flex-col gap-3">
+          <div className="rounded-lg border p-4" data-testid="money-goes">
+            <h2 className="mb-2 text-lg font-medium">Where the money goes</h2>
+            {active.moneyGoes.length === 0 ? (
+              <p className="text-sm">No payment changes.</p>
+            ) : (
+              <ul className="flex flex-col gap-1 text-sm">
+                {active.moneyGoes.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            )}
+          </div>
           <h2 className="text-lg font-medium">Schedule · {active.name}</h2>
           <BalanceChart column={active} />
           <div className="max-h-96 min-w-0 overflow-auto rounded-lg border">
@@ -279,6 +301,10 @@ export function CompareView({
                 {active.payoff.map((step, index) => (
                   <li key={`${step.name}-${step.when}-${index}`}>
                     {index + 1}. {step.name} — {step.when}
+                    {step.edits.map((line) => (
+                      <span key={line} className="block text-muted-foreground">{line}</span>
+                    ))}
+                    {step.resolved ? <span className="block text-muted-foreground">Resolved in this case</span> : null}
                   </li>
                 ))}
               </ol>
