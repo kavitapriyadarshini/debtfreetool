@@ -82,7 +82,7 @@ describe("persisted demo state", () => {
       version: number;
       state: { snapshots: { schedule: unknown[]; years: unknown[] }[]; scenarios: unknown[]; cases: unknown[] };
     };
-    expect(parsed.version).toBe(2);
+    expect(parsed.version).toBe(3);
     expect(parsed.state.cases.length).toBeGreaterThan(0);
     expect(parsed.state.scenarios.length).toBeGreaterThan(0);
     expect(parsed.state.snapshots.every((row) => row.schedule.length === 0)).toBe(true);
@@ -90,5 +90,49 @@ describe("persisted demo state", () => {
     const live = useDemoStore.getState().snapshots.find((row) => row.household_id === "H01");
     expect(live?.schedule.length).toBeGreaterThan(0);
     store.resetDemo();
+  });
+
+  it("renames seeded plan titles saved by an older browser and leaves case history in place", async () => {
+    const memory = new Map<string, string>();
+    Object.defineProperty(globalThis, "localStorage", {
+      configurable: true,
+      value: {
+        getItem: (key: string) => memory.get(key) ?? null,
+        setItem: (key: string, value: string) => {
+          memory.set(key, value);
+        },
+        removeItem: (key: string) => {
+          memory.delete(key);
+        },
+      },
+    });
+    const { migrateDemoState, useDemoStore } = await import("../store");
+    const persisted = {
+      scenarios: [
+        { scenario_id: "S0001", case_id: "C0001", name: "Avalanche (edited data)" },
+        { scenario_id: "S0002", case_id: "C0001", name: "HELOAN Yellow 15-yr (nightly best)" },
+        { scenario_id: "S0097", case_id: "C0031", name: "Avalanche (edited data)" },
+      ],
+      caseOverrides: [{ case_id: "C0031" }],
+      caseHistory: [{ event: "scenario_added", ref_id: "S0001" }],
+      snapshots: [{ schedule: [1, 2], years: ["y"] }],
+    };
+    const fromFirst = migrateDemoState(structuredClone(persisted), 1) as unknown as typeof persisted;
+    const next = migrateDemoState(persisted, 2) as unknown as typeof persisted;
+    expect(next.scenarios.map((row) => row.name)).toEqual([
+      "Avalanche",
+      "HELOAN Yellow 15-yr",
+      "Avalanche (edited data)",
+    ]);
+    expect(next.caseHistory).toEqual(persisted.caseHistory);
+    expect(next.snapshots[0]?.schedule).toEqual([1, 2]);
+    expect(fromFirst.snapshots[0]?.schedule).toEqual([]);
+    expect(fromFirst.scenarios[0]?.name).toBe("Avalanche");
+
+    useDemoStore.getState().resetDemo();
+    const loaded = useDemoStore.getState().scenarios;
+    expect(loaded.find((row) => row.scenario_id === "S0001")?.name).toBe("Avalanche");
+    expect(loaded.some((row) => row.name.endsWith(" (nightly best)"))).toBe(false);
+    expect(loaded.find((row) => row.scenario_id === "S0097")?.name).toBe("Avalanche (edited data)");
   });
 });

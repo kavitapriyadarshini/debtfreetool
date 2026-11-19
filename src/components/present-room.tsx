@@ -200,7 +200,7 @@ export function PresentRoom({
             <h2 className="text-2xl font-semibold">Month by month</h2>
             <div role="group" aria-label="Which schedule" className="flex gap-2">
               <Button size="sm" variant={showing === "plan" ? "default" : "outline"} aria-pressed={showing === "plan"} onClick={() => { setShowing("plan"); setOpenYear(null); }}>
-                Your plan
+                Your recommended plan
               </Button>
               <Button size="sm" variant={showing === "today" ? "default" : "outline"} aria-pressed={showing === "today"} onClick={() => { setShowing("today"); setOpenYear(null); }}>
                 Today
@@ -298,7 +298,7 @@ function Comparison({
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[48rem] border-separate border-spacing-0 text-left">
-        <caption className="sr-only">Today, your plan, and the other plans you compared</caption>
+        <caption className="sr-only">Today, your recommended plan, and the other plans you compared</caption>
         <thead>
           <tr>
             <th className="sticky left-0 z-10 min-w-40 bg-background" />

@@ -48,6 +48,12 @@ export function SummarySheet({ householdId }: { householdId: string }) {
   );
 }
 
+/** Agreements saved before this wording still print the current heading. */
+function recommendedTitle(planName: string): string {
+  if (planName.startsWith("Your plan:")) return `Your recommended plan:${planName.slice("Your plan:".length)}`;
+  return planName;
+}
+
 function Pdf({ snapshot }: { snapshot: FrozenSnapshot }) {
   const advantages = snapshot.advantages ?? [];
   const things = snapshot.thingsToKnow ?? [];
@@ -61,7 +67,7 @@ function Pdf({ snapshot }: { snapshot: FrozenSnapshot }) {
         <header className="flex items-end justify-between gap-4 border-b border-neutral-300 pb-2">
           <div>
             <p className="text-[11px] text-neutral-500">{snapshot.name}</p>
-            <h2 className="text-xl font-semibold tracking-tight">{snapshot.planName || snapshot.name}</h2>
+            <h2 className="text-xl font-semibold tracking-tight">{recommendedTitle(snapshot.planName || snapshot.name)}</h2>
           </div>
           <p className="text-right">
             {snapshot.advisor}
@@ -78,7 +84,7 @@ function Pdf({ snapshot }: { snapshot: FrozenSnapshot }) {
             <p>Monthly payment {snapshot.today.monthly}</p>
           </section>
           <section>
-            <h3 className="text-[11px] font-medium text-neutral-500">Your plan</h3>
+            <h3 className="text-[11px] font-medium text-neutral-500">Your recommended plan</h3>
             <p className="mt-1">Debt free by {snapshot.plan.debtFree}</p>
             <p>Total interest {snapshot.plan.interest}</p>
             <p>Interest saved {snapshot.interestSaved}</p>

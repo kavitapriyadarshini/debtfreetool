@@ -89,10 +89,10 @@ describe("present mode", () => {
     expect(model?.interestSaved.endsWith("less")).toBe(true);
     expect(model?.monthsSooner).toMatch(/months sooner$/);
     expect(model?.loan).toBe("This plan includes a loan. It is secured on your home.");
-    expect(model?.title).toBe("Your plan: Pay off your cards with a home equity loan, then clear the rest in order");
+    expect(model?.title).toBe("Your recommended plan: Pay off your cards with a home equity loan, then clear the rest in order");
     expect(model?.advisor).toBe("Pamela Wilson");
     expect(model?.date).toBe("14 Nov 2026");
-    expect(model?.columns.map((column) => column.heading).slice(0, 2)).toEqual(["Today", "Your plan"]);
+    expect(model?.columns.map((column) => column.heading).slice(0, 2)).toEqual(["Today", "Your recommended plan"]);
     expect(model?.advantages).toEqual([
       "Debt free 9 years 6 months sooner.",
       "$107,710 less interest.",
@@ -136,7 +136,7 @@ describe("present mode", () => {
     const model = show("H11");
     expect(model?.selectedId).toBe("S0015");
     expect(model?.loan).toBe("This plan includes a loan. It is not secured on your home.");
-    expect(model?.title).toBe("Your plan: Pay off some debts with a new loan, then clear the rest in order");
+    expect(model?.title).toBe("Your recommended plan: Pay off some debts with a new loan, then clear the rest in order");
     expect(model?.thingsToKnow).toContain("A new loan needs a credit application.");
     expect(model?.thingsToKnow).toContain("The loan runs 3 years.");
     expect(model?.thingsToKnow).not.toContain("The new loan is secured on your home, which is at risk if payments are missed.");

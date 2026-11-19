@@ -3,7 +3,7 @@ import { householdFico } from "./engine/household";
 import { casePreview, runScenario, type CaseState, type ScenarioRun } from "./engine/scenario";
 import type { BuiltOffer } from "./engine/offers";
 import type { ScheduleRow } from "./engine/simulate";
-import { planKey } from "./case-inputs";
+import { editedName, normalizeSeededScenarios, planKey } from "./case-inputs";
 import { formatDate, formatMoney, formatMonths, formatRate } from "./format";
 import { workspaceFor, type ScenarioCard } from "./workspace";
 import type { Scenario } from "./types";
@@ -64,7 +64,7 @@ export type PresentColumn = {
   interestSaved: string;
   monthly: string;
   payoff: { name: string; when: string }[];
-  /** Origin of a grey column, shown in small text. Empty for Today and Your plan. */
+  /** Origin of a grey column, shown in small text. Empty for Today and Your recommended plan. */
   source: string;
 };
 
@@ -434,6 +434,8 @@ export function presentFor(
   comparedIds: readonly string[] = [],
 ): PresentModel | null {
   const overrides = caseId == null ? [] : caseState.overrides.filter((row) => row.case_id === caseId);
+  const hasEdits = overrides.length > 0;
+  const named = normalizeSeededScenarios(scenarios, overrides);
   let preview;
   try {
     preview = casePreview(householdId, overrides);
@@ -441,15 +443,15 @@ export function presentFor(
     return null;
   }
   const bound = caseId ?? "draft";
-  const saved = scenarios.filter((row) => caseId != null && row.case_id === caseId);
+  const saved = named.filter((row) => caseId != null && row.case_id === caseId);
   const choices: { id: string; label: string; scenario: Scenario; savedId: string | null }[] = saved.map((row) => ({
     id: row.scenario_id,
-    label: row.name,
+    label: editedName(row.name, hasEdits),
     scenario: { ...row, case_id: bound },
     savedId: row.scenario_id,
   }));
   for (const strategy of ["avalanche", "snowball"] as const) {
-    const label = strategy === "avalanche" ? "Avalanche" : "Snowball";
+    const label = editedName(strategy === "avalanche" ? "Avalanche" : "Snowball", hasEdits);
     choices.push({
       id: strategy,
       label,
@@ -527,7 +529,7 @@ export function presentFor(
     },
     {
       id: selected.id,
-      heading: "Your plan",
+      heading: "Your recommended plan",
       tone: "plan",
       debtFree: plan.debtFree,
       sooner: monthsSooner(today.months, plan.months),
@@ -582,7 +584,7 @@ export function presentFor(
 
   return {
     name: friendlyName(preview.state.household.household_name),
-    title: `Your plan: ${plainPlanName(selected.scenario)}`,
+    title: `Your recommended plan: ${plainPlanName(selected.scenario)}`,
     advisor: preview.state.household.advisor,
     date: formatDate(AS_OF),
     estimated,

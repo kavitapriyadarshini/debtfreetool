@@ -14,22 +14,26 @@ export function ActionBar({
   name,
   children,
   edge = "content",
+  banner,
 }: {
   name: string;
   children: ReactNode;
   /** Present mode has no app sidebar, so the bar spans the screen. */
   edge?: "content" | "screen";
+  /** Fixed content sitting directly above the actions, such as the plan rule. */
+  banner?: ReactNode;
 }) {
   const bar = useRef<HTMLDivElement>(null);
 
+  const raised = banner != null;
   useEffect(() => {
     const root = document.documentElement;
     const previous = root.style.scrollPaddingBottom;
-    root.style.scrollPaddingBottom = "9rem";
+    root.style.scrollPaddingBottom = raised ? "14rem" : "9rem";
     return () => {
       root.style.scrollPaddingBottom = previous;
     };
-  }, []);
+  }, [raised]);
 
   function onKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     const key = event.key;
@@ -48,18 +52,23 @@ export function ActionBar({
 
   return (
     <div
-      ref={bar}
-      role="toolbar"
-      aria-label={`Actions for ${name}`}
-      data-testid="action-bar"
-      onKeyDown={onKeyDown}
       className={cn(
-        "fixed bottom-0 right-0 z-40 flex flex-wrap items-center gap-x-3 gap-y-2 border-t bg-card px-4 py-3 print:hidden",
+        "fixed bottom-0 right-0 z-40 flex flex-col print:hidden",
         edge === "screen" ? "left-0" : "left-0 md:left-56",
       )}
     >
-      <p className="mr-auto min-w-0 truncate text-sm font-medium">{name}</p>
-      <div className="flex flex-wrap items-center justify-end gap-2">{children}</div>
+      {banner}
+      <div
+        ref={bar}
+        role="toolbar"
+        aria-label={`Actions for ${name}`}
+        data-testid="action-bar"
+        onKeyDown={onKeyDown}
+        className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t bg-card px-4 py-3"
+      >
+        <p className="mr-auto min-w-0 truncate text-sm font-medium">{name}</p>
+        <div className="flex flex-wrap items-center justify-end gap-2">{children}</div>
+      </div>
     </div>
   );
 }

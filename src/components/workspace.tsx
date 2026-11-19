@@ -34,9 +34,13 @@ import { formatMoney } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import {
+  DUPLICATE_EXCLUDED,
+  headerBadges,
+  identicalPlan,
   LOAN_MOVES_NOTHING,
   paymentRule,
   paymentSummary,
+  planSource,
   previewHousehold,
   rateText,
   reservedPlanNames,
@@ -105,10 +109,11 @@ export function Workspace({
     const matches = cases.filter((row) => row.household_id === householdId);
     return matches[matches.length - 1]?.case_id ?? null;
   }, [cases, householdId]);
+  const recommendedScenarioId = cases.find((row) => row.case_id === caseId)?.recommended_scenario_id ?? null;
 
   const kept = useKeptResult(
-    () => workspaceFor(householdId, caseId, { overrides, extraPayments, customLoans }, scenarios),
-    [householdId, caseId, overrides, extraPayments, customLoans, scenarios],
+    () => workspaceFor(householdId, caseId, { overrides, extraPayments, customLoans }, scenarios, recommendedScenarioId),
+    [householdId, caseId, overrides, extraPayments, customLoans, scenarios, recommendedScenarioId],
   );
   const model = kept.value;
 
@@ -286,14 +291,16 @@ export function Workspace({
   }
 
   function save() {
-    if (!model || !draft) return;
-    const message = validate(builder, model, draft, takenNames);
+    if (!model) return;
+    const saving = draftFrom(builder, model);
+    if (!saving) return;
+    const message = validate(builder, model, saving, takenNames);
     if (message) {
       setError(message);
       return;
     }
     const opened = startCase(householdId);
-    const extraIds = draft.extras.map((extra) => {
+    const extraIds = saving.extras.map((extra) => {
       if (extra.id) return extra.id;
       return addExtraPayment({
         caseId: opened,
@@ -304,25 +311,25 @@ export function Workspace({
         reason: "Added with this scenario",
       });
     });
-    if (draft.loanSource === "custom" && draft.loanRate != null && draft.termMonths != null) {
+    if (saving.loanSource === "custom" && saving.loanRate != null && saving.termMonths != null) {
       addCustomLoan({
         caseId: opened,
         householdId,
         lenderName: builder.lender.trim(),
-        rate: draft.loanRate,
-        termMonths: draft.termMonths,
+        rate: saving.loanRate,
+        termMonths: saving.termMonths,
         maxAmount: Number(builder.customMax),
       });
     }
     const fields = {
-      name: draft.name,
-      strategy: draft.strategy,
-      loan_source: draft.loanSource,
-      product: draft.loanSource === "product" ? draft.product : null,
-      term_months: draft.loanSource === "none" ? null : draft.termMonths,
-      loan_amount: draft.loanSource === "none" ? 0 : draft.loanAmount,
-      loan_rate: draft.loanSource === "none" ? null : draft.loanRate,
-      debts_paid_off: draft.loanSource === "none" ? null : draft.debtIds.join(";") || null,
+      name: saving.name,
+      strategy: saving.strategy,
+      loan_source: saving.loanSource,
+      product: saving.loanSource === "product" ? saving.product : null,
+      term_months: saving.loanSource === "none" ? null : saving.termMonths,
+      loan_amount: saving.loanSource === "none" ? 0 : saving.loanAmount,
+      loan_rate: saving.loanSource === "none" ? null : saving.loanRate,
+      debts_paid_off: saving.loanSource === "none" ? null : saving.debtIds.join(";") || null,
       extra_payment_ids: extraIds.join(";") || null,
     };
     if (builder.scenarioId) updateScenario(builder.scenarioId, fields);
@@ -352,12 +359,14 @@ export function Workspace({
     builder.scenarioId,
   );
   const nameError = scenarioNameError(builder.name, takenNames);
+  const liveDraft = draftFrom(builder, model);
+  const sameAs = liveDraft ? identicalPlan(liveDraft, model.cards, builder.scenarioId) : null;
   const productNames = [...new Set(model.choices.map((row) => row.product))];
   const termChoices = model.choices.filter((row) => row.product === (choice?.product ?? productNames[0]));
   const shownDebts = model.debts.filter((debt) => !debt.propertyId || debt.propertyId === choice?.propertyId);
 
   return (
-    <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset)}>
+    <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset, "pb-56")}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
       <header>
         <p className="text-xs font-medium tracking-wide text-muted-foreground">S3</p>
@@ -661,12 +670,17 @@ export function Workspace({
               <StaleNotice failed stale={keptPreview.stale} onRetry={keptPreview.retry} />
             ) : null}
             {preview ? <Preview preview={preview} /> : null}
-            {error ? <p className="text-sm text-muted-foreground">{error}</p> : null}
+            {sameAs ? (
+              <p className="text-sm" role="alert">
+                Same as {sameAs}
+              </p>
+            ) : null}
+            {error && error !== `Same as ${sameAs}` ? <p className="text-sm text-muted-foreground">{error}</p> : null}
           </div>
           <SheetFooter>
             <Button
               aria-busy={pressed === "save"}
-              disabled={nameError != null}
+              disabled={nameError != null || sameAs != null}
               onClick={() => {
                 setPressed("save");
                 window.setTimeout(() => {
@@ -680,7 +694,10 @@ export function Workspace({
           </SheetFooter>
         </SheetContent>
       </Sheet> : null}
-      <ActionBar name={model.name}>
+      <ActionBar
+        name={model.name}
+        banner={<PlanRule text={paymentRule(formatMoney(today[0]?.todayMonthly ?? 0))} />}
+      >
         <Button
           variant="outline"
           aria-busy={pressed === "new"}
@@ -818,6 +835,8 @@ function validate(
   draft: ScenarioDraft,
   taken: readonly string[],
 ): string | null {
+  const same = identicalPlan(draft, model.cards, builder.scenarioId);
+  if (same) return `Same as ${same}`;
   const nameError = scenarioNameError(builder.name, taken);
   if (nameError) return nameError;
   if (builder.loanSource === "product" && !model.choices.some((row) => row.id === builder.choiceId)) {
@@ -841,6 +860,9 @@ function validate(
 const LABEL_CELL = "sticky left-0 z-20 box-border w-[168px] min-w-[168px] max-w-[168px] break-words border-b bg-background px-3 py-2 text-left align-top text-sm font-medium";
 const TODAY_CELL = "sticky left-[168px] z-10 box-border w-[200px] min-w-[200px] max-w-[200px] break-words border-b bg-muted px-3 py-2 text-left align-top text-sm";
 const PLAN_CELL = "box-border w-[200px] min-w-[200px] max-w-[200px] break-words border-b bg-background px-3 py-2 text-left align-top text-sm";
+const COLUMN_SIDE = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_var(--foreground)]";
+const COLUMN_TOP = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_var(--foreground),inset_0_2px_0_0_var(--foreground)]";
+const COLUMN_BOTTOM = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_var(--foreground),inset_0_-2px_0_0_var(--foreground)]";
 
 function PlanTable({
   columns,
@@ -869,8 +891,14 @@ function PlanTable({
   onExplain: (card: ScenarioCard) => void;
   onRemove: (scenarioId: string) => void;
 }) {
+  function cell(card: ScenarioCard, edge: "top" | "middle" | "bottom") {
+    const picked = card.origin !== "today" && selected.includes(card.id);
+    const outline = edge === "top" ? COLUMN_TOP : edge === "bottom" ? COLUMN_BOTTOM : COLUMN_SIDE;
+    return cn(card.origin === "today" ? TODAY_CELL : PLAN_CELL, picked && outline);
+  }
+
   const rows: { label: string; cell: (card: ScenarioCard) => ReactNode }[] = [
-    { label: "Source", cell: (card) => <SourceBadges badges={card.badges} /> },
+    { label: "Source", cell: (card) => <SourceBadges badges={[planSource(card)]} /> },
     { label: "Debt-free in", cell: (card) => card.debtFree },
     { label: "Months saved", cell: (card) => <SavingsText value={card.monthsSaved} reason={note} /> },
     { label: "Total interest", cell: (card) => <SavingsText value={card.interest} /> },
@@ -889,7 +917,6 @@ function PlanTable({
   ];
 
   return (
-    <>
     <div className="min-w-0 overflow-x-auto">
       <table
         className="border-separate border-spacing-0 text-sm"
@@ -903,30 +930,42 @@ function PlanTable({
             </th>
             {columns.map((card) => {
               const today = card.origin === "today";
-              const ticked = today || selected.includes(card.id);
+              const ticked = !today && selected.includes(card.id);
               const blocked = !card.comparable;
               const picked = selected.filter((id) => id !== "current");
-              const disabled = today || blocked || (picked.length >= COMPARE_PICKS && !selected.includes(card.id));
+              const disabled = blocked || (picked.length >= COMPARE_PICKS && !ticked);
               return (
-                <th key={card.id} className={today ? TODAY_CELL : PLAN_CELL} scope="col">
+                <th key={card.id} className={cell(card, "top")} scope="col">
                   <div className="flex flex-col items-start gap-1">
-                    <div onClick={(event) => event.stopPropagation()}>
-                      <Checkbox
-                        checked={ticked}
-                        disabled={disabled}
-                        onCheckedChange={() => {
-                          if (!today && !blocked) onCompare(card.id);
-                        }}
-                        aria-label={
-                          today
-                            ? `${card.name}. Always compared`
-                            : blocked
-                              ? `${card.name}. ${LOAN_MOVES_NOTHING}`
-                              : `Compare ${card.name}`
-                        }
-                      />
-                    </div>
+                    {today ? (
+                      <p className="text-sm text-muted-foreground">Always compared</p>
+                    ) : (
+                      <label className="flex items-center gap-2">
+                        <Checkbox
+                          checked={ticked}
+                          disabled={disabled}
+                          onCheckedChange={() => {
+                            if (!blocked) onCompare(card.id);
+                          }}
+                          ref={(node: HTMLElement | null) => {
+                            if (!node) return;
+                            node.onfocus = () => {
+                              node.style.outline = "2px solid var(--foreground)";
+                              node.style.outlineOffset = "2px";
+                            };
+                            node.onblur = () => {
+                              node.style.outline = "";
+                              node.style.outlineOffset = "";
+                            };
+                          }}
+                          aria-label={blocked ? `Compare ${card.name}. ${LOAN_MOVES_NOTHING}` : `Compare ${card.name}`}
+                          className="size-5 rounded-[4px] border-2 border-foreground bg-background text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground data-checked:border-foreground data-checked:bg-foreground data-checked:text-background disabled:opacity-100"
+                        />
+                        <span className="text-sm">Compare</span>
+                      </label>
+                    )}
                     <PlanName name={card.name} onOpen={() => onOpen(card)} />
+                    <HeaderBadges badges={card.badges} />
                     <button
                       type="button"
                       className="text-left text-xs text-muted-foreground hover:underline"
@@ -957,7 +996,7 @@ function PlanTable({
                 {row.label}
               </th>
               {columns.map((card) => (
-                <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+                <td key={card.id} className={cell(card, "middle")}>
                   {row.cell(card)}
                 </td>
               ))}
@@ -975,7 +1014,7 @@ function PlanTable({
               </button>
             </th>
             {columns.map((card) => (
-              <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL} />
+              <td key={card.id} className={cell(card, "middle")} />
             ))}
           </tr>
           {debtsOpen ? (
@@ -983,7 +1022,16 @@ function PlanTable({
               {debts.map((debt) => (
                 <tr key={debt.debtId}>
                   <th className={cn(LABEL_CELL, "pl-6 font-normal", debt.included ? "" : "text-muted-foreground")} scope="row">
-                    <span>{debt.name} · {debt.rate}</span>
+                    {debt.duplicateExcluded ? (
+                      <Tooltip>
+                        <TooltipTrigger type="button" className="text-left underline decoration-dotted underline-offset-2">
+                          {debt.name} · {debt.rate}
+                        </TooltipTrigger>
+                        <TooltipContent>{DUPLICATE_EXCLUDED}</TooltipContent>
+                      </Tooltip>
+                    ) : (
+                      <span>{debt.name} · {debt.rate}</span>
+                    )}
                     {debt.edits.map((line) => (
                       <span key={line} className="mt-1 block">{line}</span>
                     ))}
@@ -992,7 +1040,7 @@ function PlanTable({
                   {columns.map((card) => (
                     <td
                       key={card.id}
-                      className={cn(card.origin === "today" ? TODAY_CELL : PLAN_CELL, debt.included ? "" : "text-muted-foreground")}
+                      className={cn(cell(card, "middle"), debt.included ? "" : "text-muted-foreground")}
                     >
                       {debt.included ? (card.debtWhen[debt.debtId] ?? "Never") : "Not included"}
                     </td>
@@ -1005,7 +1053,7 @@ function PlanTable({
                     New loan
                   </th>
                   {columns.map((card) => (
-                    <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+                    <td key={card.id} className={cell(card, "middle")}>
                       {card.loanDebt ? (
                         <span className="flex flex-col gap-1">
                           <span>{card.loanDebt}</span>
@@ -1032,7 +1080,7 @@ function PlanTable({
               </button>
             </th>
             {columns.map((card) => (
-              <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+              <td key={card.id} className={cell(card, "bottom")}>
                 {moneyOpen ? <MoneyCell lines={card.moneyGoes} /> : null}
               </td>
             ))}
@@ -1040,10 +1088,28 @@ function PlanTable({
         </tbody>
       </table>
     </div>
-    <p className="max-w-3xl text-sm text-muted-foreground">
-      {paymentRule(formatMoney(columns.find((card) => card.origin === "today")?.todayMonthly ?? 0))}
-    </p>
-    </>
+  );
+}
+
+function PlanRule({ text }: { text: string }) {
+  const [open, setOpen] = useState(true);
+  return (
+    <div className="border-t bg-background px-4 py-2" data-testid="plan-rule">
+      <div className="flex items-start gap-3">
+        <p id="plan-rule-text" className={cn("min-w-0 flex-1 text-sm text-muted-foreground", !open && "line-clamp-1")}>
+          {text}
+        </p>
+        <button
+          type="button"
+          className="shrink-0 text-sm underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+          aria-expanded={open}
+          aria-controls="plan-rule-text"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? "Collapse" : "Expand"}
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -1113,6 +1179,12 @@ function MoneyCell({ lines }: { lines: string[] }) {
       ) : null}
     </div>
   );
+}
+
+function HeaderBadges({ badges }: { badges: string[] }) {
+  const marks = headerBadges(badges);
+  if (marks.length === 0) return null;
+  return <SourceBadges badges={marks} />;
 }
 
 function SourceBadges({ badges }: { badges: string[] }) {

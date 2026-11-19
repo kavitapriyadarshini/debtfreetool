@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { caseOverrides, cases, customLoans, extraPayments, households, scenarios } from "../data";
+import { caseHistory, caseOverrides, cases, customLoans, extraPayments, households, scenarios } from "../data";
 import { householdWithCase } from "../engine/scenario";
 import { formatMoney, NOT_COMPARABLE } from "../format";
 import {
   BELOW_MINIMUM,
   INCLUDES_EXTRAS,
+  identicalPlan,
   LOAN_MOVES_NOTHING,
   NAME_TAKEN,
   NEVER_NOTE,
@@ -14,6 +15,7 @@ import {
   interestSavedText,
   paymentRule,
   paymentSummary,
+  planSource,
   previewDraft,
   previewHousehold,
   reservedPlanNames,
@@ -23,6 +25,7 @@ import {
   workspaceFor,
   type ScenarioDraft,
 } from "../workspace";
+import { editedName, normalizeSeededScenarios } from "../case-inputs";
 import { compareFor } from "../compare";
 import type { Scenario } from "../types";
 
@@ -213,7 +216,10 @@ describe("scenario workspace", () => {
       interestSaved: "$3,304",
       spare: "Spare money goes to Synchrony Store Card, the highest rate.",
     });
-    expect(avalanche?.[0]?.badges).toEqual(expect.arrayContaining(["Nightly best", "Built-in", "Built by you"]));
+    expect(planSource(avalanche![0]!)).toBe("Built-in");
+    expect(avalanche?.[0]?.badges).toContain("Nightly best");
+    expect(avalanche?.[0]?.badges).not.toContain("Built by you");
+    expect(avalanche?.[0]?.badges.filter((badge) => badge === "Today" || badge === "Built-in" || badge === "Built by you")).toEqual(["Built-in"]);
     expect(snowball).toMatchObject({
       debtFree: "25 months",
       interest: "$18,533",
@@ -307,6 +313,38 @@ describe("scenario workspace", () => {
     );
   });
 
+  it("keeps one source on H265 avalanche and one row for the excluded Barclays card", () => {
+    const view = model("H265");
+    const avalanche = view?.cards.filter((card) => card.name === "Avalanche (edited data)") ?? [];
+    expect(avalanche).toHaveLength(1);
+    expect(planSource(avalanche[0]!)).toBe("Built-in");
+    expect(avalanche[0]?.badges).not.toContain("Built by you");
+    expect(avalanche[0]?.badges).not.toContain("Today");
+    expect(avalanche[0]?.origin).toBe("builtin");
+    expect(avalanche[0]?.scenarioId).toBe("S0097");
+    expect(caseHistory.some((event) => event.event === "scenario_added" && event.ref_id === "S0097")).toBe(true);
+    const barclays = view?.debtRows.filter((row) => row.name === "Barclays View" && row.rate === "20.87%") ?? [];
+    expect(barclays).toHaveLength(1);
+    expect(barclays[0]).toMatchObject({ debtId: "H265-D03", duplicateExcluded: true, included: true });
+    expect(view?.debtRows.some((row) => row.debtId === "H265-D09")).toBe(false);
+    const copy = identicalPlan(
+      {
+        name: "Another avalanche",
+        strategy: "avalanche",
+        loanSource: "none",
+        product: null,
+        termMonths: null,
+        loanAmount: 0,
+        loanRate: null,
+        debtIds: [],
+        extras: [],
+      },
+      view?.cards ?? [],
+      null,
+    );
+    expect(copy).toBe("Avalanche (edited data)");
+  });
+
   it("pins H01's current path first and gives Nightly best to Yellow 15-year only", () => {
     const view = model("H01");
     expect(view?.cards[0]?.name).toBe("Current path");
@@ -331,6 +369,63 @@ describe("scenario workspace", () => {
       expect.arrayContaining(["Avalanche", "Snowball"]),
     );
     expect(view?.cards.filter((card) => card.origin === "advisor").every((card) => card.badges.includes("Built by you"))).toBe(true);
+  });
+
+  it("suggests a plan with no payment alert, and says when a faster plan raises it", () => {
+    for (const household of households) {
+      const view = model(household.household_id);
+      const suggested = view?.cards.filter((card) => card.suggested) ?? [];
+      expect(suggested, household.household_id).toHaveLength(1);
+      expect(suggested[0]?.alert, `${household.household_id} ${suggested[0]?.name}`).toBe("none");
+    }
+    const view = model("H11");
+    const suggested = view?.cards.find((card) => card.suggested);
+    const nightly = view?.cards.find((card) => card.nightly);
+    expect(suggested?.name).toBe("FastApp 3-year (edited data)");
+    expect(suggested?.badges).toEqual(expect.arrayContaining(["Suggested"]));
+    expect(suggested?.badges).not.toContain("Nightly best");
+    expect(nightly?.name).toBe("FastApp 1-year (edited data)");
+    expect(nightly?.alert).toBe("red");
+    expect(nightly?.badges).toContain("Nightly best");
+    expect(nightly?.badges).not.toContain("Suggested");
+    expect(view?.cards.some((card) => card.alert === "red" && card.alertLabel === "Monthly payment $1,182 → $3,440 (+191%)")).toBe(true);
+    expect(view?.suggestionWhy).toBe(
+      "15 months sooner and $13,700 less interest than paying smarter without a loan. A faster plan (FastApp 1-year (edited data), 1 year) raises the monthly payment by $2,258 (+191%).",
+    );
+  });
+
+  it("adds (edited data) only while the case has an override", () => {
+    const plain = model("H01");
+    expect(plain?.cards.length).toBeGreaterThan(0);
+    expect(plain?.cards.every((card) => !card.name.includes("edited data"))).toBe(true);
+    expect(plain?.cards.find((card) => card.id === "avalanche")).toMatchObject({
+      name: "Avalanche",
+      scenarioId: "S0001",
+    });
+    expect(plain?.cards.find((card) => card.nightly)?.name).toBe("HELOAN Yellow 15-year");
+    expect(plain?.cards.some((card) => card.name.includes("nightly best"))).toBe(false);
+
+    const edited = model("H55");
+    expect(edited?.cards.length).toBeGreaterThan(0);
+    expect(edited?.cards.every((card) => card.name.endsWith("(edited data)"))).toBe(true);
+
+    const state = { overrides: caseOverrides, extraPayments, customLoans };
+    const cleared = workspaceFor("H55", "C0016", { ...state, overrides: [] }, scenarios);
+    expect(cleared?.cards.every((card) => !card.name.includes("edited data"))).toBe(true);
+    const restored = workspaceFor("H55", "C0016", state, scenarios);
+    expect(restored?.cards.every((card) => card.name.endsWith("(edited data)"))).toBe(true);
+
+    expect(editedName("Avalanche (edited data)", false)).toBe("Avalanche");
+    expect(editedName("Current path", true)).toBe("Current path (edited data)");
+    expect(scenarios.filter((row) => row.name === "Avalanche (edited data)")).toHaveLength(93);
+    const cleaned = normalizeSeededScenarios(scenarios, caseOverrides);
+    const kept = cleaned.filter((row) => row.name === "Avalanche (edited data)");
+    expect(kept).toHaveLength(20);
+    expect(kept.every((row) => caseOverrides.some((override) => override.case_id === row.case_id))).toBe(true);
+    expect(cleaned.filter((row) => row.name === "Avalanche" && scenarios.find((seed) => seed.scenario_id === row.scenario_id)?.name === "Avalanche (edited data)")).toHaveLength(73);
+    expect(cleaned.some((row) => row.name.endsWith(" (nightly best)"))).toBe(false);
+    expect(scenarios.some((row) => row.name.endsWith(" (nightly best)"))).toBe(true);
+    expect(caseHistory.some((event) => event.event === "scenario_added" && event.ref_id === "S0001")).toBe(true);
   });
 
   it("marks a home-equity offer as estimated when nobody has a FICO score", () => {

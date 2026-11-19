@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { normalizeSeededScenarios } from "./case-inputs";
 import { AS_OF } from "./config";
 import {
   caseHistory as seedHistory,
@@ -133,16 +134,33 @@ type DemoActions = {
 export type DemoState = DemoData & { user: DemoUser } & DemoActions;
 
 function cloneSeed(): DemoData {
+  const caseOverrides = structuredClone(seedOverrides);
   return {
     cases: structuredClone(seedCases),
     caseHistory: structuredClone(seedHistory),
-    scenarios: structuredClone(seedScenarios),
+    scenarios: normalizeSeededScenarios(structuredClone(seedScenarios), caseOverrides),
     extraPayments: structuredClone(seedExtras),
-    caseOverrides: structuredClone(seedOverrides),
+    caseOverrides,
     customLoans: structuredClone(seedLoans),
     contacts: structuredClone(seedContacts),
     snapshots: [],
   };
+}
+
+/** Older browsers stored the seeded titles. Version 2 cleared snapshot schedules; version 3 cleans the titles. */
+export function migrateDemoState(persisted: unknown, version: number): DemoState {
+  const state = persisted as {
+    snapshots?: FrozenSnapshot[];
+    scenarios?: Scenario[];
+    caseOverrides?: CaseOverride[];
+  };
+  if (version < 2 && state.snapshots) {
+    state.snapshots = state.snapshots.map((row) => ({ ...row, schedule: [] }));
+  }
+  if (version < 3 && state.scenarios) {
+    state.scenarios = normalizeSeededScenarios(state.scenarios, state.caseOverrides ?? []);
+  }
+  return persisted as DemoState;
 }
 
 function nextId(ids: readonly string[], prefix: string, width: number): string {
@@ -582,16 +600,10 @@ export const useDemoStore = create<DemoState>()(
     }),
     {
       name: "debt-free-v1",
-      version: 2,
+      version: 3,
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
-      migrate: (persisted, version) => {
-        const state = persisted as { snapshots?: FrozenSnapshot[] };
-        if (version < 2 && state.snapshots) {
-          state.snapshots = state.snapshots.map((row) => ({ ...row, schedule: [] }));
-        }
-        return persisted as DemoState;
-      },
+      migrate: migrateDemoState,
       partialize: (state) => ({
         user: state.user,
         cases: state.cases,

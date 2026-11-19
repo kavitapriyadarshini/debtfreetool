@@ -76,17 +76,21 @@ describe("compare view", () => {
     expect(view?.columns[0]?.recommendable).toBe(true);
   });
 
-  it("marks H11's FastApp 1-year as the suggestion with a red alert", () => {
+  it("keeps H11's FastApp 1-year listed with a red alert and suggests a plan with none", () => {
     const model = workspaceFor("H11", "C0005", state, scenarios);
     const fast = model?.choices.find((row) => row.label === "FastApp 1-year");
     if (!fast) throw new Error("Missing FastApp 1-year");
     const view = open("H11", [fast.id]);
     const column = view?.columns.find((row) => row.name === "FastApp 1-year (edited data)");
-    expect(view?.suggestionName).toBe("FastApp 1-year (edited data)");
-    expect(column?.matchesSuggestion).toBe(true);
+    expect(view?.suggestionName).toBe("FastApp 3-year (edited data)");
+    expect(column?.matchesSuggestion).toBe(false);
     expect(column?.alert).toBe("red");
+    expect(column?.badges).toContain("Nightly best");
+    expect(column?.badges).not.toContain("Suggested");
     expect(column?.savedScenarioId).toBe("S0014");
-    expect(view?.why.endsWith("but raises the monthly payment by $2,258 (+191%).")).toBe(true);
+    expect(view?.why).toBe(
+      "15 months sooner and $13,700 less interest than paying smarter without a loan. A faster plan (FastApp 1-year (edited data), 1 year) raises the monthly payment by $2,258 (+191%).",
+    );
   });
 
   it("keeps today first and adds the suggestion until three plans are compared", () => {

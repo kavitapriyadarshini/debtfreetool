@@ -110,7 +110,7 @@ describe("decision and snapshot", () => {
     const planned = decide("H01", "agreed", "servicing_call");
     expect(planned?.snapshot?.loan).toBe("This plan includes a loan. It is secured on your home.");
     expect(planned?.snapshot?.planName).toBe(
-      "Your plan: Pay off your cards with a home equity loan, then clear the rest in order",
+      "Your recommended plan: Pay off your cards with a home equity loan, then clear the rest in order",
     );
     expect(planned?.snapshot?.advantages).toEqual([
       "Debt free 9 years 6 months sooner.",

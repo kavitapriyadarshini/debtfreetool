@@ -2,7 +2,7 @@ import { bestOffer, builtInPlans, type PlanOption } from "./engine/bestPlan";
 import { buildOffers } from "./engine/offers";
 import { casePreview } from "./engine/scenario";
 import type { WorkingHousehold } from "./engine/household";
-import type { CaseOverride } from "./types";
+import type { CaseOverride, Scenario } from "./types";
 
 /**
  * Source data plus this case's corrections to today's facts.
@@ -45,9 +45,37 @@ export function planKey(input: {
   ].join("|");
 }
 
+const EDITED_SUFFIX = " (edited data)";
+const NIGHTLY_SUFFIX = " (nightly best)";
+
+/** A case has edits only when the store holds at least one override for it. */
+export function hasCaseEdits(overrides: readonly { case_id?: string }[]): boolean {
+  return overrides.length > 0;
+}
+
+/** Plan names carry the suffix only while the case has an edit, and lose it when the last one is removed. */
 export function editedName(name: string, edited: boolean): string {
-  if (!edited || /\(edited data\)\s*$/i.test(name)) return name;
-  return `${name} (edited data)`;
+  const bare = name.replace(/\s*\(edited data\)\s*$/i, "");
+  return edited ? `${bare}${EDITED_SUFFIX}` : bare;
+}
+
+/**
+ * Seeded titles that describe an edit or the nightly best, cleaned before plans are shown.
+ * "Avalanche (edited data)" becomes "Avalanche" only when that case has no overrides, so it
+ * matches the built-in avalanche and shares its column. A trailing " (nightly best)" is
+ * always dropped; the Nightly best badge already says it.
+ */
+export function normalizeSeededScenarios<T extends Pick<Scenario, "case_id" | "name">>(
+  scenarios: readonly T[],
+  overrides: readonly Pick<CaseOverride, "case_id">[],
+): T[] {
+  const editedCases = new Set(overrides.map((row) => row.case_id));
+  return scenarios.map((scenario) => {
+    let name = scenario.name;
+    if (name.endsWith(NIGHTLY_SUFFIX)) name = name.slice(0, -NIGHTLY_SUFFIX.length);
+    if (!editedCases.has(scenario.case_id) && name === `Avalanche${EDITED_SUFFIX}`) name = "Avalanche";
+    return name === scenario.name ? scenario : { ...scenario, name };
+  });
 }
 
 /** Source household with this case's fact overrides. Extras and loans are not applied. */
@@ -67,7 +95,7 @@ export function caseInputs(householdId: string, overrides: readonly CaseOverride
     household: preview.state,
     planned,
     excluded: preview.excluded,
-    edited: overrides.length > 0,
+    edited: hasCaseEdits(overrides),
     plans,
     current: plans.current,
   };

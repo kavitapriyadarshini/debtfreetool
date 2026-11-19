@@ -172,6 +172,21 @@ export function CompareView({
         <p className="text-sm text-muted-foreground">Avalanche and snowball are included next to the loan.</p>
       ) : null}
 
+      <section className="flex flex-col gap-2 rounded-lg border bg-card p-4" data-testid="suggestion">
+        <p className="text-sm text-muted-foreground">Suggestion</p>
+        <p className="font-medium">
+          <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
+          {view.suggestionName}
+        </p>
+        <p data-testid="suggestion-why">{view.why}</p>
+        {view.columns.some((column) => column.id === view.suggestionId) ? null : (
+          <Button type="button" variant="outline" onClick={addSuggestion}>
+            Add to comparison
+          </Button>
+        )}
+        {replaced ? <p className="text-sm">Replaced {replaced}.</p> : null}
+      </section>
+
       <div className="grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-4">
         {view.columns.map((column) => {
           const yours = column.savedScenarioId != null && column.savedScenarioId === caseRow?.recommended_scenario_id;
@@ -213,7 +228,7 @@ export function CompareView({
                       {badge}
                     </span>
                   ))}
-                  {yours ? (
+                  {yours && !column.badges.includes("Previously recommended") ? (
                     <span className="rounded-full border px-2 py-0.5 text-xs text-muted-foreground">Previously recommended</span>
                   ) : null}
                 </div>
@@ -237,25 +252,11 @@ export function CompareView({
         })}
       </div>
 
-      <section className="flex flex-col gap-2 rounded-lg border bg-card p-4" data-testid="suggestion">
-        <p className="text-sm text-muted-foreground">Suggestion</p>
-        <p className="font-medium">
-          <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
-          {view.suggestionName}
-        </p>
-        <p data-testid="suggestion-why">{view.why}</p>
-        {view.columns.some((column) => column.id === view.suggestionId) ? null : (
-          <Button type="button" variant="outline" onClick={addSuggestion}>
-            Add to comparison
-          </Button>
-        )}
-        {replaced ? <p className="text-sm">Replaced {replaced}.</p> : null}
-      </section>
-
       {active ? (
-        <section className="flex min-w-0 flex-col gap-3">
+        <section className="flex min-w-0 flex-col gap-3" data-testid="selected-plan">
+          <h2 className="text-lg font-medium">With the selected plan: {active.name}</h2>
           <div className="rounded-lg border p-4" data-testid="money-goes">
-            <h2 className="mb-2 text-lg font-medium">Where the money goes</h2>
+            <h3 className="mb-2 font-medium">Where the money goes</h3>
             {active.moneyGoes.length === 0 ? (
               <p className="text-sm">No payment changes.</p>
             ) : (
@@ -266,7 +267,7 @@ export function CompareView({
               </ul>
             )}
           </div>
-          <h2 className="text-lg font-medium">Schedule · {active.name}</h2>
+          <h3 className="font-medium">Month by month</h3>
           <BalanceChart column={active} />
           <div className="max-h-96 min-w-0 overflow-auto rounded-lg border">
             <Table>

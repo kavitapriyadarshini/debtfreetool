@@ -53,7 +53,7 @@ export type FrozenSnapshot = {
   schedule: ScheduleRow[];
   today: FrozenFigures;
   plan: FrozenFigures;
-  /** Household-facing title, for example "Your plan: …". */
+  /** Household-facing title, for example "Your recommended plan: …". */
   planName: string;
   interestSaved: string;
   monthsSooner: string;
