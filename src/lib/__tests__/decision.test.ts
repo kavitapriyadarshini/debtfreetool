@@ -58,6 +58,9 @@ describe("decision and snapshot", () => {
     expect(snapshot?.leftOut.join(" ")).toContain("Reverse Mortgage");
     expect(snapshot?.note).toBe(SIMPLIFICATION_NOTE);
     expect(snapshot?.schedule.length).toBeGreaterThan(0);
+    expect(snapshot?.thingsToKnow.some((line) => line.endsWith("is not included in this plan."))).toBe(true);
+    expect(snapshot?.years.length).toBeGreaterThan(0);
+    expect(snapshot?.years[0]?.months[0]?.label).toBe("Dec 2026");
     expect(snapshot?.advisor).toBe("Tom Brennan");
     expect(snapshot?.frozen_at).toBe(AS_OF);
     expect(sourceDiffers(snapshot!, loadHousehold("H07"))).toBe(false);
@@ -77,10 +80,12 @@ describe("decision and snapshot", () => {
     const snapshot = decide("H07", "agreed", "servicing_call")?.snapshot;
     if (!snapshot) throw new Error("Missing snapshot");
     const interest = snapshot.plan.interest;
+    const firstMonth = snapshot.years[0]?.months[0]?.payment;
     const changed = structuredClone(snapshot);
     changed.inputs.debts[0]!.balance += 500;
     expect(sourceDiffers(changed, loadHousehold("H07"))).toBe(true);
     expect(snapshot.plan.interest).toBe(interest);
+    expect(snapshot.years[0]?.months[0]?.payment).toBe(firstMonth);
     const view = buildHouseholdOverview({
       householdId: "H07",
       caseId: "C0002",
@@ -104,6 +109,20 @@ describe("decision and snapshot", () => {
   it("freezes a home loan as secured and starts a 12-month wait", () => {
     const planned = decide("H01", "agreed", "servicing_call");
     expect(planned?.snapshot?.loan).toBe("This plan includes a loan. It is secured on your home.");
+    expect(planned?.snapshot?.planName).toBe(
+      "Your plan: Pay off your cards with a home equity loan, then clear the rest in order",
+    );
+    expect(planned?.snapshot?.advantages).toEqual([
+      "Debt free 9 years 6 months sooner.",
+      "$107,710 less interest.",
+      "5 debts become 3.",
+    ]);
+    expect(planned?.snapshot?.thingsToKnow).toContain(
+      "The new loan is secured on your home, which is at risk if payments are missed.",
+    );
+    const lastYear = planned?.snapshot?.years.at(-1);
+    expect(lastYear?.year).toBe(2037);
+    expect(lastYear?.months.at(-1)?.balance).toBe("$0");
     expect(planned?.contact.includes_new_loan).toBe(true);
     const outreach = outreachStatus(
       [...contacts.filter((contact) => contact.household_id === "H01"), planned!.contact],

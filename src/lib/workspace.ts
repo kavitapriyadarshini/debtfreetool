@@ -2,8 +2,8 @@ import { loanProducts, pipelineResults } from "./data";
 import { householdFico, todayPayment, validDebts, type WorkingHousehold } from "./engine/household";
 import { buildOffers, fastAppMiss, type BuiltOffer } from "./engine/offers";
 import { bestOffer, builtInPlans, suggestion, type PlanOption, type PlanRisk } from "./engine/bestPlan";
-import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
-import { formatMoney, formatPercent, NOT_COMPARABLE } from "./format";
+import { casePreview, householdWithCase, runScenario, type CaseState } from "./engine/scenario";
+import { formatMoney, formatMonths, neverComparableReason, paymentAlertText, planDate, NOT_COMPARABLE } from "./format";
 import { describeFastAppMiss } from "./opportunity";
 import type { ExtraPayment, PaymentAlert, Property, Scenario } from "./types";
 
@@ -74,6 +74,11 @@ export type ScenarioCard = {
   debtFree: string;
   interest: string;
   monthsSaved: string;
+  interestSaved: string;
+  /** "None", or product, term, amount, and whether the loan is secured on the home. */
+  loan: string;
+  /** Debt-free month for each debt this plan includes. Moved debts say "Paid by new loan". */
+  debtWhen: Record<string, string>;
   monthly: string;
   alert: PaymentAlert;
   alertLabel: string;
@@ -86,6 +91,8 @@ export type WorkspaceModel = {
   householdId: string;
   name: string;
   cards: ScenarioCard[];
+  /** Every debt on the household, including ones plans leave out. */
+  debtRows: DebtRow[];
   gaps: ProductGap[];
   choices: OfferChoice[];
   debts: MovableDebt[];
@@ -93,6 +100,14 @@ export type WorkspaceModel = {
   suggestionId: string;
   suggestionName: string;
   suggestionWhy: string;
+  /** Set when today's path never finishes, for the months and interest saved tooltip. */
+  comparableNote: string | null;
+};
+
+export type DebtRow = {
+  debtId: string;
+  name: string;
+  included: boolean;
 };
 
 export type DraftExtra = {
@@ -165,10 +180,54 @@ export function sourceBadges(card: Pick<ScenarioCard, "origin" | "nightly" | "su
   return badges;
 }
 
-export function alertLabel(alert: PaymentAlert, percent: number): string {
+/** Interest saved against today. A path that never finishes has no interest total to subtract. */
+export function interestSavedText(
+  currentMonths: number | null,
+  currentInterest: number,
+  months: number | null,
+  interest: number,
+  baseline: boolean,
+): string {
+  if (currentMonths == null) return NOT_COMPARABLE;
+  if (baseline || months == null) return "—";
+  const saved = currentInterest - interest;
+  if (saved <= 0) return formatMoney(0);
+  return formatMoney(saved);
+}
+
+function debtWhen(
+  debtIds: readonly string[],
+  payoffMonths: Readonly<Record<string, number>>,
+  moved: readonly string[],
+): Record<string, string> {
+  const movedSet = new Set(moved);
+  const when: Record<string, string> = {};
+  for (const id of debtIds) {
+    const month = payoffMonths[id];
+    if (movedSet.has(id)) when[id] = "Paid by new loan";
+    else if (month != null) when[id] = planDate(month);
+    else when[id] = "Never";
+  }
+  return when;
+}
+
+function loanLine(input: {
+  source: Scenario["loan_source"];
+  product: string | null;
+  termMonths: number | null;
+  amount: number;
+  secured: boolean;
+}): string {
+  if (input.source === "none" || input.amount <= 0) return "None";
+  const name = input.product ?? "Custom loan";
+  const term = input.termMonths == null ? "—" : termLabel(input.termMonths);
+  const security = input.secured ? "Secured on the home" : "Not secured";
+  return `${name} · ${term} · ${formatMoney(input.amount)} · ${security}`;
+}
+
+export function alertLabel(alert: PaymentAlert, from: number, to: number, percent: number): string {
   if (alert === "none") return "None";
-  const name = alert === "amber" ? "Amber" : "Red";
-  return `${name} · ${formatPercent(percent)}`;
+  return paymentAlertText(from, to, percent);
 }
 
 function lowersBlend(state: WorkingHousehold, amount: number, rate: number, debtIds: readonly string[]): boolean {
@@ -209,10 +268,14 @@ function cardFromNumbers(input: {
   monthly: number;
   alert: PaymentAlert;
   percent: number;
+  today: number;
   currentMonths: number | null;
+  currentInterest: number;
   baseline: boolean;
   labels: string[];
   scenarioId: string | null;
+  loan: string;
+  debtWhen: Record<string, string>;
 }): ScenarioCard {
   const unfinished = input.months == null;
   return {
@@ -227,9 +290,18 @@ function cardFromNumbers(input: {
     debtFree: monthCount(input.months),
     interest: unfinished ? NOT_COMPARABLE : formatMoney(input.interest),
     monthsSaved: savingsText(input.currentMonths, input.months, input.baseline),
+    interestSaved: interestSavedText(
+      input.currentMonths,
+      input.currentInterest,
+      input.months,
+      input.interest,
+      input.baseline,
+    ),
+    loan: input.loan,
+    debtWhen: input.debtWhen,
     monthly: formatMoney(input.monthly),
     alert: input.alert,
-    alertLabel: alertLabel(input.alert, input.percent),
+    alertLabel: alertLabel(input.alert, input.today, input.monthly, input.percent),
     note: unfinished ? NEVER_NOTE : null,
     labels: input.labels,
     scenarioId: input.scenarioId,
@@ -258,6 +330,7 @@ function settleCards(
   cards: ScenarioCard[],
   ranked: { id: string; plan: PlanOption }[],
   currentMonths: number | null,
+  currentInterest: number,
 ): { suggestionId: string; suggestionName: string; suggestionWhy: string } {
   const picked = suggestion(ranked.map((row) => row.plan));
   const suggestionId = ranked.find((row) => row.plan === picked.plan)?.id ?? cards[0]?.id ?? "current";
@@ -276,11 +349,23 @@ function settleCards(
     nightlyCard.interest = months == null ? NOT_COMPARABLE : formatMoney(nightly.best_plan_interest);
     nightlyCard.monthly = formatMoney(nightly.best_plan_monthly);
     nightlyCard.alert = nightly.best_plan_payment_alert;
-    nightlyCard.alertLabel = alertLabel(nightly.best_plan_payment_alert, nightly.best_plan_payment_change_pct);
+    nightlyCard.alertLabel = alertLabel(
+      nightly.best_plan_payment_alert,
+      nightly.current_monthly,
+      nightly.best_plan_monthly,
+      nightly.best_plan_payment_change_pct,
+    );
     nightlyCard.note = months == null ? NEVER_NOTE : null;
     nightlyCard.monthsSaved = savingsText(
       currentMonths,
       months,
+      nightlyCard.origin === "today",
+    );
+    nightlyCard.interestSaved = interestSavedText(
+      currentMonths,
+      currentInterest,
+      months,
+      nightly.best_plan_interest,
       nightlyCard.origin === "today",
     );
   }
@@ -492,7 +577,7 @@ export function previewDraft(
     interest: formatMoney(result.totalInterest),
     monthly: formatMoney(result.requiredMonthly),
     alert: result.paymentAlert,
-    alertLabel: alertLabel(result.paymentAlert, result.paymentChangePct),
+    alertLabel: alertLabel(result.paymentAlert, result.todayMonthly, result.requiredMonthly, result.paymentChangePct),
     note: result.months == null ? NEVER_NOTE : null,
     labels,
     months: result.months,
@@ -510,7 +595,10 @@ export function assembleWorkspace(
   const choices = offerChoices(offers, state.properties);
   const scoreEstimated = householdFico(state.members).defaulted;
   const currentMonths = plans.current.months;
+  const currentInterest = plans.current.interest;
+  const includedIds = validDebts(state.debts).map((debt) => debt.debt_id);
   const pay = todayPayment(state.debts);
+  const noLoan = "None";
   const ranked: { id: string; plan: PlanOption }[] = [
     { id: "current", plan: plans.current },
     { id: "avalanche", plan: plans.avalanche },
@@ -527,10 +615,14 @@ export function assembleWorkspace(
       monthly: pay,
       alert: "none",
       percent: 0,
+      today: pay,
       currentMonths,
+      currentInterest,
       baseline: true,
       labels: [],
       scenarioId: null,
+      loan: noLoan,
+      debtWhen: debtWhen(includedIds, plans.current.payoffMonths, []),
     }),
     cardFromNumbers({
       id: "avalanche",
@@ -542,10 +634,14 @@ export function assembleWorkspace(
       monthly: pay,
       alert: "none",
       percent: 0,
+      today: pay,
       currentMonths,
+      currentInterest,
       baseline: false,
       labels: [],
       scenarioId: null,
+      loan: noLoan,
+      debtWhen: debtWhen(includedIds, plans.avalanche.payoffMonths, []),
     }),
     cardFromNumbers({
       id: "snowball",
@@ -557,10 +653,14 @@ export function assembleWorkspace(
       monthly: pay,
       alert: "none",
       percent: 0,
+      today: pay,
       currentMonths,
+      currentInterest,
       baseline: false,
       labels: [],
       scenarioId: null,
+      loan: noLoan,
+      debtWhen: debtWhen(includedIds, plans.snowball.payoffMonths, []),
     }),
   ];
 
@@ -583,10 +683,20 @@ export function assembleWorkspace(
         monthly: Math.max(pay, offer.contractual_monthly),
         alert: offer.payment_alert,
         percent: offer.payment_change_pct,
+        today: pay,
         currentMonths,
+        currentInterest,
         baseline: false,
         labels: scoreEstimated && choice.product.startsWith("HELOAN") ? ["estimated"] : [],
         scenarioId: null,
+        loan: loanLine({
+          source: "product",
+          product: choice.product,
+          termMonths: choice.termMonths,
+          amount: choice.amount,
+          secured: choice.product.startsWith("HELOAN"),
+        }),
+        debtWhen: debtWhen(includedIds, offer.payoffMonths, choice.debtIds),
       }),
     );
   }
@@ -604,6 +714,7 @@ export function assembleWorkspace(
         risk: best.security,
         schedule: [],
         payoffOrder: [],
+        payoffMonths: {},
       },
     });
   }
@@ -620,6 +731,7 @@ export function assembleWorkspace(
         risk: scenarioRisk(scenario),
         schedule: [],
         payoffOrder: [],
+        payoffMonths: {},
       },
     });
     cards.push(
@@ -633,7 +745,9 @@ export function assembleWorkspace(
         monthly: result.requiredMonthly,
         alert: result.paymentAlert,
         percent: result.paymentChangePct,
+        today: result.todayMonthly,
         currentMonths,
+        currentInterest,
         baseline: false,
         labels: loanLabels(
           state,
@@ -644,15 +758,24 @@ export function assembleWorkspace(
           splitIds(scenario.debts_paid_off),
         ),
         scenarioId: scenario.scenario_id,
+        loan: loanLine({
+          source: scenario.loan_source,
+          product: scenario.product,
+          termMonths: scenario.term_months,
+          amount: scenario.loan_amount,
+          secured: scenario.product?.startsWith("HELOAN") ?? false,
+        }),
+        debtWhen: debtWhen(includedIds, result.payoffMonths, splitIds(scenario.debts_paid_off)),
       }),
     );
   }
 
-  const settled = settleCards(state.household.household_id, cards, ranked, currentMonths);
+  const settled = settleCards(state.household.household_id, cards, ranked, currentMonths, currentInterest);
   return {
     householdId: state.household.household_id,
     name: state.household.household_name,
     cards,
+    debtRows: [],
     gaps: productGaps(state, offers),
     choices,
     debts: movableDebts(state, null),
@@ -660,7 +783,15 @@ export function assembleWorkspace(
     suggestionId: settled.suggestionId,
     suggestionName: settled.suggestionName,
     suggestionWhy: settled.suggestionWhy,
+    comparableNote: comparableNote(state.household.household_id, currentMonths),
   };
+}
+
+function comparableNote(householdId: string, currentMonths: number | null): string | null {
+  if (currentMonths != null) return null;
+  const nightly = pipelineResults.find((row) => row.household_id === householdId);
+  const months = nightly && nightly.best_plan_months !== "never" ? nightly.best_plan_months : null;
+  return neverComparableReason(months == null ? null : formatMonths(months));
 }
 
 export function workspaceFor(
@@ -671,14 +802,25 @@ export function workspaceFor(
 ): WorkspaceModel | null {
   const overrides = caseId == null ? [] : caseState.overrides.filter((row) => row.case_id === caseId);
   const scoped = { ...caseState, overrides };
-  let state: WorkingHousehold;
+  let preview: ReturnType<typeof casePreview>;
   try {
-    state = householdWithCase(householdId, scoped);
+    preview = casePreview(householdId, overrides);
   } catch {
     return null;
   }
+  const { state, excluded } = preview;
+  const planned = {
+    ...state,
+    debts: state.debts.filter((debt) => !excluded.has(debt.debt_id)),
+  };
   const rows = scenarios.filter((scenario) => caseId != null && scenario.case_id === caseId);
-  return assembleWorkspace(state, rows, scoped);
+  const model = assembleWorkspace(planned, rows, scoped);
+  model.debtRows = state.debts.map((debt) => ({
+    debtId: debt.debt_id,
+    name: debt.debt_name,
+    included: debt.monthly_payment > 0 && !excluded.has(debt.debt_id),
+  }));
+  return model;
 }
 
 export function previewHousehold(

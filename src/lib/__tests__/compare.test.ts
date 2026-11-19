@@ -43,6 +43,7 @@ describe("compare view", () => {
       debtFreeDate: "Aug 2037",
       monthsSaved: "111 months",
       interest: "$127,511",
+      interestSaved: "$102,847",
       alert: "none",
       matchesSuggestion: false,
     });

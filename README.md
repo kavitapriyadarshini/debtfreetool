@@ -12,6 +12,8 @@ Everything Cursor needs to build a working prototype that matches the requiremen
 | `reference/` | The Python that produced the data. The TypeScript engine must reproduce it |
 | `.cursor/rules/debt-free.mdc` | Rules Cursor follows on every prompt |
 | `PROMPTS.md` | 13 prompts to paste into Cursor, in order, each with a "Done when" check |
+| `PROMPTS_FIXES.md` | Fix round 1: slow buttons, bottom action bar, plan source labels, "Not comparable" |
+| `PROMPTS_FIXES_2.md` | Fix round 2: household tabs, scenarios table, compare selection, present mode, household PDF, alert dots |
 
 ## What you need
 
@@ -74,22 +76,10 @@ This doesn't match @docs/SPEC.md. Re-read the relevant section, list every diffe
    git push -u origin main
    ```
 2. In Vercel: **Add New → Project → Import** the repository.
-3. Use these settings and leave everything else at the default:
-
-   | Setting | Value |
-   | --- | --- |
-   | Framework Preset | Next.js |
-   | Root Directory | `./` |
-   | Node.js Version | 20.x |
-   | Install Command | `npm install` |
-   | Build Command | `npm run build` |
-   | Output Directory | leave blank |
-   | Environment Variables | none |
-
-   `npm run build` runs `prebuild` first (`npm run data`), which writes `src/data/*.json` from the CSVs. The app imports that JSON, so the deployed functions do not read the filesystem.
+3. Settings: Framework preset **Next.js**; build command `npm run build`; output directory default; no environment variables.
 4. Click **Deploy**. Every later `git push` redeploys automatically, and pull requests get preview links.
 
-Alternative without GitHub: `npm i -g vercel`, then `vercel` (preview) and `vercel --prod`. Same build command. Do not set environment variables.
+Alternative without GitHub: `npm i -g vercel`, then `vercel` (preview) and `vercel --prod`.
 
 ## Limits of this prototype (by design)
 
@@ -98,13 +88,11 @@ Alternative without GitHub: `npm i -g vercel`, then `vercel` (preview) and `verc
 - **"Download PDF" uses the browser's print-to-PDF** for the one-pager.
 - Everything listed under "Left out of v1" in `docs/SPEC.md` is not built.
 
-## Demo walkthrough
+## Demo walkthrough (to check the build)
 
-The app opens as Pamela Wilson on Opportunities, Ready to contact. Demo date is 14 Nov 2026. Use **Reset demo data** if a previous session changed the seed.
-
-1. Open the **Waiting** tab. Patel, Raj and Anita (H01) shows HELOAN Yellow, no payment alert, case Agreed, and ready from 4 Sep 2027.
-2. Open H01 and choose **Continue case**. The workspace already lists the current path (240 months, $230,358), avalanche, snowball, and every eligible HELOAN Yellow and Pink term. Yellow 10-year and 15-year are both 129 months and $127,511.
-3. Tick **HELOAN Yellow 15-year** and choose **Compare**. Avalanche and snowball sit beside the loan. The suggestion is HELOAN Yellow 15-year: "5 months sooner and $18,200 less interest than paying smarter without a loan. Secured on your home."
-4. Open **Present**. Today is Nov 2046 and $230,358. Your plan (HELOAN Yellow 15-yr + extras) is May 2037, $122,648, $107,710 less, 114 months sooner, and secured on the home.
-5. Choose **Agreed**, set the channel to **Servicing call**, and save. The one-page summary opens. Back on the household, the waiting banner reads ready from 14 Nov 2027, and case history shows the contact, the agreement, and the frozen snapshot.
-6. Switch the user to **Tom Brennan**. On Waiting, Moore, Andre and Tasha (H11) shows FastApp with a red alert: **+191%, $1,562 → $4,548**. Open the workspace: FastApp 1-year is still listed, marked Red · +191%. Comparing it and choosing **Mark as recommended** asks you to acknowledge that alert and give a reason before it can be saved.
+1. As **Pamela Wilson**, open Opportunities: the Ready tab lists households never offered a plan or past their waiting period. On Waiting, H01 (Patel) shows ready from 4 Sep 2027. (The 16 sample households were all cased in this demo, so they sit on Waiting.)
+2. Open H01 → workspace: the suggestion is HELOAN Yellow 15-year, 129 months, $127,511 interest, no payment alert.
+3. Add a $5,000 one-off in April 2027 and watch the numbers update.
+4. As **Tom Brennan**, find H11 on the Waiting tab (a plan was presented in this demo season; ready again 13 Jan 2027). Its nightly plan shows a red alert (+191%, $1,562 → $4,548). Try to recommend it: you must acknowledge the alert and give a reason. Build FastApp 3-year instead.
+5. Present it, record "Agreed" as a servicing call, open the one-pager, and check H11's ready date moves to 12 months out (14 Nov 2027), because the plan includes a new loan.
+6. Switch to **Manager** → Firm view: the funnel and agreed plans include H11.

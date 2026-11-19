@@ -5,7 +5,7 @@ import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -40,7 +40,8 @@ import {
   type ScenarioDraft,
   type WorkspaceModel,
 } from "@/lib/workspace";
-import type { PaymentAlert, Scenario } from "@/lib/types";
+import { PaymentDot } from "@/components/payment-dot";
+import type { Scenario } from "@/lib/types";
 
 const COMPARE_LIMIT = 4;
 
@@ -66,9 +67,19 @@ type Builder = {
   customTerm: string;
   customMax: string;
   extras: ExtraRow[];
+  /** A built-in plan opened as a new scenario, saved under Built by you. */
+  copy: boolean;
 };
 
-export function Workspace({ householdId, compare }: { householdId: string; compare: string }) {
+export function Workspace({
+  householdId,
+  compare,
+  notice = false,
+}: {
+  householdId: string;
+  compare: string;
+  notice?: boolean;
+}) {
   const router = useRouter();
   const cases = useDemoStore((state) => state.cases);
   const scenarios = useDemoStore((state) => state.scenarios);
@@ -99,6 +110,7 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
   const [previewBuilder, setPreviewBuilder] = useState<Builder>(() => blankBuilder(""));
   const [error, setError] = useState<string | null>(null);
   const [pressed, setPressed] = useState<string | null>(null);
+  const [debtsOpen, setDebtsOpen] = useState(true);
   const numbers = numberKey(builder);
   const shape = shapeKey(builder);
 
@@ -142,8 +154,15 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
   }
 
   const compareIds = compare.split(",").map((id) => id.trim()).filter((id) => id !== "");
-  if (compareIds.length > 0) {
-    return <CompareView householdId={householdId} householdName={model.name} selectedIds={compareIds} />;
+  if (compareIds.length > 0 || notice) {
+    return (
+      <CompareView
+        householdId={householdId}
+        householdName={model.name}
+        selectedIds={compareIds.length > 0 ? compareIds : ["current"]}
+        notice={notice}
+      />
+    );
   }
 
   const today = model.cards.filter((card) => card.origin === "today");
@@ -192,6 +211,7 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
       customRate: scenario.loan_rate == null ? "" : String(scenario.loan_rate),
       customTerm: scenario.term_months == null ? "" : String(scenario.term_months),
       customMax: loan ? String(loan.max_amount) : scenario.loan_amount ? String(scenario.loan_amount) : "",
+      copy: false,
       extras: ids.flatMap((id) => {
         const extra = extraPayments.find((row) => row.extra_id === id);
         if (!extra) return [];
@@ -200,6 +220,47 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
     });
     setError(null);
     setOpen(true);
+  }
+
+  function openCopy(card: ScenarioCard) {
+    if (!model) return;
+    const choice = model.choices.find((row) => row.id === card.id);
+    const blank = blankBuilder(choice?.id ?? model.choices[0]?.id ?? "");
+    if (choice) {
+      setBuilder({
+        ...blank,
+        name: choice.label,
+        nameTouched: true,
+        strategy: "avalanche",
+        loanSource: "product",
+        choiceId: choice.id,
+        amount: String(choice.amount),
+        debtIds: choice.debtIds,
+        copy: true,
+      });
+    } else {
+      setBuilder({
+        ...blank,
+        name: card.name,
+        nameTouched: true,
+        strategy: card.id === "snowball" ? "snowball" : "avalanche",
+        loanSource: "none",
+        copy: true,
+      });
+    }
+    setError(null);
+    setOpen(true);
+  }
+
+  function openPlan(card: ScenarioCard) {
+    if (card.scenarioId) {
+      const scenario = scenarios.find((row) => row.scenario_id === card.scenarioId);
+      if (scenario) {
+        openEdit(scenario);
+        return;
+      }
+    }
+    openCopy(card);
   }
 
   function applyChoice(choice: OfferChoice, current: Builder): Builder {
@@ -288,8 +349,6 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
         </Link>
       </header>
 
-      <p className="text-sm text-muted-foreground">Select up to {COMPARE_LIMIT} scenarios to compare.</p>
-
       {noProducts ? (
         <div className="flex flex-col gap-2 rounded-xl bg-card p-4 text-sm ring-1 ring-foreground/10">
           <p>No product is eligible. Avalanche and snowball are the plans without a loan.</p>
@@ -303,43 +362,27 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
         </div>
       ) : null}
 
-      <CardGroup title="Current path" cards={today} selected={selected} onCompare={toggleCompare} />
-      {nightly.length > 0 ? (
-        <CardGroup title="Nightly best" cards={nightly} selected={selected} onCompare={toggleCompare} />
-      ) : null}
-      {builtIn.length > 0 ? (
-        <CardGroup title="Built-in" cards={builtIn} selected={selected} onCompare={toggleCompare} />
-      ) : null}
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-base font-medium">Built by you</h2>
-        {advisor.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No scenarios yet.</p>
-        ) : (
-          <div className="grid gap-3 md:grid-cols-2">
-            {advisor.map((card) => {
-              const scenario = scenarios.find((row) => row.scenario_id === card.scenarioId);
-              return (
-                <ScenarioCardView
-                  key={card.id}
-                  card={card}
-                  selected={selected.includes(card.id)}
-                  disabled={selected.length >= COMPARE_LIMIT && !selected.includes(card.id)}
-                  onCompare={() => toggleCompare(card.id)}
-                  onEdit={scenario ? () => openEdit(scenario) : undefined}
-                  onRemove={card.scenarioId ? () => removeScenario(card.scenarioId!) : undefined}
-                />
-              );
-            })}
-          </div>
-        )}
-      </section>
+      <PlanTable
+        columns={[...today, ...nightly, ...builtIn, ...advisor]}
+        debts={model.debtRows}
+        debtsOpen={debtsOpen}
+        selected={selected}
+        note={model.comparableNote}
+        onToggleDebts={() => setDebtsOpen((open) => !open)}
+        onCompare={toggleCompare}
+        onOpen={openPlan}
+        onRemove={(id) => removeScenario(id)}
+      />
 
       {open ? <Sheet open onOpenChange={(next) => { if (!next) setOpen(false); }}>
         <SheetContent className="w-full overflow-y-auto sm:max-w-lg" style={{ maxWidth: "36rem" }}>
           <SheetHeader>
             <SheetTitle>{builder.scenarioId ? "Edit scenario" : "New scenario"}</SheetTitle>
-            <SheetDescription>Changes recalculate before you save them.</SheetDescription>
+            <SheetDescription>
+              {builder.copy
+                ? "This is a copy. Saving stores it under Built by you."
+                : "Changes recalculate before you save them."}
+            </SheetDescription>
           </SheetHeader>
           <div className="flex flex-col gap-4 px-4 pb-4">
             <Field label="Name">
@@ -597,9 +640,6 @@ export function Workspace({ householdId, compare }: { householdId: string; compa
         >
           {pressed === "compare" ? "Opening…" : `Compare ${selected.length}`}
         </Button>
-        <Link href={`/households/${householdId}/present`} className={buttonVariants({ variant: "outline" })}>
-          Present
-        </Link>
       </ActionBar>
     </div>
   );
@@ -649,6 +689,7 @@ function blankBuilder(choiceId: string): Builder {
     customTerm: "",
     customMax: "",
     extras: [],
+    copy: false,
   };
 }
 
@@ -724,32 +765,140 @@ function validate(builder: Builder, model: WorkspaceModel, draft: ScenarioDraft)
   return null;
 }
 
-function CardGroup({
-  title,
-  cards,
+const LABEL_CELL = "sticky left-0 z-20 min-w-36 border-b bg-background px-3 py-2 text-left align-top text-sm font-medium";
+const TODAY_CELL = "sticky left-36 z-10 min-w-44 border-b bg-muted px-3 py-2 text-left align-top text-sm";
+const PLAN_CELL = "min-w-44 border-b bg-background px-3 py-2 text-left align-top text-sm";
+
+function PlanTable({
+  columns,
+  debts,
+  debtsOpen,
   selected,
+  note,
+  onToggleDebts,
   onCompare,
+  onOpen,
+  onRemove,
 }: {
-  title: string;
-  cards: ScenarioCard[];
+  columns: ScenarioCard[];
+  debts: WorkspaceModel["debtRows"];
+  debtsOpen: boolean;
   selected: string[];
+  note: string | null;
+  onToggleDebts: () => void;
   onCompare: (id: string) => void;
+  onOpen: (card: ScenarioCard) => void;
+  onRemove: (scenarioId: string) => void;
 }) {
+  const rows: { label: string; cell: (card: ScenarioCard) => ReactNode }[] = [
+    { label: "Source", cell: (card) => <SourceBadges badges={card.badges} /> },
+    { label: "Debt-free in", cell: (card) => card.debtFree },
+    { label: "Months saved", cell: (card) => <SavingsText value={card.monthsSaved} reason={note} /> },
+    { label: "Total interest", cell: (card) => <SavingsText value={card.interest} /> },
+    { label: "Interest saved", cell: (card) => <SavingsText value={card.interestSaved} reason={note} /> },
+    { label: "Monthly payment", cell: (card) => card.monthly },
+    { label: "Payment alert", cell: (card) => <PaymentDot alert={card.alert} label={card.alertLabel} /> },
+    {
+      label: "Loan",
+      cell: (card) => (
+        <span>
+          {card.loan}
+          {card.labels.length > 0 ? <span className="block text-muted-foreground">{card.labels.join(" · ")}</span> : null}
+        </span>
+      ),
+    },
+  ];
+
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="text-base font-medium">{title}</h2>
-      <div className="grid gap-3 md:grid-cols-2">
-        {cards.map((card) => (
-          <ScenarioCardView
-            key={card.id}
-            card={card}
-            selected={selected.includes(card.id)}
-            disabled={selected.length >= COMPARE_LIMIT && !selected.includes(card.id)}
-            onCompare={() => onCompare(card.id)}
-          />
-        ))}
-      </div>
-    </section>
+    <div className="overflow-x-auto">
+      <table className="w-max border-separate border-spacing-0 text-sm">
+        <caption className="sr-only">Plans for this household. Tick up to 4 to compare.</caption>
+        <thead>
+          <tr>
+            <th className={LABEL_CELL} scope="col">
+              Plan
+            </th>
+            {columns.map((card) => {
+              const today = card.origin === "today";
+              const ticked = selected.includes(card.id);
+              const disabled = selected.length >= COMPARE_LIMIT && !ticked;
+              return (
+                <th key={card.id} className={today ? TODAY_CELL : PLAN_CELL} scope="col">
+                  <div className="flex flex-col items-start gap-1">
+                    <div onClick={(event) => event.stopPropagation()}>
+                      <Checkbox
+                        checked={ticked}
+                        disabled={disabled}
+                        onCheckedChange={() => onCompare(card.id)}
+                        aria-label={`Compare ${card.name}`}
+                      />
+                    </div>
+                    <button type="button" className="text-left font-medium hover:underline" onClick={() => onOpen(card)}>
+                      {card.name}
+                    </button>
+                    {card.origin === "advisor" && card.scenarioId ? (
+                      <button
+                        type="button"
+                        className="text-xs text-muted-foreground hover:underline"
+                        onClick={() => onRemove(card.scenarioId!)}
+                      >
+                        Remove
+                      </button>
+                    ) : null}
+                  </div>
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.label}>
+              <th className={LABEL_CELL} scope="row">
+                {row.label}
+              </th>
+              {columns.map((card) => (
+                <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL}>
+                  {row.cell(card)}
+                </td>
+              ))}
+            </tr>
+          ))}
+          <tr>
+            <th className={LABEL_CELL} scope="row">
+              <button
+                type="button"
+                className="font-medium hover:underline"
+                aria-expanded={debtsOpen}
+                onClick={onToggleDebts}
+              >
+                Debts
+              </button>
+            </th>
+            {columns.map((card) => (
+              <td key={card.id} className={card.origin === "today" ? TODAY_CELL : PLAN_CELL} />
+            ))}
+          </tr>
+          {debtsOpen
+            ? debts.map((debt) => (
+                <tr key={debt.debtId}>
+                  <th className={cn(LABEL_CELL, "pl-6 font-normal", debt.included ? "" : "text-muted-foreground")} scope="row">
+                    {debt.name}
+                  </th>
+                  {columns.map((card) => (
+                    <td
+                      key={card.id}
+                      className={cn(card.origin === "today" ? TODAY_CELL : PLAN_CELL, debt.included ? "" : "text-muted-foreground")}
+                    >
+                      {debt.included ? (card.debtWhen[debt.debtId] ?? "Never") : "Not included"}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            : null}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -775,84 +924,6 @@ function SourceBadges({ badges }: { badges: string[] }) {
   );
 }
 
-function ScenarioCardView({
-  card,
-  selected,
-  disabled,
-  onCompare,
-  onEdit,
-  onRemove,
-}: {
-  card: ScenarioCard;
-  selected: boolean;
-  disabled: boolean;
-  onCompare: () => void;
-  onEdit?: () => void;
-  onRemove?: () => void;
-}) {
-  return (
-    <article
-      data-scenario={card.name}
-      className={cn(
-        "flex flex-col gap-2 rounded-xl p-4 text-sm ring-1 ring-foreground/10",
-        card.origin === "today" ? "bg-muted" : "bg-card",
-      )}
-    >
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex min-w-0 flex-col gap-1">
-          <h3 className="font-medium">{card.name}</h3>
-          <SourceBadges badges={card.badges} />
-        </div>
-        <label className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Checkbox checked={selected} disabled={disabled} onCheckedChange={onCompare} aria-label={`Compare ${card.name}`} />
-          Compare
-        </label>
-      </div>
-      <dl className="grid grid-cols-2 gap-x-3 gap-y-1">
-        <dt className="text-muted-foreground">Debt-free in</dt>
-        <dd>{card.debtFree}</dd>
-        <dt className="text-muted-foreground">Total interest</dt>
-        <dd><SavingsText value={card.interest} /></dd>
-        <dt className="text-muted-foreground">Months saved</dt>
-        <dd><SavingsText value={card.monthsSaved} /></dd>
-        <dt className="text-muted-foreground">Monthly payment</dt>
-        <dd>{card.monthly}</dd>
-      </dl>
-      <AlertBadge alert={card.alert} label={card.alertLabel} />
-      {card.note && card.note !== card.debtFree ? <p>{card.note}</p> : null}
-      {card.labels.length > 0 ? <p className="text-muted-foreground">{card.labels.join(" · ")}</p> : null}
-      {onEdit || onRemove ? (
-        <div className="flex gap-2">
-          {onEdit ? (
-            <Button variant="ghost" size="xs" onClick={onEdit}>
-              Edit
-            </Button>
-          ) : null}
-          {onRemove ? (
-            <Button variant="ghost" size="xs" onClick={onRemove}>
-              Remove
-            </Button>
-          ) : null}
-        </div>
-      ) : null}
-    </article>
-  );
-}
-
-function AlertBadge({ alert, label }: { alert: PaymentAlert; label: string }) {
-  if (alert === "none") return <span className="text-sm text-muted-foreground">{label}</span>;
-  return (
-    <span
-      className={cn(
-        "inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-medium",
-        alert === "red" ? "bg-payment-red text-payment-red-foreground" : "bg-payment-amber text-payment-amber-foreground",
-      )}
-    >
-      {label}
-    </span>
-  );
-}
-
 function Preview({ preview }: { preview: DraftPreview }) {
   return (
     <div className="flex flex-col gap-1 rounded-lg bg-muted/60 p-3 text-sm" data-testid="scenario-preview">
@@ -860,7 +931,7 @@ function Preview({ preview }: { preview: DraftPreview }) {
       <p>Debt-free in {preview.debtFree}</p>
       <p>Total interest {preview.interest}</p>
       <p>Monthly payment {preview.monthly}</p>
-      <AlertBadge alert={preview.alert} label={preview.alertLabel} />
+      <PaymentDot alert={preview.alert} label={preview.alertLabel} />
       {preview.note ? <p>{preview.note}</p> : null}
       {preview.labels.length > 0 ? <p className="text-muted-foreground">{preview.labels.join(" · ")}</p> : null}
     </div>

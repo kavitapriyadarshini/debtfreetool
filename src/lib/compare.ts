@@ -1,7 +1,7 @@
-import { PLAN_START } from "./config";
 import { householdFico } from "./engine/household";
 import { householdWithCase, runScenario, type CaseState } from "./engine/scenario";
 import type { ScheduleRow } from "./engine/simulate";
+import { planDate } from "./format";
 import type { PaymentAlert, Scenario } from "./types";
 import {
   NEVER_NOTE,
@@ -10,7 +10,8 @@ import {
   type ScenarioCard,
 } from "./workspace";
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export { planDate };
+
 const COMPARE_LIMIT = 4;
 const PAID = 0.005;
 
@@ -37,6 +38,7 @@ export type CompareColumn = {
   debtFreeDate: string;
   monthsSaved: string;
   interest: string;
+  interestSaved: string;
   monthly: string;
   alert: PaymentAlert;
   alertLabel: string;
@@ -58,16 +60,11 @@ export type CompareView = {
   suggestionName: string;
   suggestionSavedId: string | null;
   why: string;
+  /** Set when today's path never finishes. */
+  comparableNote: string | null;
   addedBaselines: boolean;
   dropped: boolean;
 };
-
-/** Calendar month a plan month falls in. Plan month 1 is December 2026. */
-export function planDate(planMonth: number): string {
-  const [year, month] = PLAN_START.split("-").map(Number);
-  const index = year! * 12 + (month! - 1) + Math.max(planMonth, 1) - 1;
-  return `${MONTHS[index % 12]} ${Math.floor(index / 12)}`;
-}
 
 function splitIds(value: string | null | undefined): string[] {
   return (value ?? "").split(";").filter((id) => id !== "");
@@ -312,6 +309,7 @@ export function compareFor(
         debtFreeDate: result.months == null ? NEVER_NOTE : planDate(result.months),
         monthsSaved: card.monthsSaved,
         interest: card.interest,
+        interestSaved: card.interestSaved,
         monthly: card.monthly,
         alert: card.alert,
         alertLabel: card.alertLabel,
@@ -335,6 +333,7 @@ export function compareFor(
     suggestionName: model.suggestionName,
     suggestionSavedId: suggestionSaved?.scenario_id ?? null,
     why: model.suggestionWhy,
+    comparableNote: model.comparableNote,
     addedBaselines,
     dropped: ordered.length > COMPARE_LIMIT,
   };

@@ -33,6 +33,7 @@ export type ScenarioRun = {
   paymentAlert: PaymentAlert;
   schedule: ScheduleRow[];
   payoffOrder: string[];
+  payoffMonths: Record<string, number>;
   /** Rebuilt from the edited household, including after FICO, value, link or comfort-zone changes. */
   offers: BuiltOffer[];
 };
@@ -236,6 +237,7 @@ export function runScenario(
     paymentAlert: paymentAlert(Math.max(pay, required), today),
     schedule: simulated.schedule,
     payoffOrder: simulated.payoffOrder,
+    payoffMonths: simulated.payoffMonths,
     offers,
   };
   scenarioCache.set(key, result);

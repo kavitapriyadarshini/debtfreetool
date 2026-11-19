@@ -5,9 +5,15 @@ export default async function WorkspacePage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ compare?: string }>;
+  searchParams: Promise<{ compare?: string; notice?: string }>;
 }) {
   const { id } = await params;
   const query = await searchParams;
-  return <Workspace householdId={id} compare={query.compare ?? ""} />;
+  return (
+    <Workspace
+      householdId={id}
+      compare={query.compare ?? ""}
+      notice={query.notice === "recommend"}
+    />
+  );
 }

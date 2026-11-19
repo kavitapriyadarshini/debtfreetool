@@ -1,19 +1,23 @@
 import { AS_OF } from "./config";
-import { getHousehold } from "./data";
-import { flags, householdFico, loadHousehold } from "./engine/household";
+import { getHousehold, pipelineResults } from "./data";
+import { flags, householdFico, loadHousehold, todayPayment, validDebts } from "./engine/household";
 import { fastAppMiss } from "./engine/offers";
 import { outreachStatus } from "./engine/outreach";
-import { casePreview } from "./engine/scenario";
-import { formatDate, formatMoney } from "./format";
+import { casePreview, householdWithCase, runScenario } from "./engine/scenario";
+import { simulate } from "./engine/simulate";
+import { formatDate, formatMoney, formatMonths, neverComparableReason } from "./format";
 import { describeFastAppMiss } from "./opportunity";
 import { sourceDiffers, type FrozenSnapshot } from "./snapshot";
 import type {
   CaseHistoryEvent,
   CaseOverride,
   ContactEvent,
+  CustomLoan,
   Debt,
+  ExtraPayment,
   ParsedCell,
   Property,
+  Scenario,
 } from "./types";
 
 export type EditKind = "money" | "rate" | "fico" | "comfort" | "property" | "exclude";
@@ -49,6 +53,37 @@ export type ShownField = {
   report: EditableField | null;
 };
 
+export const OVERVIEW_TABS = ["debts", "members", "properties", "contacts", "history"] as const;
+export type OverviewTab = (typeof OVERVIEW_TABS)[number];
+
+export const OVERVIEW_TAB_LABEL: Record<OverviewTab, string> = {
+  debts: "Debts",
+  members: "Members",
+  properties: "Properties",
+  contacts: "Contact history",
+  history: "Case history",
+};
+
+export function overviewTab(value: string | undefined): OverviewTab {
+  return OVERVIEW_TABS.includes(value as OverviewTab) ? (value as OverviewTab) : "debts";
+}
+
+export type PlanInPlay = {
+  /** Recommended when a plan is marked, otherwise the nightly pipeline plan. */
+  label: "Recommended" | "Nightly best";
+  /** Months and interest saved against today. Null when today's path never finishes. */
+  months: string | null;
+  interest: string | null;
+  /** Tooltip when today's path never finishes. */
+  note: string | null;
+};
+
+const OUTREACH_LABEL = {
+  ready: "Ready to contact",
+  waiting: "Waiting",
+  progress_check_due: "Progress check due",
+} as const;
+
 export type HouseholdOverview = {
   householdId: string;
   name: string;
@@ -57,6 +92,10 @@ export type HouseholdOverview = {
   state: string;
   hasCase: boolean;
   waiting: string | null;
+  outreach: string;
+  /** Ready date, set only while the household is waiting. */
+  readyDate: string | null;
+  planInPlay: PlanInPlay;
   /** True when live source rows differ from the frozen agreed plan. */
   dataChanged: boolean;
   fastAppReason: string | null;
@@ -247,6 +286,60 @@ function addressOf(properties: readonly Property[]): (id: string) => string {
   return (id) => addresses.get(id) ?? id;
 }
 
+function currentPath(debts: readonly Debt[]): { months: number | null; interest: number } {
+  const valid = validDebts(debts);
+  const pay = todayPayment(debts);
+  const result = simulate(
+    valid.map((debt) => ({
+      id: debt.debt_id,
+      balance: debt.balance,
+      rate: debt.rate,
+      payment: debt.monthly_payment,
+    })),
+    "current",
+    pay,
+    [],
+    { schedule: false },
+  );
+  return { months: result.months, interest: result.totalInterest };
+}
+
+function planInPlay(input: {
+  householdId: string;
+  current: { months: number | null; interest: number };
+  recommended: Scenario | undefined;
+  caseState: { overrides: readonly CaseOverride[]; extraPayments: readonly ExtraPayment[]; customLoans: readonly CustomLoan[] };
+}): PlanInPlay {
+  const nightly = pipelineResults.find((row) => row.household_id === input.householdId);
+  const recommendedRun = input.recommended
+    ? runScenario(input.householdId, input.caseState, input.recommended)
+    : null;
+  const planMonths = recommendedRun
+    ? recommendedRun.months
+    : nightly && nightly.best_plan_months !== "never"
+      ? nightly.best_plan_months
+      : null;
+  const planInterest = recommendedRun ? recommendedRun.totalInterest : (nightly?.best_plan_interest ?? 0);
+  const label = input.recommended ? "Recommended" : "Nightly best";
+  if (input.current.months == null) {
+    return {
+      label,
+      months: null,
+      interest: null,
+      note: neverComparableReason(planMonths == null ? null : formatMonths(planMonths)),
+    };
+  }
+  if (planMonths == null) return { label, months: "—", interest: "—", note: null };
+  const months = Math.max(0, input.current.months - planMonths);
+  const interest = Math.max(0, input.current.interest - planInterest);
+  return {
+    label,
+    months: formatMonths(months),
+    interest: formatMoney(interest),
+    note: null,
+  };
+}
+
 /**
  * Household overview for S2. Case edits are applied for the values plans use,
  * and excluded debts stay in the list. Source rows are not modified.
@@ -258,6 +351,11 @@ export function buildHouseholdOverview(input: {
   contacts: readonly ContactEvent[];
   history: readonly CaseHistoryEvent[];
   snapshots?: readonly FrozenSnapshot[];
+  /** Marked plan, when the case has one. Omitted means the nightly best is the plan in play. */
+  recommendedScenarioId?: string | null;
+  scenarios?: readonly Scenario[];
+  extraPayments?: readonly ExtraPayment[];
+  customLoans?: readonly CustomLoan[];
 }): HouseholdOverview | null {
   if (!getHousehold(input.householdId)) return null;
   const source = loadHousehold(input.householdId);
@@ -306,6 +404,20 @@ export function buildHouseholdOverview(input: {
     .slice()
     .sort((a, b) => b.contacted_at.localeCompare(a.contacted_at) || b.contact_id.localeCompare(a.contact_id));
   const outreach = outreachStatus(contacts, AS_OF);
+  const caseState = {
+    overrides: caseOverrides,
+    extraPayments: input.extraPayments ?? [],
+    customLoans: input.customLoans ?? [],
+  };
+  const recommended = (input.scenarios ?? []).find(
+    (scenario) => scenario.scenario_id === input.recommendedScenarioId,
+  );
+  const playing = planInPlay({
+    householdId,
+    current: currentPath(householdWithCase(householdId, caseState).debts),
+    recommended,
+    caseState,
+  });
   const waiting =
     outreach.outreach_status === "waiting"
       ? [
@@ -332,6 +444,12 @@ export function buildHouseholdOverview(input: {
     state: state.household.home_state,
     hasCase: input.caseId != null,
     waiting,
+    outreach: OUTREACH_LABEL[outreach.outreach_status],
+    readyDate:
+      outreach.outreach_status === "waiting" && outreach.eligible_for_outreach_from
+        ? formatDate(outreach.eligible_for_outreach_from)
+        : null,
+    planInPlay: playing,
     dataChanged: (input.snapshots ?? []).some(
       (snapshot) => snapshot.household_id === input.householdId && sourceDiffers(snapshot, source),
     ),

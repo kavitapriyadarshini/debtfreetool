@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { caseHistory, caseOverrides, cases, contacts, membersOf } from "../data";
+import { caseHistory, caseOverrides, cases, contacts, customLoans, extraPayments, membersOf, scenarios } from "../data";
 import { householdWithCase } from "../engine/scenario";
 import { buildHouseholdOverview, type HouseholdOverview } from "../household-overview";
 
@@ -11,6 +11,10 @@ function overview(id: string): HouseholdOverview {
     overrides: caseOverrides,
     contacts,
     history: caseHistory,
+    recommendedScenarioId: caseRecord?.recommended_scenario_id ?? null,
+    scenarios,
+    extraPayments,
+    customLoans,
   });
   if (!view) throw new Error(`Missing ${id}`);
   return view;
@@ -30,6 +34,32 @@ describe("household overview", () => {
     expect(view.fico.flag).toBeNull();
     expect(view.waiting).toContain("Ready from 4 Sep 2027");
     expect(view.waiting).toContain("Agreed, with a new loan");
+    expect(view.outreach).toBe("Waiting");
+    expect(view.readyDate).toBe("4 Sep 2027");
+    expect(view.planInPlay).toEqual({
+      label: "Recommended",
+      months: "9 years 6 months",
+      interest: "$107,710",
+      note: null,
+    });
+  });
+
+  it("uses the nightly best when no plan is marked, and not comparable when today never finishes", () => {
+    const nightly = buildHouseholdOverview({
+      householdId: "H01",
+      caseId: null,
+      overrides: [],
+      contacts: [],
+      history: [],
+    });
+    expect(nightly?.outreach).toBe("Ready to contact");
+    expect(nightly?.readyDate).toBeNull();
+    expect(nightly?.planInPlay).toEqual({
+      label: "Nightly best",
+      months: "9 years 3 months",
+      interest: "$102,847",
+      note: null,
+    });
   });
 
   it("uses 740, estimated, when nobody has a FICO", () => {
@@ -54,6 +84,12 @@ describe("household overview", () => {
       at: "2 Nov 2026",
     });
     expect(card.payment.notes.map((note) => note.text)).toContain("Never pays off at the original payment");
+    expect(view.planInPlay).toEqual({
+      label: "Recommended",
+      months: "1 year 6 months",
+      interest: "$577",
+      note: null,
+    });
   });
 
   it("shows H08's confirmed rate and the income warning", () => {
@@ -133,6 +169,12 @@ describe("household overview", () => {
     const slate = card?.debts.find((row) => row.debtId === "H07-D02");
     expect(slate?.payment.text).toBe("$250");
     expect(slate?.payment.notes).toEqual([{ text: "Never pays off", tone: "flag" }]);
+    expect(card?.planInPlay).toEqual({
+      label: "Nightly best",
+      months: null,
+      interest: null,
+      note: "Today's payments never clear these debts. With the best plan: debt free in 8 years 10 months.",
+    });
 
     const rate = buildHouseholdOverview({
       householdId: "H08",

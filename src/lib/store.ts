@@ -209,6 +209,7 @@ function suggestedScenarioId(data: DemoData, caseId: string): string {
       risk: planRisk(scenario),
       schedule: result.schedule,
       payoffOrder: result.payoffOrder,
+      payoffMonths: result.payoffMonths,
     };
   });
   const best = bestPlan(plans);

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Flag } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { PaymentDot } from "@/components/payment-dot";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,7 +38,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { SavingsText } from "@/components/savings-text";
 import { PAGE_SIZE } from "@/lib/config";
-import { formatDate, formatMoney, formatPercent } from "@/lib/format";
+import { formatDate, formatMonths, neverComparableReason, paymentAlertText } from "@/lib/format";
 import {
   CASE_STATUS_LABEL,
   FLAG_LABEL,
@@ -55,8 +56,7 @@ import {
 } from "@/lib/opportunity";
 import { selectVisibleHouseholds } from "@/lib/selectors";
 import { useDemoStore } from "@/lib/store";
-import type { CaseStatus, PaymentAlert } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import type { CaseStatus } from "@/lib/types";
 
 const TABS: { id: OpportunityTab; label: string }[] = [
   { id: "ready", label: "Ready to contact" },
@@ -94,18 +94,6 @@ const SORT_ITEMS = {
   days_until_ready: "Days until ready",
 } as const;
 
-const ALERT_LABEL: Record<PaymentAlert, string> = {
-  none: "None",
-  amber: "Amber",
-  red: "Red",
-};
-
-function alertClass(alert: PaymentAlert): string {
-  if (alert === "red") return "bg-payment-red text-payment-red-foreground";
-  if (alert === "amber") return "bg-payment-amber text-payment-amber-foreground";
-  return "bg-muted text-muted-foreground";
-}
-
 function pageItems(current: number, count: number): (number | "gap")[] {
   if (count <= 7) return Array.from({ length: count }, (_, index) => index + 1);
   const wanted = [1, count, current - 1, current, current + 1].filter(
@@ -121,14 +109,8 @@ function pageItems(current: number, count: number): (number | "gap")[] {
   return items;
 }
 
-function PaymentAlertBadge({ row }: { row: OpportunityRow }) {
-  return (
-    <Badge className={cn("h-auto max-w-full whitespace-normal", alertClass(row.alert))}>
-      {row.alert === "none"
-        ? ALERT_LABEL.none
-        : `${ALERT_LABEL[row.alert]} · ${formatPercent(row.paymentChangePct)} · ${formatMoney(row.currentMonthly)} → ${formatMoney(row.bestMonthly)}`}
-    </Badge>
-  );
+function neverReason(row: OpportunityRow): string {
+  return neverComparableReason(row.bestPlanMonths == null ? null : formatMonths(row.bestPlanMonths));
 }
 
 export function OpportunityList() {
@@ -397,21 +379,23 @@ export function OpportunityList() {
                     <div className="text-xs text-muted-foreground">{row.householdId}</div>
                   </TableCell>
                   <TableCell className={row.noAction ? "text-muted-foreground" : undefined}>
-                    {monthsSavedLabel(row)}
+                    <SavingsText
+                      value={monthsSavedLabel(row)}
+                      reason={row.monthsSaved === "from never" ? neverReason(row) : null}
+                    />
                   </TableCell>
                   <TableCell>
-                    {row.monthsSaved === "from never" ? (
-                      <span className="inline-flex flex-wrap items-baseline gap-x-2">
-                        <SavingsText value={interestSavedLabel(row)} />
-                        <span>{formatMoney(row.bestPlanInterest)}</span>
-                      </span>
-                    ) : (
-                      <SavingsText value={interestSavedLabel(row)} />
-                    )}
+                    <SavingsText
+                      value={interestSavedLabel(row)}
+                      reason={row.monthsSaved === "from never" ? neverReason(row) : null}
+                    />
                   </TableCell>
                   <TableCell>{row.planType}</TableCell>
                   <TableCell>
-                    <PaymentAlertBadge row={row} />
+                    <PaymentDot
+                      alert={row.alert}
+                      label={paymentAlertText(row.currentMonthly, row.bestMonthly, row.paymentChangePct)}
+                    />
                   </TableCell>
                   <TableCell>
                     {row.products.length === 0 ? (

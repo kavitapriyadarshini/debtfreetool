@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
+import { SavingsText } from "@/components/savings-text";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { households } from "@/lib/data";
+import { households, pipelineResults } from "@/lib/data";
 import {
   drillHouseholds,
   firmHistory,
@@ -16,7 +17,7 @@ import {
   type FirmHousehold,
   type FirmStage,
 } from "@/lib/firm";
-import { formatMonths } from "@/lib/format";
+import { formatMonths, neverComparableReason, NOT_COMPARABLE } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { listAdvisors } from "@/lib/users";
 
@@ -265,9 +266,16 @@ function HouseholdList({
         <ul className="flex flex-col gap-2">
           {rows.map((household) => (
             <li key={household.householdId}>
-              <button
-                type="button"
+              <div
+                role="button"
+                tabIndex={0}
                 onClick={() => onOpen(household.householdId)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    onOpen(household.householdId);
+                  }
+                }}
                 className="flex w-full flex-wrap items-baseline justify-between gap-2 rounded-lg bg-card px-3 py-2 text-left ring-1 ring-foreground/10 hover:ring-primary/40"
               >
                 <span>
@@ -281,7 +289,7 @@ function HouseholdList({
                     {householdSaving(household)}
                   </span>
                 ) : null}
-              </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -371,13 +379,20 @@ function HistoryPanel({
   );
 }
 
-function householdSaving(household: FirmHousehold): string {
-  const months =
-    household.monthsSaved === "from never"
-      ? "From never"
-      : typeof household.monthsSaved === "number"
-        ? formatMonths(household.monthsSaved)
-        : "—";
+function householdSaving(household: FirmHousehold): ReactNode {
+  if (household.monthsSaved === "from never") {
+    const nightly = pipelineResults.find((row) => row.household_id === household.householdId);
+    const months = nightly && nightly.best_plan_months !== "never" ? nightly.best_plan_months : null;
+    const reason = neverComparableReason(months == null ? null : formatMonths(months));
+    return (
+      <span className="inline-flex flex-wrap gap-x-2">
+        <SavingsText value={NOT_COMPARABLE} reason={reason} />
+        <span>·</span>
+        <SavingsText value={NOT_COMPARABLE} reason={reason} />
+      </span>
+    );
+  }
+  const months = typeof household.monthsSaved === "number" ? formatMonths(household.monthsSaved) : "—";
   const interest = household.interestSaved == null ? "—" : interestSavedText(household.interestSaved);
   return `${months} · ${interest}`;
 }

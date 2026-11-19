@@ -80,12 +80,13 @@ describe("persisted demo state", () => {
     expect(saved).toBeTruthy();
     const parsed = JSON.parse(saved!) as {
       version: number;
-      state: { snapshots: { schedule: unknown[] }[]; scenarios: unknown[]; cases: unknown[] };
+      state: { snapshots: { schedule: unknown[]; years: unknown[] }[]; scenarios: unknown[]; cases: unknown[] };
     };
     expect(parsed.version).toBe(2);
     expect(parsed.state.cases.length).toBeGreaterThan(0);
     expect(parsed.state.scenarios.length).toBeGreaterThan(0);
     expect(parsed.state.snapshots.every((row) => row.schedule.length === 0)).toBe(true);
+    expect(parsed.state.snapshots.every((row) => Array.isArray(row.years) && row.years.length > 0)).toBe(true);
     const live = useDemoStore.getState().snapshots.find((row) => row.household_id === "H01");
     expect(live?.schedule.length).toBeGreaterThan(0);
     store.resetDemo();

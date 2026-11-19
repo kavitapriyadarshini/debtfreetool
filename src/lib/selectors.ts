@@ -47,6 +47,7 @@ function toPlan(scenario: Scenario, result: ScenarioRun): PlanOption {
     risk: planRisk(scenario),
     schedule: result.schedule,
     payoffOrder: result.payoffOrder,
+    payoffMonths: result.payoffMonths,
   };
 }
 

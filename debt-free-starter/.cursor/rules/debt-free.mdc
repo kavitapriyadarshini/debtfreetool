@@ -1,0 +1,42 @@
+---
+description: Debt Free tool prototype - always follow the spec, engine notes and fixtures
+alwaysApply: true
+---
+
+# What we are building
+
+A working prototype of the Debt Free tool for financial advisors. It must match `docs/SPEC.md` exactly.
+
+## Sources of truth, in order
+
+1. `docs/SPEC.md`: screens, rules, states, acceptance criteria, wording.
+2. `docs/ENGINE.md`: exactly how every number is calculated.
+3. `reference/*.py` and the fixtures in `data/`: the expected numbers. The TypeScript engine must reproduce them.
+
+Never invent a rule, threshold, label or screen that the spec doesn't contain. If the spec is silent or two sources disagree, do the smallest reasonable thing, then add an entry to `docs/OPEN_QUESTIONS.md` (what's unclear, what you chose, file and line). Never quietly change a rule to make a test pass.
+
+## Stack (do not change without asking)
+
+- Next.js (App Router) + TypeScript (strict) + Tailwind + shadcn/ui. Deployed on Vercel.
+- Data: the CSVs in `data/` are converted to typed JSON at build time by `scripts/build-data.ts` into `src/data/`. Source data is read-only.
+- Calculation engine: pure TypeScript in `src/lib/engine/`, no React imports, fully unit-tested with Vitest.
+- App state (cases, scenarios, edits, contacts, decisions): a Zustand store persisted to localStorage, seeded from the demo case files. A "Reset demo data" action restores the seed.
+- Demo date: `AS_OF = 2026-11-14` in `src/lib/config.ts`. Never use the real clock for business logic.
+- No backend, no auth. A header switcher picks the user: one of the five advisors, or "Manager" (firm view).
+
+## Non-negotiable product rules
+
+- The advisor decides the plan. The tool suggests (rule 6) and alerts (rule 7) but never chooses, hides or filters a plan.
+- The referral never appears in any ranking, suggestion or UI.
+- Payment alert: amber above +10%, red above +25% of today's payment, on every plan including the nightly best. Recommending an alerted plan requires an acknowledgement and a reason.
+- No-loan avalanche and snowball are always shown beside any loan plan.
+- Never block on bad data: flag it, apply the default, allow a case-only edit that shows the original value and is logged. Never mutate source data.
+- Waiting periods limit proactive outreach only; contacting inside one needs a logged reason.
+- Present mode and the one-pager use plain words: no data flags, jargon or spreadsheet grids.
+- Use "household" in the UI. Months as "11 years 2 months" with the exact month in a tooltip; money as $12,345; dates as "4 Sep 2027".
+
+## Working style
+
+- Small, reviewable steps. After each step: `npm run typecheck && npm run test && npm run build` must pass.
+- Put every screen's empty, error and edge states from SPEC.md in place in the same step as the screen.
+- Use sample households in UI tests and story data: H01 (worked example), H04, H07, H08, H09, H11, H12, H15, H16.

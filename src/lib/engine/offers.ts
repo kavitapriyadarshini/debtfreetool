@@ -56,6 +56,8 @@ export type BuiltOffer = {
   contractualRaw: number;
   /** Null when the simulation never finishes. Zero stays zero. */
   months: number | null;
+  /** Plan month each remaining debt reached zero. Moved debts are not listed. */
+  payoffMonths: Record<string, number>;
 };
 
 type Candidate = {
@@ -223,6 +225,7 @@ export function buildOffers(household: string | Household | WorkingHousehold): B
       total_interest: simulated.totalInterest,
       contractualRaw: contractual,
       months: simulated.months,
+      payoffMonths: simulated.payoffMonths,
     });
   }
   return offers;

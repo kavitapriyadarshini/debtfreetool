@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
@@ -18,13 +18,22 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { AS_OF } from "@/lib/config";
 import { outreachReasonRequired } from "@/lib/decision";
+import { outreachStatus } from "@/lib/engine/outreach";
 import { formatDate } from "@/lib/format";
-import { presentFor, type PresentChoice, type PresentModel, type PresentSide } from "@/lib/present";
+import { presentFor, type PresentColumn, type PresentYear } from "@/lib/present";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import type { ContactChannel, Decision } from "@/lib/types";
 
-export function PresentRoom({ householdId, initialPlan }: { householdId: string; initialPlan: string }) {
+export function PresentRoom({
+  householdId,
+  initialPlan,
+  compared = "",
+}: {
+  householdId: string;
+  initialPlan: string;
+  compared?: string;
+}) {
   const cases = useDemoStore((state) => state.cases);
   const scenarios = useDemoStore((state) => state.scenarios);
   const overrides = useDemoStore((state) => state.caseOverrides);
@@ -37,7 +46,10 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
   const contacts = useDemoStore((state) => state.contacts);
   const role = useDemoStore((state) => state.user.role);
   const [planId, setPlanId] = useState(initialPlan);
+  const [showing, setShowing] = useState<"plan" | "today">("plan");
+  const [openYear, setOpenYear] = useState<number | null>(null);
   const [pending, setPending] = useState<Decision | null>(null);
+  const [recorded, setRecorded] = useState<{ label: string; until: string } | null>(null);
   const [channel, setChannel] = useState<ContactChannel | "">("");
   const [reason, setReason] = useState("");
   const router = useRouter();
@@ -47,6 +59,7 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
     return matches[matches.length - 1] ?? null;
   }, [cases, householdId]);
 
+  const comparedIds = useMemo(() => compared.split(",").map((id) => id.trim()).filter((id) => id !== ""), [compared]);
   const kept = useKeptResult(
     () =>
       presentFor(
@@ -55,10 +68,25 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
         { overrides, extraPayments, customLoans },
         scenarios,
         planId,
+        comparedIds,
       ),
-    [householdId, caseRow?.case_id, overrides, extraPayments, customLoans, scenarios, planId],
+    [householdId, caseRow?.case_id, overrides, extraPayments, customLoans, scenarios, planId, comparedIds],
   );
   const model = kept.value;
+  const recommendedId = caseRow?.recommended_scenario_id ?? null;
+
+  useEffect(() => {
+    if (recommendedId) return;
+    router.replace(`/households/${householdId}/workspace?compare=current&notice=recommend`);
+  }, [recommendedId, householdId, router]);
+
+  if (!recommendedId) {
+    return (
+      <div className="flex min-h-screen flex-col gap-3 p-8">
+        <p>Present opens after a plan is marked recommended.</p>
+      </div>
+    );
+  }
 
   if (!model && kept.failed) {
     return (
@@ -85,6 +113,7 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
   function openDecision(outcome: Decision) {
     setChannel("");
     setReason("");
+    setRecorded(null);
     setPending(outcome);
   }
 
@@ -118,50 +147,74 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
       router.push(`/households/${householdId}/summary`);
       return;
     }
-    toast.success("Answer saved");
+    const next = useDemoStore.getState().contacts.filter((row) => row.household_id === householdId);
+    const until = outreachStatus(next, AS_OF).eligible_for_outreach_from;
+    setRecorded({ label: answerLabel(outcome), until: until ? formatDate(until) : "" });
   }
 
+  const years = showing === "plan" ? model.plan.years : model.today.years;
+  const canSwitch = role === "advisor" || role === "manager";
+
   return (
-    <div className={cn("relative min-h-screen bg-background px-6 py-10 text-foreground sm:px-10", actionBarOffset)}>
-      <AdvisorBar model={model} onPlan={setPlanId} />
-      <div className="mx-auto flex max-w-5xl flex-col gap-10">
+    <div className={cn("min-h-screen bg-background px-6 py-10 text-foreground sm:px-10", actionBarOffset)}>
+      <div className="mx-auto flex max-w-6xl flex-col gap-10">
         <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
-        <header className="flex flex-col gap-2 pr-16">
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{model.name}</h1>
-          {model.estimated ? <p className="text-lg text-muted-foreground">Credit score estimated</p> : null}
+        {recorded ? (
+          <p role="status" className="rounded-xl bg-muted px-4 py-3 text-lg">
+            {recorded.label} is recorded.{recorded.until ? ` No new plan until ${recorded.until}.` : ""}
+          </p>
+        ) : null}
+        <header className="flex flex-col gap-2">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{model.title}</h1>
+          <p className="text-lg text-muted-foreground">
+            {model.advisor} · {model.date}
+          </p>
         </header>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          <Column title="Today" side={model.today} />
-          <Column title="Your plan" side={model.plan} emphasis>
-            <p className="text-lg">Interest saved {model.interestSaved}</p>
-            <p className="text-lg">{model.monthsSooner}</p>
-            {model.loan ? <p className="text-lg">{model.loan}</p> : null}
-          </Column>
-        </div>
+        <Comparison columns={model.columns} canSwitch={canSwitch} onSwitch={setPlanId} />
 
-        {model.leftOut.length > 0 ? (
-          <ul className="flex flex-col gap-1 text-lg text-muted-foreground">
-            {model.leftOut.map((name) => (
-              <li key={name}>{name} is not included in this plan.</li>
-            ))}
-          </ul>
+        {model.advantages.length > 0 ? (
+          <section className="flex flex-col gap-3">
+            <h2 className="text-2xl font-semibold">What&apos;s good about this plan</h2>
+            <ul className="flex list-disc flex-col gap-2 pl-5 text-lg">
+              {model.advantages.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {model.thingsToKnow.length > 0 ? (
+          <section className="flex flex-col gap-3">
+            <h2 className="text-2xl font-semibold">Things to know</h2>
+            <ul className="flex list-disc flex-col gap-2 pl-5 text-lg">
+              {model.thingsToKnow.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
         ) : null}
 
         <section className="flex flex-col gap-4">
-          <h2 className="text-2xl font-semibold">What gets paid off</h2>
-          {model.plan.payoff.length === 0 ? (
-            <p className="text-lg text-muted-foreground">{model.plan.debtFree}</p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-2xl font-semibold">Month by month</h2>
+            <div role="group" aria-label="Which schedule" className="flex gap-2">
+              <Button size="sm" variant={showing === "plan" ? "default" : "outline"} aria-pressed={showing === "plan"} onClick={() => { setShowing("plan"); setOpenYear(null); }}>
+                Your plan
+              </Button>
+              <Button size="sm" variant={showing === "today" ? "default" : "outline"} aria-pressed={showing === "today"} onClick={() => { setShowing("today"); setOpenYear(null); }}>
+                Today
+              </Button>
+            </div>
+          </div>
+          {years.length === 0 ? (
+            <p className="text-lg text-muted-foreground">{showing === "plan" ? model.plan.debtFree : model.today.debtFree}</p>
           ) : (
-            <ol className="flex flex-col gap-5 border-l border-foreground/15 pl-6">
-              {model.plan.payoff.map((step, index) => (
-                <li key={`${step.name}-${step.when}-${index}`} className="relative">
-                  <span className="absolute top-2 -left-[1.85rem] size-3 rounded-full bg-primary" />
-                  <p className="text-xl">{step.name}</p>
-                  <p className="text-muted-foreground">{step.when}</p>
-                </li>
+            <div className="flex flex-col gap-3">
+              {years.map((year) => (
+                <YearBlock key={year.year} year={year} open={openYear === year.year} onToggle={() => setOpenYear(openYear === year.year ? null : year.year)} />
               ))}
-            </ol>
+            </div>
           )}
         </section>
 
@@ -177,14 +230,12 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
         <Button size="lg" variant="outline" onClick={() => openDecision("undecided")}>
           Needs time
         </Button>
-        {role === "advisor" ? (
-          <Link
-            href={`/households/${householdId}/workspace`}
-            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "font-normal text-muted-foreground")}
-          >
-            Back to workspace
-          </Link>
-        ) : null}
+        <Link
+          href={`/households/${householdId}/workspace`}
+          className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "font-normal text-muted-foreground")}
+        >
+          Back to workspace
+        </Link>
       </ActionBar>
       {pending ? <Dialog open onOpenChange={(open) => { if (!open) setPending(null); }}>
         <DialogContent>
@@ -227,56 +278,147 @@ export function PresentRoom({ householdId, initialPlan }: { householdId: string;
   );
 }
 
-function Column({
-  title,
-  side,
-  emphasis,
-  children,
+const ROWS: { label: string; value: (column: PresentColumn) => string }[] = [
+  { label: "Debt free by", value: (column) => column.debtFree },
+  { label: "How much sooner", value: (column) => column.sooner },
+  { label: "Total interest", value: (column) => column.interest },
+  { label: "Interest you save", value: (column) => column.interestSaved },
+  { label: "Monthly payment", value: (column) => column.monthly },
+];
+
+function Comparison({
+  columns,
+  canSwitch,
+  onSwitch,
 }: {
-  title: string;
-  side: PresentSide;
-  emphasis?: boolean;
-  children?: ReactNode;
+  columns: PresentColumn[];
+  canSwitch: boolean;
+  onSwitch: (id: string) => void;
 }) {
   return (
-    <section className={emphasis ? "flex flex-col gap-4 rounded-2xl bg-card p-6 ring-1 ring-primary/30" : "flex flex-col gap-4 p-6"} data-column={title}>
-      <h2 className="text-sm font-medium tracking-wide text-muted-foreground">{title}</h2>
-      <p className="text-sm text-muted-foreground">Debt free by</p>
-      <p className="text-3xl font-semibold tracking-tight sm:text-4xl">{side.debtFree}</p>
-      <p className="text-lg">Total interest {side.interest}</p>
-      <p className="text-lg">Monthly payment {side.monthly}</p>
-      {children}
-    </section>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[48rem] border-separate border-spacing-0 text-left">
+        <caption className="sr-only">Today, your plan, and the other plans you compared</caption>
+        <thead>
+          <tr>
+            <th className="sticky left-0 z-10 min-w-40 bg-background" />
+            {columns.map((column) => (
+              <th
+                key={column.id}
+                className={cn(
+                  "min-w-52 px-4 py-3 align-bottom text-base font-semibold",
+                  column.tone === "other" ? "bg-muted text-muted-foreground" : "text-foreground",
+                )}
+              >
+                {column.tone === "other" && canSwitch ? (
+                  <button type="button" className="text-left font-medium text-muted-foreground underline-offset-2 hover:underline" onClick={() => onSwitch(column.id)}>
+                    {column.heading}
+                  </button>
+                ) : (
+                  column.heading
+                )}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {ROWS.map((row) => (
+            <tr key={row.label}>
+              <th scope="row" className="sticky left-0 z-10 bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
+                {row.label}
+              </th>
+              {columns.map((column) => (
+                <td
+                  key={column.id}
+                  className={cn(
+                    "px-4 py-3 align-top text-base",
+                    column.tone === "other" ? "bg-muted/70 text-muted-foreground" : "text-foreground",
+                    column.tone === "other" && canSwitch && "cursor-pointer",
+                  )}
+                  onClick={column.tone === "other" && canSwitch ? () => onSwitch(column.id) : undefined}
+                >
+                  {row.value(column)}
+                </td>
+              ))}
+            </tr>
+          ))}
+          <tr>
+            <th scope="row" className="sticky left-0 z-10 bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
+              Order your debts are paid off
+            </th>
+            {columns.map((column) => (
+              <td
+                key={column.id}
+                className={cn(
+                  "px-4 py-3 align-top",
+                  column.tone === "other" ? "bg-muted/70 text-muted-foreground" : "text-foreground",
+                  column.tone === "other" && canSwitch && "cursor-pointer",
+                )}
+                onClick={column.tone === "other" && canSwitch ? () => onSwitch(column.id) : undefined}
+              >
+                {column.payoff.length === 0 ? (
+                  column.debtFree
+                ) : (
+                  <ol className="flex list-decimal flex-col gap-1 pl-4 text-sm">
+                    {column.payoff.map((step, index) => (
+                      <li key={`${column.id}-${step.name}-${step.when}-${index}`}>
+                        {step.name}
+                        <span className="text-muted-foreground"> · {step.when}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
-function AdvisorBar({
-  model,
-  onPlan,
-}: {
-  model: PresentModel;
-  onPlan: (id: string) => void;
-}) {
+function YearBlock({ year, open, onToggle }: { year: PresentYear; open: boolean; onToggle: () => void }) {
   return (
-    <details className="absolute top-4 right-4 z-10 text-xs text-muted-foreground">
-      <summary className="cursor-pointer rounded-md px-2 py-1 hover:bg-muted">Advisor</summary>
-      <div className="mt-2 flex w-56 flex-col gap-2 rounded-lg bg-card p-3 shadow-lg ring-1 ring-foreground/10">
-        <label className="flex flex-col gap-1">
-          Plan on screen
-          <select
-            className="rounded-md border bg-background px-2 py-1 text-foreground"
-            value={model.selectedId}
-            onChange={(event) => onPlan(event.target.value)}
-          >
-            {model.choices.map((choice: PresentChoice) => (
-              <option key={choice.id} value={choice.id}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-    </details>
+    <div className="rounded-xl border">
+      <button type="button" className="flex w-full flex-col gap-1 px-4 py-3 text-left" aria-expanded={open} onClick={onToggle}>
+        <span className="text-lg font-semibold">{year.year}</span>
+        <span className="text-sm text-muted-foreground">
+          Balance at the start {year.startBalance}. Balance at the end {year.endBalance}.
+        </span>
+        <span className="text-sm text-muted-foreground">
+          Debts cleared: {year.cleared.length > 0 ? year.cleared.join(", ") : "None"}
+        </span>
+      </button>
+      {open ? (
+        <div className="overflow-x-auto border-t">
+          <table className="w-full text-left text-sm">
+            <caption className="sr-only">Each month in {year.year}</caption>
+            <thead>
+              <tr className="text-muted-foreground">
+                <th className="px-4 py-2 font-medium">Month</th>
+                <th className="px-4 py-2 font-medium">Debt</th>
+                <th className="px-4 py-2 font-medium">Payment</th>
+                <th className="px-4 py-2 font-medium">Interest</th>
+                <th className="px-4 py-2 font-medium">Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {year.months.flatMap((month) =>
+                month.debts.map((debt) => (
+                  <tr key={`${month.label}-${debt.name}`} className="border-t">
+                    <td className="px-4 py-2">{month.label}</td>
+                    <td className="px-4 py-2">{debt.name}</td>
+                    <td className="px-4 py-2">{debt.payment}</td>
+                    <td className="px-4 py-2">{debt.interest}</td>
+                    <td className="px-4 py-2">{debt.balance}</td>
+                  </tr>
+                )),
+              )}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
+    </div>
   );
 }
 

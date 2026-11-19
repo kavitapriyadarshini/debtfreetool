@@ -50,7 +50,7 @@ Month index of an extra: `'2026-12'` = 1, `'2027-01'` = 2, and so on.
 
 - Best offer = lowest `(months, interest, contractual, risk)` with risk none 0 < unsecured 1 < secured 2. **No offer is filtered out for payment.**
 - Candidates: current path, avalanche, snowball, best offer. Fastest = min months (never = 1,000,000). Tied = within 1 month of fastest. Best = lowest `(interest, contractual payment, risk)` among tied.
-- Months saved = current months − best months; if the current path is never, months saved = `from never` (ranks first).
+- Months saved = current months − best months. If the current path is never, months saved = `from never` (ranks first) and interest saved = `n/a`, because interest at the 600-month cap is not a real total. The UI shows both as "Not comparable" with a tooltip giving the best plan's debt-free time; never show the raw `from never` / `n/a` values.
 - Status = `no_action_needed` if the best is the current path or months saved is 0; else `opportunity`.
 - Payment alert on any plan: `rise = monthly / today - 1`; ≤ 10% none, ≤ 25% amber, else red. For the nightly best plan, monthly = `max(contractual, pay_total)`. For advisor scenarios, monthly = `max(budget, contractual, contractual + recurring extras)` and today = the case-confirmed payment (after edits).
 - Rank within advisor: months saved descending, then interest saved descending.

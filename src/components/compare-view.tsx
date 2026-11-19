@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { PaymentDot } from "@/components/payment-dot";
 import { SavingsText } from "@/components/savings-text";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
@@ -24,7 +25,6 @@ import { compareFor, type CompareColumn, type CompareView } from "@/lib/compare"
 import { formatMoney } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
-import type { PaymentAlert } from "@/lib/types";
 
 const SERIES_COLOR = ["#1d4e89", "#5c6b7a", "#8b98a5", "#16324f", "#6d8cae", "#2f4558", "#a8b4c0", "#3d5a73"];
 
@@ -32,10 +32,12 @@ export function CompareView({
   householdId,
   householdName,
   selectedIds,
+  notice = false,
 }: {
   householdId: string;
   householdName: string;
   selectedIds: string[];
+  notice?: boolean;
 }) {
   const router = useRouter();
   const cases = useDemoStore((state) => state.cases);
@@ -65,17 +67,17 @@ export function CompareView({
   );
   const view = kept.value;
 
-  const [scheduleId, setScheduleId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [pending, setPending] = useState<CompareColumn | null>(null);
   const [shown, setShown] = useState<CompareColumn | null>(null);
   const [acknowledged, setAcknowledged] = useState(false);
   const [reason, setReason] = useState("");
 
   const recommended = scenarios.find((row) => row.scenario_id === caseRow?.recommended_scenario_id) ?? null;
-  const activeId = scheduleId && view?.columns.some((column) => column.id === scheduleId)
-    ? scheduleId
-    : view?.columns.find((column) => column.matchesSuggestion)?.id ?? view?.columns[0]?.id ?? null;
-  const active = view?.columns.find((column) => column.id === activeId) ?? null;
+  const active = view?.columns.find((column) => column.id === selectedId) ?? null;
+  const hasRecommendation = caseRow?.recommended_scenario_id != null;
+  const selectedIsRecommended =
+    active != null && active.savedScenarioId != null && active.savedScenarioId === caseRow?.recommended_scenario_id;
 
   function back() {
     router.push(`/households/${householdId}/workspace`);
@@ -118,8 +120,9 @@ export function CompareView({
     toast.success("Plan recommended");
   }
 
-  const yours = active != null && active.savedScenarioId != null && active.savedScenarioId === caseRow?.recommended_scenario_id;
-  const presentHref = active ? `/households/${householdId}/present?plan=${encodeURIComponent(active.id)}` : null;
+  function choose(id: string) {
+    setSelectedId((current) => (current === id ? null : id));
+  }
 
   if (!view || view.columns.length === 0) {
     return (
@@ -131,9 +134,6 @@ export function CompareView({
         )}
         <ActionBar name={householdName}>
           <Button disabled>Mark as recommended</Button>
-          <Button variant="outline" disabled>
-            Present
-          </Button>
           <Button variant="outline" onClick={back}>
             Back to scenarios
           </Button>
@@ -155,9 +155,18 @@ export function CompareView({
         <h1 className="text-2xl font-semibold tracking-tight">Compare</h1>
       </div>
 
+      {notice ? (
+        <p className="rounded-lg border bg-card px-4 py-3 text-sm" role="status">
+          Present opens after a plan is marked recommended.
+        </p>
+      ) : null}
+
       <section className="flex flex-col gap-1 rounded-lg border bg-card p-4" data-testid="suggestion">
         <p className="text-sm text-muted-foreground">Suggestion</p>
-        <p className="font-medium">{view.suggestionName}</p>
+        <p className="font-medium">
+          <span className="mr-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">Suggested</span>
+          {view.suggestionName}
+        </p>
         <p data-testid="suggestion-why">{view.why}</p>
         {recommended ? <p className="text-sm text-muted-foreground">Your pick: {recommended.name}</p> : null}
       </section>
@@ -171,13 +180,23 @@ export function CompareView({
         {view.columns.map((column) => {
           const yours = column.savedScenarioId != null && column.savedScenarioId === caseRow?.recommended_scenario_id;
           return (
-            <article
+            <div
               key={column.id}
+              role="button"
+              tabIndex={0}
               data-scenario={column.name}
+              aria-pressed={active?.id === column.id}
+              onClick={() => choose(column.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  choose(column.id);
+                }
+              }}
               className={cn(
-                "flex min-w-0 flex-col gap-3 rounded-lg border p-4",
+                "flex min-w-0 flex-col gap-3 rounded-lg border p-4 text-left",
                 column.badges.includes("Today") ? "bg-muted" : "bg-card",
-                column.matchesSuggestion && "border-primary",
+                active?.id === column.id && "ring-2 ring-foreground",
               )}
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
@@ -204,40 +223,28 @@ export function CompareView({
                 </div>
               </div>
               <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm">
-                <dt className="text-muted-foreground">Debt-free date</dt>
+                <dt className="text-muted-foreground">Debt free by</dt>
                 <dd>{column.debtFreeDate}</dd>
                 <dt className="text-muted-foreground">Months saved</dt>
-                <dd><SavingsText value={column.monthsSaved} /></dd>
+                <dd><SavingsText value={column.monthsSaved} reason={view.comparableNote} /></dd>
                 <dt className="text-muted-foreground">Total interest</dt>
                 <dd><SavingsText value={column.interest} /></dd>
+                <dt className="text-muted-foreground">Interest saved</dt>
+                <dd><SavingsText value={column.interestSaved} reason={view.comparableNote} /></dd>
                 <dt className="text-muted-foreground">Monthly payment</dt>
                 <dd>{column.monthly}</dd>
               </dl>
-              <AlertBadge alert={column.alert} label={column.alertLabel} />
+              <PaymentDot alert={column.alert} label={column.alertLabel} />
+              {column.matchesSuggestion ? <p className="text-sm">{view.why}</p> : null}
               {column.note ? <p className="text-sm text-muted-foreground">{column.note}</p> : null}
-            </article>
+            </div>
           );
         })}
       </div>
 
       {active ? (
         <section className="flex min-w-0 flex-col gap-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-lg font-medium">Schedule</h2>
-            <div className="flex flex-wrap gap-1">
-              {view.columns.map((column) => (
-                <Button
-                  key={column.id}
-                  size="sm"
-                  variant={column.id === active.id ? "default" : "outline"}
-                  aria-pressed={column.id === active.id}
-                  onClick={() => setScheduleId(column.id)}
-                >
-                  {column.name}
-                </Button>
-              ))}
-            </div>
-          </div>
+          <h2 className="text-lg font-medium">Schedule · {active.name}</h2>
           <BalanceChart column={active} />
           <div className="max-h-96 min-w-0 overflow-auto rounded-lg border">
             <Table>
@@ -320,21 +327,31 @@ export function CompareView({
         </DialogContent>
       </Dialog> : null}
       <ActionBar name={householdName}>
-        <Button
-          disabled={!active || yours || !active.recommendable}
-          onClick={() => {
-            if (active?.recommendable) ask(active);
-          }}
-        >
-          {yours ? "Recommended" : "Mark as recommended"}
-        </Button>
-        {presentHref ? (
-          <Link href={presentHref} className={buttonVariants({ variant: "outline" })}>
-            Present
-          </Link>
+        {hasRecommendation ? (
+          <>
+            <Link
+              href={`/households/${householdId}/present?compared=${encodeURIComponent(view.columns.map((column) => column.id).filter((id) => id !== "current").join(","))}`}
+              className={buttonVariants({ variant: "outline" })}
+            >
+              Present
+            </Link>
+            <Button
+              disabled={!active?.recommendable || selectedIsRecommended}
+              onClick={() => {
+                if (active?.recommendable && !selectedIsRecommended) ask(active);
+              }}
+            >
+              Change recommendation
+            </Button>
+          </>
         ) : (
-          <Button variant="outline" disabled>
-            Present
+          <Button
+            disabled={!active?.recommendable}
+            onClick={() => {
+              if (active?.recommendable) ask(active);
+            }}
+          >
+            Mark as recommended
           </Button>
         )}
         <Button variant="outline" onClick={back}>
@@ -390,16 +407,3 @@ function axisMoney(value: number): string {
   return `$${Math.round(value)}`;
 }
 
-function AlertBadge({ alert, label }: { alert: PaymentAlert; label: string }) {
-  if (alert === "none") return <span className="text-sm text-muted-foreground">{label}</span>;
-  return (
-    <span
-      className={cn(
-        "inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-medium",
-        alert === "red" ? "bg-payment-red text-payment-red-foreground" : "bg-payment-amber text-payment-amber-foreground",
-      )}
-    >
-      {label}
-    </span>
-  );
-}

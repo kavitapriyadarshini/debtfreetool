@@ -110,6 +110,7 @@ describe("scenario workspace", () => {
       monthly: card.monthly,
       alert: card.alert,
     });
+    expect(view?.cards.some((row) => row.alert === "red" && row.alertLabel === "Monthly payment $1,562 → $4,548 (+191%)")).toBe(true);
   });
 
   it("says when the current path never pays off", () => {
@@ -118,10 +119,18 @@ describe("scenario workspace", () => {
     expect(current?.note).toBe(NEVER_NOTE);
     expect(current?.debtFree).toBe(NEVER_NOTE);
     expect(current?.monthsSaved).toBe(NOT_COMPARABLE);
+    expect(current?.interestSaved).toBe(NOT_COMPARABLE);
+    expect(view?.debtRows.find((row) => row.debtId === "H07-D01")).toMatchObject({
+      name: "AAG Reverse Mortgage",
+      included: false,
+    });
     expect(current?.interest).toBe(NOT_COMPARABLE);
     const saved = view?.cards.map((card) => card.monthsSaved) ?? [];
     expect(saved.every((value) => value === NOT_COMPARABLE)).toBe(true);
     expect(saved.join(" ")).not.toMatch(/from never|n\/a|—/i);
+    expect(view?.comparableNote).toBe(
+      "Today's payments never clear these debts. With the best plan: debt free in 8 years 10 months.",
+    );
   });
 
   it("pins H01's current path first and gives Nightly best to Yellow 15-year only", () => {
@@ -133,6 +142,14 @@ describe("scenario workspace", () => {
     expect(nightly).toHaveLength(1);
     expect(nightly[0]?.name).toBe("HELOAN Yellow 15-year");
     expect(nightly[0]?.badges).toContain("Nightly best");
+    expect(nightly[0]?.loan).toBe("HELOAN Yellow · 15-year · $35,000 · Secured on the home");
+    expect(nightly[0]?.interestSaved).toBe("$102,847");
+    expect(nightly[0]?.monthsSaved).toBe("111 months");
+    expect(Object.values(nightly[0]?.debtWhen ?? {})).toContain("Paid by new loan");
+    expect(view?.cards[0]?.loan).toBe("None");
+    expect(view?.cards[0]?.interestSaved).toBe("—");
+    const dated = Object.values(view?.cards[0]?.debtWhen ?? {}).find((value) => value !== "Never");
+    expect(dated).toMatch(/^[A-Z][a-z]{2} \d{4}$/);
     const builtIn = view?.cards.filter((card) => card.origin === "builtin" && !card.nightly) ?? [];
     expect(builtIn.some((card) => card.name === "HELOAN Yellow 15-year")).toBe(false);
     expect(builtIn.map((card) => card.name)).toEqual(

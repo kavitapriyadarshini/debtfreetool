@@ -17,6 +17,7 @@ export type PlanOption = {
   risk: PlanRisk;
   schedule: ScheduleRow[];
   payoffOrder: string[];
+  payoffMonths: Record<string, number>;
 };
 
 export type Suggestion = {
@@ -46,6 +47,7 @@ function planFromSimulation(
     risk,
     schedule: result.schedule,
     payoffOrder: result.payoffOrder,
+    payoffMonths: result.payoffMonths,
   };
 }
 
@@ -97,6 +99,7 @@ export function planFromOffer(offer: BuiltOffer): PlanOption {
     risk: offer.security,
     schedule: [],
     payoffOrder: [],
+    payoffMonths: {},
   };
 }
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
-import Link from "next/link";
+import { SavingsText } from "@/components/savings-text";
 import { useRouter } from "next/navigation";
 import { Flag } from "lucide-react";
 import { toast } from "sonner";
@@ -34,48 +34,46 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  OVERVIEW_TAB_LABEL,
+  OVERVIEW_TABS,
   buildHouseholdOverview,
+  overviewTab,
   type EditableField,
   type FieldNote,
+  type OverviewTab,
   type ShownField,
   type ShownOverride,
 } from "@/lib/household-overview";
+import { NOT_COMPARABLE } from "@/lib/format";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 const COMFORT_ITEMS = { "1": "Zone 1", "2": "Zone 2", "3": "Zone 3" };
 
-function fieldKey(field: EditableField): string {
-  return `${field.entityType}:${field.entityId}:${field.field}`;
-}
-
-function reportableFields(overview: NonNullable<ReturnType<typeof buildHouseholdOverview>>): EditableField[] {
-  const found: EditableField[] = [];
-  const take = (field: ShownField | null) => {
-    if (field?.report) found.push(field.report);
-  };
-  take(overview.comfort);
-  for (const member of overview.members) take(member.fico);
-  for (const property of overview.properties) take(property.value);
-  for (const debt of overview.debts) {
-    take(debt.payment);
-    take(debt.rate);
-    take(debt.link);
-    take(debt.exclude);
-  }
-  return found;
-}
-
 type DialogState = { mode: "edit" | "report"; field: EditableField } | null;
 
-export function HouseholdOverview({ householdId }: { householdId: string }) {
+export function HouseholdOverview({
+  householdId,
+  tab,
+  tabInUrl,
+}: {
+  householdId: string;
+  tab: OverviewTab;
+  tabInUrl: boolean;
+}) {
   const router = useRouter();
-  const caseId = useDemoStore((state) => {
+  const caseRow = useDemoStore((state) => {
     const matches = state.cases.filter((row) => row.household_id === householdId);
-    return matches[matches.length - 1]?.case_id ?? null;
+    return matches[matches.length - 1] ?? null;
   });
+  const caseId = caseRow?.case_id ?? null;
+  const recommendedScenarioId = caseRow?.recommended_scenario_id ?? null;
+  const scenarios = useDemoStore((state) => state.scenarios);
+  const extraPayments = useDemoStore((state) => state.extraPayments);
+  const customLoans = useDemoStore((state) => state.customLoans);
   const overrides = useDemoStore((state) => state.caseOverrides);
   const contacts = useDemoStore((state) => state.contacts);
   const history = useDemoStore((state) => state.caseHistory);
@@ -93,13 +91,33 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
         contacts,
         history,
         snapshots,
+        recommendedScenarioId,
+        scenarios,
+        extraPayments,
+        customLoans,
       }),
-    [householdId, caseId, overrides, contacts, history, snapshots],
+    [householdId, caseId, overrides, contacts, history, snapshots, recommendedScenarioId, scenarios, extraPayments, customLoans],
   );
   const overview = kept.value;
 
   const [dialog, setDialog] = useState<DialogState>(null);
   const [opening, setOpening] = useState(false);
+  const [selectedTab, setSelectedTab] = useState(tab);
+
+  useEffect(() => {
+    setSelectedTab(tab);
+  }, [tab]);
+
+  useEffect(() => {
+    if (tabInUrl) return;
+    router.replace(`/households/${householdId}?tab=debts`, { scroll: false });
+  }, [householdId, router, tabInUrl]);
+
+  function selectTab(next: string | null) {
+    const chosen = overviewTab(next ?? undefined);
+    setSelectedTab(chosen);
+    router.replace(`/households/${householdId}?tab=${chosen}`, { scroll: false });
+  }
   const [draft, setDraft] = useState("");
   const [reason, setReason] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -232,127 +250,91 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
     overview.properties.map((property) => [property.propertyId, property.address]),
   );
 
-  const issues = reportableFields(overview);
-
   return (
-    <div className={cn("flex min-w-0 flex-col gap-8", actionBarOffset)}>
+    <div className={cn("flex min-w-0 flex-col gap-4", actionBarOffset)}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
-      <header className="flex flex-wrap items-start justify-between gap-4">
-        <div className="min-w-0">
-          <h1 className="text-2xl font-semibold tracking-tight">{overview.name}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {overview.householdId} · {overview.advisor}, {overview.branch} · {overview.state}
+      <div className="sticky top-0 z-30 -mx-4 flex flex-col gap-3 border-b bg-background px-4 pb-3 sm:-mx-6 sm:px-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h1 className="text-xl font-semibold tracking-tight">{overview.name}</h1>
+          <p className="text-sm text-muted-foreground">
+            {overview.advisor} · {overview.state}
           </p>
         </div>
-        {snapshots.some((row) => row.household_id === householdId) ? (
-          <Link
-            href={`/households/${householdId}/summary`}
-            className="inline-flex h-8 items-center rounded-lg border px-3 text-sm hover:bg-muted"
-          >
-            One-page summary
-          </Link>
-        ) : null}
-      </header>
-
-      {overview.waiting ? (
-        <Alert data-testid="waiting-banner">
-          <AlertTitle>Waiting period</AlertTitle>
-          <AlertDescription>{overview.waiting}</AlertDescription>
-        </Alert>
-      ) : null}
-
-      {overview.dataChanged ? (
-        <Alert data-testid="data-changed">
-          <AlertDescription>Data has changed since this plan was agreed</AlertDescription>
-        </Alert>
-      ) : null}
-
-      {overview.fastAppReason ? (
-        <p className="text-sm text-muted-foreground">{overview.fastAppReason}</p>
-      ) : null}
-
-      <dl className="grid gap-6 sm:grid-cols-3">
-        <div className="flex flex-col gap-1">
-          <dt className="text-sm text-muted-foreground">Comfort zone</dt>
-          <dd>
-            <FieldView field={overview.comfort} onEdit={openEdit} />
-          </dd>
-        </div>
-        <div className="flex flex-col gap-1">
-          <dt className="text-sm text-muted-foreground">Household FICO</dt>
-          <dd data-testid="household-fico">
-            <p>{overview.fico.text}</p>
-            {overview.fico.whose ? <p className="text-sm text-muted-foreground">{overview.fico.whose}</p> : null}
-            {overview.fico.flag ? <FlagNote text={overview.fico.flag} /> : null}
-            {overview.fico.overrides.map((row) => (
-              <OverrideLine key={`${row.original}-${row.next}-${row.at}`} override={row} />
-            ))}
-          </dd>
-        </div>
-        <div className="flex flex-col gap-1">
-          <dt className="text-sm text-muted-foreground">Income</dt>
-          <dd>
-            <p>{overview.income.text}</p>
-            {overview.income.note ? <FlagNote text={overview.income.note} /> : null}
-          </dd>
-        </div>
-      </dl>
-
-      <Section title="Members">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Member</TableHead>
-              <TableHead>Role</TableHead>
-              <TableHead>FICO</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {overview.members.map((member) => (
-              <TableRow key={member.memberId}>
-                <TableCell>{member.name}</TableCell>
-                <TableCell>{member.role}</TableCell>
-                <TableCell>
-                  <FieldView field={member.fico} onEdit={openEdit} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Section>
-
-      <Section title="Properties">
-        {overview.properties.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No property on file.</p>
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Property</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Value</TableHead>
-                <TableHead>Value date</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {overview.properties.map((property) => (
-                <TableRow key={property.propertyId}>
-                  <TableCell>{property.address}</TableCell>
-                  <TableCell>{property.type}</TableCell>
-                  <TableCell>
-                    <FieldView field={property.value} onEdit={openEdit} />
-                  </TableCell>
-                  <TableCell className={property.stale ? "text-payment-red" : undefined}>
-                    {property.valueDate}
-                  </TableCell>
-                </TableRow>
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm lg:grid-cols-5">
+          <div className="flex flex-col gap-0.5">
+            <dt className="text-muted-foreground">Comfort zone</dt>
+            <dd>
+              <FieldView field={overview.comfort} onEdit={openEdit} onReport={openReport} />
+            </dd>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <dt className="text-muted-foreground">Household FICO</dt>
+            <dd data-testid="household-fico">
+              <p>
+                {overview.fico.text}
+                {overview.fico.whose ? <span className="text-muted-foreground"> · {overview.fico.whose}</span> : null}
+              </p>
+              {overview.fico.flag ? <FlagNote text={overview.fico.flag} /> : null}
+              {overview.fico.overrides.map((row) => (
+                <OverrideLine key={`${row.original}-${row.next}-${row.at}`} override={row} />
               ))}
-            </TableBody>
-          </Table>
-        )}
-      </Section>
+            </dd>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <dt className="text-muted-foreground">Income</dt>
+            <dd>
+              <p>{overview.income.text}</p>
+              {overview.income.note ? <FlagNote text={overview.income.note} /> : null}
+            </dd>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <dt className="text-muted-foreground">Outreach</dt>
+            <dd>
+              <p>{overview.outreach}</p>
+              {overview.readyDate ? <p className="text-muted-foreground">Ready {overview.readyDate}</p> : null}
+            </dd>
+          </div>
+          <div className="col-span-2 flex flex-col gap-0.5 lg:col-span-1">
+            <dt className="text-muted-foreground">{overview.planInPlay.label}</dt>
+            <dd>
+              <p>
+                {overview.planInPlay.months == null ? (
+                  <>
+                    Plan in play saves: <SavingsText value={NOT_COMPARABLE} reason={overview.planInPlay.note} />
+                  </>
+                ) : (
+                  <>
+                    Plan in play saves: {overview.planInPlay.months} and {overview.planInPlay.interest} vs today
+                  </>
+                )}
+              </p>
+            </dd>
+          </div>
+        </dl>
+        {overview.waiting ? (
+          <Alert data-testid="waiting-banner">
+            <AlertTitle>Waiting period</AlertTitle>
+            <AlertDescription>{overview.waiting}</AlertDescription>
+          </Alert>
+        ) : null}
+        {overview.dataChanged ? (
+          <Alert data-testid="data-changed">
+            <AlertDescription>Data has changed since this plan was agreed</AlertDescription>
+          </Alert>
+        ) : null}
+        {overview.fastAppReason ? <p className="text-sm text-muted-foreground">{overview.fastAppReason}</p> : null}
+        <Tabs value={selectedTab} onValueChange={selectTab}>
+          <TabsList variant="line" className="h-auto w-full justify-start">
+            {OVERVIEW_TABS.map((item) => (
+              <TabsTrigger key={item} value={item}>
+                {OVERVIEW_TAB_LABEL[item]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
 
-      <Section title="Debts">
+      {selectedTab === "debts" ? (
         <Table>
           <TableHeader>
             <TableRow>
@@ -374,20 +356,26 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
                   ))}
                   {debt.exclude ? (
                     <div className="mt-2">
-                      <FieldView field={debt.exclude} onEdit={openEdit} hideText editLabel="Exclude from plans" />
+                      <FieldView
+                        field={debt.exclude}
+                        onEdit={openEdit}
+                        onReport={openReport}
+                        hideText
+                        editLabel="Exclude from plans"
+                      />
                     </div>
                   ) : null}
                 </TableCell>
                 <TableCell>{debt.balance}</TableCell>
                 <TableCell>
-                  <FieldView field={debt.payment} onEdit={openEdit} />
+                  <FieldView field={debt.payment} onEdit={openEdit} onReport={openReport} />
                 </TableCell>
                 <TableCell>
-                  <FieldView field={debt.rate} onEdit={openEdit} />
+                  <FieldView field={debt.rate} onEdit={openEdit} onReport={openReport} />
                 </TableCell>
                 <TableCell>
                   {debt.link ? (
-                    <FieldView field={debt.link} onEdit={openEdit} />
+                    <FieldView field={debt.link} onEdit={openEdit} onReport={openReport} />
                   ) : (
                     "—"
                   )}
@@ -396,10 +384,64 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
             ))}
           </TableBody>
         </Table>
-      </Section>
+      ) : null}
 
-      <Section title="Contact history">
-        {overview.contacts.length === 0 ? (
+      {selectedTab === "members" ? (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Member</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>FICO</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {overview.members.map((member) => (
+              <TableRow key={member.memberId}>
+                <TableCell>{member.name}</TableCell>
+                <TableCell>{member.role}</TableCell>
+                <TableCell>
+                  <FieldView field={member.fico} onEdit={openEdit} onReport={openReport} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : null}
+
+      {selectedTab === "properties" ? (
+        overview.properties.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No property on file.</p>
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Property</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Value</TableHead>
+                <TableHead>Value date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {overview.properties.map((property) => (
+                <TableRow key={property.propertyId}>
+                  <TableCell>{property.address}</TableCell>
+                  <TableCell>{property.type}</TableCell>
+                  <TableCell>
+                    <FieldView field={property.value} onEdit={openEdit} onReport={openReport} />
+                  </TableCell>
+                  <TableCell className={property.stale ? "text-payment-red" : undefined}>
+                    {property.valueDate}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )
+      ) : null}
+
+      {selectedTab === "contacts" ? (
+        overview.contacts.length === 0 ? (
           <p className="text-sm text-muted-foreground">Not contacted yet.</p>
         ) : (
           <Table>
@@ -424,11 +466,11 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
               ))}
             </TableBody>
           </Table>
-        )}
-      </Section>
+        )
+      ) : null}
 
-      <Section title="Case history">
-        {overview.history.length === 0 ? (
+      {selectedTab === "history" ? (
+        overview.history.length === 0 ? (
           <p className="text-sm text-muted-foreground">No case yet.</p>
         ) : (
           <Table>
@@ -453,26 +495,20 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
               ))}
             </TableBody>
           </Table>
-        )}
-      </Section>
+        )
+      ) : null}
 
       {dialog ? (
         <Dialog open onOpenChange={(next) => { if (!next) closeDialog(); }}>
           <DialogContent>
             <CaseDialog
               dialog={dialog}
-              fields={issues}
               draft={draft}
               reason={reason}
               error={error}
               propertyItems={propertyItems}
               onDraft={setDraft}
               onReason={setReason}
-              onField={(field) => {
-                setDialog({ mode: "report", field });
-                setReason("");
-                setError(null);
-              }}
               onSave={dialog.mode === "edit" ? saveEdit : saveReport}
             />
           </DialogContent>
@@ -491,27 +527,8 @@ export function HouseholdOverview({ householdId }: { householdId: string }) {
         >
           {opening ? "Opening…" : overview.hasCase ? "Continue case" : "Start case"}
         </Button>
-        <Button
-          variant="outline"
-          disabled={issues.length === 0}
-          onClick={() => {
-            const first = issues[0];
-            if (first) openReport(first);
-          }}
-        >
-          Report data issue
-        </Button>
       </ActionBar>
     </div>
-  );
-}
-
-function Section({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <section className="flex min-w-0 flex-col gap-3">
-      <h2 className="text-base font-medium">{title}</h2>
-      {children}
-    </section>
   );
 }
 
@@ -544,26 +561,35 @@ function OverrideLine({ override }: { override: ShownOverride }) {
 function FieldView({
   field,
   onEdit,
+  onReport,
   hideText = false,
   editLabel = "Edit for this case",
 }: {
   field: ShownField;
   onEdit: (field: EditableField) => void;
+  onReport: (field: EditableField) => void;
   hideText?: boolean;
   editLabel?: string;
 }) {
   return (
-    <div className="flex min-w-40 flex-col gap-1">
+    <div className="flex min-w-0 flex-col gap-1">
       {hideText ? null : <span>{field.text}</span>}
       {field.override ? <OverrideLine override={field.override} /> : null}
       {field.notes.map((note) => (
         <NoteLine key={note.text} note={note} />
       ))}
-      {field.edit ? (
+      {field.edit || field.report ? (
         <div className="flex flex-wrap gap-1">
-          <Button variant="ghost" size="xs" onClick={() => onEdit(field.edit!)}>
-            {editLabel}
-          </Button>
+          {field.edit ? (
+            <Button variant="ghost" size="xs" onClick={() => onEdit(field.edit!)}>
+              {editLabel}
+            </Button>
+          ) : null}
+          {field.report ? (
+            <Button variant="ghost" size="xs" onClick={() => onReport(field.report!)}>
+              Report data issue
+            </Button>
+          ) : null}
         </div>
       ) : null}
     </div>
@@ -572,30 +598,25 @@ function FieldView({
 
 function CaseDialog({
   dialog,
-  fields,
   draft,
   reason,
   error,
   propertyItems,
   onDraft,
   onReason,
-  onField,
   onSave,
 }: {
   dialog: { mode: "edit" | "report"; field: EditableField };
-  fields: EditableField[];
   draft: string;
   reason: string;
   error: string | null;
   propertyItems: Record<string, string>;
   onDraft: (value: string) => void;
   onReason: (value: string) => void;
-  onField: (field: EditableField) => void;
   onSave: () => void;
 }) {
   const field = dialog.field;
   const editing = dialog.mode === "edit";
-  const issueItems = Object.fromEntries(fields.map((row) => [fieldKey(row), row.label]));
   return (
     <form
       onSubmit={(event) => {
@@ -606,34 +627,10 @@ function CaseDialog({
       <DialogHeader>
         <DialogTitle>{editing ? "Edit for this case" : "Report data issue"}</DialogTitle>
         <DialogDescription>
-          {editing ? `${field.label}. ` : ""}This stays on the case. Source data is left as it is.
+          {field.label}. This stays on the case. Source data is left as it is.
         </DialogDescription>
       </DialogHeader>
       <div className="flex flex-col gap-3 py-2">
-        {editing ? null : (
-          <label className="flex flex-col gap-1 text-sm">
-            Which value
-            <Select
-              items={issueItems}
-              value={fieldKey(field)}
-              onValueChange={(value) => {
-                const next = fields.find((row) => fieldKey(row) === value);
-                if (next) onField(next);
-              }}
-            >
-              <SelectTrigger aria-label="Which value">
-                <SelectValue placeholder="Choose a value" />
-              </SelectTrigger>
-              <SelectContent>
-                {fields.map((row) => (
-                  <SelectItem key={fieldKey(row)} value={fieldKey(row)}>
-                    {row.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </label>
-        )}
         {editing && field.kind !== "exclude" ? (
           <ValueInput field={field} draft={draft} propertyItems={propertyItems} onDraft={onDraft} />
         ) : null}

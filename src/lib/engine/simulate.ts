@@ -36,6 +36,8 @@ export type SimulationResult = {
   months: number | null;
   totalInterest: number;
   payoffOrder: string[];
+  /** Plan month each debt reached zero. Debts still open are absent. */
+  payoffMonths: Record<string, number>;
   schedule: ScheduleRow[];
 };
 
@@ -81,12 +83,13 @@ export function simulate(
   const recordSchedule = options?.schedule !== false;
   const live: SimDebt[] = debts.filter((debt) => debt.balance > 0).map((debt) => ({ ...debt }));
   if (live.length === 0) {
-    return { months: 0, totalInterest: 0, payoffOrder: [], schedule: [] };
+    return { months: 0, totalInterest: 0, payoffOrder: [], payoffMonths: {}, schedule: [] };
   }
 
   const spendBudget = budget ?? live.reduce((sum, debt) => sum + debt.payment, 0);
   let totalInterest = 0;
   const payoffOrder: string[] = [];
+  const payoffMonths: Record<string, number> = {};
   const schedule: ScheduleRow[] = [];
   let month = 0;
 
@@ -142,7 +145,10 @@ export function simulate(
     }
 
     for (const debt of live) {
-      if (debt.balance <= BALANCE_EPSILON) payoffOrder.push(debt.id);
+      if (debt.balance <= BALANCE_EPSILON) {
+        payoffOrder.push(debt.id);
+        payoffMonths[debt.id] = month;
+      }
     }
     const remaining = live.filter((debt) => debt.balance > BALANCE_EPSILON);
     live.length = 0;
@@ -153,6 +159,7 @@ export function simulate(
     months: live.length > 0 ? null : month,
     totalInterest: pythonRound(totalInterest),
     payoffOrder,
+    payoffMonths,
     schedule,
   };
 }

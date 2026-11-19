@@ -1,5 +1,5 @@
 import { AS_OF } from "./config";
-import { compactSpan, formatMoney, formatMonths, NOT_COMPARABLE } from "./format";
+import { formatMoney, formatMonths, NOT_COMPARABLE } from "./format";
 import { pipelineFlags, pipelineOffers, pipelineResults } from "./data";
 import { fastAppMiss, type FastAppMiss } from "./engine/offers";
 import { outreachStatus } from "./engine/outreach";
@@ -143,9 +143,7 @@ export function monthsSavedLabel(
   row: Pick<OpportunityRow, "noAction" | "monthsSaved" | "bestPlanMonths">,
 ): string {
   if (row.noAction) return "No action needed";
-  if (row.monthsSaved === "from never") {
-    return row.bestPlanMonths == null ? "Never" : `Never → ${compactSpan(row.bestPlanMonths)}`;
-  }
+  if (row.monthsSaved === "from never") return NOT_COMPARABLE;
   return formatMonths(row.monthsSaved);
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { cases, contacts, households } from "../data";
-import { formatMoney, formatPercent, NOT_COMPARABLE } from "../format";
+import { formatMoney, formatMonths, formatPercent, neverComparableReason, paymentAlertText, NOT_COMPARABLE } from "../format";
 import {
   filterOpportunities,
   interestSavedLabel,
@@ -47,6 +47,9 @@ describe("opportunity list", () => {
     expect(formatPercent(h11?.paymentChangePct ?? 0)).toBe("+191%");
     expect(formatMoney(h11?.currentMonthly ?? 0)).toBe("$1,562");
     expect(formatMoney(h11?.bestMonthly ?? 0)).toBe("$4,548");
+    expect(paymentAlertText(h11!.currentMonthly, h11!.bestMonthly, h11!.paymentChangePct)).toBe(
+      "Monthly payment $1,562 → $4,548 (+191%)",
+    );
 
     const h04 = rows.find((row) => row.householdId === "H04");
     expect(h04?.outreach).toBe("waiting");
@@ -55,16 +58,30 @@ describe("opportunity list", () => {
     );
   });
 
-  it("shows H07 as never to the best plan's time, with interest that is not comparable", () => {
-    const rows = sortOpportunities(book("Pamela Wilson"), "months");
-    const h07 = rows.find((row) => row.householdId === "H07");
-    expect(monthsSavedLabel(h07!)).toBe("Never → 8 yrs 10 mos");
-    expect(interestSavedLabel(h07!)).toBe(NOT_COMPARABLE);
-    expect(formatMoney(h07?.bestPlanInterest ?? 0)).toBe("$33,595");
-    expect(monthsSavedLabel(h07!)).not.toMatch(/from never|n\/a|—/i);
-    const firstComparable = rows.findIndex((row) => row.monthsSaved !== "from never" && !row.noAction);
-    expect(rows.slice(0, firstComparable).every((row) => row.monthsSaved === "from never")).toBe(true);
-    expect(rows.findIndex((row) => row.householdId === "H07")).toBeLessThan(firstComparable);
+  it("shows households that never pay off as not comparable and ranks them first", () => {
+    const rows = listOpportunities(households, contacts, cases);
+    const times: Record<string, string> = {
+      H07: "8 years 10 months",
+      H55: "2 years 7 months",
+      H82: "3 years 5 months",
+      H175: "4 years 6 months",
+      H291: "10 years",
+    };
+    for (const id of Object.keys(times)) {
+      const row = rows.find((item) => item.householdId === id);
+      expect(row?.monthsSaved, id).toBe("from never");
+      expect(monthsSavedLabel(row!), id).toBe(NOT_COMPARABLE);
+      expect(interestSavedLabel(row!), id).toBe(NOT_COMPARABLE);
+      expect(neverComparableReason(row!.bestPlanMonths == null ? null : formatMonths(row!.bestPlanMonths)), id).toBe(
+        `Today's payments never clear these debts. With the best plan: debt free in ${times[id]}.`,
+      );
+      expect(`${monthsSavedLabel(row!)} ${interestSavedLabel(row!)}`).not.toMatch(/Never →|from never|n\/a|—/i);
+    }
+
+    const ranked = sortOpportunities(book("Pamela Wilson"), "months");
+    const firstComparable = ranked.findIndex((row) => row.monthsSaved !== "from never" && !row.noAction);
+    expect(ranked.slice(0, firstComparable).every((row) => row.monthsSaved === "from never")).toBe(true);
+    expect(ranked.findIndex((row) => row.householdId === "H07")).toBeLessThan(firstComparable);
   });
 
   it("ranks H12 last among Elena Duarte's waiting households and says no action needed", () => {
