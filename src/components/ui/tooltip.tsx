@@ -38,7 +38,7 @@ function TooltipContent({
     "align" | "alignOffset" | "side" | "sideOffset"
   >) {
   return (
-    <TooltipPrimitive.Portal>
+    <TooltipPrimitive.Portal keepMounted={false}>
       <TooltipPrimitive.Positioner
         align={align}
         alignOffset={alignOffset}

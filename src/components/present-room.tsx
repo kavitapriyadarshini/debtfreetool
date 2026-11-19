@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { Profile } from "@/components/profile";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,6 +21,7 @@ import { AS_OF } from "@/lib/config";
 import { outreachReasonRequired } from "@/lib/decision";
 import { outreachStatus } from "@/lib/engine/outreach";
 import { formatDate } from "@/lib/format";
+import { PayoffTable } from "@/components/payoff-table";
 import { presentFor, type PresentColumn, type PresentYear } from "@/lib/present";
 import { useDemoStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -79,6 +81,11 @@ export function PresentRoom({
     if (recommendedId) return;
     router.replace(`/households/${householdId}/workspace?compare=current&notice=recommend`);
   }, [recommendedId, householdId, router]);
+
+  useEffect(() => {
+    router.prefetch(`/households/${householdId}/summary`);
+    router.prefetch(`/households/${householdId}/workspace`);
+  }, [router, householdId]);
 
   if (!recommendedId) {
     return (
@@ -156,6 +163,7 @@ export function PresentRoom({
   const canSwitch = role === "advisor" || role === "manager";
 
   return (
+    <Profile id="present">
     <div className={cn("min-h-screen bg-background px-6 py-10 text-foreground sm:px-10", actionBarOffset)}>
       <div className="mx-auto flex max-w-6xl flex-col gap-10">
         <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
@@ -195,9 +203,20 @@ export function PresentRoom({
           </section>
         ) : null}
 
+        {model.dataEdits.length > 0 ? (
+          <section className="flex flex-col gap-3" data-testid="data-edits">
+            <h2 className="text-2xl font-semibold">Data edits, if any</h2>
+            <ul className="flex flex-col gap-2 text-lg">
+              {model.dataEdits.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold">Month by month</h2>
+            <h2 className="text-2xl font-semibold">Year by year</h2>
             <div role="group" aria-label="Which schedule" className="flex gap-2">
               <Button size="sm" variant={showing === "plan" ? "default" : "outline"} aria-pressed={showing === "plan"} onClick={() => { setShowing("plan"); setOpenYear(null); }}>
                 Your recommended plan
@@ -221,15 +240,9 @@ export function PresentRoom({
         {caseRow?.decision ? <p className="text-lg text-muted-foreground">Answer recorded: {answerLabel(caseRow.decision)}</p> : null}
       </div>
       <ActionBar name={model.name} edge="screen">
-        <Button size="lg" onClick={() => openDecision("agreed")}>
-          Agreed
-        </Button>
-        <Button size="lg" variant="outline" onClick={() => openDecision("declined")}>
-          Not now
-        </Button>
-        <Button size="lg" variant="outline" onClick={() => openDecision("undecided")}>
-          Needs time
-        </Button>
+        <DecisionButton label="Agreed" onAction={() => openDecision("agreed")} />
+        <DecisionButton label="Not now" variant="outline" onAction={() => openDecision("declined")} />
+        <DecisionButton label="Needs time" variant="outline" onAction={() => openDecision("undecided")} />
         <Link
           href={`/households/${householdId}/workspace`}
           className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "font-normal text-muted-foreground")}
@@ -268,13 +281,53 @@ export function PresentRoom({
             <Button variant="outline" onClick={() => setPending(null)}>
               Cancel
             </Button>
-            <Button disabled={!canSave} onClick={saveDecision}>
-              Save
-            </Button>
+            <DecisionButton label="Save" pendingLabel="Saving…" size="default" disabled={!canSave} onAction={saveDecision} />
           </DialogFooter>
         </DialogContent>
       </Dialog> : null}
     </div>
+    </Profile>
+  );
+}
+
+function DecisionButton({
+  label,
+  pendingLabel = "Opening…",
+  variant = "default",
+  size = "lg",
+  disabled,
+  onAction,
+}: {
+  label: string;
+  pendingLabel?: string;
+  variant?: "default" | "outline";
+  size?: "default" | "lg";
+  disabled?: boolean;
+  onAction: () => void;
+}) {
+  const [pending, setPending] = useState(false);
+  return (
+    <Button
+      size={size}
+      variant={variant}
+      disabled={disabled || pending}
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      onPointerDown={(event) => {
+        if (disabled) return;
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={() => {
+        if (disabled || pending) return;
+        setPending(true);
+        startTransition(() => {
+          onAction();
+          setPending(false);
+        });
+      }}
+    >
+      {pending ? pendingLabel : label}
+    </Button>
   );
 }
 
@@ -282,7 +335,7 @@ const ROWS: { label: string; value: (column: PresentColumn) => string }[] = [
   { label: "Debt free by", value: (column) => column.debtFree },
   { label: "How much sooner", value: (column) => column.sooner },
   { label: "Total interest", value: (column) => column.interest },
-  { label: "Interest you save", value: (column) => column.interestSaved },
+  { label: "Interest saved", value: (column) => column.interestSaved },
   { label: "Monthly payment", value: (column) => column.monthly },
 ];
 
@@ -348,7 +401,7 @@ function Comparison({
           ))}
           <tr>
             <th scope="row" className="sticky left-0 z-10 bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
-              Order your debts are paid off
+              Payoff order
             </th>
             {columns.map((column) => (
               <td
@@ -363,14 +416,7 @@ function Comparison({
                 {column.payoff.length === 0 ? (
                   column.debtFree
                 ) : (
-                  <ol className="flex list-decimal flex-col gap-1 pl-4 text-sm">
-                    {column.payoff.map((step, index) => (
-                      <li key={`${column.id}-${step.name}-${step.when}-${index}`}>
-                        {step.name}
-                        <span className="text-muted-foreground"> · {step.when}</span>
-                      </li>
-                    ))}
-                  </ol>
+                  <PayoffTable rows={column.payoff} className="text-sm" />
                 )}
               </td>
             ))}

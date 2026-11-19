@@ -94,6 +94,27 @@ const SORT_ITEMS = {
   days_until_ready: "Days until ready",
 } as const;
 
+function HouseholdLink({ householdId, name }: { householdId: string; name: string }) {
+  const [pending, setPending] = useState(false);
+  return (
+    <Link
+      href={`/households/${householdId}`}
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      className="font-medium underline-offset-2 hover:underline"
+      onPointerDown={(event) => {
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={(event) => {
+        event.stopPropagation();
+        setPending(true);
+      }}
+    >
+      {pending ? "Opening…" : name}
+    </Link>
+  );
+}
+
 function pageItems(current: number, count: number): (number | "gap")[] {
   if (count <= 7) return Array.from({ length: count }, (_, index) => index + 1);
   const wanted = [1, count, current - 1, current, current + 1].filter(
@@ -393,19 +414,16 @@ export function OpportunityList() {
                   data-testid={`opportunity-${row.householdId}`}
                   tabIndex={0}
                   className="cursor-pointer"
+                  onPointerDown={(event) => {
+                    event.currentTarget.dataset.pending = "true";
+                  }}
                   onClick={() => router.push(`/households/${row.householdId}`)}
                   onKeyDown={(event) => {
                     if (event.key === "Enter") router.push(`/households/${row.householdId}`);
                   }}
                 >
                   <TableCell>
-                    <Link
-                      href={`/households/${row.householdId}`}
-                      className="font-medium underline-offset-2 hover:underline"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      {row.name}
-                    </Link>
+                    <HouseholdLink householdId={row.householdId} name={row.name} />
                     <div className="text-xs text-muted-foreground">{row.householdId}</div>
                   </TableCell>
                   <TableCell className={row.noAction ? "text-muted-foreground" : undefined}>

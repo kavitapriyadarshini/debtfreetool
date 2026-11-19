@@ -112,6 +112,10 @@ describe("decision and snapshot", () => {
     expect(planned?.snapshot?.planName).toBe(
       "Your recommended plan: Pay off your cards with a home equity loan, then clear the rest in order",
     );
+    expect(planned?.snapshot?.interestSaved).toBe("$107,710");
+    expect(planned?.snapshot?.dataEdits).toEqual([]);
+    expect(planned?.snapshot?.payoff[0]?.when).toBe("Upon starting new plan (Dec 2026)");
+    expect(planned?.snapshot?.payoff[0]?.debt).toBe("Chase Sapphire");
     expect(planned?.snapshot?.advantages).toEqual([
       "Debt free 9 years 6 months sooner.",
       "$107,710 less interest.",

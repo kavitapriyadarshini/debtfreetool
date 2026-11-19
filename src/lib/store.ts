@@ -601,7 +601,7 @@ export const useDemoStore = create<DemoState>()(
     {
       name: "debt-free-v1",
       version: 3,
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(demoStorage),
       skipHydration: true,
       migrate: migrateDemoState,
       partialize: (state) => ({
@@ -618,6 +618,42 @@ export const useDemoStore = create<DemoState>()(
     },
   ),
 );
+
+/** Browser writes wait 300ms and store inputs only. Node tests write immediately. */
+function demoStorage(): Storage {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let pending: { key: string; value: string } | null = null;
+  const flush = () => {
+    if (timer != null) clearTimeout(timer);
+    timer = null;
+    if (!pending) return;
+    localStorage.setItem(pending.key, pending.value);
+    pending = null;
+  };
+  const immediate = typeof window === "undefined";
+  if (!immediate) window.addEventListener("pagehide", flush);
+  return {
+    getItem: (key) => localStorage.getItem(key),
+    setItem: (key, value) => {
+      if (immediate) {
+        localStorage.setItem(key, value);
+        return;
+      }
+      pending = { key, value };
+      if (timer != null) clearTimeout(timer);
+      timer = setTimeout(flush, 300);
+    },
+    removeItem: (key) => {
+      if (pending?.key === key) pending = null;
+      localStorage.removeItem(key);
+    },
+    clear: () => localStorage.clear(),
+    key: (index) => localStorage.key(index),
+    get length() {
+      return localStorage.length;
+    },
+  };
+}
 
 function dataOf(state: DemoState): DemoData {
   return {

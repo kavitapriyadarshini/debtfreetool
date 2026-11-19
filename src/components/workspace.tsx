@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { memo, startTransition, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { Profile } from "@/components/profile";
 import { SavingsText } from "@/components/savings-text";
 import { CompareView } from "@/components/compare-view";
 import { PLAN_START } from "@/lib/config";
@@ -143,6 +144,40 @@ export function Workspace({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numbers]);
 
+  const columns = useMemo(() => {
+    if (!model) return [];
+    const today = model.cards.filter((card) => card.origin === "today");
+    const nightly = model.cards.filter((card) => card.nightly && card.origin !== "today");
+    const builtIn = model.cards.filter((card) => card.origin === "builtin" && !card.nightly);
+    const advisor = model.cards.filter((card) => card.origin === "advisor");
+    return [...today, ...nightly, ...builtIn, ...advisor];
+  }, [model]);
+  const actions = useRef({
+    compare: (_id: string) => {},
+    open: (_card: ScenarioCard) => {},
+    explain: (_card: ScenarioCard) => {},
+    remove: (_id: string) => {},
+    toggleDebts: () => {},
+    toggleMoney: () => {},
+  });
+  const onCompare = useCallback((id: string) => actions.current.compare(id), []);
+  const onOpen = useCallback((card: ScenarioCard) => actions.current.open(card), []);
+  const onExplain = useCallback((card: ScenarioCard) => actions.current.explain(card), []);
+  const onRemove = useCallback((id: string) => actions.current.remove(id), []);
+  const onToggleDebts = useCallback(() => actions.current.toggleDebts(), []);
+  const onToggleMoney = useCallback(() => actions.current.toggleMoney(), []);
+
+  useEffect(() => {
+    router.prefetch(`/households/${householdId}/present`);
+    router.prefetch(`/households/${householdId}/summary`);
+  }, [router, householdId]);
+
+  useEffect(() => {
+    const ids = selected.filter((id) => id !== "current");
+    if (ids.length < 1) return;
+    router.prefetch(`/households/${householdId}/workspace?compare=${ids.join(",")}`);
+  }, [router, householdId, selected]);
+
   const draft = useMemo(() => (model ? draftFrom(previewBuilder, model) : null), [previewBuilder, model]);
   const keptPreview = useKeptResult(() => {
     if (!draft) return null;
@@ -188,12 +223,12 @@ export function Workspace({
 
   function toggleCompare(id: string) {
     if (id === "current") return;
-    setSelected((current) => {
+    startTransition(() => setSelected((current) => {
       const picked = current.filter((row) => row !== "current");
       if (picked.includes(id)) return picked.filter((row) => row !== id);
       if (picked.length >= COMPARE_PICKS) return picked;
       return [...picked, id];
-    });
+    }));
   }
 
   function openNew() {
@@ -364,8 +399,17 @@ export function Workspace({
   const productNames = [...new Set(model.choices.map((row) => row.product))];
   const termChoices = model.choices.filter((row) => row.product === (choice?.product ?? productNames[0]));
   const shownDebts = model.debts.filter((debt) => !debt.propertyId || debt.propertyId === choice?.propertyId);
+  actions.current = {
+    compare: toggleCompare,
+    open: openPlan,
+    explain: setExplained,
+    remove: (id) => removeScenario(id),
+    toggleDebts: () => setDebtsOpen((open) => !open),
+    toggleMoney: () => setMoneyOpen((open) => !open),
+  };
 
   return (
+    <Profile id="workspace">
     <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset, "pb-56")}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
       <header>
@@ -391,18 +435,18 @@ export function Workspace({
       ) : null}
 
       <PlanTable
-        columns={[...today, ...nightly, ...builtIn, ...advisor]}
+        columns={columns}
         debts={model.debtRows}
         debtsOpen={debtsOpen}
         moneyOpen={moneyOpen}
         selected={selected}
         note={model.comparableNote}
-        onToggleDebts={() => setDebtsOpen((open) => !open)}
-        onToggleMoney={() => setMoneyOpen((open) => !open)}
-        onCompare={toggleCompare}
-        onOpen={openPlan}
-        onExplain={setExplained}
-        onRemove={(id) => removeScenario(id)}
+        onToggleDebts={onToggleDebts}
+        onToggleMoney={onToggleMoney}
+        onCompare={onCompare}
+        onOpen={onOpen}
+        onExplain={onExplain}
+        onRemove={onRemove}
       />
 
       {explained ? (
@@ -711,21 +755,13 @@ export function Workspace({
         >
           {pressed === "new" ? "Opening…" : "New scenario"}
         </Button>
-        <Button
-          disabled={selected.filter((id) => id !== "current").length < 1}
-          aria-busy={pressed === "compare"}
-          onClick={() => {
-            const next = selected.filter((id) => id !== "current").join(",");
-            setPressed("compare");
-            window.setTimeout(() => {
-              router.push(`/households/${householdId}/workspace?compare=${next}`);
-            }, 0);
-          }}
-        >
-          {pressed === "compare" ? "Opening…" : `Compare ${selected.filter((id) => id !== "current").length}`}
-        </Button>
+        <CompareButton
+          count={selected.filter((id) => id !== "current").length}
+          href={`/households/${householdId}/workspace?compare=${selected.filter((id) => id !== "current").join(",")}`}
+        />
       </ActionBar>
     </div>
+    </Profile>
   );
 
   function addExtra(type: ExtraRow["type"]) {
@@ -864,7 +900,7 @@ const COLUMN_SIDE = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_
 const COLUMN_TOP = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_var(--foreground),inset_0_2px_0_0_var(--foreground)]";
 const COLUMN_BOTTOM = "shadow-[inset_2px_0_0_0_var(--foreground),inset_-2px_0_0_0_var(--foreground),inset_0_-2px_0_0_var(--foreground)]";
 
-function PlanTable({
+const PlanTable = memo(function PlanTable({
   columns,
   debts,
   debtsOpen,
@@ -940,7 +976,12 @@ function PlanTable({
                     {today ? (
                       <p className="text-sm text-muted-foreground">Always compared</p>
                     ) : (
-                      <label className="flex items-center gap-2">
+                      <label
+                        className="flex items-center gap-2"
+                        onPointerDown={(event) => {
+                          event.currentTarget.dataset.pending = "true";
+                        }}
+                      >
                         <Checkbox
                           checked={ticked}
                           disabled={disabled}
@@ -1089,6 +1130,28 @@ function PlanTable({
       </table>
     </div>
   );
+});
+
+function CompareButton({ count, href }: { count: number; href: string }) {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  return (
+    <Button
+      disabled={count < 1 || pending}
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      onPointerDown={(event) => {
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={() => {
+        if (count < 1 || pending) return;
+        setPending(true);
+        startTransition(() => router.push(href));
+      }}
+    >
+      {pending ? "Opening…" : `Compare ${count}`}
+    </Button>
+  );
 }
 
 function PlanRule({ text }: { text: string }) {
@@ -1167,17 +1230,15 @@ function PaymentCell({ monthly }: { monthly: string }) {
 }
 
 function MoneyCell({ lines }: { lines: string[] }) {
-  if (lines.length === 0) return <p>No payment changes.</p>;
+  if (lines.length === 0) return <p className="break-words">No payment changes.</p>;
   return (
-    <div className="flex min-w-0 flex-col items-start gap-1">
-      <p>{lines[0]}</p>
-      {lines.length > 1 ? (
-        <>
-          <p className="text-muted-foreground">+{lines.length - 1} more</p>
-          <DetailList items={lines} />
-        </>
-      ) : null}
-    </div>
+    <ul className="flex w-full min-w-0 flex-col gap-1">
+      {lines.map((line, index) => (
+        <li key={`${index}-${line}`} className="break-words whitespace-normal">
+          {line}
+        </li>
+      ))}
+    </ul>
   );
 }
 

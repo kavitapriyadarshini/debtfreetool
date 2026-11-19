@@ -6,7 +6,7 @@ import type { ScheduleRow } from "./engine/simulate";
 import { editedName, normalizeSeededScenarios, planKey } from "./case-inputs";
 import { formatDate, formatMoney, formatMonths, formatRate } from "./format";
 import { workspaceFor, type ScenarioCard } from "./workspace";
-import type { Scenario } from "./types";
+import type { CaseOverride, ParsedCell, Scenario } from "./types";
 import { planDate } from "./compare";
 
 const PAID = 0.005;
@@ -49,8 +49,15 @@ export type PresentSide = {
   finishes: boolean;
   interestAmount: number;
   months: number | null;
-  payoff: { name: string; when: string }[];
+  payoff: PayoffRow[];
   years: PresentYear[];
+};
+
+/** One row of the household payoff table: debt, its rate, and when it is gone. */
+export type PayoffRow = {
+  debt: string;
+  rate: string;
+  when: string;
 };
 
 /** One column on the household comparison. Grey columns are the other compared plans. */
@@ -63,7 +70,7 @@ export type PresentColumn = {
   interest: string;
   interestSaved: string;
   monthly: string;
-  payoff: { name: string; when: string }[];
+  payoff: PayoffRow[];
   /** Origin of a grey column, shown in small text. Empty for Today and Your recommended plan. */
   source: string;
 };
@@ -83,6 +90,8 @@ export type PresentModel = {
   loan: string | null;
   advantages: string[];
   thingsToKnow: string[];
+  /** One line per case edit. Empty when the case has no edits. */
+  dataEdits: string[];
   columns: PresentColumn[];
   choices: PresentChoice[];
   selectedId: string;
@@ -181,41 +190,64 @@ function nameOf(id: string, names: Map<string, string>, loan: string, seen: Map<
   return name;
 }
 
-function ratedDebt(id: string, base: string, rates: ReadonlyMap<string, number>, loanRate: number | null): string {
-  if (id === "NEW_LOAN") return loanRate == null ? base : `${base} · ${formatRate(loanRate)}`;
+function rateOf(id: string, rates: ReadonlyMap<string, number>, loanRate: number | null): string {
+  if (id === "NEW_LOAN") return loanRate == null ? "—" : formatRate(loanRate);
   const rate = rates.get(id);
-  return rate == null ? base : `${base} · ${formatRate(rate)}`;
+  return rate == null ? "—" : formatRate(rate);
 }
 
+/** Payoff date first, then the order the plan clears debts that finish together. */
 function payoffOf(
-  rows: readonly ScheduleRow[],
+  result: ScenarioRun,
   names: Map<string, string>,
   rates: ReadonlyMap<string, number>,
   moved: readonly string[],
   loan: string,
   loanRate: number | null,
-): { name: string; when: string }[] {
+): PayoffRow[] {
   const seen = new Map<string, string>();
+  const movedSet = new Set(moved);
+  const clearance = new Map<string, number>();
+  for (const id of moved) clearance.set(id, clearance.size);
+  for (const id of result.payoffOrder) {
+    if (!clearance.has(id)) clearance.set(id, clearance.size);
+  }
+  const seqOf = (id: string) => {
+    const existing = clearance.get(id);
+    if (existing != null) return existing;
+    const next = clearance.size;
+    clearance.set(id, next);
+    return next;
+  };
+  const startMonth = result.schedule[0]?.month ?? 1;
+  const startWhen = `Upon starting new plan (${planDate(startMonth)})`;
   const steps = moved.map((id) => ({
-    name: ratedDebt(id, nameOf(id, names, loan, seen), rates, loanRate),
-    when: "When the plan starts",
+    debt: nameOf(id, names, loan, seen),
+    rate: rateOf(id, rates, loanRate),
+    when: startWhen,
     month: 0,
+    seq: seqOf(id),
   }));
   const live = new Set<string>();
-  for (const row of rows) {
-    for (const debt of row.debts) live.add(debt.id);
+  for (const row of result.schedule) {
+    for (const debt of row.debts) {
+      if (!movedSet.has(debt.id)) live.add(debt.id);
+    }
   }
-  const later = [...live].flatMap((id) => {
-    const row = rows.find((item) => item.debts.some((debt) => debt.id === id && debt.closingBalance <= PAID));
-    if (!row) return [];
-    return [{
-      name: ratedDebt(id, nameOf(id, names, loan, seen), rates, loanRate),
-      when: planDate(row.month),
-      month: row.month,
-    }];
-  });
-  later.sort((a, b) => a.month - b.month);
-  return [...steps, ...later].map(({ name, when }) => ({ name, when }));
+  for (const id of live) {
+    const row = result.schedule.find((item) => item.debts.some((debt) => debt.id === id && debt.closingBalance <= PAID));
+    if (!row) continue;
+    const month = result.payoffMonths[id] ?? row.month;
+    steps.push({
+      debt: nameOf(id, names, loan, seen),
+      rate: rateOf(id, rates, loanRate),
+      when: planDate(month),
+      month,
+      seq: seqOf(id),
+    });
+  }
+  steps.sort((a, b) => a.month - b.month || a.seq - b.seq);
+  return steps.map(({ debt, rate, when }) => ({ debt, rate, when }));
 }
 
 function yearsOf(rows: readonly ScheduleRow[], names: Map<string, string>, moved: readonly string[], loan: string): PresentYear[] {
@@ -295,7 +327,7 @@ function sideFrom(
     finishes: result.months != null,
     interestAmount: result.totalInterest,
     months: result.months,
-    payoff: payoffOf(result.schedule, names, rates, moved, loan, loanRate),
+    payoff: payoffOf(result, names, rates, moved, loan, loanRate),
     years: yearsOf(result.schedule, names, moved, loan),
   };
 }
@@ -401,7 +433,7 @@ function ruleNine(
     const years = term / 12;
     thingsToKnow.push(`The loan runs ${years} ${years === 1 ? "year" : "years"}.`);
   }
-  if (estimated) thingsToKnow.push("Figures are estimated.");
+  if (estimated) thingsToKnow.push("Figures are estimated because there's no credit score on file.");
   for (const name of leftOut) thingsToKnow.push(`${name} is not included in this plan.`);
   return { advantages, thingsToKnow };
 }
@@ -412,17 +444,73 @@ function monthsSooner(today: number | null, plan: number | null): string {
   if (today == null || plan == null) return "Same time";
   const delta = today - plan;
   if (delta === 0) return "Same time";
-  const count = Math.abs(delta);
-  const unit = count === 1 ? "month" : "months";
-  return delta > 0 ? `${count} ${unit} sooner` : `${count} ${unit} later`;
+  if (delta > 0) return `${formatMonths(delta)} sooner`;
+  return `${formatMonths(-delta)} later`;
+}
+
+/** The comparison cell. The label already says "sooner", so a saving is just the time. */
+function soonerCell(phrase: string): string {
+  if (phrase.endsWith(" sooner")) return phrase.slice(0, -" sooner".length);
+  return phrase;
 }
 
 function interestSaved(today: PresentSide, plan: PresentSide): string {
   if (!today.finishes || !plan.finishes) return "Not comparable";
   const saved = Math.round(today.interestAmount) - Math.round(plan.interestAmount);
-  if (saved > 0) return `${formatMoney(saved)} less`;
+  if (saved > 0) return formatMoney(saved);
   if (saved < 0) return `Costs ${formatMoney(-saved)} more`;
   return "The same";
+}
+
+const EDIT_FIELD: Record<string, string> = {
+  monthly_payment: "monthly payment",
+  rate: "interest rate",
+  excluded: "left out of the plan",
+  fico: "credit score",
+  property_id: "linked home",
+  comfort_zone: "comfort zone",
+  value: "property value",
+};
+
+function formatEditValue(field: string, value: ParsedCell, addressOf: (id: string) => string): string {
+  if (value == null || value === "") {
+    if (field === "fico") return "No score";
+    if (field === "comfort_zone") return "Not set";
+    if (field === "property_id") return "Not linked";
+    return "—";
+  }
+  if (field === "monthly_payment" || field === "value") return formatMoney(Number(value));
+  if (field === "rate") return formatRate(Number(value));
+  if (field === "excluded") return value === true ? "Left out" : "Included";
+  if (field === "comfort_zone") return `Zone ${value}`;
+  if (field === "property_id") return addressOf(String(value));
+  return String(value);
+}
+
+/** Latest edit per field. The "was" value stays the original source value. */
+function dataEditLines(
+  overrides: readonly CaseOverride[],
+  debts: ReadonlyMap<string, string>,
+  members: ReadonlyMap<string, string>,
+  addresses: ReadonlyMap<string, string>,
+): string[] {
+  const latest = new Map<string, CaseOverride>();
+  for (const row of overrides) latest.set(`${row.entity_type}|${row.entity_id}|${row.field}`, row);
+  const addressOf = (id: string) => addresses.get(id) ?? "Home";
+  return [...latest.values()].map((row) => {
+    const field = EDIT_FIELD[row.field] ?? row.field.replaceAll("_", " ");
+    const subject =
+      row.entity_type === "debt"
+        ? (debts.get(row.entity_id) ?? "Debt")
+        : row.entity_type === "member"
+          ? (members.get(row.entity_id) ?? "Household member")
+          : row.entity_type === "property"
+            ? (addresses.get(row.entity_id) ?? "Home")
+            : "Household";
+    const next = formatEditValue(row.field, row.override_value, addressOf);
+    const previous = formatEditValue(row.field, row.source_value, addressOf);
+    return `${subject}, ${field}: ${next} (was ${previous}) · ${row.reason} · ${row.changed_by}, ${formatDate(String(row.changed_at))}`;
+  });
 }
 
 export function presentFor(
@@ -495,7 +583,15 @@ export function presentFor(
   const leftOut = preview.state.debts
     .filter((debt) => preview.excluded.has(debt.debt_id) || debt.monthly_payment <= 0)
     .map((debt) => debt.debt_name);
-  const estimated = householdFico(preview.state.members).defaulted;
+  const noScore = householdFico(preview.state.members).defaulted;
+  const homeLoan = (selected.scenario.product?.startsWith("HELOAN") ?? false) && selected.scenario.loan_amount > 0;
+  const estimated = noScore && homeLoan;
+  const dataEdits = dataEditLines(
+    overrides,
+    names,
+    new Map(preview.state.members.map((member) => [member.member_id, member.member_name])),
+    new Map(preview.state.properties.map((property) => [property.property_id, property.address])),
+  );
   const included = preview.state.debts.filter((debt) => !preview.excluded.has(debt.debt_id) && debt.monthly_payment > 0).length;
   const movedCount = moved.filter((id) => preview.state.debts.some((debt) => debt.debt_id === id && !preview.excluded.has(id) && debt.monthly_payment > 0)).length;
   const notes = ruleNine(
@@ -532,7 +628,7 @@ export function presentFor(
       heading: "Your recommended plan",
       tone: "plan",
       debtFree: plan.debtFree,
-      sooner: monthsSooner(today.months, plan.months),
+      sooner: soonerCell(monthsSooner(today.months, plan.months)),
       interest: plan.interest,
       interestSaved: interestSaved(today, plan),
       monthly: plan.monthly,
@@ -561,7 +657,7 @@ export function presentFor(
       heading: plainPlanName(choice.scenario),
       tone: "other",
       debtFree: side.debtFree,
-      sooner: monthsSooner(today.months, side.months),
+      sooner: soonerCell(monthsSooner(today.months, side.months)),
       interest: side.interest,
       interestSaved: interestSaved(today, side),
       monthly: side.monthly,
@@ -596,6 +692,7 @@ export function presentFor(
     loan: loanSentence(selected.scenario),
     advantages: notes.advantages,
     thingsToKnow: notes.thingsToKnow,
+    dataEdits,
     columns,
     choices: choices.map((choice) => ({
       id: choice.id,

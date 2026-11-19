@@ -2,7 +2,7 @@ import { loadHousehold, type WorkingHousehold } from "./engine/household";
 import { runScenario, type CaseState } from "./engine/scenario";
 import type { ScheduleRow } from "./engine/simulate";
 import { formatMoney, planDate } from "./format";
-import { presentFor } from "./present";
+import { presentFor, type PayoffRow } from "./present";
 import type { CaseOverride, CustomLoan, Debt, ExtraPayment, Household, Member, Property, Scenario } from "./types";
 
 /** The sentence printed on every one-pager. */
@@ -58,10 +58,12 @@ export type FrozenSnapshot = {
   interestSaved: string;
   monthsSooner: string;
   loan: string | null;
-  payoff: { name: string; when: string }[];
+  payoff: PayoffRow[];
   /** Rule 9 only, copied at the moment of agreement. */
   advantages: string[];
   thingsToKnow: string[];
+  /** Household lines for case edits. Empty when the case had none. */
+  dataEdits: string[];
   /** Month-by-month pages. Kept even when the full schedule is left out of storage. */
   years: FrozenYear[];
   leftOut: string[];
@@ -236,6 +238,7 @@ export function buildSnapshot(input: {
     payoff: model.plan.payoff,
     advantages: model.advantages,
     thingsToKnow: model.thingsToKnow,
+    dataEdits: model.dataEdits,
     years: scheduleYears(schedule, new Map(inputs.debts.map((debt) => [debt.debt_id, debt.debt_name])), input.scenario),
     leftOut: model.leftOut,
     estimated: model.estimated,

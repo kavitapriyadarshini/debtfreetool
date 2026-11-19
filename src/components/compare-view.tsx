@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { memo, startTransition, useEffect, useMemo, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
+import { Profile } from "@/components/profile";
 import { PaymentDot } from "@/components/payment-dot";
 import { SavingsText } from "@/components/savings-text";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
@@ -79,6 +80,11 @@ export function CompareView({
   const selectedIsRecommended =
     active != null && active.savedScenarioId != null && active.savedScenarioId === caseRow?.recommended_scenario_id;
 
+  useEffect(() => {
+    router.prefetch(`/households/${householdId}/present`);
+    router.prefetch(`/households/${householdId}/summary`);
+  }, [router, householdId]);
+
   function back() {
     router.push(`/households/${householdId}/workspace`);
   }
@@ -121,7 +127,7 @@ export function CompareView({
   }
 
   function choose(id: string) {
-    setSelectedId((current) => (current === id ? null : id));
+    startTransition(() => setSelectedId((current) => (current === id ? null : id)));
   }
 
   function addSuggestion() {
@@ -155,6 +161,7 @@ export function CompareView({
   const canSave = shown != null && (!needsAck || acknowledged) && (!needsReason || reasonReady);
 
   return (
+    <Profile id="compare">
     <div className={cn("flex min-w-0 flex-col gap-6", actionBarOffset)}>
       <StaleNotice failed={kept.failed} stale={kept.stale} onRetry={kept.retry} />
       <div>
@@ -197,6 +204,10 @@ export function CompareView({
               tabIndex={0}
               data-scenario={column.name}
               aria-pressed={active?.id === column.id}
+              data-pending={active?.id === column.id ? "true" : undefined}
+              onPointerDown={(event) => {
+                event.currentTarget.dataset.pending = "true";
+              }}
               onClick={() => choose(column.id)}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
@@ -342,54 +353,105 @@ export function CompareView({
             <Button variant="outline" onClick={() => setPending(null)}>
               Cancel
             </Button>
-            <Button
+            <BusyButton
+              label="Recommend this plan"
+              pendingLabel="Saving…"
               disabled={!canSave}
-              onClick={() => {
+              onAction={() => {
                 if (shown && canSave) commit(shown, view, reason.trim());
               }}
-            >
-              Recommend this plan
-            </Button>
+            />
           </DialogFooter>
         </DialogContent>
       </Dialog> : null}
       <ActionBar name={householdName}>
         {hasRecommendation ? (
           <>
-            <Link
+            <PresentLink
               href={`/households/${householdId}/present?compared=${encodeURIComponent(view.columns.map((column) => column.id).filter((id) => id !== "current").join(","))}`}
-              className={buttonVariants({ variant: "outline" })}
-            >
-              Present
-            </Link>
-            <Button
+            />
+            <BusyButton
+              label="Change recommendation"
+              pendingLabel="Saving…"
               disabled={!active?.recommendable || selectedIsRecommended}
-              onClick={() => {
+              onAction={() => {
                 if (active?.recommendable && !selectedIsRecommended) ask(active);
               }}
-            >
-              Change recommendation
-            </Button>
+            />
           </>
         ) : (
-          <Button
+          <BusyButton
+            label="Mark as recommended"
+            pendingLabel="Saving…"
             disabled={!active?.recommendable}
-            onClick={() => {
+            onAction={() => {
               if (active?.recommendable) ask(active);
             }}
-          >
-            Mark as recommended
-          </Button>
+          />
         )}
         <Button variant="outline" onClick={back}>
           Back to scenarios
         </Button>
       </ActionBar>
     </div>
+    </Profile>
   );
 }
 
-function BalanceChart({ column }: { column: CompareColumn }) {
+function BusyButton({
+  label,
+  pendingLabel,
+  disabled,
+  onAction,
+}: {
+  label: string;
+  pendingLabel: string;
+  disabled?: boolean;
+  onAction: () => void;
+}) {
+  const [pending, setPending] = useState(false);
+  return (
+    <Button
+      disabled={disabled || pending}
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      onPointerDown={(event) => {
+        if (disabled) return;
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={() => {
+        if (disabled || pending) return;
+        setPending(true);
+        startTransition(() => {
+          onAction();
+          setPending(false);
+        });
+      }}
+    >
+      {pending ? pendingLabel : label}
+    </Button>
+  );
+}
+
+function PresentLink({ href }: { href: string }) {
+  const [pending, setPending] = useState(false);
+  return (
+    <Link
+      href={href}
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      className={buttonVariants({ variant: "outline" })}
+      onPointerDown={(event) => {
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={() => setPending(true)}
+    >
+      {pending ? "Opening…" : "Present"}
+    </Link>
+  );
+}
+
+const BalanceChart = memo(function BalanceChart({ column }: { column: CompareColumn }) {
   const stride = column.points.length > 240 ? Math.ceil(column.points.length / 240) : 1;
   const data = column.points.flatMap((point, index) => {
     if (index % stride !== 0 && index !== column.points.length - 1) return [];
@@ -427,7 +489,7 @@ function BalanceChart({ column }: { column: CompareColumn }) {
       </ResponsiveContainer>
     </div>
   );
-}
+});
 
 function axisMoney(value: number): string {
   if (Math.abs(value) >= 1000) return `$${Math.round(value / 1000)}k`;

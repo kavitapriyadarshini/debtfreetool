@@ -24,7 +24,7 @@ const THINGS = [
   /^The new loan is secured on your home, which is at risk if payments are missed\.$/,
   /^A new loan needs a credit application\.$/,
   /^The loan runs \d+ years?\.$/,
-  /^Figures are estimated\.$/,
+  /^Figures are estimated because there's no credit score on file\.$/,
   /^.+ is not included in this plan\.$/,
 ];
 
@@ -43,6 +43,7 @@ function householdText(model: NonNullable<ReturnType<typeof show>>): string {
     model.monthsSooner,
     ...model.advantages,
     ...model.thingsToKnow,
+    ...model.dataEdits,
     ...model.columns.flatMap((column) => [
       column.heading,
       column.debtFree,
@@ -50,7 +51,7 @@ function householdText(model: NonNullable<ReturnType<typeof show>>): string {
       column.interest,
       column.interestSaved,
       column.monthly,
-      ...column.payoff.flatMap((step) => [step.name, step.when]),
+      ...column.payoff.flatMap((step) => [step.debt, step.rate, step.when]),
     ]),
     ...model.plan.years.flatMap((year) => [
       String(year.year),
@@ -86,7 +87,8 @@ describe("present mode", () => {
     expect(model?.plan.finishes).toBe(true);
     expect(model?.plan.interest).not.toBe(model?.today.interest);
     expect(model?.plan.debtFree).not.toBe(model?.today.debtFree);
-    expect(model?.interestSaved.endsWith("less")).toBe(true);
+    expect(model?.interestSaved).toBe("$107,710");
+    expect(model?.dataEdits).toEqual([]);
     expect(model?.monthsSooner).toMatch(/months sooner$/);
     expect(model?.loan).toBe("This plan includes a loan. It is secured on your home.");
     expect(model?.title).toBe("Your recommended plan: Pay off your cards with a home equity loan, then clear the rest in order");
@@ -108,14 +110,16 @@ describe("present mode", () => {
     expect(model?.plan.years[0]?.year).toBe(2026);
     expect(model?.plan.years[0]?.months[0]?.label).toBe("Dec 2026");
     expect(model?.plan.years[0]?.cleared).toEqual(expect.arrayContaining(["Chase Sapphire", "Citi Double Cash", "SoFi Personal Loan"]));
-    expect(model?.plan.payoff.slice(0, 3).map((step) => step.name)).toEqual([
-      "Chase Sapphire · 24.99%",
-      "Citi Double Cash · 21.5%",
-      "SoFi Personal Loan · 13%",
+    expect(model?.plan.payoff.slice(0, 3)).toEqual([
+      { debt: "Chase Sapphire", rate: "24.99%", when: "Upon starting new plan (Dec 2026)" },
+      { debt: "Citi Double Cash", rate: "21.5%", when: "Upon starting new plan (Dec 2026)" },
+      { debt: "SoFi Personal Loan", rate: "13%", when: "Upon starting new plan (Dec 2026)" },
     ]);
-    expect(model?.plan.payoff.map((step) => step.name)).toContain("Home equity loan · 7.875%");
-    expect(model?.plan.payoff.slice(0, 3).every((step) => step.when === "When the plan starts")).toBe(true);
-    expect(model?.plan.payoff.map((step) => step.name)).toContain("Rocket Mortgage · 6.25%");
+    expect(model?.plan.payoff).toContainEqual(expect.objectContaining({ debt: "Home equity loan", rate: "7.875%" }));
+    expect(model?.plan.payoff).toContainEqual(expect.objectContaining({ debt: "Rocket Mortgage", rate: "6.25%" }));
+    expect(model?.plan.payoff.some((step) => step.when === "When the plan starts" || step.debt.includes("(was"))).toBe(false);
+    expect(model?.columns[1]?.sooner).toBe("9 years 6 months");
+    expect(model?.columns[1]?.interestSaved).toBe("$107,710");
     assertPlain(householdText(model!));
   });
 
@@ -147,8 +151,8 @@ describe("present mode", () => {
 
   it("keeps household notes for a missing credit score and a debt left out", () => {
     const missing = show("H03");
-    expect(missing?.estimated).toBe(true);
-    expect(missing?.thingsToKnow).toContain("Figures are estimated.");
+    expect(missing?.estimated).toBe(false);
+    expect(missing?.thingsToKnow.some((line) => line.includes("estimated"))).toBe(false);
     onlyRuleNine(missing!);
     const left = show("H07");
     const leftOut = left?.leftOut ?? [];
@@ -178,6 +182,41 @@ describe("present mode", () => {
     expect(repeated).toHaveLength(1);
     expect(repeated[0]?.heading).toBe("Keep today's payment and clear the highest rate first");
     assertPlain(householdText(model!));
+  });
+
+  it("estimates figures only for a home equity loan when no credit score is on file", () => {
+    const fast = show("H275", "offer:FastApp:24:none");
+    expect(fast?.estimated).toBe(false);
+    expect(fast?.thingsToKnow.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
+    expect(fast?.dataEdits).toEqual([]);
+    expect(fast?.plan.payoff[0]?.when).toBe("Upon starting new plan (Dec 2026)");
+    expect(fast?.plan.payoff.some((step) => step.when === "When the plan starts" || /\(was /.test(step.debt))).toBe(false);
+    expect(fast?.plan.payoff[0]).toMatchObject({ debt: expect.any(String), rate: expect.stringMatching(/%$/) });
+    const home = show("H275", "offer:HELOAN Yellow:180:P275A");
+    expect(home?.estimated).toBe(true);
+    expect(home?.thingsToKnow).toContain("Figures are estimated because there's no credit score on file.");
+    onlyRuleNine(home!);
+    const plain = show("H275", "avalanche");
+    expect(plain?.estimated).toBe(false);
+    expect(plain?.thingsToKnow.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
+    assertPlain(householdText(fast!));
+    assertPlain(householdText(home!));
+  });
+
+  it("lists each case edit once, and never inside the payoff order", () => {
+    const model = show("H55");
+    expect(model?.dataEdits).toEqual([
+      "Amex Gold, monthly payment: $827 (was $307) · Household confirmed their actual monthly payment · Pamela Wilson, 21 Oct 2026",
+    ]);
+    const payoff = model?.columns.flatMap((column) => column.payoff.flatMap((step) => [step.debt, step.rate, step.when])).join(" ") ?? "";
+    expect(payoff).not.toContain("(was");
+    expect(payoff).not.toContain("Pamela Wilson");
+    const scored = show("H11");
+    expect(scored?.dataEdits).toEqual([
+      "Capital One Venture, left out of the plan: Left out (was Included) · Household confirmed it is the same card listed twice · Tom Brennan, 15 Oct 2026",
+      "Andre Moore, credit score: 698 (was No score) · Household shared a recent credit report · Tom Brennan, 15 Oct 2026",
+    ]);
+    expect(scored?.thingsToKnow.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
   });
 
   it("returns nothing for an unknown household", () => {

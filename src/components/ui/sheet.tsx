@@ -47,7 +47,7 @@ function SheetContent({
   showCloseButton?: boolean
 }) {
   return (
-    <SheetPortal>
+    <SheetPortal keepMounted={false}>
       <SheetOverlay />
       <SheetPrimitive.Popup
         data-slot="sheet-content"

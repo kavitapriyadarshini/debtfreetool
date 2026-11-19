@@ -146,9 +146,19 @@
     }
 }
 
+button[data-pending="true"],
+a[data-pending="true"],
+[role="button"][data-pending="true"],
+label[data-pending="true"] {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
 @media print {
   .no-print,
-  nextjs-portal {
+  nextjs-portal,
+  .toaster,
+  [data-sonner-toaster] {
     display: none !important;
   }
 }

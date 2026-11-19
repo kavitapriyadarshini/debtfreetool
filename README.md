@@ -17,6 +17,7 @@ Everything Cursor needs to build a working prototype that matches the requiremen
 | `PROMPTS_FIXES_3.md` | Fix round 3: one set of inputs per case, extras, invalid loans, unique names, compare 3 + today, where the money goes, interest rates |
 | `PROMPTS_FIXES_4.md` | Fix round 4: scenarios table layout, one source per plan, visible tick boxes, fixed plan-rule strip |
 | `PROMPTS_FIXES_5.md` | Fix round 5: "(edited data)" only with edits, suggestion never alerted, compare and present wording |
+| `PROMPTS_FIXES_6.md` | Fix round 6: payoff table, data edits section, "Year by year", one-page two-column PDF, instant buttons |
 
 ## What you need
 

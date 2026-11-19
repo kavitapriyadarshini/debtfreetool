@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import { SavingsText } from "@/components/savings-text";
@@ -101,7 +101,6 @@ export function HouseholdOverview({
   const overview = kept.value;
 
   const [dialog, setDialog] = useState<DialogState>(null);
-  const [opening, setOpening] = useState(false);
   const [selectedTab, setSelectedTab] = useState(tab);
 
   useEffect(() => {
@@ -112,6 +111,12 @@ export function HouseholdOverview({
     if (tabInUrl) return;
     router.replace(`/households/${householdId}?tab=debts`, { scroll: false });
   }, [householdId, router, tabInUrl]);
+
+  useEffect(() => {
+    router.prefetch(`/households/${householdId}/workspace`);
+    router.prefetch(`/households/${householdId}/present`);
+    router.prefetch(`/households/${householdId}/summary`);
+  }, [router, householdId]);
 
   function selectTab(next: string | null) {
     const chosen = overviewTab(next ?? undefined);
@@ -522,20 +527,45 @@ export function HouseholdOverview({
         </Dialog>
       ) : null}
       <ActionBar name={overview.name}>
-        <Button
-          aria-busy={opening}
-          onClick={() => {
-            setOpening(true);
-            window.setTimeout(() => {
-              if (!overview.hasCase) startCase(householdId);
-              router.push(`/households/${householdId}/workspace`);
-            }, 0);
-          }}
-        >
-          {opening ? "Opening…" : overview.hasCase ? "Continue case" : "Start case"}
-        </Button>
+        <ContinueCase
+          householdId={householdId}
+          hasCase={overview.hasCase}
+          onStart={() => startCase(householdId)}
+        />
       </ActionBar>
     </div>
+  );
+}
+
+function ContinueCase({
+  householdId,
+  hasCase,
+  onStart,
+}: {
+  householdId: string;
+  hasCase: boolean;
+  onStart: () => void;
+}) {
+  const router = useRouter();
+  const [pending, setPending] = useState(false);
+  return (
+    <Button
+      aria-busy={pending}
+      data-pending={pending ? "true" : undefined}
+      disabled={pending}
+      onPointerDown={(event) => {
+        event.currentTarget.dataset.pending = "true";
+      }}
+      onClick={() => {
+        setPending(true);
+        startTransition(() => {
+          if (!hasCase) onStart();
+          router.push(`/households/${householdId}/workspace`);
+        });
+      }}
+    >
+      {pending ? "Opening…" : hasCase ? "Continue case" : "Start case"}
+    </Button>
   );
 }
 
