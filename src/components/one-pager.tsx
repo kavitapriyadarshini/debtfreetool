@@ -1,8 +1,7 @@
-import { ONE_PAGER_CSS, onePagerContent, SHEET_HEIGHT_MM, SHEET_WIDTH_MM } from "@/lib/one-pager";
-import { formatDate } from "@/lib/format";
+import { ONE_PAGER_CSS, onePagerContent, payoffLine, SHEET_HEIGHT_MM, SHEET_WIDTH_MM } from "@/lib/one-pager";
 import type { FrozenSnapshot } from "@/lib/snapshot";
 
-/** The household one-pager. The same sheet is the on-screen preview and the print. */
+/** The household one-pager. The same card is the on-screen preview and the print. */
 export function OnePager({ snapshot }: { snapshot: FrozenSnapshot }) {
   const page = onePagerContent(snapshot);
 
@@ -19,63 +18,47 @@ export function OnePager({ snapshot }: { snapshot: FrozenSnapshot }) {
       }}
     >
       <style>{ONE_PAGER_CSS}</style>
-      <header data-testid="pdf-summary">
-        <p className="font-semibold">{page.name}</p>
-        <p>
-          {snapshot.advisor}
-          {" · "}
-          {formatDate(snapshot.frozen_at)}
+      <header className="pdf-head" data-testid="pdf-summary">
+        <div>
+          <p className="pdf-name">{page.name}</p>
+          <h2 className="pdf-title">{page.title}</h2>
+        </div>
+        <p className="pdf-meta">
+          {page.advisor}
+          <br />
+          {page.date}
         </p>
       </header>
-      <h2 className="mt-[1.5mm] text-[11pt] font-semibold leading-[1.2]">{page.title}</h2>
-      <section className="mt-[2mm]">
-        <h3 className="font-semibold">Today</h3>
-        {page.today.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </section>
-      <section className="mt-[2mm]">
-        <h3 className="font-semibold">Your recommended plan</h3>
-        {page.plan.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </section>
-      <section className="mt-[2mm]">
-        <h3 className="font-semibold">Payoff order</h3>
+      <div className="pdf-compare">
+        <section>
+          <h3 className="pdf-label">Today</h3>
+          {page.today.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </section>
+        <section>
+          <h3 className="pdf-label">Your recommended plan</h3>
+          {page.plan.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </section>
+      </div>
+      <section>
+        <h3 className="pdf-label">Order your debts are paid off</h3>
         {page.payoff.length === 0 ? (
           <p>{snapshot.plan.debtFree}</p>
         ) : (
-          <table className="pdf-table">
-            <colgroup>
-              <col style={{ width: "8mm" }} />
-              <col />
-              <col style={{ width: "28mm" }} />
-              <col style={{ width: "62mm" }} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Debt</th>
-                <th scope="col">Interest rate</th>
-                <th scope="col">Paid off</th>
-              </tr>
-            </thead>
-            <tbody>
-              {page.payoff.map((row, index) => (
-                <tr key={`${row.debt}-${row.when}-${index}`}>
-                  <td>{index + 1}</td>
-                  <td>{row.debt}</td>
-                  <td>{row.rate}</td>
-                  <td>{row.when}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ol className="pdf-payoff" data-testid="pdf-payoff">
+            {page.payoff.map((row, index) => (
+              <li key={`${row.debt}-${row.when}-${index}`}>{payoffLine(row)}</li>
+            ))}
+          </ol>
         )}
       </section>
+      {page.loan ? <p>{page.loan}</p> : null}
       {page.advantages.length > 0 ? (
-        <section className="mt-[2mm]">
-          <h3 className="font-semibold">What&apos;s good about this plan</h3>
+        <section>
+          <h3 className="pdf-label">What&apos;s good about this plan</h3>
           <ul>
             {page.advantages.map((line) => (
               <li key={line}>{line}</li>
@@ -84,8 +67,8 @@ export function OnePager({ snapshot }: { snapshot: FrozenSnapshot }) {
         </section>
       ) : null}
       {page.things.length > 0 ? (
-        <section className="mt-[2mm]">
-          <h3 className="font-semibold">Things to know</h3>
+        <section>
+          <h3 className="pdf-label">Things to know</h3>
           <ul>
             {page.things.map((line) => (
               <li key={line}>{line}</li>
@@ -94,8 +77,8 @@ export function OnePager({ snapshot }: { snapshot: FrozenSnapshot }) {
         </section>
       ) : null}
       {page.edits.length > 0 ? (
-        <section className="mt-[2mm]" data-testid="data-edits">
-          <h3 className="font-semibold">Data edits, if any</h3>
+        <section data-testid="data-edits">
+          <h3 className="pdf-label">Data edits, if any</h3>
           <ul>
             {page.edits.map((line) => (
               <li key={line}>{line}</li>

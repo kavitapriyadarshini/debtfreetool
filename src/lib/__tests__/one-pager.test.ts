@@ -109,7 +109,8 @@ describe("household one-pager", () => {
     expect(ONE_PAGER_CSS).toContain("letter");
     expect(ONE_PAGER_CSS).toContain("12mm");
     expect(ONE_PAGER_CSS).toContain("flex-direction: column");
-    expect(ONE_PAGER_CSS).not.toContain("grid-template-columns");
+    expect(ONE_PAGER_CSS).toContain("columns: 2");
+    expect(ONE_PAGER_CSS).not.toContain("pdf-schedule");
     expect(ONE_PAGER_CSS).not.toContain("page-break-after: always");
   });
 
@@ -121,29 +122,32 @@ describe("household one-pager", () => {
       const page = onePagerContent(snapshot);
       expect(page.payoff).toHaveLength(snapshot.payoff.length);
       expect(page.heightMm).toBeLessThanOrEqual(SHEET_HEIGHT_MM);
-      expect(page.point === 8 || page.point === 7).toBe(true);
+      expect(page.point === 11 || page.point === 9).toBe(true);
 
       const html = renderToStaticMarkup(createElement(OnePager, { snapshot }));
       expect(html).toContain('data-testid="one-pager"');
       expect(html).toContain('data-testid="pdf-summary"');
+      expect(html).toContain('data-testid="pdf-payoff"');
       expect(html).not.toContain('data-testid="pdf-schedule"');
       expect(html).not.toContain("Your schedule");
       expect(html).not.toContain("Monthly for the first 2 years");
+      expect(html).not.toContain("Month by month");
       expect(html).toContain("Your recommended plan:");
       expect(html).toContain(">Today<");
-      expect(html).toContain("Payoff order");
-      expect(html).toContain(">Debt<");
-      expect(html).toContain("Interest rate");
-      expect(html).toContain("Paid off");
+      expect(html).toContain("Order your debts are paid off");
+      expect(html).toContain(page.advisor);
+      expect(html).not.toContain(">Manager<");
       if (page.advantages.length > 0) expect(html).toContain("good about this plan");
       if (page.things.length > 0) expect(html).toContain("Things to know");
       expect(html).toContain(snapshot.note);
       expect(html).toContain(`data-payoff-rows="${page.payoff.length}"`);
       for (const row of page.payoff) {
-        expect(html).toContain(row.debt);
-        expect(html).toContain(row.when);
+        expect(html).toContain(`${row.debt} · ${row.rate} — ${row.when}`);
       }
       expect(html).not.toContain("When the plan starts");
+      expect(page.plan.some((line) => line.startsWith("Interest"))).toBe(true);
+      expect(page.plan.join(" ")).not.toMatch(/Interest saved \$[\d,]+ less/);
+      expect(page.plan.at(-1)).toMatch(/sooner$|later$|Same time$|today's payments$/);
     }
   });
 
@@ -151,12 +155,25 @@ describe("household one-pager", () => {
     if (!h275) throw new Error("H275 FastApp snapshot is missing");
     const page = onePagerContent(h275);
     expect(page.title.startsWith("Your recommended plan:")).toBe(true);
-    expect(page.plan.some((line) => line.includes("not secured"))).toBe(true);
+    expect(page.loan).toContain("not secured");
+    expect(page.plan.some((line) => line.startsWith("Interest saved $"))).toBe(true);
+    expect(page.plan.join(" ")).not.toContain(" less");
     expect(page.things.some((line) => line.toLowerCase().includes("estimated"))).toBe(false);
     expect(page.edits).toEqual([]);
     const html = renderToStaticMarkup(createElement(OnePager, { snapshot: h275 }));
     expect(html).not.toContain("Data edits, if any");
     expect(html).not.toContain("Figures are estimated");
     expect(html).not.toContain("Your schedule");
+  });
+
+  it("prints H161's advisor when the snapshot was recorded by Manager", () => {
+    const recorded = freeze("H161", currentScenario("H161"));
+    if (!recorded) throw new Error("H161 snapshot is missing");
+    recorded.advisor = "Manager";
+    const page = onePagerContent(recorded);
+    expect(page.advisor).toBe("Elena Duarte");
+    const html = renderToStaticMarkup(createElement(OnePager, { snapshot: recorded }));
+    expect(html).toContain("Elena Duarte");
+    expect(html).not.toContain("Manager");
   });
 });

@@ -14,10 +14,8 @@ const printableHeight = Math.min(A4_MM.height, LETTER_MM.height) - PAGE_MARGIN_M
 export const SHEET_WIDTH_MM = Math.floor(printableWidth) - 2;
 export const SHEET_HEIGHT_MM = Math.floor(printableHeight) - 4;
 
-const PAYOFF_NUMBER_MM = 8;
-const PAYOFF_RATE_MM = 28;
-const PAYOFF_WHEN_MM = 62;
-const PAYOFF_DEBT_MM = SHEET_WIDTH_MM - PAYOFF_NUMBER_MM - PAYOFF_RATE_MM - PAYOFF_WHEN_MM;
+const CARD_PAD_MM = 6;
+const COLUMN_GAP_MM = 6;
 
 export const ONE_PAGER_CSS = `
 @page {
@@ -36,36 +34,55 @@ export const ONE_PAGER_CSS = `
   box-sizing: border-box;
   width: ${SHEET_WIDTH_MM}mm;
   height: ${SHEET_HEIGHT_MM}mm;
+  padding: ${CARD_PAD_MM}mm;
   display: flex;
   flex-direction: column;
+  gap: 3.5mm;
   background: #fff;
   color: #171717;
-  line-height: 1.2;
+  line-height: 1.35;
+  border: 0.25mm solid #e5e5e5;
+  border-radius: 2mm;
   overflow: hidden;
   break-inside: avoid;
   page-break-inside: avoid;
 }
-.pdf-sheet p, .pdf-sheet h2, .pdf-sheet h3, .pdf-sheet ul { margin: 0; }
+.pdf-sheet p, .pdf-sheet h2, .pdf-sheet h3, .pdf-sheet ul, .pdf-sheet ol { margin: 0; }
 .pdf-sheet ul { padding-left: 4mm; }
-.pdf-note { margin-top: auto; padding-top: 1.5mm; }
-.pdf-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.pdf-table th, .pdf-table td {
-  padding: 0 1.5mm 0 0;
-  vertical-align: top;
-  font-weight: 400;
-  text-align: left;
-  white-space: nowrap;
+.pdf-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6mm;
+  padding-bottom: 3mm;
+  border-bottom: 0.25mm solid #e5e5e5;
+}
+.pdf-name { color: #737373; font-size: 0.82em; }
+.pdf-title { margin-top: 0.8mm; font-size: 1.55em; font-weight: 700; line-height: 1.2; }
+.pdf-meta { text-align: right; }
+.pdf-compare { display: grid; grid-template-columns: 1fr 1fr; gap: ${COLUMN_GAP_MM}mm; }
+.pdf-label { color: #737373; font-size: 0.82em; margin-bottom: 1mm; }
+.pdf-payoff { columns: 2; column-gap: 8mm; padding-left: 5mm; }
+.pdf-payoff li { break-inside: avoid; }
+.pdf-note {
+  margin-top: auto;
+  padding-top: 2mm;
+  border-top: 0.25mm solid #e5e5e5;
+  color: #737373;
+  font-size: 0.82em;
 }
 `.trim();
 
-export type PointSize = 7 | 8;
+export type PointSize = 11 | 9;
 
 export type OnePagerContent = {
   name: string;
-  advisorDate: string;
+  advisor: string;
+  date: string;
   title: string;
   today: string[];
   plan: string[];
+  loan: string | null;
   payoff: PayoffRow[];
   advantages: string[];
   things: string[];
@@ -146,86 +163,100 @@ function moneyLine(label: string, value: string): string {
   return `${label} ${value}`;
 }
 
+/** One printed payoff line: "Debt · rate — date". */
+export function payoffLine(row: PayoffRow): string {
+  return `${row.debt} · ${row.rate} — ${row.when}`;
+}
+
+/** The household's advisor of record, not the person who opened the page. */
+export function householdAdvisor(snapshot: FrozenSnapshot): string {
+  return snapshot.inputs.household.advisor;
+}
+
 function measureSheet(input: {
   name: string;
-  advisorDate: string;
+  advisor: string;
+  date: string;
   title: string;
   today: readonly string[];
   plan: readonly string[];
+  loan: string | null;
   payoff: readonly PayoffRow[];
   advantages: readonly string[];
   things: readonly string[];
   edits: readonly string[];
   note: string;
 }, point: number): number {
-  const width = SHEET_WIDTH_MM;
-  let height = blockHeight([input.name, input.advisorDate], point, width);
-  height += 1.5;
-  height += blockHeight([input.title], 11, width);
-  height += 2;
-  height += blockHeight(["Today", ...input.today], point, width);
-  height += 2;
-  height += blockHeight(["Your recommended plan", ...input.plan], point, width);
-  height += 2;
-  height += blockHeight(["Payoff order"], point, width);
-  height += lineMm(point);
-  for (const row of input.payoff) {
-    const cells = [
-      1,
-      wrapLines(row.debt, point, PAYOFF_DEBT_MM),
-      wrapLines(row.rate, point, PAYOFF_RATE_MM),
-      wrapLines(row.when, point, PAYOFF_WHEN_MM),
-    ];
-    height += Math.max(...cells) * lineMm(point);
+  const inner = SHEET_WIDTH_MM - CARD_PAD_MM * 2;
+  const column = (inner - COLUMN_GAP_MM) / 2;
+  const titleWidth = inner - 42;
+  const leftHead = blockHeight([input.name], point * 0.82, titleWidth) + 0.8 + blockHeight([input.title], point * 1.55, titleWidth);
+  const rightHead = blockHeight([input.advisor, input.date], point, 40);
+  let height = CARD_PAD_MM * 2;
+  height += Math.max(leftHead, rightHead) + 3;
+  height += 3.5;
+  height += Math.max(
+    blockHeight(["Today", ...input.today], point, column),
+    blockHeight(["Your recommended plan", ...input.plan], point, column),
+  );
+  height += 3.5;
+  height += blockHeight(["Order your debts are paid off"], point * 0.82, inner);
+  const payoffHeights = input.payoff.map((row) => wrapLines(payoffLine(row), point, column - 6) * lineMm(point));
+  const payoffTotal = payoffHeights.reduce((sum, row) => sum + row, 0);
+  const tallest = payoffHeights.reduce((max, row) => Math.max(max, row), lineMm(point));
+  height += input.payoff.length === 0 ? lineMm(point) : payoffTotal / 2 + tallest;
+  if (input.loan) {
+    height += 3.5;
+    height += blockHeight([input.loan], point, inner);
   }
   if (input.advantages.length > 0) {
-    height += 2;
-    height += blockHeight(["What's good about this plan", ...input.advantages], point, width);
+    height += 3.5;
+    height += blockHeight(["What's good about this plan", ...input.advantages], point, inner);
   }
   if (input.things.length > 0) {
-    height += 2;
-    height += blockHeight(["Things to know", ...input.things], point, width);
+    height += 3.5;
+    height += blockHeight(["Things to know", ...input.things], point, inner);
   }
   if (input.edits.length > 0) {
-    height += 2;
-    height += blockHeight(["Data edits, if any", ...input.edits], point, width);
+    height += 3.5;
+    height += blockHeight(["Data edits, if any", ...input.edits], point, inner);
   }
-  height += 1.5;
-  height += blockHeight([input.note], point, width);
+  height += 3.5;
+  height += blockHeight([input.note], point * 0.82, inner) + 2;
   return height;
 }
 
 /** Words and the type size that keep the summary inside the sheet. */
 export function onePagerContent(snapshot: FrozenSnapshot): OnePagerContent {
   const payoff = payoffRows(snapshot.payoff ?? []);
-  const plan = [
-    debtFreeLine(snapshot.plan.debtFree),
-    snapshot.monthsSooner,
-    moneyLine("Total interest", snapshot.plan.interest),
-    interestSavedLine(snapshot.interestSaved),
-    moneyLine("Monthly payment", snapshot.plan.monthly),
-    ...(snapshot.loan ? [snapshot.loan] : []),
-  ];
   const base = {
     name: snapshot.name,
-    advisorDate: `${snapshot.advisor} · ${formatDate(snapshot.frozen_at)}`,
+    advisor: householdAdvisor(snapshot),
+    date: formatDate(snapshot.frozen_at),
     title: recommendedTitle(snapshot.planName || snapshot.name),
     today: [
       debtFreeLine(snapshot.today.debtFree),
       moneyLine("Total interest", snapshot.today.interest),
       moneyLine("Monthly payment", snapshot.today.monthly),
     ],
-    plan,
+    plan: [
+      debtFreeLine(snapshot.plan.debtFree),
+      moneyLine("Total interest", snapshot.plan.interest),
+      interestSavedLine(snapshot.interestSaved),
+      moneyLine("Monthly payment", snapshot.plan.monthly),
+      snapshot.monthsSooner,
+    ],
+    loan: snapshot.loan,
     payoff,
     advantages: snapshot.advantages ?? [],
     things: snapshot.thingsToKnow ?? [],
     edits: snapshot.dataEdits ?? [],
     note: snapshot.note,
   };
-  let point: PointSize = 8;
+  let point: PointSize = 11;
   let heightMm = measureSheet(base, point);
   if (heightMm > SHEET_HEIGHT_MM) {
-    point = 7;
+    point = 9;
     heightMm = measureSheet(base, point);
   }
   return { ...base, point, heightMm };
