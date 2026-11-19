@@ -37,8 +37,8 @@ describe("compare view", () => {
       "New loan of $35,000 pays off Chase, Citi and SoFi; their $1,050 a month stops; the loan's $332 starts; the other $718 goes to the new loan, the highest rate left.",
     );
     expect(view?.columns[0]?.badges).toContain("Today");
-    expect(view?.columns.filter((column) => column.badges.includes("Nightly best"))).toHaveLength(1);
-    expect(view?.columns.find((column) => column.badges.includes("Nightly best"))?.name).toBe(
+    expect(view?.columns.filter((column) => column.badges.includes("Pipeline recommended"))).toHaveLength(1);
+    expect(view?.columns.find((column) => column.badges.includes("Pipeline recommended"))?.name).toBe(
       "HELOAN Yellow 15-year",
     );
     const loan = view?.columns.find((column) => column.name === "HELOAN Yellow 15-year");
@@ -85,7 +85,7 @@ describe("compare view", () => {
     expect(view?.suggestionName).toBe("FastApp 3-year (edited data)");
     expect(column?.matchesSuggestion).toBe(false);
     expect(column?.alert).toBe("red");
-    expect(column?.badges).toContain("Nightly best");
+    expect(column?.badges).toContain("Pipeline recommended");
     expect(column?.badges).not.toContain("Suggested");
     expect(column?.savedScenarioId).toBe("S0014");
     expect(view?.why).toBe(

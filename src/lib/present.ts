@@ -3,9 +3,8 @@ import { householdFico } from "./engine/household";
 import { casePreview, runScenario, type CaseState, type ScenarioRun } from "./engine/scenario";
 import type { BuiltOffer } from "./engine/offers";
 import type { ScheduleRow } from "./engine/simulate";
-import { editedName, normalizeSeededScenarios, planKey } from "./case-inputs";
+import { editedName, normalizeSeededScenarios } from "./case-inputs";
 import { formatDate, formatMoney, formatMonths, formatRate } from "./format";
-import { workspaceFor, type ScenarioCard } from "./workspace";
 import type { CaseOverride, ParsedCell, Scenario } from "./types";
 import { planDate } from "./compare";
 
@@ -60,19 +59,17 @@ export type PayoffRow = {
   when: string;
 };
 
-/** One column on the household comparison. Grey columns are the other compared plans. */
+/** Today or Your recommended plan. Present mode shows these two and no other plan. */
 export type PresentColumn = {
   id: string;
   heading: string;
-  tone: "today" | "plan" | "other";
+  tone: "today" | "plan";
   debtFree: string;
   sooner: string;
   interest: string;
   interestSaved: string;
   monthly: string;
   payoff: PayoffRow[];
-  /** Origin of a grey column, shown in small text. Empty for Today and Your recommended plan. */
-  source: string;
 };
 
 export type PresentModel = {
@@ -332,36 +329,6 @@ function sideFrom(
   };
 }
 
-function scenarioKey(scenario: Scenario): string {
-  return planKey({
-    strategy: scenario.strategy,
-    loanSource: scenario.loan_source,
-    product: scenario.product,
-    termMonths: scenario.term_months,
-    amount: scenario.loan_amount,
-    rate: scenario.loan_rate,
-    debtIds: splitIds(scenario.debts_paid_off),
-    extraIds: splitIds(scenario.extra_payment_ids),
-  });
-}
-
-const SOURCE_LABELS = ["Nightly best", "Built-in", "Built by you", "Previously recommended"];
-
-function columnSource(
-  choice: { id: string; savedId: string | null; scenario: Scenario },
-  card: ScenarioCard | undefined,
-  recommended: string | null,
-): string {
-  const parts = SOURCE_LABELS.filter((label) => card?.badges.includes(label));
-  if (parts.length === 0) {
-    if (choice.id === "avalanche" || choice.id === "snowball" || choice.id.startsWith("offer:")) parts.push("Built-in");
-    else if (choice.savedId) parts.push("Built by you");
-  }
-  const recommendedHere = choice.id === recommended || choice.scenario.scenario_id === recommended;
-  if (recommendedHere && !parts.includes("Previously recommended")) parts.push("Previously recommended");
-  return parts.join(" · ");
-}
-
 function matchOffer(id: string, offers: readonly BuiltOffer[]): BuiltOffer | undefined {
   const match = /^offer:(.+):(\d+):(.+)$/.exec(id);
   if (!match) return undefined;
@@ -464,6 +431,7 @@ function interestSaved(today: PresentSide, plan: PresentSide): string {
 
 const EDIT_FIELD: Record<string, string> = {
   monthly_payment: "monthly payment",
+  balance: "balance",
   rate: "interest rate",
   excluded: "left out of the plan",
   fico: "credit score",
@@ -479,7 +447,7 @@ function formatEditValue(field: string, value: ParsedCell, addressOf: (id: strin
     if (field === "property_id") return "Not linked";
     return "—";
   }
-  if (field === "monthly_payment" || field === "value") return formatMoney(Number(value));
+  if (field === "monthly_payment" || field === "value" || field === "balance") return formatMoney(Number(value));
   if (field === "rate") return formatRate(Number(value));
   if (field === "excluded") return value === true ? "Left out" : "Included";
   if (field === "comfort_zone") return `Zone ${value}`;
@@ -519,7 +487,6 @@ export function presentFor(
   caseState: CaseState,
   scenarios: readonly Scenario[],
   selectedId: string,
-  comparedIds: readonly string[] = [],
 ): PresentModel | null {
   const overrides = caseId == null ? [] : caseState.overrides.filter((row) => row.case_id === caseId);
   const hasEdits = overrides.length > 0;
@@ -553,11 +520,6 @@ export function presentFor(
   const rates = new Map(preview.state.debts.map((debt) => [debt.debt_id, debt.rate]));
   const todayScenario = bare(bound, householdId, "Today", "current");
   const todayResult = runScenario(householdId, scoped, todayScenario);
-  const cards = workspaceFor(householdId, caseId, caseState, scenarios)?.cards ?? [];
-  const cardFor = (choice: { id: string; scenario: Scenario }): ScenarioCard | undefined =>
-    cards.find((card) => card.id === choice.id) ??
-    cards.find((card) => choice.scenario.scenario_id !== "draft" && card.scenarioId === choice.scenario.scenario_id) ??
-    cards.find((card) => card.inputKey === scenarioKey(choice.scenario));
 
   const addOffer = (id: string) => {
     if (!id || id === "current" || choices.some((choice) => choice.id === id)) return;
@@ -566,7 +528,6 @@ export function presentFor(
     const scenario = fromOffer(id, offer, bound, householdId);
     choices.push({ id, label: plainPlanName(scenario), scenario, savedId: null });
   };
-  for (const id of comparedIds) addOffer(id);
   addOffer(selectedId);
 
   const selected =
@@ -607,9 +568,6 @@ export function presentFor(
     leftOut,
   );
 
-  const otherIds = [...new Set([...comparedIds, recommended ?? ""])].filter(
-    (id) => id !== "" && id !== "current" && id !== selected.id && choices.some((choice) => choice.id === id),
-  );
   const columns: PresentColumn[] = [
     {
       id: "today",
@@ -621,7 +579,6 @@ export function presentFor(
       interestSaved: "This is today",
       monthly: today.monthly,
       payoff: today.payoff,
-      source: "",
     },
     {
       id: selected.id,
@@ -633,50 +590,8 @@ export function presentFor(
       interestSaved: interestSaved(today, plan),
       monthly: plan.monthly,
       payoff: plan.payoff,
-      source: "",
     },
   ];
-  const seenPlans = new Set<string>([scenarioKey(selected.scenario)]);
-  for (const id of otherIds) {
-    const choice = choices.find((row) => row.id === id);
-    if (!choice) continue;
-    const key = scenarioKey(choice.scenario);
-    if (seenPlans.has(key)) continue;
-    seenPlans.add(key);
-    const result = runScenario(householdId, scoped, choice.scenario);
-    const side = sideFrom(
-      result,
-      names,
-      rates,
-      splitIds(choice.scenario.debts_paid_off),
-      loanName(choice.scenario),
-      choice.scenario.loan_rate,
-    );
-    columns.push({
-      id,
-      heading: plainPlanName(choice.scenario),
-      tone: "other",
-      debtFree: side.debtFree,
-      sooner: soonerCell(monthsSooner(today.months, side.months)),
-      interest: side.interest,
-      interestSaved: interestSaved(today, side),
-      monthly: side.monthly,
-      payoff: side.payoff,
-      source: columnSource(choice, cardFor(choice), recommended),
-    });
-  }
-  const titleCount = new Map<string, number>();
-  for (const column of columns) {
-    if (column.tone !== "other") continue;
-    const title = `${column.heading}\n${column.source}`;
-    titleCount.set(title, (titleCount.get(title) ?? 0) + 1);
-  }
-  for (const column of columns) {
-    if (column.tone !== "other") continue;
-    const title = `${column.heading}\n${column.source}`;
-    if ((titleCount.get(title) ?? 0) < 2) continue;
-    column.source = column.source ? `${column.source} · ${column.debtFree}` : column.debtFree;
-  }
 
   return {
     name: friendlyName(preview.state.household.household_name),

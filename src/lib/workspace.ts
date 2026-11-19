@@ -47,7 +47,7 @@ export const WONT_SAVE = "won't save money";
 export const INCLUDES_EXTRAS = "Includes extra payments";
 export const DUPLICATE_EXCLUDED = "Duplicate excluded in this case";
 const SOURCE_LABELS = ["Today", "Built-in", "Built by you"] as const;
-const HEADER_MARKS = ["Nightly best", "Suggested", "Previously recommended"] as const;
+const HEADER_MARKS = ["Pipeline recommended", "Suggested", "Previously recommended"] as const;
 export const LOAN_MOVES_NOTHING = "This loan doesn't pay off any debt";
 export const NAME_TAKEN = "That name is already used.";
 export const NAME_REQUIRED = "Enter a name.";
@@ -495,14 +495,31 @@ export function sourceBadges(
   card: Pick<ScenarioCard, "origin" | "nightly" | "suggested" | "previouslyRecommended" | "includesExtras">,
 ): string[] {
   const badges: string[] = [planSource(card)];
-  if (card.nightly) badges.push("Nightly best");
+  if (card.nightly) badges.push("Pipeline recommended");
   if (card.suggested) badges.push("Suggested");
   if (card.previouslyRecommended) badges.push("Previously recommended");
   if (card.includesExtras) badges.push(INCLUDES_EXTRAS);
   return badges;
 }
 
-/** Nightly best, Suggested, Previously recommended, and the extras label. */
+/**
+ * Current path, then Pipeline recommended, then Suggested when that is a different plan,
+ * then the other built-in plans, then plans built by the advisor.
+ * A plan that is both Pipeline recommended and Suggested stays in one column.
+ */
+export function orderScenarioColumns(cards: readonly ScenarioCard[]): ScenarioCard[] {
+  const today = cards.filter((card) => card.origin === "today");
+  const pipeline = cards.filter((card) => card.nightly && card.origin !== "today");
+  const placed = new Set([...today, ...pipeline].map((card) => card.id));
+  const suggested = cards.filter((card) => card.suggested && !placed.has(card.id));
+  for (const card of suggested) placed.add(card.id);
+  const builtIn = cards.filter((card) => card.origin === "builtin" && !placed.has(card.id));
+  for (const card of builtIn) placed.add(card.id);
+  const advisor = cards.filter((card) => !placed.has(card.id));
+  return [...today, ...pipeline, ...suggested, ...builtIn, ...advisor];
+}
+
+/** Pipeline recommended, Suggested, Previously recommended, and the extras label. */
 export function headerBadges(badges: readonly string[]): string[] {
   return badges.filter((badge) => (HEADER_MARKS as readonly string[]).includes(badge) || badge === INCLUDES_EXTRAS);
 }
@@ -1414,6 +1431,7 @@ function debtEdit(
   debtId: string,
   payment: number,
   rate: number,
+  balance: number,
   overrides: readonly CaseOverride[],
   sourceFlags: readonly FlagHit[],
   caseFlags: readonly FlagHit[],
@@ -1435,6 +1453,18 @@ function debtEdit(
       (flagOn(sourceFlags, "payment_below_interest", debtId) && !flagOn(caseFlags, "payment_below_interest", debtId)) ||
       (flagOn(sourceFlags, "zero_payment", debtId) && !flagOn(caseFlags, "zero_payment", debtId));
     if (cleared) resolved = true;
+  }
+  const balanceEdit = latestDebtEdit(overrides, debtId, "balance");
+  if (balanceEdit) {
+    edits.push(
+      editedValueLine(formatMoney(balance), {
+        original: formatMoney(Number(balanceEdit.source_value)),
+        next: formatMoney(Number(balanceEdit.override_value)),
+        reason: balanceEdit.reason,
+        by: balanceEdit.changed_by,
+        at: formatDate(String(balanceEdit.changed_at)),
+      }),
+    );
   }
   const rateEdit = latestDebtEdit(overrides, debtId, "rate");
   if (rateEdit) {
@@ -1477,9 +1507,10 @@ export function workspaceFor(
     card.previouslyRecommended = recommended != null && card.scenarioId === recommended;
     card.badges = sourceBadges(card);
   }
+  model.cards = orderScenarioColumns(model.cards);
   model.debtRows = withoutExcludedDuplicates(
     inputs.household.debts.map((debt) => {
-      const story = debtEdit(debt.debt_id, debt.monthly_payment, debt.rate, overrides, sourceFlags, caseFlags);
+      const story = debtEdit(debt.debt_id, debt.monthly_payment, debt.rate, debt.balance, overrides, sourceFlags, caseFlags);
       return {
         debtId: debt.debt_id,
         name: debt.debt_name,

@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { PresentRoom } from "@/components/present-room";
 
 export default async function PresentPage({
@@ -9,5 +10,9 @@ export default async function PresentPage({
 }) {
   const { id } = await params;
   const query = await searchParams;
-  return <PresentRoom householdId={id} initialPlan={query.plan ?? ""} compared={query.compared ?? ""} />;
+  if (query.compared) {
+    const plan = query.plan ? `?plan=${encodeURIComponent(query.plan)}` : "";
+    redirect(`/households/${id}/present${plan}`);
+  }
+  return <PresentRoom householdId={id} initialPlan={query.plan ?? ""} />;
 }

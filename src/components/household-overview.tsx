@@ -1,11 +1,11 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useState, type ReactNode } from "react";
 import { ActionBar, actionBarOffset } from "@/components/action-bar";
 import { StaleNotice, useKeptResult } from "@/components/kept-result";
 import { SavingsText } from "@/components/savings-text";
 import { useRouter } from "next/navigation";
-import { Flag } from "lucide-react";
+import { Flag, Pencil } from "lucide-react";
 import { toast } from "sonner";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   OVERVIEW_TAB_LABEL,
   OVERVIEW_TABS,
@@ -275,21 +276,39 @@ export function HouseholdOverview({
           <div className="flex flex-col gap-0.5">
             <dt className="text-muted-foreground">Household FICO</dt>
             <dd data-testid="household-fico">
-              {overview.fico.overrides.length > 0 ? (
-                overview.fico.overrides.map((row) => (
-                  <p key={`${row.original}-${row.next}-${row.at}`}>{editedValueLine(overview.fico.text, row)}</p>
-                ))
-              ) : (
-                <p>
-                  {overview.fico.text}
-                  {overview.fico.whose ? <span className="text-muted-foreground"> · {overview.fico.whose}</span> : null}
-                </p>
-              )}
-              {overview.fico.whose && overview.fico.overrides.length > 0 ? (
-                <p className="text-muted-foreground">{overview.fico.whose}</p>
-              ) : null}
-              {overview.fico.flag ? <FlagNote text={overview.fico.flag} /> : null}
-              {overview.fico.resolved ? <p className="text-sm text-muted-foreground">{overview.fico.resolved}</p> : null}
+              <div className="flex items-start gap-1">
+                <div className="min-w-0">
+                  {overview.fico.overrides.length > 0 ? (
+                    overview.fico.overrides.map((row) => (
+                      <p key={`${row.original}-${row.next}-${row.at}`}>{editedValueLine(overview.fico.text, row)}</p>
+                    ))
+                  ) : (
+                    <p>
+                      {overview.fico.text}
+                      {overview.fico.whose ? <span className="text-muted-foreground"> · {overview.fico.whose}</span> : null}
+                    </p>
+                  )}
+                  {overview.fico.whose && overview.fico.overrides.length > 0 ? (
+                    <p className="text-muted-foreground">{overview.fico.whose}</p>
+                  ) : null}
+                  {overview.fico.flag ? <FlagNote text={overview.fico.flag} /> : null}
+                  {overview.fico.resolved ? <p className="text-sm text-muted-foreground">{overview.fico.resolved}</p> : null}
+                </div>
+                <span className="flex shrink-0 items-center">
+                  {(overview.fico.flag
+                    ? overview.members
+                    : overview.members.filter((member) => member.fico.text === overview.fico.text)
+                  ).map((member) => (
+                    <FieldView
+                      key={member.memberId}
+                      field={member.fico}
+                      onEdit={openEdit}
+                      onReport={openReport}
+                      hideText
+                    />
+                  ))}
+                </span>
+              </div>
             </dd>
           </div>
           <div className="flex flex-col gap-0.5">
@@ -378,7 +397,9 @@ export function HouseholdOverview({
                     </div>
                   ) : null}
                 </TableCell>
-                <TableCell>{debt.balance}</TableCell>
+                <TableCell>
+                  <FieldView field={debt.balance} onEdit={openEdit} onReport={openReport} />
+                </TableCell>
                 <TableCell>
                   <FieldView field={debt.rate} onEdit={openEdit} onReport={openReport} />
                 </TableCell>
@@ -597,31 +618,69 @@ function FieldView({
   hideText?: boolean;
   editLabel?: string;
 }) {
+  const editable = field.edit ?? field.report;
+  const editName =
+    editLabel === "Edit for this case"
+      ? `Edit ${editable?.label ?? ""}`
+      : `${editLabel}: ${editable?.label.replace(/^Exclude /, "") ?? ""}`;
+  const reportName = `Report data issue: ${editable?.label ?? ""}`;
   return (
     <div className="flex min-w-0 flex-col gap-1">
-      {field.override ? (
-        <span>{editedValueLine(field.text, field.override)}</span>
-      ) : hideText ? null : (
-        <span>{field.text}</span>
-      )}
+      <div className="flex min-w-0 items-center gap-1">
+        {field.override ? (
+          <span className="min-w-0">{editedValueLine(field.text, field.override)}</span>
+        ) : hideText ? null : (
+          <span className="min-w-0">{field.text}</span>
+        )}
+        {field.edit || field.report ? (
+          <span className="flex shrink-0 items-center">
+            {field.edit ? (
+              <IconButton label={editName} onClick={() => onEdit(field.edit!)}>
+                <Pencil aria-hidden />
+              </IconButton>
+            ) : null}
+            {field.report ? (
+              <IconButton label={reportName} onClick={() => onReport(field.report!)}>
+                <Flag aria-hidden />
+              </IconButton>
+            ) : null}
+          </span>
+        ) : null}
+      </div>
       {field.notes.map((note) => (
         <NoteLine key={note.text} note={note} />
       ))}
-      {field.edit || field.report ? (
-        <div className="flex flex-wrap gap-1">
-          {field.edit ? (
-            <Button variant="ghost" size="xs" onClick={() => onEdit(field.edit!)}>
-              {editLabel}
-            </Button>
-          ) : null}
-          {field.report ? (
-            <Button variant="ghost" size="xs" onClick={() => onReport(field.report!)}>
-              Report data issue
-            </Button>
-          ) : null}
-        </div>
-      ) : null}
     </div>
+  );
+}
+
+function IconButton({
+  label,
+  onClick,
+  children,
+}: {
+  label: string;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={label}
+            className="case-field-icon size-8"
+            onClick={onClick}
+          >
+            {children}
+          </Button>
+        }
+      />
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -658,6 +717,7 @@ function CaseDialog({
         <DialogDescription>
           {field.label}. This stays on the case. Source data is left as it is.
         </DialogDescription>
+        {editing ? <p className="text-sm text-muted-foreground">Original: {field.sourceText}</p> : null}
       </DialogHeader>
       <div className="flex flex-col gap-3 py-2">
         {editing && field.kind !== "exclude" ? (

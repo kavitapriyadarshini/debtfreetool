@@ -39,6 +39,7 @@ import {
   headerBadges,
   identicalPlan,
   LOAN_MOVES_NOTHING,
+  orderScenarioColumns,
   paymentRule,
   paymentSummary,
   planSource,
@@ -144,14 +145,7 @@ export function Workspace({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numbers]);
 
-  const columns = useMemo(() => {
-    if (!model) return [];
-    const today = model.cards.filter((card) => card.origin === "today");
-    const nightly = model.cards.filter((card) => card.nightly && card.origin !== "today");
-    const builtIn = model.cards.filter((card) => card.origin === "builtin" && !card.nightly);
-    const advisor = model.cards.filter((card) => card.origin === "advisor");
-    return [...today, ...nightly, ...builtIn, ...advisor];
-  }, [model]);
+  const columns = useMemo(() => (model ? orderScenarioColumns(model.cards) : []), [model]);
   const actions = useRef({
     compare: (_id: string) => {},
     open: (_card: ScenarioCard) => {},
@@ -216,9 +210,6 @@ export function Workspace({
   }
 
   const today = model.cards.filter((card) => card.origin === "today");
-  const nightly = model.cards.filter((card) => card.nightly && card.origin !== "today");
-  const builtIn = model.cards.filter((card) => card.origin === "builtin" && !card.nightly);
-  const advisor = model.cards.filter((card) => card.origin === "advisor");
   const noProducts = model.choices.length === 0;
 
   function toggleCompare(id: string) {

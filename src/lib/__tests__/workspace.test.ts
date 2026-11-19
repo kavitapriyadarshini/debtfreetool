@@ -217,7 +217,7 @@ describe("scenario workspace", () => {
       spare: "Spare money goes to Synchrony Store Card, the highest rate.",
     });
     expect(planSource(avalanche![0]!)).toBe("Built-in");
-    expect(avalanche?.[0]?.badges).toContain("Nightly best");
+    expect(avalanche?.[0]?.badges).toContain("Pipeline recommended");
     expect(avalanche?.[0]?.badges).not.toContain("Built by you");
     expect(avalanche?.[0]?.badges.filter((badge) => badge === "Today" || badge === "Built-in" || badge === "Built by you")).toEqual(["Built-in"]);
     expect(snowball).toMatchObject({
@@ -345,15 +345,29 @@ describe("scenario workspace", () => {
     expect(copy).toBe("Avalanche (edited data)");
   });
 
-  it("pins H01's current path first and gives Nightly best to Yellow 15-year only", () => {
+  it("pins H01's current path first and gives Pipeline recommended to Yellow 15-year only", () => {
     const view = model("H01");
+    expect(view?.cards.map((card) => card.name).slice(0, 3)).toEqual([
+      "Current path",
+      "HELOAN Yellow 15-year",
+      "HELOAN Yellow 15-yr + extras",
+    ]);
+    expect(view?.cards[1]?.badges).toContain("Pipeline recommended");
+    expect(view?.cards[1]?.badges).not.toContain("Suggested");
+    expect(view?.cards[2]?.badges).toContain("Suggested");
+    expect(view?.cards[2]?.badges).not.toContain("Pipeline recommended");
+    const avalancheAt = view?.cards.findIndex((card) => card.name === "Avalanche") ?? -1;
+    const lastBuiltIn = view?.cards.reduce((last, card, index) => (card.origin === "builtin" ? index : last), -1) ?? -1;
+    const firstOtherAdvisor = view?.cards.findIndex((card, index) => index > 2 && card.origin === "advisor");
+    expect(avalancheAt).toBeGreaterThan(2);
+    expect(firstOtherAdvisor === -1 || firstOtherAdvisor > lastBuiltIn).toBe(true);
     expect(view?.cards[0]?.name).toBe("Current path");
     expect(view?.cards[0]?.origin).toBe("today");
     expect(view?.cards[0]?.badges).toContain("Today");
     const nightly = view?.cards.filter((card) => card.nightly) ?? [];
     expect(nightly).toHaveLength(1);
     expect(nightly[0]?.name).toBe("HELOAN Yellow 15-year");
-    expect(nightly[0]?.badges).toContain("Nightly best");
+    expect(nightly[0]?.badges).toContain("Pipeline recommended");
     expect(nightly[0]?.loan).toBe("HELOAN Yellow · 15-year · $35,000 · Secured on the home");
     expect(nightly[0]?.interestSaved).toBe("$102,847");
     expect(nightly[0]?.monthsSaved).toBe("111 months");
@@ -383,11 +397,22 @@ describe("scenario workspace", () => {
     const nightly = view?.cards.find((card) => card.nightly);
     expect(suggested?.name).toBe("FastApp 3-year (edited data)");
     expect(suggested?.badges).toEqual(expect.arrayContaining(["Suggested"]));
-    expect(suggested?.badges).not.toContain("Nightly best");
+    expect(suggested?.badges).not.toContain("Pipeline recommended");
     expect(nightly?.name).toBe("FastApp 1-year (edited data)");
     expect(nightly?.alert).toBe("red");
-    expect(nightly?.badges).toContain("Nightly best");
+    expect(nightly?.badges).toContain("Pipeline recommended");
     expect(nightly?.badges).not.toContain("Suggested");
+    expect(view?.cards[1]?.id).toBe(nightly?.id);
+    expect(view?.cards[2]?.id).toBe(suggested?.id);
+    const same = workspaceFor("H01", null, empty, []);
+    const shared = same?.cards.filter((card) => card.nightly || card.suggested) ?? [];
+    expect(shared).toHaveLength(1);
+    expect(shared[0]?.badges).toEqual(expect.arrayContaining(["Pipeline recommended", "Suggested"]));
+    expect(same?.cards[1]?.id).toBe(shared[0]?.id);
+    const both = households
+      .flatMap((household) => model(household.household_id)?.cards ?? [])
+      .find((card) => card.nightly && card.suggested);
+    expect(both?.badges).toEqual(expect.arrayContaining(["Pipeline recommended", "Suggested"]));
     expect(view?.cards.some((card) => card.alert === "red" && card.alertLabel === "Monthly payment $1,182 → $3,440 (+191%)")).toBe(true);
     expect(view?.suggestionWhy).toBe(
       "15 months sooner and $13,700 less interest than paying smarter without a loan. A faster plan (FastApp 1-year (edited data), 1 year) raises the monthly payment by $2,258 (+191%).",

@@ -63,7 +63,7 @@ export function editedName(name: string, edited: boolean): string {
  * Seeded titles that describe an edit or the nightly best, cleaned before plans are shown.
  * "Avalanche (edited data)" becomes "Avalanche" only when that case has no overrides, so it
  * matches the built-in avalanche and shares its column. A trailing " (nightly best)" is
- * always dropped; the Nightly best badge already says it.
+ * always dropped; the Pipeline recommended badge already says it.
  */
 export function normalizeSeededScenarios<T extends Pick<Scenario, "case_id" | "name">>(
   scenarios: readonly T[],

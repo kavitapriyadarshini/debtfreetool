@@ -1,6 +1,6 @@
-import { formatDate, formatMoney } from "./format";
+import { formatDate } from "./format";
 import type { PayoffRow } from "./present";
-import type { FrozenSnapshot, FrozenYear } from "./snapshot";
+import type { FrozenSnapshot } from "./snapshot";
 
 /** Printed page boxes. The sheet is the overlap, so one layout fits both. */
 export const PAGE_MARGIN_MM = 12;
@@ -13,9 +13,11 @@ const printableHeight = Math.min(A4_MM.height, LETTER_MM.height) - PAGE_MARGIN_M
 /** A little inside the shorter page so rounding cannot spill onto a second sheet. */
 export const SHEET_WIDTH_MM = Math.floor(printableWidth) - 2;
 export const SHEET_HEIGHT_MM = Math.floor(printableHeight) - 4;
-export const COLUMN_GAP_MM = 4;
-export const LEFT_COLUMN_MM = 70;
-export const RIGHT_COLUMN_MM = SHEET_WIDTH_MM - COLUMN_GAP_MM - LEFT_COLUMN_MM;
+
+const PAYOFF_NUMBER_MM = 8;
+const PAYOFF_RATE_MM = 28;
+const PAYOFF_WHEN_MM = 62;
+const PAYOFF_DEBT_MM = SHEET_WIDTH_MM - PAYOFF_NUMBER_MM - PAYOFF_RATE_MM - PAYOFF_WHEN_MM;
 
 export const ONE_PAGER_CSS = `
 @page {
@@ -34,32 +36,27 @@ export const ONE_PAGER_CSS = `
   box-sizing: border-box;
   width: ${SHEET_WIDTH_MM}mm;
   height: ${SHEET_HEIGHT_MM}mm;
-  display: grid;
-  grid-template-columns: ${LEFT_COLUMN_MM}mm ${RIGHT_COLUMN_MM}mm;
-  column-gap: ${COLUMN_GAP_MM}mm;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   color: #171717;
   line-height: 1.2;
-  overflow: visible;
+  overflow: hidden;
   break-inside: avoid;
   page-break-inside: avoid;
 }
-.pdf-col { min-width: 0; display: flex; flex-direction: column; }
+.pdf-sheet p, .pdf-sheet h2, .pdf-sheet h3, .pdf-sheet ul { margin: 0; }
+.pdf-sheet ul { padding-left: 4mm; }
 .pdf-note { margin-top: auto; padding-top: 1.5mm; }
-.pdf-schedule { width: 100%; border-collapse: collapse; }
-.pdf-schedule th, .pdf-schedule td { padding: 0 0.6mm 0 0; vertical-align: top; font-weight: 400; text-align: left; }
+.pdf-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.pdf-table th, .pdf-table td {
+  padding: 0 1.5mm 0 0;
+  vertical-align: top;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
 `.trim();
-
-export type ScheduleLine = {
-  when: string;
-  payment: string;
-  interest: string;
-  balance: string;
-  cleared: string;
-  kind: "month" | "year";
-  /** Months from the full schedule this printed row stands for. */
-  covered: number;
-};
 
 export type PointSize = 7 | 8;
 
@@ -74,11 +71,8 @@ export type OnePagerContent = {
   things: string[];
   edits: string[];
   note: string;
-  schedule: ScheduleLine[];
-  schedulePoint: PointSize;
-  leftPoint: PointSize;
-  scheduleHeightMm: number;
-  leftHeightMm: number;
+  point: PointSize;
+  heightMm: number;
 };
 
 const LINE_FACTOR = 1.2;
@@ -112,59 +106,9 @@ function wrapLines(text: string, point: number, widthMm: number): number {
   return lines;
 }
 
-function blockHeight(lines: readonly string[], point: number, widthMm: number, gapMm = 0): number {
+function blockHeight(lines: readonly string[], point: number, widthMm: number): number {
   const line = lineMm(point);
-  return lines.reduce((sum, text) => sum + wrapLines(text, point, widthMm) * line, 0) + gapMm;
-}
-
-function parseMoney(value: string): number {
-  const amount = Number(value.replace(/[^0-9.-]/g, ""));
-  return Number.isFinite(amount) ? amount : 0;
-}
-
-function clearedNames(value: string): string[] {
-  return value.split(", ").map((name) => name.trim()).filter((name) => name !== "" && name !== "None");
-}
-
-/** First 24 months one row each, then one row per calendar year for the rest. */
-export function compactSchedule(years: readonly FrozenYear[]): ScheduleLine[] {
-  const months = years.flatMap((year) => year.months);
-  const head = months.slice(0, 24).map((month) => ({
-    when: month.label,
-    payment: month.payment,
-    interest: month.interest,
-    balance: month.balance,
-    cleared: clearedNames(month.cleared).join(", "),
-    kind: "month" as const,
-    covered: 1,
-  }));
-  const rest = months.slice(24);
-  const groups = new Map<string, typeof rest>();
-  for (const month of rest) {
-    const year = month.label.slice(-4);
-    const list = groups.get(year) ?? [];
-    list.push(month);
-    groups.set(year, list);
-  }
-  const yearly = [...groups.entries()].map(([year, rows]) => {
-    const cleared: string[] = [];
-    for (const row of rows) {
-      for (const name of clearedNames(row.cleared)) {
-        if (!cleared.includes(name)) cleared.push(name);
-      }
-    }
-    const last = rows[rows.length - 1];
-    return {
-      when: year,
-      payment: formatMoney(rows.reduce((sum, row) => sum + parseMoney(row.payment), 0)),
-      interest: formatMoney(rows.reduce((sum, row) => sum + parseMoney(row.interest), 0)),
-      balance: last?.balance ?? "",
-      cleared: cleared.join(", "),
-      kind: "year" as const,
-      covered: rows.length,
-    };
-  });
-  return [...head, ...yearly];
+  return lines.reduce((sum, text) => sum + wrapLines(text, point, widthMm) * line, 0);
 }
 
 /** Agreements saved before this wording still print the current heading. */
@@ -202,27 +146,7 @@ function moneyLine(label: string, value: string): string {
   return `${label} ${value}`;
 }
 
-function measureSchedule(lines: readonly ScheduleLine[], point: number): number {
-  const line = lineMm(point);
-  let height = wrapLines("Your schedule", point, RIGHT_COLUMN_MM) * line;
-  height += 1;
-  height += wrapLines("Monthly for the first 2 years, then yearly.", point, RIGHT_COLUMN_MM) * line;
-  height += 1.5;
-  height += line;
-  for (const row of lines) {
-    const cells = [
-      wrapLines(row.when, point, 18),
-      wrapLines(row.payment, point, 16),
-      wrapLines(row.interest, point, 16),
-      wrapLines(row.balance, point, 18),
-      wrapLines(row.cleared, point, 36),
-    ];
-    height += Math.max(1, ...cells) * line;
-  }
-  return height;
-}
-
-function measureLeft(input: {
+function measureSheet(input: {
   name: string;
   advisorDate: string;
   title: string;
@@ -234,35 +158,45 @@ function measureLeft(input: {
   edits: readonly string[];
   note: string;
 }, point: number): number {
-  const width = LEFT_COLUMN_MM;
-  let height = blockHeight([input.name, input.advisorDate], point + 1, width);
+  const width = SHEET_WIDTH_MM;
+  let height = blockHeight([input.name, input.advisorDate], point, width);
   height += 1.5;
   height += blockHeight([input.title], 11, width);
   height += 2;
-  height += blockHeight(["Today", ...input.today], point, width, 1);
-  height += blockHeight(["Your recommended plan", ...input.plan], point, width, 2);
-  height += blockHeight(["Payoff order"], point, width, 2);
+  height += blockHeight(["Today", ...input.today], point, width);
+  height += 2;
+  height += blockHeight(["Your recommended plan", ...input.plan], point, width);
+  height += 2;
+  height += blockHeight(["Payoff order"], point, width);
   height += lineMm(point);
   for (const row of input.payoff) {
     const cells = [
       1,
-      wrapLines(row.debt, point, 22),
-      wrapLines(row.rate, point, 14),
-      wrapLines(row.when, point, 28),
+      wrapLines(row.debt, point, PAYOFF_DEBT_MM),
+      wrapLines(row.rate, point, PAYOFF_RATE_MM),
+      wrapLines(row.when, point, PAYOFF_WHEN_MM),
     ];
     height += Math.max(...cells) * lineMm(point);
   }
-  if (input.advantages.length > 0) height += blockHeight(["What's good about this plan", ...input.advantages], point, width, 2);
-  if (input.things.length > 0) height += blockHeight(["Things to know", ...input.things], point, width, 2);
-  if (input.edits.length > 0) height += blockHeight(["Data edits, if any", ...input.edits], point, width, 2);
-  height += 2;
+  if (input.advantages.length > 0) {
+    height += 2;
+    height += blockHeight(["What's good about this plan", ...input.advantages], point, width);
+  }
+  if (input.things.length > 0) {
+    height += 2;
+    height += blockHeight(["Things to know", ...input.things], point, width);
+  }
+  if (input.edits.length > 0) {
+    height += 2;
+    height += blockHeight(["Data edits, if any", ...input.edits], point, width);
+  }
+  height += 1.5;
   height += blockHeight([input.note], point, width);
   return height;
 }
 
-/** Words and the type size that keep both columns inside the sheet. */
+/** Words and the type size that keep the summary inside the sheet. */
 export function onePagerContent(snapshot: FrozenSnapshot): OnePagerContent {
-  const schedule = compactSchedule(snapshot.years ?? []);
   const payoff = payoffRows(snapshot.payoff ?? []);
   const plan = [
     debtFreeLine(snapshot.plan.debtFree),
@@ -287,18 +221,12 @@ export function onePagerContent(snapshot: FrozenSnapshot): OnePagerContent {
     things: snapshot.thingsToKnow ?? [],
     edits: snapshot.dataEdits ?? [],
     note: snapshot.note,
-    schedule,
   };
-  const advisorDate = base.advisorDate;
-  let schedulePoint: PointSize = 8;
-  let leftPoint: PointSize = 8;
-  let scheduleHeightMm = measureSchedule(schedule, schedulePoint);
-  let leftHeightMm = measureLeft({ ...base, advisorDate }, leftPoint);
-  if (scheduleHeightMm > SHEET_HEIGHT_MM || leftHeightMm > SHEET_HEIGHT_MM) {
-    schedulePoint = 7;
-    leftPoint = 7;
-    scheduleHeightMm = measureSchedule(schedule, schedulePoint);
-    leftHeightMm = measureLeft({ ...base, advisorDate }, leftPoint);
+  let point: PointSize = 8;
+  let heightMm = measureSheet(base, point);
+  if (heightMm > SHEET_HEIGHT_MM) {
+    point = 7;
+    heightMm = measureSheet(base, point);
   }
-  return { ...base, advisorDate, schedulePoint, leftPoint, scheduleHeightMm, leftHeightMm };
+  return { ...base, point, heightMm };
 }

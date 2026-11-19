@@ -31,6 +31,8 @@ export type EditableField = {
   kind: EditKind;
   sourceValue: ParsedCell;
   currentValue: ParsedCell;
+  /** The source value in the same words the screen uses. */
+  sourceText: string;
 };
 
 export type FieldNote = {
@@ -77,7 +79,7 @@ export function overviewTab(value: string | undefined): OverviewTab {
 
 export type PlanInPlay = {
   /** Recommended when a plan is marked, otherwise the nightly pipeline plan. */
-  label: "Recommended" | "Nightly best";
+  label: "Recommended" | "Pipeline recommended";
   /** Months and interest saved against today. Null when today's path never finishes. */
   months: string | null;
   interest: string | null;
@@ -130,7 +132,7 @@ export type HouseholdOverview = {
     debtId: string;
     name: string;
     type: string;
-    balance: string;
+    balance: ShownField;
     grey: boolean;
     rowNotes: FieldNote[];
     payment: ShownField;
@@ -259,6 +261,7 @@ function fieldOf(input: {
     kind: input.kind,
     sourceValue: input.sourceValue,
     currentValue: input.currentValue,
+    sourceText: formatKind(input.kind, input.sourceValue, input.addressOf),
   };
   const record = input.record;
   return {
@@ -342,7 +345,7 @@ function planInPlay(input: {
   const recalculated = !recommendedRun && inputs && nightly ? nightlyOnCase(inputs, nightly.best_plan) : null;
   const planMonths = recommendedRun ? recommendedRun.months : (recalculated?.months ?? null);
   const planInterest = recommendedRun ? recommendedRun.totalInterest : (recalculated?.interest ?? 0);
-  const label = input.recommended ? "Recommended" : "Nightly best";
+  const label = input.recommended ? "Recommended" : "Pipeline recommended";
   if (current.months == null) {
     return {
       label,
@@ -606,16 +609,28 @@ export function buildHouseholdOverview(input: {
       return {
         debtId: debt.debt_id,
         name: debt.debt_name,
-        type: debt.debt_type,
-        balance: formatMoney(debt.balance),
-        grey,
+    type: debt.debt_type,
+    balance: fieldOf({
+      kind: "money",
+      entityType: "debt",
+      entityId: debt.debt_id,
+      field: "balance",
+      label: `${debt.debt_name} balance`,
+      sourceValue: sourceDebt.balance,
+      currentValue: debt.balance,
+      record: latestOverride(caseOverrides, "debt", debt.debt_id, "balance"),
+      notes: [],
+      canEdit: true,
+      addressOf: lookup,
+    }),
+    grey,
         rowNotes,
         payment: fieldOf({
           kind: "money",
           entityType: "debt",
           entityId: debt.debt_id,
           field: "monthly_payment",
-          label: `${debt.debt_name} payment`,
+          label: `${debt.debt_name} monthly payment`,
           sourceValue: sourceDebt.monthly_payment,
           currentValue: debt.monthly_payment,
           record: paymentRecord,
@@ -628,7 +643,7 @@ export function buildHouseholdOverview(input: {
           entityType: "debt",
           entityId: debt.debt_id,
           field: "rate",
-          label: `${debt.debt_name} rate`,
+          label: `${debt.debt_name} interest rate`,
           sourceValue: sourceDebt.rate,
           currentValue: debt.rate,
           record: rateRecord,

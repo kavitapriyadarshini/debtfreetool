@@ -59,3 +59,17 @@ Some buttons still respond late or not at all. Find the cause with measurements,
 ```
 
 **Done when:** every button reacts within 100 ms on the Vercel URL, and `docs/PERFORMANCE.md` shows INP under 200 ms for each step.
+
+---
+
+## Fix 27: "Where the money goes" shows every line
+
+```
+Per S3 in @docs/SPEC.md, this reverses part of Fix 17:
+1. In the S3 scenarios table, the "Where the money goes" row shows every event line in full in each plan's cell. Remove "Show all", "+2 more", "+3 more" and any truncation or line clamping from this row.
+2. Keep the fixed column width: lines wrap inside the cell and the row grows taller, never wider. Each event is its own line, in date order, starting with the month ("Feb 2028: Capital One paid off; its $1,322 a month moves to Synchrony, now $1,891").
+3. Keep the row group itself collapsible as a whole (expanded by default), so an advisor can fold it away when it's long.
+4. Leave the Monthly payment row as it is (one summary line with "Show all").
+```
+
+**Done when:** on H265 every plan's "Where the money goes" cell lists all its events, and no column is wider than the others.

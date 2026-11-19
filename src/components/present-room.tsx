@@ -30,11 +30,9 @@ import type { ContactChannel, Decision } from "@/lib/types";
 export function PresentRoom({
   householdId,
   initialPlan,
-  compared = "",
 }: {
   householdId: string;
   initialPlan: string;
-  compared?: string;
 }) {
   const cases = useDemoStore((state) => state.cases);
   const scenarios = useDemoStore((state) => state.scenarios);
@@ -46,8 +44,7 @@ export function PresentRoom({
   const recommend = useDemoStore((state) => state.recommend);
   const recordDecision = useDemoStore((state) => state.recordDecision);
   const contacts = useDemoStore((state) => state.contacts);
-  const role = useDemoStore((state) => state.user.role);
-  const [planId, setPlanId] = useState(initialPlan);
+  const [planId] = useState(initialPlan);
   const [showing, setShowing] = useState<"plan" | "today">("plan");
   const [openYear, setOpenYear] = useState<number | null>(null);
   const [pending, setPending] = useState<Decision | null>(null);
@@ -61,7 +58,6 @@ export function PresentRoom({
     return matches[matches.length - 1] ?? null;
   }, [cases, householdId]);
 
-  const comparedIds = useMemo(() => compared.split(",").map((id) => id.trim()).filter((id) => id !== ""), [compared]);
   const kept = useKeptResult(
     () =>
       presentFor(
@@ -70,9 +66,8 @@ export function PresentRoom({
         { overrides, extraPayments, customLoans },
         scenarios,
         planId,
-        comparedIds,
       ),
-    [householdId, caseRow?.case_id, overrides, extraPayments, customLoans, scenarios, planId, comparedIds],
+    [householdId, caseRow?.case_id, overrides, extraPayments, customLoans, scenarios, planId],
   );
   const model = kept.value;
   const recommendedId = caseRow?.recommended_scenario_id ?? null;
@@ -160,7 +155,6 @@ export function PresentRoom({
   }
 
   const years = showing === "plan" ? model.plan.years : model.today.years;
-  const canSwitch = role === "advisor" || role === "manager";
 
   return (
     <Profile id="present">
@@ -179,7 +173,7 @@ export function PresentRoom({
           </p>
         </header>
 
-        <Comparison columns={model.columns} canSwitch={canSwitch} onSwitch={setPlanId} />
+        <Comparison columns={model.columns} />
 
         {model.advantages.length > 0 ? (
           <section className="flex flex-col gap-3">
@@ -339,41 +333,17 @@ const ROWS: { label: string; value: (column: PresentColumn) => string }[] = [
   { label: "Monthly payment", value: (column) => column.monthly },
 ];
 
-function Comparison({
-  columns,
-  canSwitch,
-  onSwitch,
-}: {
-  columns: PresentColumn[];
-  canSwitch: boolean;
-  onSwitch: (id: string) => void;
-}) {
+function Comparison({ columns }: { columns: PresentColumn[] }) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[48rem] border-separate border-spacing-0 text-left">
-        <caption className="sr-only">Today, your recommended plan, and the other plans you compared</caption>
+      <table className="w-full border-separate border-spacing-0 text-left">
+        <caption className="sr-only">Today and your recommended plan</caption>
         <thead>
           <tr>
-            <th className="sticky left-0 z-10 min-w-40 bg-background" />
+            <th className="w-36 bg-background" />
             {columns.map((column) => (
-              <th
-                key={column.id}
-                className={cn(
-                  "min-w-52 px-4 py-3 align-bottom text-base font-semibold",
-                  column.tone === "other" ? "bg-muted text-muted-foreground" : "text-foreground",
-                )}
-              >
-                {column.tone === "other" && canSwitch ? (
-                  <button type="button" className="text-left font-medium text-muted-foreground underline-offset-2 hover:underline" onClick={() => onSwitch(column.id)}>
-                    <span className="block">{column.heading}</span>
-                    {column.source ? <span className="block text-xs font-normal">{column.source}</span> : null}
-                  </button>
-                ) : (
-                  <span className="block">
-                    {column.heading}
-                    {column.source ? <span className="block text-xs font-normal text-muted-foreground">{column.source}</span> : null}
-                  </span>
-                )}
+              <th key={column.id} className="w-1/2 px-4 py-3 align-bottom text-base font-semibold">
+                {column.heading}
               </th>
             ))}
           </tr>
@@ -381,38 +351,22 @@ function Comparison({
         <tbody>
           {ROWS.map((row) => (
             <tr key={row.label}>
-              <th scope="row" className="sticky left-0 z-10 bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
+              <th scope="row" className="bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
                 {row.label}
               </th>
               {columns.map((column) => (
-                <td
-                  key={column.id}
-                  className={cn(
-                    "px-4 py-3 align-top text-base",
-                    column.tone === "other" ? "bg-muted/70 text-muted-foreground" : "text-foreground",
-                    column.tone === "other" && canSwitch && "cursor-pointer",
-                  )}
-                  onClick={column.tone === "other" && canSwitch ? () => onSwitch(column.id) : undefined}
-                >
+                <td key={column.id} className="px-4 py-3 align-top text-base">
                   {row.value(column)}
                 </td>
               ))}
             </tr>
           ))}
           <tr>
-            <th scope="row" className="sticky left-0 z-10 bg-background px-3 py-3 text-sm font-medium text-muted-foreground">
+            <th scope="row" className="bg-background px-3 py-3 align-top text-sm font-medium text-muted-foreground">
               Payoff order
             </th>
             {columns.map((column) => (
-              <td
-                key={column.id}
-                className={cn(
-                  "px-4 py-3 align-top",
-                  column.tone === "other" ? "bg-muted/70 text-muted-foreground" : "text-foreground",
-                  column.tone === "other" && canSwitch && "cursor-pointer",
-                )}
-                onClick={column.tone === "other" && canSwitch ? () => onSwitch(column.id) : undefined}
-              >
+              <td key={column.id} className="px-4 py-3 align-top">
                 {column.payoff.length === 0 ? (
                   column.debtFree
                 ) : (

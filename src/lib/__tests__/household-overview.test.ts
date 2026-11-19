@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { caseHistory, caseOverrides, cases, contacts, customLoans, extraPayments, membersOf, scenarios } from "../data";
+import { AS_OF } from "../config";
+import { caseHistory, caseOverrides, cases, contacts, customLoans, debts, extraPayments, membersOf, scenarios } from "../data";
+import { formatMoney } from "../format";
 import { householdWithCase } from "../engine/scenario";
 import { buildHouseholdOverview, editedValueLine, type HouseholdOverview } from "../household-overview";
+import { workspaceFor } from "../workspace";
+import type { CaseOverride } from "../types";
 
 function overview(id: string): HouseholdOverview {
   const caseRecord = [...cases].reverse().find((row) => row.household_id === id);
@@ -55,7 +59,7 @@ describe("household overview", () => {
     expect(nightly?.outreach).toBe("Ready to contact");
     expect(nightly?.readyDate).toBeNull();
     expect(nightly?.planInPlay).toEqual({
-      label: "Nightly best",
+      label: "Pipeline recommended",
       months: "9 years 3 months",
       interest: "$102,847",
       note: null,
@@ -174,7 +178,7 @@ describe("household overview", () => {
     expect(slate?.payment.text).toBe("$250");
     expect(slate?.payment.notes).toEqual([{ text: "Never pays off", tone: "flag" }]);
     expect(card?.planInPlay).toEqual({
-      label: "Nightly best",
+      label: "Pipeline recommended",
       months: null,
       interest: null,
       note: "Today's payments never clear these debts. With the best plan: debt free in 8 years 10 months.",
@@ -218,6 +222,76 @@ describe("household overview", () => {
     );
     expect(amex.payment.notes.map((note) => note.text)).toEqual(["Resolved in this case"]);
     expect(amex.payment.notes.map((note) => note.text)).not.toContain("Never pays off at the original payment");
+  });
+
+  it("edits a debt balance on the case, shows the original, and leaves the source alone", () => {
+    const view = overview("H55");
+    const amex = debt(view, "H55-D01");
+    expect(amex.name).toBe("Amex Gold");
+    expect(amex.balance.edit?.label).toBe("Amex Gold balance");
+    expect(amex.balance.report?.label).toBe("Amex Gold balance");
+    expect(amex.rate.edit?.label).toBe("Amex Gold interest rate");
+    expect(amex.payment.edit?.label).toBe("Amex Gold monthly payment");
+    for (const row of view.debts) {
+      expect(row.balance.edit, row.name).not.toBeNull();
+      expect(row.balance.report, row.name).not.toBeNull();
+      expect(row.rate.edit, row.name).not.toBeNull();
+      expect(row.payment.edit, row.name).not.toBeNull();
+    }
+    expect(view.comfort.edit?.label).toBe("Comfort zone");
+    expect(view.members.every((member) => member.fico.edit && member.fico.report)).toBe(true);
+    expect(view.properties.every((property) => property.value.edit && property.value.report)).toBe(true);
+    const home = overview("H01");
+    const mortgages = home.debts.filter((row) => row.link);
+    expect(mortgages.length).toBeGreaterThan(0);
+    expect(mortgages.every((row) => row.link?.edit && row.link.report)).toBe(true);
+
+    const source = debts.find((row) => row.debt_id === "H01-D01");
+    const caseRecord = [...cases].reverse().find((row) => row.household_id === "H01");
+    expect(source && caseRecord).toBeTruthy();
+    const sourceBalance = source!.balance;
+    const override: CaseOverride = {
+      override_id: "O-balance",
+      case_id: caseRecord!.case_id,
+      household_id: "H01",
+      entity_type: "debt",
+      entity_id: source!.debt_id,
+      field: "balance",
+      source_value: sourceBalance,
+      override_value: sourceBalance + 5000,
+      reason: "Statement confirmed",
+      reported_to_backend: false,
+      changed_by: "Elena Duarte",
+      changed_at: AS_OF,
+    };
+    const edited = buildHouseholdOverview({
+      householdId: "H01",
+      caseId: caseRecord!.case_id,
+      overrides: [...caseOverrides, override],
+      contacts,
+      history: caseHistory,
+      scenarios,
+      extraPayments,
+      customLoans,
+    });
+    const row = debt(edited!, source!.debt_id);
+    expect(row.balance.text).toBe(formatMoney(sourceBalance + 5000));
+    expect(row.balance.override).toMatchObject({
+      original: formatMoney(sourceBalance),
+      next: formatMoney(sourceBalance + 5000),
+      reason: "Statement confirmed",
+      by: "Elena Duarte",
+    });
+    expect(row.balance.edit?.sourceText).toBe(formatMoney(sourceBalance));
+    expect(source!.balance).toBe(sourceBalance);
+    const state = { overrides: [...caseOverrides, override], extraPayments, customLoans };
+    const planned = householdWithCase("H01", state);
+    expect(planned.debts.find((item) => item.debt_id === source!.debt_id)?.balance).toBe(sourceBalance + 5000);
+    const before = workspaceFor("H01", caseRecord!.case_id, { overrides: caseOverrides, extraPayments, customLoans }, scenarios);
+    const after = workspaceFor("H01", caseRecord!.case_id, state, scenarios);
+    expect(after?.cards.find((card) => card.origin === "today")?.interest).not.toBe(
+      before?.cards.find((card) => card.origin === "today")?.interest,
+    );
   });
 
   it("returns nothing for an unknown household", () => {

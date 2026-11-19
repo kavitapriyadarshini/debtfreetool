@@ -396,9 +396,9 @@ export function OpportunityList() {
             <TableHeader>
               <TableRow>
                 <TableHead>Household</TableHead>
+                <TableHead>Best plan</TableHead>
                 <TableHead>Months saved</TableHead>
                 <TableHead>Interest saved</TableHead>
-                <TableHead>Best plan</TableHead>
                 <TableHead>Payment alert</TableHead>
                 <TableHead>Eligible products</TableHead>
                 <TableHead>Data flags</TableHead>
@@ -426,13 +426,14 @@ export function OpportunityList() {
                     <HouseholdLink householdId={row.householdId} name={row.name} />
                     <div className="text-xs text-muted-foreground">{row.householdId}</div>
                   </TableCell>
+                  <TableCell>{row.planType}</TableCell>
                   <TableCell className={row.noAction ? "text-muted-foreground" : undefined}>
                     <SavedCell
                       value={monthsSavedLabel(row)}
                       mark={row.updatedInCase}
                       detail={
                         row.updatedInCase
-                          ? `Nightly best: ${row.nightlyMonthsLabel}`
+                          ? `Pipeline recommended: ${row.nightlyMonthsLabel}`
                           : row.monthsSaved === "from never"
                             ? neverReason(row)
                             : null
@@ -445,14 +446,13 @@ export function OpportunityList() {
                       mark={row.updatedInCase}
                       detail={
                         row.updatedInCase
-                          ? `Nightly best: ${row.nightlyInterestLabel}`
+                          ? `Pipeline recommended: ${row.nightlyInterestLabel}`
                           : row.monthsSaved === "from never"
                             ? neverReason(row)
                             : null
                       }
                     />
                   </TableCell>
-                  <TableCell>{row.planType}</TableCell>
                   <TableCell>
                     <PaymentDot
                       alert={row.alert}

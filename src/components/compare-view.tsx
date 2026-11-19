@@ -368,7 +368,7 @@ export function CompareView({
         {hasRecommendation ? (
           <>
             <PresentLink
-              href={`/households/${householdId}/present?compared=${encodeURIComponent(view.columns.map((column) => column.id).filter((id) => id !== "current").join(","))}`}
+              href={`/households/${householdId}/present`}
             />
             <BusyButton
               label="Change recommendation"

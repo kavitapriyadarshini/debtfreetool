@@ -4,9 +4,9 @@ import { presentFor } from "../present";
 
 const state = { overrides: caseOverrides, extraPayments, customLoans };
 
-function show(id: string, plan = "", compared: string[] = []) {
+function show(id: string, plan = "") {
   const caseRecord = [...cases].reverse().find((row) => row.household_id === id);
-  return presentFor(id, caseRecord?.case_id ?? null, state, scenarios, plan, compared);
+  return presentFor(id, caseRecord?.case_id ?? null, state, scenarios, plan);
 }
 
 const FORBIDDEN = ["avalanche", "snowball", "HELOAN", "FICO", "APR", "no_fico", "possible_duplicate", "payment alert"];
@@ -94,7 +94,7 @@ describe("present mode", () => {
     expect(model?.title).toBe("Your recommended plan: Pay off your cards with a home equity loan, then clear the rest in order");
     expect(model?.advisor).toBe("Pamela Wilson");
     expect(model?.date).toBe("14 Nov 2026");
-    expect(model?.columns.map((column) => column.heading).slice(0, 2)).toEqual(["Today", "Your recommended plan"]);
+    expect(model?.columns.map((column) => column.heading)).toEqual(["Today", "Your recommended plan"]);
     expect(model?.advantages).toEqual([
       "Debt free 9 years 6 months sooner.",
       "$107,710 less interest.",
@@ -164,23 +164,13 @@ describe("present mode", () => {
     assertPlain(householdText(left!));
   });
 
-  it("puts the other compared plans in grey columns, in plain words", () => {
-    const model = show("H01", "", ["avalanche", "snowball", "S0002"]);
-    const grey = model?.columns.filter((column) => column.tone === "other") ?? [];
-    expect(grey.map((column) => column.id)).toEqual(["avalanche", "snowball", "S0002"]);
-    expect(grey[0]?.heading).toBe("Keep today's payment and clear the highest rate first");
-    expect(grey[0]?.source).toContain("Built-in");
-    expect(grey[1]?.heading).toBe("Keep today's payment and clear the smallest balance first");
-    expect(grey[2]?.heading).toBe("Pay off your cards with a home equity loan, then clear the rest in order");
-    const twins = show("H01", "avalanche", ["S0002", "S0003"])?.columns.filter((column) => column.tone === "other") ?? [];
-    expect(twins.map((column) => column.heading)).toEqual([
-      "Pay off your cards with a home equity loan, then clear the rest in order",
-      "Pay off your cards with a home equity loan, then clear the rest in order",
-    ]);
-    expect(new Set(twins.map((column) => `${column.heading}|${column.source}`)).size).toBe(twins.length);
-    const repeated = show("H55", "S0042", ["avalanche", "S0041"])?.columns.filter((column) => column.tone === "other") ?? [];
-    expect(repeated).toHaveLength(1);
-    expect(repeated[0]?.heading).toBe("Keep today's payment and clear the highest rate first");
+  it("shows only Today and Your recommended plan", () => {
+    const model = show("H01");
+    expect(model?.columns.map((column) => column.heading)).toEqual(["Today", "Your recommended plan"]);
+    expect(model?.columns.map((column) => column.tone)).toEqual(["today", "plan"]);
+    const switched = show("H01", "avalanche");
+    expect(switched?.columns).toHaveLength(2);
+    expect(switched?.columns[1]?.id).toBe("avalanche");
     assertPlain(householdText(model!));
   });
 

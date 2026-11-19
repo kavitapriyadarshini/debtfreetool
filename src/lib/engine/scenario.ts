@@ -54,6 +54,7 @@ function applyOverrides(
       const debt = debts.find((row) => row.debt_id === override.entity_id);
       if (!debt) continue;
       if (override.field === "monthly_payment" && typeof value === "number") debt.monthly_payment = value;
+      else if (override.field === "balance" && typeof value === "number") debt.balance = value;
       else if (override.field === "rate" && typeof value === "number") debt.rate = value;
       else if (override.field === "excluded" && value === true) excluded.add(debt.debt_id);
       else if (override.field === "property_id" && typeof value === "string") debt.property_id = value;
